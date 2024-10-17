@@ -18,6 +18,7 @@ import apiClient from "@/lib/api-client";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { signUpForm } from "@/lib/schemas/auth/signUp";
+import { Github } from "lucide-react";
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -96,7 +97,12 @@ export default function SignUpForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Register</Button>
+        <Button type="submit" className="w-full">
+          Sign up
+        </Button>
+        <Button variant="outline" disabled className="w-full">
+          <Github className="w-4 h-4 mr-2" /> GitHub
+        </Button>
       </form>
     </Form>
   );
