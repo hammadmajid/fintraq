@@ -1,6 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { v4 as uuidv4 } from 'uuid';
-import type { Session } from '@/lib/types';
+import type { Session } from '@/lib/schemas/auth/types';
 
 export class SessionRepository {
     private sql: typeof sql;

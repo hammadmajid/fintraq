@@ -17,20 +17,20 @@ import { Input } from "@/components/ui/input";
 import apiClient from "@/lib/api-client";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { registerForm } from "@/lib/form-schemas/registration";
+import { signUpForm } from "@/lib/schemas/auth/signUp";
 
-export default function RegisterForm() {
+export default function SignUpForm() {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof registerForm>>({
-    resolver: zodResolver(registerForm),
+  const form = useForm<z.infer<typeof signUpForm>>({
+    resolver: zodResolver(signUpForm),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof registerForm>) {
+  async function onSubmit(values: z.infer<typeof signUpForm>) {
     const { email, password } = values;
     try {
       const response = await apiClient.post("/auth/register", {
