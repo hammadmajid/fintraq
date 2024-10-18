@@ -36,7 +36,7 @@ export default function SignUpForm() {
   async function onSubmit(values: z.infer<typeof signUpForm>) {
     const { firstName, lastName, email, password } = values;
     try {
-      const response = await apiClient.post("/auth/register", {
+      const response = await apiClient.post("/auth/signup", {
         firstName,
         lastName,
         email,
