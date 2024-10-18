@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import apiClient from "@/lib/api-client";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { signUpForm } from "@/lib/schemas/auth/signUp";
+import { signUpForm } from "@/lib/schemas/auth/zod";
 import { Github } from "lucide-react";
 
 export default function SignUpForm() {

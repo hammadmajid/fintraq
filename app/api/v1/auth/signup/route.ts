@@ -1,7 +1,7 @@
 import { sql } from '@vercel/postgres';
 import { UserRepository } from '@/lib/repositories/user';
 import { SessionRepository } from '@/lib/repositories/session';
-import { signUpForm } from '@/lib/schemas/auth/signUp';
+import { signUpForm } from '@/lib/schemas/auth/zod';
 
 export async function POST(request: Request) {
 	try {
