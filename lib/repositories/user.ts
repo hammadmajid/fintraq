@@ -95,4 +95,21 @@ export class UserRepository {
             throw new Error('Failed to get user by email');
         }
     }
+
+    async verifyPassword(id: string, password: string): Promise<boolean> {
+        try {
+            const result = await this.sql`
+                SELECT password
+                FROM users
+                WHERE id = ${id}
+            `;
+
+            const dbPassword = result.rows[0].password;
+
+            return await bcrypt.compare(password, dbPassword);
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+    }
 }
