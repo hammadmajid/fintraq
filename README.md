@@ -1,12 +1,14 @@
 # Fintraq
 
-A barebone, modern finance tracking app built with Next.js, Vercel Postgres, and shadcn/ui.
+A modern finance tracking app built with Next.js, Vercel Postgres, and shadcn/ui.
 
 ## Features
 
-- **Track Expenses**: Easily log and categorize your expenses.
-- **Budgeting Tools**: Set and manage your budgets effectively.
-- **Reports**: Generate insights on your spending habits.
+- [ ] **User Authentication**: Secure sign-up and login functionality.
+- [ ] **Track Expenses**: Easily log and categorize your expenses.
+- [ ] **Budgeting Tools**: Set and manage your budgets effectively.
+- [ ] **Responsive Design**: Optimized for both desktop and mobile use.
+- [ ] **Reports**: Generate insights on your spending habits.
 
 ## Local Development
 
