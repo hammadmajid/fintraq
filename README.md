@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fintraq
 
-## Getting Started
+A barebone, modern finance tracking app built with Next.js, Vercel Postgres, and shadcn/ui.
 
-First, run the development server:
+## Features
+
+- **Track Expenses**: Easily log and categorize your expenses.
+- **Budgeting Tools**: Set and manage your budgets effectively.
+- **Reports**: Generate insights on your spending habits.
+
+## Local Development
+
+To install the required dependencies, run:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm i --frozen
+```
+
+To run the development server:
+
+```bash
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Before running the application, make sure to set up the environment variables in a `.env.local` file:
 
-## Learn More
+```
+POSTGRES_URL="************"
+POSTGRES_PRISMA_URL="************"
+POSTGRES_URL_NO_SSL="************"
+POSTGRES_URL_NON_POOLING="************"
+POSTGRES_USER="************"
+POSTGRES_HOST="************"
+POSTGRES_PASSWORD="************"
+POSTGRES_DATABASE="************"
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions are welcome! Please check out the existing [issues](https://github.com/hammadmajid/fintraq/issues) to see what you can help with.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
