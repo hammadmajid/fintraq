@@ -13,7 +13,6 @@ export class SessionRepository {
     async create(userId: string): Promise<Session> {
         try {
             const session: Session = {
-                id: uuidv4(),
                 userId,
                 token: uuidv4(),
                 createdAt: new Date(),
@@ -21,8 +20,8 @@ export class SessionRepository {
             };
 
             await this.sql`
-        INSERT INTO sessions (id, user_id, token, created_at, expires_at)
-        VALUES (${session.id}, ${session.userId}, ${session.token}, ${session.createdAt.toISOString()}, ${session.expiresAt.toISOString()})
+        INSERT INTO sessions ( user_id, token, created_at, expires_at)
+        VALUES (${session.userId}, ${session.token}, ${session.createdAt.toISOString()}, ${session.expiresAt.toISOString()})
       `;
 
             return session;
@@ -45,7 +44,6 @@ export class SessionRepository {
             }
 
             return {
-                id: result.rows[0].id,
                 userId: result.rows[0].user_id,
                 token: result.rows[0].token,
                 createdAt: new Date(result.rows[0].created_at),
