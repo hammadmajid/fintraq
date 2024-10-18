@@ -51,7 +51,7 @@ export class UserRepository {
     async getById(id: string): Promise<User | null> {
         try {
             const result = await this.sql`
-        SELECT id, email, created_at
+        SELECT id, full_name, email, created_at
         FROM users
         WHERE id = ${id}
       `;
@@ -62,7 +62,7 @@ export class UserRepository {
 
             return {
                 id: result.rows[0].id,
-                fullName: result.rows[0].fullName,
+                fullName: result.rows[0].full_name,
                 email: result.rows[0].email,
                 createdAt: new Date(result.rows[0].created_at),
             };
@@ -75,7 +75,7 @@ export class UserRepository {
     async getByEmail(email: string): Promise<User | null> {
         try {
             const result = await this.sql`
-        SELECT id, email, created_at
+        SELECT id, full_name, email, created_at
         FROM users
         WHERE email = ${email}
       `;
@@ -86,7 +86,7 @@ export class UserRepository {
 
             return {
                 id: result.rows[0].id,
-                fullName: result.rows[0].fullName,
+                fullName: result.rows[0].full_name,
                 email: result.rows[0].email,
                 createdAt: new Date(result.rows[0].created_at),
             };
