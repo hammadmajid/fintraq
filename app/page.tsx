@@ -15,10 +15,10 @@ export default function Home() {
 
       <div className="flex gap-2 items-center justify-center">
         <Button asChild>
-          <Link href="/signup">Create account</Link>
+          <Link href="/signup">Get started</Link>
         </Button>
         <Button variant="outline" asChild>
-          <Link href="/login">Login</Link>
+          <Link href="/signin">Sign in</Link>
         </Button>
       </div>
     </div>
