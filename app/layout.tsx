@@ -80,7 +80,7 @@ function Header() {
   ];
 
   return (
-    <header className="p-4 bg-secondary">
+    <header className="p-4 bg-muted/40">
       <nav className="gap-6 text-lg font-medium flex flex-row items-center justify-between md:gap-5 md:text-sm lg:gap-6">
         <FintraqLogo />
         <ul className="hidden md:flex flex-row items-center justify-center">
@@ -138,7 +138,7 @@ function FintraqLogo() {
 
 function Footer() {
   return (
-    <footer className="p-12 text-center bg-secondary">
+    <footer className="p-12 text-center bg-muted/40">
       <p>
         Licensed under{" "}
         <Button className="p-0 " variant="link" asChild>

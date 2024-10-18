@@ -1,8 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import SignUpForm from "@/components/auth/signup-form";
+import { Metadata } from "next";
 
-export default function SignUpPage() {
+export const metadata: Metadata = {
+  title: "Sign up",
+};
+
+export default async function SignUpPage() {
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
