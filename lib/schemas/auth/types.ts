@@ -8,6 +8,7 @@ export interface Session {
 
 export interface User {
     id: string,
+    fullName: string,
     email: string,
     createdAt: Date,
 }

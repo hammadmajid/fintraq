@@ -5,7 +5,8 @@ import { signUpForm } from '@/lib/schemas/auth/signUp';
 
 export async function POST(request: Request) {
 	try {
-		const { email, password } = signUpForm.parse(await request.json());
+		const { firstName, lastName, email, password } = signUpForm.parse(await request.json());
+		const fullName = firstName + " " + lastName;
 
 		const userRepo = new UserRepository(sql);
 		const sessionRepo = new SessionRepository(sql);
@@ -18,7 +19,7 @@ export async function POST(request: Request) {
 		await sql`BEGIN`;
 
 		try {
-			const user = await userRepo.create(email, password);
+			const user = await userRepo.create(fullName, email, password);
 			const session = await sessionRepo.create(user.id);
 
 			// If we get here, both operations succeeded, so commit the transaction

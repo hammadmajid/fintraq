@@ -25,10 +25,11 @@ export class UserRepository {
         }
     }
 
-    async create(email: string, password: string): Promise<User> {
+    async create(fullName: string, email: string, password: string): Promise<User> {
         try {
             const user: User = {
                 id: uuidv4(),
+                fullName,
                 email,
                 createdAt: new Date(),
             };
@@ -36,8 +37,8 @@ export class UserRepository {
             const hashedPassword = await bcrypt.hash(password, this.SALT_ROUNDS);
 
             await this.sql`
-        INSERT INTO users (id, email, password, created_at)
-        VALUES (${user.id}, ${user.email}, ${hashedPassword}, ${user.createdAt.toISOString()})
+        INSERT INTO users (id, full_name, email, password, created_at)
+        VALUES (${user.id}, ${user.fullName}, ${user.email}, ${hashedPassword}, ${user.createdAt.toISOString()})
       `;
 
             return user;
@@ -61,6 +62,7 @@ export class UserRepository {
 
             return {
                 id: result.rows[0].id,
+                fullName: result.rows[0].fullName,
                 email: result.rows[0].email,
                 createdAt: new Date(result.rows[0].created_at),
             };
@@ -84,6 +86,7 @@ export class UserRepository {
 
             return {
                 id: result.rows[0].id,
+                fullName: result.rows[0].fullName,
                 email: result.rows[0].email,
                 createdAt: new Date(result.rows[0].created_at),
             };
