@@ -31,6 +31,7 @@ export default function Profile() {
       router.push("/signin");
       router.refresh();
     } catch (error) {
+      console.log(error);
       toast({
         title: "Sign Out Error",
         description: "An error occurred while signing out. Please try again.",
