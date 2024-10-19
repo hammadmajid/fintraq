@@ -1,5 +1,19 @@
 import { z } from "zod";
 
+export interface Session {
+    userId: string,
+    token: string,
+    createdAt: Date,
+    expiresAt: Date,
+}
+
+export interface User {
+    id: string,
+    fullName: string,
+    email: string,
+    createdAt: Date,
+}
+
 export const signUpForm = z.object({
     firstName: z.string().min(1, {
         message: "Please enter at least 1 chracacter",

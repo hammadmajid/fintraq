@@ -1,7 +1,7 @@
 import { sql } from '@vercel/postgres';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
-import type { User } from '@/lib/schemas/auth/types';
+import type { User } from '@/lib/schemas/auth';
 
 export class UserRepository {
     private sql: typeof sql;
