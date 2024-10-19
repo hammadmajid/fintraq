@@ -33,31 +33,32 @@ export default function SignInForm() {
 
   async function onSubmit(values: z.infer<typeof signInForm>) {
     const { email, password } = values;
-    const response = await fetch("/api/v1/auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    try {
+      const response = await fetch("/api/v1/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+        credentials: "include", // This is important for including cookies
+      });
 
-    const data = await response.json();
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "An error occurred during sign in.");
+      }
 
-    if (response.status !== 200) {
-      console.error("status text: :", response.statusText);
-      console.error("json: :", data.error);
-
+      router.push("/profile");
+    } catch (error) {
       toast({
-        title: response.status + " " + data.error,
-        description: data.error,
+        title: "Sign In Error",
+        description:
+          error instanceof Error ? error.message : "An unknown error occurred",
         variant: "destructive",
       });
-    } else {
-      localStorage.setItem("session", JSON.stringify(data));
-      router.push("/profile");
     }
   }
 

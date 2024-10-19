@@ -35,33 +35,35 @@ export default function SignUpForm() {
 
   async function onSubmit(values: z.infer<typeof signUpForm>) {
     const { firstName, lastName, email, password } = values;
-    const response = await fetch("/api/v1/auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-        password,
-      }),
-    });
 
-    const data = await response.json();
+    try {
+      const response = await fetch("/api/v1/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+        }),
+        credentials: "include", // This is important for including cookies
+      });
 
-    if (response.status !== 200) {
-      console.error("status text: :", response.statusText);
-      console.error("json: :", data.error);
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "An error occurred during sign in.");
+      }
 
+      router.push("/profile");
+    } catch (error) {
       toast({
-        title: response.status + " " + data.error,
-        description: data.error,
+        title: "Sign In Error",
+        description:
+          error instanceof Error ? error.message : "An unknown error occurred",
         variant: "destructive",
       });
-    } else {
-      localStorage.setItem("session", JSON.stringify(data));
-      router.push("/profile");
     }
   }
 
