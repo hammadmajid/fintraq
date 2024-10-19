@@ -16,12 +16,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { signUpForm } from "@/lib/schemas/auth/zod";
-import { Github } from "lucide-react";
+import { Github, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 export default function SignUpForm() {
   const router = useRouter();
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof signUpForm>>({
     resolver: zodResolver(signUpForm),
@@ -34,6 +36,7 @@ export default function SignUpForm() {
   });
 
   async function onSubmit(values: z.infer<typeof signUpForm>) {
+    setIsLoading(true);
     const { firstName, lastName, email, password } = values;
 
     try {
@@ -64,6 +67,8 @@ export default function SignUpForm() {
           error instanceof Error ? error.message : "An unknown error occurred",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -129,7 +134,7 @@ export default function SignUpForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input type="password" {...field} />
               </FormControl>
               <FormDescription className="sr-only">
                 Minimum 6 characters password for security.
@@ -138,8 +143,15 @@ export default function SignUpForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
-          Sign up
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Signing up...
+            </>
+          ) : (
+            "Sign up"
+          )}
         </Button>
         <Button variant="outline" disabled className="w-full">
           <Github className="w-4 h-4 mr-2" /> GitHub

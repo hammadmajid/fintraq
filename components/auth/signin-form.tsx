@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,12 +17,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { signInForm } from "@/lib/schemas/auth/zod";
-import { Github } from "lucide-react";
+import { Github, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function SignInForm() {
   const router = useRouter();
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof signInForm>>({
     resolver: zodResolver(signInForm),
@@ -32,6 +34,7 @@ export default function SignInForm() {
   });
 
   async function onSubmit(values: z.infer<typeof signInForm>) {
+    setIsLoading(true);
     const { email, password } = values;
     try {
       const response = await fetch("/api/v1/auth/signin", {
@@ -59,6 +62,8 @@ export default function SignInForm() {
           error instanceof Error ? error.message : "An unknown error occurred",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -89,7 +94,7 @@ export default function SignInForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input type="password" {...field} />
               </FormControl>
               <FormDescription className="sr-only">
                 Minimum 6 characters password for security.
@@ -98,8 +103,15 @@ export default function SignInForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
-          Sign in
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Signing in...
+            </>
+          ) : (
+            "Sign in"
+          )}
         </Button>
         <Button variant="outline" disabled className="w-full">
           <Github className="w-4 h-4 mr-2" /> GitHub
