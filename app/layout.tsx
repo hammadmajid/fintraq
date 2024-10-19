@@ -102,7 +102,7 @@ function Header() {
         </ul>
         <Sheet>
           <SheetTrigger className="md:hidden">
-            <Button variant="outline" size="icon">
+            <Button variant="outline" size="icon" asChild>
               <Menu />
             </Button>
           </SheetTrigger>
