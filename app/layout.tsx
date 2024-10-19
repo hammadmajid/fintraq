@@ -144,17 +144,17 @@ function FintraqLogo() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="p-12 text-center bg-muted/40">
-      <p>
-        Licensed under{" "}
-        <Button className="p-0 " variant="link" asChild>
-          <Link href="https://github.com/hammadmajid/fintraq/blob/main/LICENSE">
-            MIT license
-          </Link>
-        </Button>
-      </p>
-    </footer>
-  );
-}
+// function Footer() {
+//   return (
+//     <footer className="p-12 text-center bg-muted/40">
+//       <p>
+//         Licensed under{" "}
+//         <Button className="p-0 " variant="link" asChild>
+//           <Link href="https://github.com/hammadmajid/fintraq/blob/main/LICENSE">
+//             MIT license
+//           </Link>
+//         </Button>
+//       </p>
+//     </footer>
+//   );
+// }
