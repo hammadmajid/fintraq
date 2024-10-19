@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 			const session = await sessionRepo.create(user.id);
 
 			// If we get here, both operations succeeded, so commit the transaction
-			cookies().set('session', JSON.stringify(session), {
+			cookies().set('session_token', session.token, {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
 				sameSite: 'strict',

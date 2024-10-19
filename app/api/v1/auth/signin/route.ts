@@ -17,13 +17,8 @@ export async function POST(request: Request) {
         try {
             const user = await userRepo.getByEmail(email);
 
-            if (!user) {
-                return errorResponse('Invalid email.', 400);
-            }
-
-            if (!await userRepo.verifyPassword(user.id, password)) {
-                return errorResponse('Invalid password.', 400);
-
+            if (!user || !await userRepo.verifyPassword(user.id, password)) {
+                return errorResponse('Invalid email or password.', 400);
             }
 
             const session = await sessionRepo.create(user.id);
@@ -31,7 +26,7 @@ export async function POST(request: Request) {
             // If we get here, both operations succeeded, so commit the transaction
             await sql`COMMIT`;
 
-            cookies().set('session', JSON.stringify(session), {
+            cookies().set('session_token', session.token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'strict',
@@ -46,8 +41,8 @@ export async function POST(request: Request) {
             throw error; // Re-throw to be caught by outer try-catch
         }
     } catch (error) {
-        console.error('Error in user registration:', error);
-        return errorResponse('An error occurred during registration.', 500);
+        console.error('Error in user sign in:', error);
+        return errorResponse('An error occurred during sign in.', 500);
     }
 }
 
