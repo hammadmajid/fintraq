@@ -17,9 +17,11 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { signUpForm } from "@/lib/schemas/auth/zod";
 import { Github } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function SignUpForm() {
   const router = useRouter();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof signUpForm>>({
     resolver: zodResolver(signUpForm),
@@ -33,26 +35,33 @@ export default function SignUpForm() {
 
   async function onSubmit(values: z.infer<typeof signUpForm>) {
     const { firstName, lastName, email, password } = values;
-    try {
-      const response = await fetch("/api/v1/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          password,
-        }),
-      });
+    const response = await fetch("/api/v1/auth/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        password,
+      }),
+    });
 
-      localStorage.setItem("session", JSON.stringify(response.json()));
+    const data = await response.json();
+
+    if (response.status !== 200) {
+      console.error("status text: :", response.statusText);
+      console.error("json: :", data.error);
+
+      toast({
+        title: response.status + " " + data.error,
+        description: data.error,
+        variant: "destructive",
+      });
+    } else {
+      localStorage.setItem("session", JSON.stringify(data));
       router.push("/profile");
-      return;
-    } catch (error) {
-      console.error("Unexpected error:", error);
-      return;
     }
   }
 
