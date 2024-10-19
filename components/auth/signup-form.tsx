@@ -14,9 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import apiClient from "@/lib/api-client";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { signUpForm } from "@/lib/schemas/auth/zod";
 import { Github } from "lucide-react";
 
@@ -36,29 +34,24 @@ export default function SignUpForm() {
   async function onSubmit(values: z.infer<typeof signUpForm>) {
     const { firstName, lastName, email, password } = values;
     try {
-      const response = await apiClient.post("/auth/signup", {
-        firstName,
-        lastName,
-        email,
-        password,
+      const response = await fetch("/api/v1/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+        }),
       });
 
-      localStorage.setItem("session", JSON.stringify(response.data));
+      localStorage.setItem("session", JSON.stringify(response.json()));
       router.push("/profile");
       return;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          console.error("Error data:", error.response.data);
-          console.error("Error status:", error.response.status);
-        } else if (error.request) {
-          console.error("Error request:", error.request);
-        } else {
-          console.error("Error message:", error.message);
-        }
-      } else {
-        console.error("Unexpected error:", error);
-      }
+      console.error("Unexpected error:", error);
       return;
     }
   }
