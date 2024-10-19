@@ -54,7 +54,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
-          <Footer />
+          {/* <Footer /> */}
           <Toaster />
         </ThemeProvider>
         <Analytics />
@@ -102,7 +102,9 @@ function Header() {
         </ul>
         <Sheet>
           <SheetTrigger className="md:hidden">
-            <Menu />
+            <Button variant="outline" size="icon">
+              <Menu />
+            </Button>
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
