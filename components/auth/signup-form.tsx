@@ -59,7 +59,7 @@ export default function SignUpForm() {
         throw new Error(data.error || "An error occurred during sign in.");
       }
 
-      router.push("/profile");
+      router.push("/settings/profile");
     } catch (error) {
       toast({
         title: "Sign In Error",
