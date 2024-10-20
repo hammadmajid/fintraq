@@ -8,7 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { CheckIcon, XIcon } from "lucide-react";
+import { CheckIcon } from "lucide-react";
 import { FAQs } from "@/public/faq";
 
 export default function Home() {
@@ -232,7 +232,7 @@ export default function Home() {
             ].map((testimonial, index) => (
               <Card key={index}>
                 <CardContent className="pt-6">
-                  <p className="mb-4 italic">"{testimonial.quote}"</p>
+                  <p className="mb-4 italic">&quot;{testimonial.quote}&quot;</p>
                   <p className="font-semibold">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground">
                     {testimonial.role}
@@ -251,7 +251,7 @@ export default function Home() {
             Ready to Take Control of Your Finances?
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Join thousands of users who are already benefiting from Fintraq's
+            Join thousands of users who are already benefiting from Fintraq&apos;s
             powerful features.
           </p>
           <Button size="lg" asChild>
