@@ -47,17 +47,39 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
-            {session ? <AppSidebar /> : <Header />}
+          <ConditionalLayout hasSession={!!session}>
             {children}
-            {/* <Footer /> */}
-            <Toaster />
-          </SidebarProvider>
+          </ConditionalLayout>
+          <Toaster />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>
     </html>
+  );
+}
+
+export function ConditionalLayout({
+  children,
+  hasSession,
+}: {
+  children: React.ReactNode;
+  hasSession: boolean;
+}) {
+  if (hasSession) {
+    return (
+      <SidebarProvider>
+        <AppSidebar />
+        {children}
+      </SidebarProvider>
+    );
+  }
+
+  return (
+    <>
+      <Header />
+      {children}
+    </>
   );
 }
 
