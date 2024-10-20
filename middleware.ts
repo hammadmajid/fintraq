@@ -39,7 +39,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  if (request.nextUrl.pathname === '/signin' || request.nextUrl.pathname === '/signup') {
+  if (pathName === '/signin' || pathName === '/signup' || pathName === "/") {
     if (sessionToken) {
       const sessionRepo = new SessionRepository(sql)
       const session = await sessionRepo.getByToken(sessionToken)
@@ -54,5 +54,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/settings/:path*', '/dashboard/:path*', '/signin', '/signup'],
+  matcher: ['/settings/:path*', '/dashboard/:path*', '/', '/signin', '/signup'],
 }
