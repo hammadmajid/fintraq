@@ -11,16 +11,8 @@ import {
 } from "@/components/ui/sheet";
 import { Menu, WalletCards } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export default function Header() {
-  const pathname = usePathname();
-
-  const shouldRenderHeader = ['/', '/signin', '/signup'].includes(pathname);
-
-  if (!shouldRenderHeader) {
-    return null; // Don't render the header on other routes
-  }
 
   interface Link {
     text: string;

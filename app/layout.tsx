@@ -4,8 +4,11 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/header";
+import { cookies } from "next/headers";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,6 +34,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = cookies().get("session_token");
 
   return (
     <html lang="en">
@@ -43,10 +47,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          {children}
-          {/* <Footer /> */}
-          <Toaster />
+          <SidebarProvider>
+            {session ? <AppSidebar /> : <Header />}
+            {children}
+            {/* <Footer /> */}
+            <Toaster />
+          </SidebarProvider>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
@@ -54,9 +60,6 @@ export default function RootLayout({
     </html>
   );
 }
-
-
-
 
 // function Footer() {
 //   return (
