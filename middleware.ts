@@ -6,7 +6,8 @@ import { sql } from '@vercel/postgres'
 export async function middleware(request: NextRequest) {
   const sessionToken = request.cookies.get('session_token')?.value
 
-  if (request.nextUrl.pathname.startsWith('/settings/profile')) {
+  const pathName = request.nextUrl.pathname;
+  if (pathName.startsWith('/settings') || pathName.startsWith('/dashboard')) {
     if (!sessionToken) {
       return NextResponse.redirect(new URL('/signin', request.url))
     }
@@ -44,7 +45,7 @@ export async function middleware(request: NextRequest) {
       const session = await sessionRepo.getByToken(sessionToken)
 
       if (session && session.expiresAt > new Date()) {
-        return NextResponse.redirect(new URL('/settings/profile', request.url))
+        return NextResponse.redirect(new URL('/dashboard', request.url))
       }
     }
   }
@@ -53,5 +54,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/settings/profile/:path*', '/signin', '/signup'],
+  matcher: ['/settings/:path*', '/dashboard/:path*', '/signin', '/signup'],
 }
