@@ -1,8 +1,8 @@
 import { eq, gt, and } from 'drizzle-orm';
 import { v4 as uuidv4 } from 'uuid';
-import { db } from '../db';
-import { sessions } from '@/lib/schemas/db';
-import type { InsertSession } from "@/lib/schemas/db";
+import { db } from '@/lib/db/client';
+import { sessions } from '@/lib/db/schema';
+import type { InsertSession } from "@/lib/db/schema";
 
 const SESSION_DURATION = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
 

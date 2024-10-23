@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { sessionQueries } from './lib/db/session'
+import { sessionQueries } from './lib/db/queries/session'
 
 export async function middleware(request: NextRequest) {
   const sessionToken = request.cookies.get('session_token')?.value

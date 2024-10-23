@@ -1,7 +1,7 @@
 import { signUpForm } from '@/lib/schemas/auth';
 import { cookies } from 'next/headers';
-import { sessionQueries } from '@/lib/db/session';
-import { userQueries } from '@/lib/db/users';
+import { sessionQueries } from '@/lib/db/queries/session';
+import { userQueries } from '@/lib/db/queries/users';
 
 export async function POST(request: Request) {
 	try {

@@ -1,5 +1,5 @@
-import { sessionQueries } from '@/lib/db/session';
-import { userQueries } from '@/lib/db/users';
+import { sessionQueries } from '@/lib/db/queries/session';
+import { userQueries } from '@/lib/db/queries/users';
 import { signInForm } from '@/lib/schemas/auth';
 import { cookies } from 'next/headers';
 

@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 import bcrypt from 'bcrypt';
-import { db } from '@/lib/db';
-import { users } from '@/lib/schemas/db';
+import { db } from '@/lib/db/client';
+import { users } from '@/lib/db/schema';
 
 const SALT_ROUNDS = 12;
 
