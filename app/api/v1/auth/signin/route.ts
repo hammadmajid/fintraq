@@ -1,6 +1,5 @@
-import { sql } from '@vercel/postgres';
-import { UserRepository } from '@/lib/repositories/user';
-import { SessionRepository } from '@/lib/repositories/session';
+import { sessionQueries } from '@/lib/db/session';
+import { userQueries } from '@/lib/db/users';
 import { signInForm } from '@/lib/schemas/auth';
 import { cookies } from 'next/headers';
 
@@ -8,38 +7,23 @@ export async function POST(request: Request) {
     try {
         const { email, password } = signInForm.parse(await request.json());
 
-        const userRepo = new UserRepository(sql);
-        const sessionRepo = new SessionRepository(sql);
+        const [user] = await userQueries.getByEmail(email);
 
-        // Start transaction
-        await sql`BEGIN`;
-
-        try {
-            const user = await userRepo.getByEmail(email);
-
-            if (!user || !await userRepo.verifyPassword(user.id, password)) {
-                return errorResponse('Invalid email or password.', 400);
-            }
-
-            const session = await sessionRepo.create(user.id);
-
-            // If we get here, both operations succeeded, so commit the transaction
-            await sql`COMMIT`;
-
-            cookies().set('session_token', session.token, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
-                maxAge: 60 * 60 * 24 * 7, // 1 week
-                path: '/',
-            });
-
-            return new Response(JSON.stringify({ success: true }), { status: 200 });
-        } catch (error) {
-            // If any operation fails, roll back the transaction
-            await sql`ROLLBACK`;
-            throw error; // Re-throw to be caught by outer try-catch
+        if (!user || !await userQueries.verifyPassword(user.id, password)) {
+            return errorResponse('Invalid email or password.', 400);
         }
+
+        const [session] = await sessionQueries.create(user.id);
+
+        cookies().set('session_token', session.token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 60 * 60 * 24 * 7, // 1 week
+            path: '/',
+        });
+
+        return new Response(JSON.stringify({ success: true }), { status: 200 });
     } catch (error) {
         console.error('Error in user sign in:', error);
         return errorResponse('An error occurred during sign in.', 500);

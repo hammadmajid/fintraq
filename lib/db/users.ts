@@ -6,10 +6,14 @@ import { users } from '@/lib/schemas/db';
 const SALT_ROUNDS = 12;
 
 export const userQueries = {
-    exists: (email: string) =>
-        db.select({ count: sql`count(*)` }).
-            from(users).
-            where(eq(users.email, email)),
+    exists: async (email: string): Promise<boolean> => {
+        const results = await db.select({ id: users.id })
+            .from(users)
+            .where(eq(users.email, email))
+            .limit(1);
+
+        return results.length > 0;
+    },
 
     create: (fullName: string, email: string, password: string) => db.insert(users).
         values({

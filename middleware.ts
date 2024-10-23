@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { SessionRepository } from './lib/repositories/session'
-import { sql } from '@vercel/postgres'
+import { sessionQueries } from './lib/db/session'
 
 export async function middleware(request: NextRequest) {
   const sessionToken = request.cookies.get('session_token')?.value
@@ -12,8 +11,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/signin', request.url))
     }
 
-    const sessionRepo = new SessionRepository(sql)
-    const session = await sessionRepo.getByToken(sessionToken)
+    const [session] = await sessionQueries.getByToken(sessionToken)
 
     if (!session || session.expiresAt < new Date()) {
       // Delete the session cookie
@@ -24,7 +22,7 @@ export async function middleware(request: NextRequest) {
 
     // Extend session duration if it's close to expiring
     if (session.expiresAt.getTime() - Date.now() < 30 * 60 * 1000) { // 30 minutes
-      const updatedSession = await sessionRepo.extendSession(session.token)
+      const [updatedSession] = await sessionQueries.extendSession(session.token)
       const response = NextResponse.next()
       response.cookies.set('session_token', updatedSession.token, {
         httpOnly: true,
@@ -41,8 +39,7 @@ export async function middleware(request: NextRequest) {
 
   if (pathName === '/signin' || pathName === '/signup' || pathName === "/") {
     if (sessionToken) {
-      const sessionRepo = new SessionRepository(sql)
-      const session = await sessionRepo.getByToken(sessionToken)
+      const [session] = await sessionQueries.getByToken(sessionToken)
 
       if (session && session.expiresAt > new Date()) {
         return NextResponse.redirect(new URL('/dashboard', request.url))
