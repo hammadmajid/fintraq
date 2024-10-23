@@ -60,6 +60,7 @@ export default function SignUpForm() {
       }
 
       router.push("/settings/profile");
+      router.refresh();
     } catch (error) {
       toast({
         title: "Sign In Error",
