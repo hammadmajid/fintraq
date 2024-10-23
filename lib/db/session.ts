@@ -1,0 +1,41 @@
+import { eq, gt, and } from 'drizzle-orm';
+import { v4 as uuidv4 } from 'uuid';
+import { db } from '../db';
+import { sessions } from '@/lib/schemas/db';
+import type { InsertSession } from "@/lib/schemas/db";
+
+const SESSION_DURATION = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+
+export const sessionQueries = {
+    create: (userId: string) => {
+        const session: InsertSession = {
+            userId,
+            token: uuidv4(),
+            createdAt: new Date(),
+            expiresAt: new Date(Date.now() + SESSION_DURATION),
+        };
+
+        return db.insert(sessions).values(session).returning();
+    },
+
+    getByToken: (token: string) =>
+        db.select()
+            .from(sessions)
+            .where(and(eq(sessions.token, token), gt(sessions.expiresAt, new Date()))),
+
+    extendSession: (token: string) => {
+        const newExpiresAt = new Date(Date.now() + SESSION_DURATION);
+        return db.update(sessions)
+            .set({ expiresAt: newExpiresAt })
+            .where(eq(sessions.token, token))
+            .returning();
+    },
+
+    deleteByToken: (token: string) =>
+        db.delete(sessions)
+            .where(eq(sessions.token, token)),
+
+    deleteExpiredSessions: () =>
+        db.delete(sessions)
+            .where(gt(sessions.expiresAt, new Date())),
+};
