@@ -7,7 +7,6 @@ import {
   User2,
   WalletCards,
 } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -26,6 +25,8 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { userQueries } from "@/lib/db/queries/users";
 
 // Menu items.
 const items = [
@@ -51,7 +52,20 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+export async function AppSidebar() {
+  const sessionCookie = cookies().get("session");
+  let userName = "Username";
+
+  if (sessionCookie) {
+    const [, userId] = sessionCookie.value.split(":");
+    if (userId) {
+      const [user] = await userQueries.getById(userId);
+      if (user) {
+        userName = user.fullName;
+      }
+    }
+  }
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -91,7 +105,7 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> Username
+                  <User2 /> {userName}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -100,7 +114,9 @@ export function AppSidebar() {
                 className="w-[--radix-popper-anchor-width]"
               >
                 <DropdownMenuItem>
-                  <Link href="/settings/profile" className="w-full h-full">Setting</Link>
+                  <Link href="/settings/profile" className="w-full h-full">
+                    Settings
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <span>Sign out</span>
