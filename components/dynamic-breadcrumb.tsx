@@ -8,8 +8,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "./ui/breadcrumb";
+} from "@/components/ui/breadcrumb";
 import { usePathname } from "next/navigation";
+import React from "react";
 
 export default function DynamicBreadcrumbs() {
   const pathname = usePathname();
@@ -29,9 +30,9 @@ export default function DynamicBreadcrumbs() {
           const isLast = index === pathSegments.length - 1;
 
           return (
-            <>
+            <React.Fragment key={href}>
               <BreadcrumbSeparator />
-              <BreadcrumbItem key={segment}>
+              <BreadcrumbItem>
                 {isLast ? (
                   <BreadcrumbPage>{segment}</BreadcrumbPage>
                 ) : (
@@ -40,7 +41,7 @@ export default function DynamicBreadcrumbs() {
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
-            </>
+            </React.Fragment>
           );
         })}
       </BreadcrumbList>
