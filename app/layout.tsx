@@ -37,7 +37,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = cookies().get("session_token");
+  const session = cookies().get("session");
 
   return (
     <html lang="en">

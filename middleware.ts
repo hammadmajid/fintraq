@@ -3,20 +3,26 @@ import type { NextRequest } from 'next/server'
 import { sessionQueries } from './lib/db/queries/session'
 
 export async function middleware(request: NextRequest) {
-  const sessionToken = request.cookies.get('session_token')?.value
+  const sessionCookie = request.cookies.get('session')?.value
 
   const pathName = request.nextUrl.pathname;
   if (pathName.startsWith('/settings') || pathName.startsWith('/dashboard')) {
-    if (!sessionToken) {
+    if (!sessionCookie) {
+      return NextResponse.redirect(new URL('/signin', request.url))
+    }
+
+    const [sessionToken, userId] = sessionCookie.split(':');
+
+    if (!sessionToken || !userId) {
       return NextResponse.redirect(new URL('/signin', request.url))
     }
 
     const [session] = await sessionQueries.getByToken(sessionToken)
 
-    if (!session || session.expiresAt < new Date()) {
+    if (!session || session.expiresAt < new Date() || session.userId !== userId) {
       // Delete the session cookie
       const response = NextResponse.redirect(new URL('/signin', request.url))
-      response.cookies.delete('session_token')
+      response.cookies.delete('session')
       return response
     }
 
@@ -24,7 +30,7 @@ export async function middleware(request: NextRequest) {
     if (session.expiresAt.getTime() - Date.now() < 30 * 60 * 1000) { // 30 minutes
       const [updatedSession] = await sessionQueries.extendSession(session.token)
       const response = NextResponse.next()
-      response.cookies.set('session_token', updatedSession.token, {
+      response.cookies.set('session', `${updatedSession.token}:${userId}`, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
@@ -38,7 +44,8 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathName === '/signin' || pathName === '/signup' || pathName === "/") {
-    if (sessionToken) {
+    if (sessionCookie) {
+      const [sessionToken] = sessionCookie.split(':');
       const [session] = await sessionQueries.getByToken(sessionToken)
 
       if (session && session.expiresAt > new Date()) {

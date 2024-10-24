@@ -15,7 +15,10 @@ export async function POST(request: Request) {
 
         const [session] = await sessionQueries.create(user.id);
 
-        cookies().set('session_token', session.token, {
+        // Combine session token and user ID
+        const cookieValue = `${session.token}:${user.id}`;
+
+        cookies().set('session', cookieValue, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
