@@ -14,6 +14,8 @@ export const sessions = pgTable('sessions', {
   token: uuid().primaryKey().defaultRandom(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   expiresAt: timestamp('expires_at').notNull(),
+  ipAddress: varchar('ip_address', { length: 45 }).notNull(), // IPv6 max length is 45
+  device: varchar('device', { length: 255 }).notNull(),
 });
 
 export type SelectUser = InferSelectModel<typeof users>;

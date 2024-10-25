@@ -7,12 +7,14 @@ import type { InsertSession } from "@/lib/db/schema";
 const SESSION_DURATION = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
 
 export const sessionQueries = {
-    create: (userId: string) => {
+    create: (userId: string, ipAddress: string, device: string) => {
         const session: InsertSession = {
             userId,
             token: uuidv4(),
             createdAt: new Date(),
             expiresAt: new Date(Date.now() + SESSION_DURATION),
+            ipAddress,
+            device,
         };
 
         return db.insert(sessions).values(session).returning();
