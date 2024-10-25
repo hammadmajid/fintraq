@@ -13,7 +13,10 @@ export async function POST(request: Request) {
             return errorResponse('Invalid email or password.', 400);
         }
 
-        const [session] = await sessionQueries.create(user.id);
+        const ipAddress = request.headers.get('x-forwarded-for') || request.headers.get('remote-addr') || 'unknown';
+        const userAgent = request.headers.get('user-agent') || 'unknown';
+
+        const [session] = await sessionQueries.create(user.id, ipAddress, userAgent);
 
         // Combine session token and user ID
         const cookieValue = `${session.token}:${user.id}`;

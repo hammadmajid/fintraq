@@ -13,12 +13,16 @@ export async function POST(request: Request) {
 		}
 
 		const [user] = await userQueries.create(fullName, email, password);
-		const [session] = await sessionQueries.create(user.id);
 
-        // Combine session token and user ID
-        const cookieValue = `${session.token}:${user.id}`;
+		const ipAddress = request.headers.get('x-forwarded-for') || request.headers.get('remote-addr') || 'unknown';
+		const userAgent = request.headers.get('user-agent') || 'unknown';
 
-        cookies().set('session', cookieValue, {
+		const [session] = await sessionQueries.create(user.id, ipAddress, userAgent);
+
+		// Combine session token and user ID
+		const cookieValue = `${session.token}:${user.id}`;
+
+		cookies().set('session', cookieValue, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'strict',
