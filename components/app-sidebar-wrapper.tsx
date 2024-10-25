@@ -11,10 +11,20 @@ export async function AppSidebarWrapper() {
     if (userId) {
       const [user] = await userQueries.getById(userId);
       if (user) {
-        userName = user.fullName;
+        userName = formatName(user.fullName);
       }
     }
   }
 
   return <AppSidebar userName={userName} />;
+}
+
+function formatName(fullName: string): string {
+  const nameParts = fullName.trim().split(" ");
+  if (nameParts.length < 2) {
+    return fullName;
+  }
+  const firstName = nameParts.slice(0, -1).join(" ");
+  const lastInitial = nameParts[nameParts.length - 1][0];
+  return `${firstName} ${lastInitial}.`;
 }
