@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRightLeft,
   ChevronUp,
@@ -25,8 +27,9 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import Link from "next/link";
-import { cookies } from "next/headers";
-import { userQueries } from "@/lib/db/queries/users";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+import { Button } from "./ui/button";
 
 // Menu items.
 const items = [
@@ -52,20 +55,37 @@ const items = [
   },
 ];
 
-export async function AppSidebar() {
-  const sessionCookie = cookies().get("session");
-  let userName = "Username";
+export function AppSidebar({ userName }: { userName: string }) {
+  const router = useRouter();
+  const { toast } = useToast();
 
-  if (sessionCookie) {
-    const [, userId] = sessionCookie.value.split(":");
-    if (userId) {
-      const [user] = await userQueries.getById(userId);
-      if (user) {
-        userName = user.fullName;
+  async function signOut() {
+    try {
+      const response = await fetch("/api/v1/auth/signout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to sign out");
       }
+
+      toast({
+        title: "Signed out successfully",
+        description: "You have been signed out of your account.",
+      });
+
+      router.push("/signin");
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Sign Out Error",
+        description: "An error occurred while signing out. Please try again.",
+        variant: "destructive",
+      });
     }
   }
-
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -114,12 +134,14 @@ export async function AppSidebar() {
                 className="w-[--radix-popper-anchor-width]"
               >
                 <DropdownMenuItem>
-                  <Link href="/settings/profile" className="w-full h-full">
-                    Settings
-                  </Link>
+                  <Button variant="ghost" className="w-full">
+                    <Link href="/settings/profile" className="w-full">Settings</Link>
+                  </Button>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <span>Sign out</span>
+                  <Button onClick={signOut} variant="ghost" className="w-full">
+                    Sign out
+                  </Button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

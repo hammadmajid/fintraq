@@ -1,18 +1,20 @@
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebarWrapper } from "@/components/app-sidebar-wrapper";
 import DynamicBreadcrumbs from "@/components/dynamic-breadcrumb";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
-export default function Layout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <>
-      <DynamicBreadcrumbs />
       <SidebarProvider>
-        <AppSidebar />
-        <div className="grid w-full">{children}</div>
+        <AppSidebarWrapper />
+        <div className="grid w-full">
+          <DynamicBreadcrumbs />
+          {children}
+        </div>
       </SidebarProvider>{" "}
     </>
   );
