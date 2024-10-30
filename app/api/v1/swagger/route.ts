@@ -147,6 +147,41 @@ const swaggerSpec = {
         },
       },
     },
+    '/api/v1/auth/sessions/verify': {
+      post: {
+        summary: 'Verify a session',
+        tags: ['Auth'],
+        description: 'Verifies the validity of a session token.',
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['token'],
+                properties: {
+                  token: {
+                    type: 'string',
+                    description: 'Session token to be verified',
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          '200': {
+            description: 'Session verified successfully',
+          },
+          '400': {
+            description: 'Invalid token',
+          },
+          '500': {
+            description: 'An error occurred while verifying the session',
+          },
+        },
+      },
+    },
   },
 };
 
