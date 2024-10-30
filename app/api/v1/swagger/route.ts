@@ -118,6 +118,35 @@ const swaggerSpec = {
         },
       },
     },
+    '/api/v1/auth/sessions/getall': {
+      get: {
+        summary: 'Get all sessions for a user',
+        tags: ['Auth'],
+        description: 'Retrieves all sessions associated with a user ID.',
+        parameters: [
+          {
+            name: 'userId',
+            in: 'query',
+            required: true,
+            schema: {
+              type: 'string',
+            },
+            description: 'The ID of the user',
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'Sessions retrieved successfully',
+          },
+          '400': {
+            description: 'Invalid userId',
+          },
+          '500': {
+            description: 'No data found',
+          },
+        },
+      },
+    },
   },
 };
 

@@ -25,6 +25,11 @@ export const sessionQueries = {
             .from(sessions)
             .where(and(eq(sessions.token, token), gt(sessions.expiresAt, new Date()))),
 
+    getAllByUserId: (userId: string) =>
+        db.select()
+            .from(sessions)
+            .where(eq(sessions.userId, userId)),
+
     extendSession: (token: string) => {
         const newExpiresAt = new Date(Date.now() + SESSION_DURATION);
         return db.update(sessions)
