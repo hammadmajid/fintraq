@@ -6,25 +6,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cookies, headers } from "next/headers";
-import { SelectSession } from "@/lib/db/schema"; // Make sure to import the Session type
+import { SelectSession } from "@/lib/db/schema";
+import { sessionQueries } from "@/lib/db/queries/session";
+import { cookies } from "next/headers";
 
 async function getSessions(userId: string): Promise<SelectSession[]> {
-  const host = headers().get("host");
-  const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
-  const response = await fetch(
-    `${protocol}://${host}/api/v1/auth/sessions/getall?userId=${userId}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  if (!response.ok) {
-    throw new Error("Failed to fetch sessions");
-  }
-  return await response.json();
+  return await sessionQueries.getAllByUserId(userId);
 }
 
 export default async function SessionsTable() {
@@ -61,15 +48,7 @@ export default async function SessionsTable() {
   );
 }
 
-export function getUserId(): string {
-  return splitCookie()[1];
-}
-
-export function getSession(): string {
-  return splitCookie()[0];
-}
-
-function splitCookie(): [string, string] {
+function getUserId(): string {
   const sessionCookie = cookies().get("session")?.value;
 
   if (!sessionCookie) {
@@ -81,5 +60,5 @@ function splitCookie(): [string, string] {
     throw new Error("Invalid session cookie format");
   }
 
-  return [userId, sessionToken];
+  return userId;
 }
