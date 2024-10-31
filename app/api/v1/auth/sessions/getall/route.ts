@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { sessionQueries } from '@/lib/db/queries/session';
 import { z } from 'zod';
 import { SelectSession } from '@/lib/db/schema';
