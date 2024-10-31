@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import SessionsTable from "./components/SessionsTable";
+import SessionsTable from "./components/sessions-table";
 
 export default function SecuritySettings() {
   return (
