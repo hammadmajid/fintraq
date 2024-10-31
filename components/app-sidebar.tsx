@@ -135,7 +135,7 @@ export function AppSidebar({ userName }: { userName: string }) {
               >
                 <DropdownMenuItem>
                   <Button variant="ghost" className="w-full">
-                    <Link href="/settings/profile" className="w-full">Settings</Link>
+                    <Link href="/settings" className="w-full">Settings</Link>
                   </Button>
                 </DropdownMenuItem>
                 <DropdownMenuItem>

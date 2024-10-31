@@ -54,7 +54,7 @@ export default function SignInForm() {
         throw new Error(data.error || "An error occurred during sign in.");
       }
 
-      router.push("/settings/profile");
+      router.push("/dashboard");
       router.refresh();
     } catch (error) {
       toast({
