@@ -1,8 +1,6 @@
 import Header from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import Link from "next/link";
 
 export default function RootLayout({
@@ -15,8 +13,6 @@ export default function RootLayout({
       <Header />
       {children}
       <Footer />
-      <Analytics />
-      <SpeedInsights />
     </>
   );
 }
