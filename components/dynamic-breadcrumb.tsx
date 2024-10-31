@@ -14,12 +14,11 @@ import React from "react";
 
 export default function DynamicBreadcrumbs() {
   const pathname = usePathname();
-
   const pathSegments = pathname.split("/").filter((segment) => segment);
 
   return (
-    <Breadcrumb className="p-4">
-      <BreadcrumbList className="flex flex-row flex-nowrap">
+    <Breadcrumb className="p-6">
+      <BreadcrumbList className="flex-wrap">
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
             <Link href="/">/</Link>
