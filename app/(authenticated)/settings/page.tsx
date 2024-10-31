@@ -48,16 +48,16 @@ export default function Settings() {
   ];
 
   return (
-    <main className="p-6">
+    <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Settings</h1>
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {settingsLinks.map((link) => (
           <Link key={link.href} href={link.href} className="block">
-            <Card className="h-full transition-shadow hover:shadow-md">
+            <Card className="h-full transition-colors hover:bg-muted/50">
               <CardHeader>
-                <CardTitle className="flex items-center">
-                  <link.icon className="w-6 h-6 mr-2" />
-                  {link.title}
+                <CardTitle className="flex items-center space-x-2">
+                  <link.icon className="w-5 h-5" />
+                  <span>{link.title}</span>
                 </CardTitle>
                 <CardDescription>{link.description}</CardDescription>
               </CardHeader>
@@ -65,6 +65,6 @@ export default function Settings() {
           </Link>
         ))}
       </div>
-    </main>
+    </div>
   );
 }
