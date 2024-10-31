@@ -41,7 +41,7 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.53.0",
+    "react-hook-form": "^7.53.1",
     "sharp": "^0.33.5",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-react": "^5.17.14",
