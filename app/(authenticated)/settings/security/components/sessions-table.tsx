@@ -12,7 +12,6 @@ import { SelectSession } from "@/lib/db/schema";
 export default async function SessionsTable() {
   const userId = getUserId();
   const sessions = await getSessions(userId);
-  console.log(sessions);
   return (
     <Table>
       <TableHeader>
