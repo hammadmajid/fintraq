@@ -2,6 +2,7 @@ import { sessionQueries } from '@/lib/db/queries/session';
 import { userQueries } from '@/lib/db/queries/users';
 import { signInForm } from '@/lib/schemas/auth';
 import { cookies } from 'next/headers';
+import { UAParser } from 'ua-parser-js';
 
 export async function POST(request: Request) {
     try {
@@ -15,8 +16,11 @@ export async function POST(request: Request) {
 
         const ipAddress = request.headers.get('x-forwarded-for') || request.headers.get('remote-addr') || 'unknown';
         const userAgent = request.headers.get('user-agent') || 'unknown';
+        const parser = new UAParser();
+        const uaResult = parser.setUA(userAgent).getResult();
+        const browserName = uaResult.browser.name || 'unknown';
 
-        const [session] = await sessionQueries.create(user.id, ipAddress, userAgent);
+        const [session] = await sessionQueries.create(user.id, ipAddress, browserName);
 
         // Combine session token and user ID
         const cookieValue = `${session.token}:${user.id}`;
