@@ -20,7 +20,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -124,7 +123,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
   };
 
   return (
-    <main className="container mx-auto p-6">
+    <main>
       <Card>
         <CardHeader>
           <CardTitle>Profile Settings</CardTitle>
@@ -183,6 +182,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
                 <FormField
                   control={form.control}
                   name="email"
+                  disabled
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Email</FormLabel>
@@ -211,10 +211,6 @@ export default function ProfileForm({ user }: ProfileFormProps) {
                         {...field}
                       />
                     </FormControl>
-                    <FormDescription>
-                      You can @mention other users and organizations to link to
-                      them.
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
