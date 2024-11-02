@@ -7,6 +7,8 @@ export const users = pgTable('users', {
   email: varchar('email', { length: 255 }).notNull().unique(),
   password: varchar('password', { length: 255 }).notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
+  bio: varchar({ length: 1200 }),
+  avatarURL: varchar("avatar_url", { length: 255 }),
 });
 
 export const sessions = pgTable('sessions', {
