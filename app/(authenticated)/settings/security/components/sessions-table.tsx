@@ -6,8 +6,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cookies, headers } from "next/headers";
+import { headers } from "next/headers";
 import { SelectSession } from "@/lib/db/schema";
+import { getUserId } from "@/app/utils";
 
 export default async function SessionsTable() {
   const userId = getUserId();
@@ -58,17 +59,4 @@ async function getSessions(userId: string): Promise<SelectSession[]> {
     throw new Error("Failed to fetch sessions");
   }
   return await response.json();
-}
-
-function getUserId(): string {
-  const sessionCookie = cookies().get("session")?.value;
-  if (!sessionCookie) {
-    throw new Error("Session cookie not found");
-  }
-  const [sessionToken, userId] = sessionCookie.split(":");
-  if (!userId || !sessionToken) {
-    throw new Error("Invalid session cookie format");
-  }
-
-  return userId;
 }
