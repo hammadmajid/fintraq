@@ -48,7 +48,7 @@ export default function Settings() {
   ];
 
   return (
-    <div className="container mx-auto p-6">
+    <main>
       <h1 className="text-3xl font-bold mb-6">Settings</h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {settingsLinks.map((link) => (
@@ -65,6 +65,6 @@ export default function Settings() {
           </Link>
         ))}
       </div>
-    </div>
+    </main>
   );
 }

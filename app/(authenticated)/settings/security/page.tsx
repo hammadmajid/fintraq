@@ -15,7 +15,7 @@ import SessionsTable from "./components/sessions-table";
 
 export default function SecuritySettings() {
   return (
-    <main className="container mx-auto p-6">
+    <main>
       <h1 className="text-3xl font-bold mb-6">Security Settings</h1>
 
       <div className="grid gap-6 md:grid-cols-2">

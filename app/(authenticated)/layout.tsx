@@ -16,7 +16,7 @@ export default async function Layout({
             <SidebarTrigger />
             <DynamicBreadcrumbs />
           </div>
-          <div className="mx-auto max-w-4xl w-full px-4">{children}</div>
+          <div className="mx-auto w-full px-4">{children}</div>
         </div>
       </SidebarProvider>
     </>
