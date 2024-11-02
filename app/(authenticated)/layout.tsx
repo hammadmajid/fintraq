@@ -11,11 +11,11 @@ export default async function Layout({
     <>
       <SidebarProvider>
         <AppSidebarWrapper />
-        <div className="grid w-full">
+        <div className="flex flex-col w-full">
           <DynamicBreadcrumbs />
-          {children}
+          <div className="mx-auto max-w-4xl w-full px-4">{children}</div>
         </div>
-      </SidebarProvider>{" "}
+      </SidebarProvider>
     </>
   );
 }
