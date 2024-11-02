@@ -1,6 +1,14 @@
 import { cookies } from "next/headers";
 
 export function getUserId(): string {
+  return splitCookie()[1];
+}
+
+export function getSession(): string {
+  return splitCookie()[0];
+}
+
+function splitCookie(): [string, string] {
   const sessionCookie = cookies().get("session")?.value;
   if (!sessionCookie) {
     throw new Error("Session cookie not found");
@@ -10,5 +18,5 @@ export function getUserId(): string {
     throw new Error("Invalid session cookie format");
   }
 
-  return userId;
+  return [sessionToken, userId];
 }
