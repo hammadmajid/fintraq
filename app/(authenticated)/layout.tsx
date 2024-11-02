@@ -1,6 +1,6 @@
 import { AppSidebarWrapper } from "@/components/app-sidebar-wrapper";
 import DynamicBreadcrumbs from "@/components/dynamic-breadcrumb";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default async function Layout({
   children,
@@ -12,7 +12,10 @@ export default async function Layout({
       <SidebarProvider>
         <AppSidebarWrapper />
         <div className="flex flex-col w-full">
-          <DynamicBreadcrumbs />
+          <div className="flex items-center px-4">
+            <SidebarTrigger />
+            <DynamicBreadcrumbs />
+          </div>
           <div className="mx-auto max-w-4xl w-full px-4">{children}</div>
         </div>
       </SidebarProvider>

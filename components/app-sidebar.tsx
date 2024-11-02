@@ -87,7 +87,7 @@ export function AppSidebar({ userName }: { userName: string }) {
     }
   }
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="offcanvas">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem className="p-2">
