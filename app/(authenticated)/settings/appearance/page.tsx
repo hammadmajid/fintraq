@@ -38,7 +38,7 @@ export default function AppearanceSetting() {
                 {theme === "light" && <Sun className="mr-2 h-4 w-4" />}
                 {theme === "dark" && <Moon className="mr-2 h-4 w-4" />}
                 {theme === "system" && <Monitor className="mr-2 h-4 w-4" />}
-                {theme!.charAt(0).toUpperCase() + theme!.slice(1)}
+                {theme ? theme.charAt(0).toUpperCase() + theme.slice(1) : "Select Theme"}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
