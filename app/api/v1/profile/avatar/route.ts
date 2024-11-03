@@ -28,7 +28,7 @@ export async function POST(request: Request) {
         const validatedData = UploadSchema.parse({ userId, file });
 
         // Check if the user exists
-        const userExists = await userQueries.exists(validatedData.userId);
+        const userExists = await userQueries.existsById(validatedData.userId);
         if (!userExists) {
             return NextResponse.json({ error: 'User not found.' }, { status: 404 });
         }

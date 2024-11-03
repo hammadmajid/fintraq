@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 		const { firstName, lastName, email, password } = signUpForm.parse(await request.json());
 		const fullName = firstName + " " + lastName;
 
-		if (await userQueries.exists(email)) {
+		if (await userQueries.existsByEmail(email)) {
 			return errorResponse('User with this email already exists.', 400);
 		}
 
