@@ -14,11 +14,8 @@ export default async function SessionsTable() {
   async function getSessions(): Promise<SelectSession[]> {
     const host = headers().get("host");
     const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
-    console.log(process?.env.NODE_ENV)
-    console.log(host, "***\n***", protocol)
-
     const response = await fetch(
-      `/api/v1/auth/sessions/getall?userId=${getUserId()}`,
+      `${protocol}://${host}/api/v1/auth/sessions/getall?userId=${getUserId()}`,
       {
         method: "GET",
         headers: {
