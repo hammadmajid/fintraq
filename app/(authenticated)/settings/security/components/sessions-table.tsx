@@ -18,9 +18,6 @@ export default async function SessionsTable() {
       `${protocol}://${host}/api/v1/auth/sessions/getall?userId=${getUserId()}`,
       {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
       }
     );
     if (!response.ok) {
