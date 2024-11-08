@@ -29,7 +29,7 @@ export default async function SignUpPage() {
       </div>
       <div className="hidden bg-muted lg:block">
         <Image
-          src="/placeholder.avif	"
+          src="/placeholder.png"
           alt="Image"
           width="1920"
           height="1080"
