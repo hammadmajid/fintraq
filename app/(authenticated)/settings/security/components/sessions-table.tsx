@@ -6,16 +6,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { headers } from "next/headers";
 import { SelectSession } from "@/lib/db/schema";
 import { getUserId } from "@/app/utils";
 
 export default async function SessionsTable() {
   async function getSessions(): Promise<SelectSession[]> {
-    const host = headers().get("host");
-    const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
     const response = await fetch(
-      `${protocol}://${host}/api/v1/auth/sessions/getall?userId=${getUserId()}`,
+      `${
+        process?.env.NEXT_PUBLIC_API_URL
+      }/api/v1/auth/sessions/getall?userId=${getUserId()}`,
       {
         method: "GET",
       }
