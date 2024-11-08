@@ -9,7 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CheckIcon } from "lucide-react";
-import { FAQs } from "@/public/faq";
+import { FAQ } from "./components/faq";
 
 export default function Home() {
   return (
@@ -159,18 +159,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">
             Frequently Asked Questions
           </h2>
-          <Accordion
-            type="single"
-            collapsible
-            className="w-full max-w-3xl mx-auto"
-          >
-            {FAQs.map((faq) => (
-              <AccordionItem key={faq.value} value={faq.value}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <FAQ />
         </div>
       </section>
 
@@ -251,8 +240,8 @@ export default function Home() {
             Ready to Take Control of Your Finances?
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Join thousands of users who are already benefiting from Fintraq&apos;s
-            powerful features.
+            Join thousands of users who are already benefiting from
+            Fintraq&apos;s powerful features.
           </p>
           <Button size="lg" asChild>
             <Link href="/signup">Get Started for Free</Link>
