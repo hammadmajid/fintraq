@@ -4,7 +4,7 @@ A modern finance tracking app built with Next.js, Vercel Postgres, and shadcn/ui
 
 ## Features
 
-- [ ] **User Authentication**: Secure sign-up and login functionality.
+- [x] **User Authentication**: Secure sign-up and login functionality.
 - [ ] **Track Expenses**: Easily log and categorize your expenses.
 - [ ] **Budgeting Tools**: Set and manage your budgets effectively.
 - [ ] **Responsive Design**: Optimized for both desktop and mobile use.
@@ -39,6 +39,7 @@ POSTGRES_USER="************"
 POSTGRES_HOST="************"
 POSTGRES_PASSWORD="************"
 POSTGRES_DATABASE="************"
+NEXT_PUBLIC_API_URL="" # use localhost:3000 in local development and production URL when deployed
 ```
 
 ## Contributing
