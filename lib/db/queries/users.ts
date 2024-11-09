@@ -61,4 +61,9 @@ export const userQueries = {
             .set(data)
             .where(eq(users.id, id));
     },
+
+    delete: async (id: string) => {
+        await db.delete(users)
+            .where(eq(users.id, id));
+    }
 };

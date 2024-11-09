@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { userQueries } from '@/lib/db/queries/users';
 import { getUserId } from '@/app/utils';
+import { cookies } from 'next/headers';
 
 const ProfileUpdateSchema = z.object({
   fullName: z.string().min(2),
@@ -27,4 +28,40 @@ export async function PUT(request: Request) {
     console.error('Error updating profile:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    const cookie = cookies().get('session');
+    if (!cookie) {
+      return errorResponse('Unauthorized', 401);
+    }
+
+    const [sessionToken, userId] = cookie.value.split(':');
+    if (!sessionToken || !userId) {
+      return errorResponse('Unauthorized', 401);
+    }
+
+    await userQueries.delete(userId);
+
+    cookies().set('session', '', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: -1, // Expire the cookie
+      path: '/',
+    });
+
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } catch (error) {
+    console.error('Error in user deletion:', error);
+    return errorResponse('An error occurred during user deletion.', 500);
+  }
+}
+
+function errorResponse(message: string, status: number): Response {
+  return new Response(JSON.stringify({ error: message }), {
+    status,
+    headers: { 'Content-Type': 'application/json' }
+  });
 }

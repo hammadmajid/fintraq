@@ -20,7 +20,7 @@ export const users = pgTable("users", {
 export const sessions = pgTable("sessions", {
   userId: uuid("user_id")
     .notNull()
-    .references(() => users.id),
+    .references(() => users.id, { onDelete: 'cascade' }),
   token: uuid().primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   expiresAt: timestamp("expires_at").notNull(),
@@ -30,6 +30,9 @@ export const sessions = pgTable("sessions", {
 
 export const accounts = pgTable("accounts", {
   id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
   title: varchar({ length: 255 }).notNull(),
   description: varchar({ length: 255 }),
   createdAt: timestamp("created_at").notNull().defaultNow(),
