@@ -30,9 +30,9 @@ export async function PUT(request: Request) {
   }
 }
 
-export async function DELETE(request: Request) {
+export async function DELETE() {
   try {
-    const cookie = cookies().get('session');
+    const cookie = (await cookies()).get('session');
     if (!cookie) {
       return errorResponse('Unauthorized', 401);
     }
@@ -44,7 +44,7 @@ export async function DELETE(request: Request) {
 
     await userQueries.delete(userId);
 
-    cookies().set('session', '', {
+    (await cookies()).set('session', '', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',

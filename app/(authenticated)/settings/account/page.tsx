@@ -28,7 +28,7 @@ export default function AccountSetting() {
   const { toast } = useToast();
   const router = useRouter();
 
-  async function handleDelete(event: React.MouseEvent<HTMLButtonElement>) {
+  async function handleDelete() {
     try {
       const response = await fetch("/api/v1/profile", {
         method: "DELETE",
@@ -40,8 +40,6 @@ export default function AccountSetting() {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
-      const data = await response.json();
 
       toast({
         title: "Account Deleted",
