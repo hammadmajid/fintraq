@@ -50,10 +50,10 @@ const incomeVsExpenseData = [
 ];
 
 const categoryExpenseData = [
-  { category: "chrome", expenses: 275, fill: "var(--color-chrome)" },
-  { category: "safari", expenses: 200, fill: "var(--color-safari)" },
-  { category: "firefox", expenses: 287, fill: "var(--color-firefox)" },
-  { category: "edge", expenses: 173, fill: "var(--color-edge)" },
+  { category: "bills", expenses: 275, fill: "var(--color-bills)" },
+  { category: "food", expenses: 200, fill: "var(--color-food)" },
+  { category: "transportation", expenses: 287, fill: "var(--color-transportation)" },
+  { category: "education", expenses: 173, fill: "var(--color-education)" },
   { category: "other", expenses: 190, fill: "var(--color-other)" },
 ];
 
@@ -61,20 +61,20 @@ const categoryExpenseChart = {
   expenses: {
     label: "expenses",
   },
-  chrome: {
-    label: "Chrome",
+  bills: {
+    label: "bills",
     color: "hsl(var(--chart-1))",
   },
-  safari: {
-    label: "Safari",
+  food: {
+    label: "food",
     color: "hsl(var(--chart-2))",
   },
-  firefox: {
-    label: "Firefox",
+  transportation: {
+    label: "transportation",
     color: "hsl(var(--chart-3))",
   },
-  edge: {
-    label: "Edge",
+  education: {
+    label: "education",
     color: "hsl(var(--chart-4))",
   },
   other: {
@@ -91,7 +91,10 @@ export default function Dashboard() {
   return (
     <main>
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <div>
+          <p className="text-muted-foreground">Balance</p>
+          <h1 className="text-3xl font-bold">$ 1234.56</h1>
+        </div>
         <div className="space-x-2">
           <Button variant="outline">
             <FileText className="w-5 mr-2" /> Create Report
@@ -102,7 +105,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
             <CardTitle>Income v Expenses</CardTitle>
