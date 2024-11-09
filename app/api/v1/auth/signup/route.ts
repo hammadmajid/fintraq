@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 		// Combine session token and user ID
 		const cookieValue = `${session.token}:${user.id}`;
 
-		cookies().set('session', cookieValue, {
+		(await cookies()).set('session', cookieValue, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'strict',

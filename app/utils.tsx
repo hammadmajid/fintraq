@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
 
 export function getUserId(): string {
   return splitCookie()[1];
@@ -9,7 +9,7 @@ export function getSession(): string {
 }
 
 function splitCookie(): [string, string] {
-  const sessionCookie = cookies().get("session")?.value;
+  const sessionCookie = (cookies() as unknown as UnsafeUnwrappedCookies).get("session")?.value;
   if (!sessionCookie) {
     throw new Error("Session cookie not found");
   }

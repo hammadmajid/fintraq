@@ -10,7 +10,7 @@ export async function POST(request: Request) {
 
         const [user] = await userQueries.getByEmail(email);
 
-        if (!user || !await userQueries.verifyPassword(user.id, password)) {
+        if (!user || !(await userQueries.verifyPassword(user.id, password))) {
             return errorResponse('Invalid email or password.', 400);
         }
 
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
         // Combine session token and user ID
         const cookieValue = `${session.token}:${user.id}`;
 
-        cookies().set('session', cookieValue, {
+        (await cookies()).set('session', cookieValue, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
