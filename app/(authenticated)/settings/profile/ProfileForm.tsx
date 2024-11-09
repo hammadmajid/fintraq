@@ -182,7 +182,6 @@ export default function ProfileForm({ user }: ProfileFormProps) {
                 <FormField
                   control={form.control}
                   name="email"
-                  disabled
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Email</FormLabel>
