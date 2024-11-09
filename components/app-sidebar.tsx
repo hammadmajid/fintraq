@@ -1,13 +1,10 @@
-"use client";
-
 import {
   ArrowRightLeft,
-  ChevronUp,
   HandCoins,
   Home,
   Landmark,
-  User2,
   WalletCards,
+  Settings,
 } from "lucide-react";
 import {
   Sidebar,
@@ -20,16 +17,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useToast } from "@/hooks/use-toast";
-import { Button } from "./ui/button";
 
 // Menu items.
 const items = [
@@ -55,37 +43,7 @@ const items = [
   },
 ];
 
-export function AppSidebar({ userName }: { userName: string }) {
-  const router = useRouter();
-  const { toast } = useToast();
-
-  async function signOut() {
-    try {
-      const response = await fetch("/api/v1/auth/signout", {
-        method: "POST",
-        credentials: "include",
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to sign out");
-      }
-
-      toast({
-        title: "Signed out successfully",
-        description: "You have been signed out of your account.",
-      });
-
-      router.push("/signin");
-      router.refresh();
-    } catch (error) {
-      console.log(error);
-      toast({
-        title: "Sign Out Error",
-        description: "An error occurred while signing out. Please try again.",
-        variant: "destructive",
-      });
-    }
-  }
+export function AppSidebar() {
   return (
     <Sidebar collapsible="offcanvas">
       <SidebarHeader>
@@ -122,29 +80,12 @@ export function AppSidebar({ userName }: { userName: string }) {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <User2 /> {userName}
-                  <ChevronUp className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                side="top"
-                className="w-[--radix-popper-anchor-width]"
-              >
-                <DropdownMenuItem>
-                  <Button variant="ghost" className="w-full">
-                    <Link href="/settings" className="w-full">Settings</Link>
-                  </Button>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Button onClick={signOut} variant="ghost" className="w-full">
-                    Sign out
-                  </Button>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <SidebarMenuButton asChild>
+              <Link href="/settings">
+                <Settings />
+                <span>Settings</span>
+              </Link>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
