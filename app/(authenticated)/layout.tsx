@@ -25,7 +25,7 @@ export default async function Layout({
             </div>
             <UserMenu user={user} />
           </div>
-          <div className="mx-auto w-full px-4">{children}</div>
+          <div className="mx-auto w-full px-4 h-full">{children}</div>
         </div>
       </SidebarProvider>
     </>
