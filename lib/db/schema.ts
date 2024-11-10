@@ -42,6 +42,17 @@ export const accounts = pgTable("accounts", {
   type: varchar({ length: 255 }).notNull(),
 });
 
+export const records = pgTable('records', {
+  id: uuid().primaryKey().defaultRandom(),
+  account: uuid().notNull().references(() => accounts.id, { onDelete: 'cascade' }),
+  amount: decimal({ precision: 10, scale: 2 }).notNull(),
+  category: varchar({ length: 255 }).notNull(),
+  type: varchar({ length: 255 }).notNull(),
+  status: varchar({ length: 255 }).notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+})
+
 export type SelectUser = InferSelectModel<typeof users>;
 export type InsertUser = InferInsertModel<typeof users>;
 
@@ -50,3 +61,6 @@ export type InsertSession = InferInsertModel<typeof sessions>;
 
 export type SelectAccount = InferSelectModel<typeof accounts>;
 export type InsertAccount = InferInsertModel<typeof accounts>;
+
+export type SelectRecord = InferSelectModel<typeof records>;
+export type InsertRecord = InferInsertModel<typeof records>;
