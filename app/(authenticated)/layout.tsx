@@ -10,7 +10,7 @@ export default async function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const userId = getUserId();
+  const userId = await getUserId();
   const [user] = await userQueries.getById(userId);
 
   return (

@@ -10,11 +10,13 @@ import { SelectSession } from "@/lib/db/schema";
 import { getUserId } from "@/app/utils";
 
 export default async function SessionsTable() {
+  const userId = await getUserId();
+
   async function getSessions(): Promise<SelectSession[]> {
     const response = await fetch(
       `${
         process?.env.NEXT_PUBLIC_API_URL
-      }/api/v1/auth/sessions/getall?userId=${getUserId()}`,
+      }/api/v1/auth/sessions/getall?userId=${userId}`,
       {
         method: "GET",
       }

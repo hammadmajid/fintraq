@@ -1,15 +1,19 @@
-import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
+import { cookies } from "next/headers";
 
-export function getUserId(): string {
-  return splitCookie()[1];
+export async function getUserId(): Promise<string> {
+  const cookieParts = await splitCookie();
+  return cookieParts[1];
 }
 
-export function getSession(): string {
-  return splitCookie()[0];
+export async function getSession(): Promise<string> {
+  const cookieParts = await splitCookie();
+  return cookieParts[1];
 }
 
-function splitCookie(): [string, string] {
-  const sessionCookie = (cookies() as unknown as UnsafeUnwrappedCookies).get("session")?.value;
+async function splitCookie(): Promise<[string, string]> {
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get("session")?.value;
+
   if (!sessionCookie) {
     throw new Error("Session cookie not found");
   }

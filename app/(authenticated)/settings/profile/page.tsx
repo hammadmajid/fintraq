@@ -3,7 +3,7 @@ import { userQueries } from "@/lib/db/queries/users";
 import ProfileForm from "./ProfileForm";
 
 export default async function ProfilePage() {
-  const userId = getUserId();
+  const userId = await getUserId();
   const [user] = await userQueries.getById(userId);
 
   if (!user) {

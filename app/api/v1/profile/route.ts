@@ -15,7 +15,7 @@ export async function PUT(request: Request) {
     const body = await request.json();
     const validatedData = ProfileUpdateSchema.parse(body);
 
-    const userId = getUserId();
+    const userId = await getUserId();
 
     // Update the user's profile in the database
     await userQueries.updateProfile(userId, validatedData);
