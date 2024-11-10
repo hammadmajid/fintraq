@@ -7,7 +7,7 @@ export async function getUserId(): Promise<string> {
 
 export async function getSession(): Promise<string> {
   const cookieParts = await splitCookie();
-  return cookieParts[1];
+  return cookieParts[0];
 }
 
 async function splitCookie(): Promise<[string, string]> {

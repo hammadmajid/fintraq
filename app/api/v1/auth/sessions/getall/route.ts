@@ -24,7 +24,7 @@ export async function GET(request: Request) {
 
     const { userId } = result.data;
 
-    const sessions: SelectSession[] = await sessionQueries.getAllByUserId(userId);
+    const sessions: SelectSession[] = await sessionQueries.getAll(userId);
 
     return new Response(JSON.stringify(sessions), {
       headers: { 'Content-Type': 'application/json' },

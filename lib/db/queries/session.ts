@@ -1,4 +1,4 @@
-import { eq, gt, and } from 'drizzle-orm';
+import { eq, gt, and, lt } from 'drizzle-orm';
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '@/lib/db/client';
 import { sessions } from '@/lib/db/schema';
@@ -25,7 +25,7 @@ export const sessionQueries = {
             .from(sessions)
             .where(and(eq(sessions.token, token), gt(sessions.expiresAt, new Date()))),
 
-    getAllByUserId: (userId: string) =>
+    getAll: (userId: string) =>
         db.select()
             .from(sessions)
             .where(eq(sessions.userId, userId)),
@@ -44,5 +44,5 @@ export const sessionQueries = {
 
     deleteExpiredSessions: () =>
         db.delete(sessions)
-            .where(gt(sessions.expiresAt, new Date())),
+            .where(lt(sessions.expiresAt, new Date())),
 };
