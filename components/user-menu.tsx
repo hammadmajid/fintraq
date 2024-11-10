@@ -60,6 +60,11 @@ export default function UserMenu({ user }: { user: SelectUser }) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuItem className="font-semibold">
+          <User2 className="mr-2" />
+          {user.fullName}
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleThemeChange}>
           {theme === "light" ? (
             <Sun className="mr-2" />
