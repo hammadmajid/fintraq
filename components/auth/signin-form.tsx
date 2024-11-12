@@ -63,8 +63,6 @@ export default function SignInForm() {
           error instanceof Error ? error.message : "An unknown error occurred",
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
     }
   }
 
