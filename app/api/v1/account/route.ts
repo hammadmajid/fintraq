@@ -1,12 +1,19 @@
 import { createAccountSchema } from '@/lib/schemas/account';
-import { cookies } from 'next/headers';
 import { accountQueries } from '@/lib/db/queries/accounts';
+import { userQueries } from '@/lib/db/queries/users';
+import { sessionQueries } from '@/lib/db/queries/session';
+import { getSession } from '@/app/utils';
 
 export async function POST(request: Request) {
     try {
         const { userId, title, color, type, icon, description, balance } = createAccountSchema.parse(await request.json());
 
-        // TODO: verify that userId is valid
+        const [session] = await sessionQueries.getByToken(await getSession());
+        const userExists = await userQueries.existsById(userId);
+
+        if (!session || !userExists) {
+            return errorResponse("Unauthorized", 401);
+        }
 
         const [account] = await accountQueries.create(userId, title, description, icon, color, type, String(balance));
 
