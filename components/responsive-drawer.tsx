@@ -49,7 +49,7 @@ export default function ResponsiveDialog({
   const sharedContent = (
     <>
       {title && (
-        <div className="mb-4">
+        <div className="flex-shrink-0">
           {isMobile ? (
             <DrawerHeader>
               <DrawerTitle>{title}</DrawerTitle>
@@ -67,21 +67,25 @@ export default function ResponsiveDialog({
           )}
         </div>
       )}
-      {children}
+      <div className="flex-grow overflow-y-auto">{children}</div>
     </>
   );
 
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent>{sharedContent}</DrawerContent>
+        <DrawerContent className="flex flex-col h-[80vh]">
+          {sharedContent}
+        </DrawerContent>
       </Drawer>
     );
   }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>{sharedContent}</DialogContent>
+      <DialogContent className="flex flex-col max-h-[80vh]">
+        {sharedContent}
+      </DialogContent>
     </Dialog>
   );
 }
