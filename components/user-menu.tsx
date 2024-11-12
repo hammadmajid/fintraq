@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Moon, Sun, User2, LogOut, HelpCircle, RefreshCcw } from "lucide-react";
+import { Moon, Sun, User2, LogOut, RefreshCcw } from "lucide-react";
 import type { SelectUser } from "@/lib/db/schema";
 import { useToast } from "@/hooks/use-toast";
 
@@ -48,6 +48,7 @@ export default function UserMenu({ user }: { user: SelectUser }) {
         });
       }
     } catch (error) {
+      console.error(error);
       toast({
         title: "Logout Error",
         description: "An error occurred during logout. Please try again.",
