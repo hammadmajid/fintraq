@@ -1,5 +1,3 @@
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 import {
   DropdownMenu,
@@ -17,6 +15,8 @@ import {
   Trash2,
   PiggyBank,
 } from "lucide-react";
+import CreateAccountForm from "./create-account-form";
+import { getUserId } from "@/app/utils";
 
 const accounts = [
   {
@@ -51,13 +51,18 @@ const accounts = [
   },
 ];
 
-export default function Accounts() {
+export default async function Accounts() {
   return (
     <main>
-      <h1 className="text-3xl font-bold mb-2">Accounts</h1>
-      <p className="text-muted-foreground mb-6">
-        Create or manage your accounts
-      </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">Accounts</h1>
+          <p className="text-muted-foreground mb-6">
+            Create or manage your accounts
+          </p>
+        </div>
+        <CreateAccountForm userId={await getUserId()} />
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {accounts.map((account, index) => (

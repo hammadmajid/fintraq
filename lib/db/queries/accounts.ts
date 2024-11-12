@@ -12,7 +12,7 @@ export const accountQueries = {
         return results.length > 0;
     },
 
-    create: (userId: string, title: string, description: string, icon: string, color: string, type: string) => db.insert(accounts)
+    create: (userId: string, title: string, description: string = "", icon: string, color: string, type: string, balance: string) => db.insert(accounts)
         .values({
             userId,
             title,
@@ -20,6 +20,7 @@ export const accountQueries = {
             icon,
             color,
             type,
+            balance,
         } as InsertAccount)
         .returning(),
 
