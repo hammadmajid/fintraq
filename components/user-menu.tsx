@@ -10,8 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Moon, Sun, User2, LogOut, HelpCircle } from "lucide-react";
+import { Moon, Sun, User2, LogOut, HelpCircle, RefreshCcw } from "lucide-react";
 import type { SelectUser } from "@/lib/db/schema";
+import { useToast } from "@/hooks/use-toast";
 
 export default function UserMenu({ user }: { user: SelectUser }) {
   const { setTheme, theme } = useTheme();
@@ -27,6 +28,8 @@ export default function UserMenu({ user }: { user: SelectUser }) {
     }
   };
 
+  const { toast } = useToast();
+
   const handleLogout = async () => {
     try {
       const response = await fetch("/api/v1/auth/signout", {
@@ -36,23 +39,31 @@ export default function UserMenu({ user }: { user: SelectUser }) {
         },
       });
       if (response.ok) {
-        router.push("/signin"); // Redirect to login page after successful logout
+        router.push("/signin");
       } else {
-        console.error("Logout failed");
+        toast({
+          title: "Logout Error",
+          description: "Logout failed. Please try again.",
+          variant: "destructive",
+        });
       }
     } catch (error) {
-      console.error("Error during logout:", error);
+      toast({
+        title: "Logout Error",
+        description: "An error occurred during logout. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
-  const handleHelp = () => {
-    router.push("/help");
+  const handleSync = () => {
+    router.refresh();
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="w-10 h-10 hover:cursor-pointer">
+        <Avatar className="w-9 h-9 hover:cursor-pointer">
           <AvatarImage src={user.avatarURL || ""} alt={user.fullName} />
           <AvatarFallback>
             <User2 size={24} />
@@ -75,14 +86,14 @@ export default function UserMenu({ user }: { user: SelectUser }) {
           )}
           {theme === "system" ? "System" : theme === "dark" ? "Dark" : "Light"}
         </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleSync}>
+          <RefreshCcw className="mr-2" />
+          Sync
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>
           <LogOut className="mr-2" />
           Logout
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleHelp}>
-          <HelpCircle className="mr-2" />
-          Help
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
