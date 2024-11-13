@@ -24,37 +24,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { createAccountSchema } from "@/lib/schemas/account";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Banknote,
-  Building,
-  CircleDollarSign,
-  Coins,
-  CreditCard,
-  DollarSign,
-  Landmark,
-  Loader2,
-  PiggyBank,
-  Plus,
-  Receipt,
-  Wallet,
-} from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-const icons = [
-  { name: "Wallet", icon: Wallet },
-  { name: "CreditCard", icon: CreditCard },
-  { name: "PiggyBank", icon: PiggyBank },
-  { name: "DollarSign", icon: DollarSign },
-  { name: "Banknote", icon: Banknote },
-  { name: "Coins", icon: Coins },
-  { name: "Receipt", icon: Receipt },
-  { name: "Landmark", icon: Landmark },
-  { name: "Building", icon: Building },
-  { name: "CircleDollarSign", icon: CircleDollarSign },
-];
+import DynamicIcon from "@/components/dynamic-icon";
+import { icons } from "@/lib/utils";
 
 const colors = [
   { name: "Red", value: "#dc2626" },
@@ -78,13 +54,13 @@ export default function CreateAccountForm({ userId }: { userId: string }) {
       title: "",
       type: "Checking",
       balance: 0,
-      color: "bg-red-200",
-      icon: "Wallet",
+      color: colors[0].value,
+      icon: icons[0],
       description: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof createAccountSchema>) {
+  async function handleCreation(values: z.infer<typeof createAccountSchema>) {
     setIsLoading(true);
 
     try {
@@ -115,14 +91,23 @@ export default function CreateAccountForm({ userId }: { userId: string }) {
 
     setIsLoading(false);
     setOpen(false);
+
+    // Reset the form
+    form.setValue("title", "");
+    form.setValue("description", "");
+    form.setValue("type", "Checking");
+    form.setValue("balance", 0);
+    form.setValue("color", colors[0].value);
+    form.setValue("icon", icons[0]);
+
     router.refresh();
   }
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>
+      <Button onClick={() => setOpen(true)} size="lg">
         <Plus></Plus>
-        Account
+        New
       </Button>
       <ResponsiveDialog
         open={open}
@@ -132,7 +117,7 @@ export default function CreateAccountForm({ userId }: { userId: string }) {
       >
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(handleCreation)}
             className="space-y-6 px-2 pb-6"
           >
             <FormField
@@ -274,20 +259,20 @@ export default function CreateAccountForm({ userId }: { userId: string }) {
                       defaultValue={field.value}
                       className="flex flex-wrap gap-2"
                     >
-                      {icons.map(({ name, icon: Icon }) => (
+                      {icons.map((name) => (
                         <FormItem key={name}>
                           <FormControl>
                             <RadioGroupItem
                               value={name}
                               id={name}
-                              className="sr-only peer"
+                              className="sr-only"
                             />
                           </FormControl>
                           <FormLabel
                             htmlFor={name}
                             className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-muted peer-aria-checked:border-primary peer-aria-checked:ring-1 peer-aria-checked:ring-primary peer-aria-checked:ring-offset-1"
                           >
-                            <Icon className="h-6 w-6" />
+                            <DynamicIcon name={name} />
                           </FormLabel>
                         </FormItem>
                       ))}
