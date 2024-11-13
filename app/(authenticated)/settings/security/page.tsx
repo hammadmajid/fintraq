@@ -14,6 +14,12 @@ import SessionsTable from "./components/sessions-table";
 import { getSession, getUserId } from "@/app/utils";
 import { sessionQueries } from "@/lib/db/queries/session";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Security",
+};
+
 export default async function SecuritySettings() {
   const userId = await getUserId();
   const session = await getSession();

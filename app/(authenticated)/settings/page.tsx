@@ -12,6 +12,11 @@ import {
   Palette,
   WalletCardsIcon,
 } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Settings",
+};
 
 export default function Settings() {
   const settingsLinks = [

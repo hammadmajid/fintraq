@@ -23,6 +23,11 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Account",
+};
 
 export default function AccountSetting() {
   const { toast } = useToast();

@@ -5,6 +5,11 @@ import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTheme } from "next-themes";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "API Docs",
+};
 
 export default function SwaggerDocs() {
   const [spec, setSpec] = useState(null);

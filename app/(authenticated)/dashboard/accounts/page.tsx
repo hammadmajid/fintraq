@@ -1,6 +1,12 @@
 import { getUserId } from "@/app/utils";
 import { accountQueries } from "@/lib/db/queries/accounts";
 import AccountCard from "./components/account-card";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Accounts",
+};
+
 import AccountForm from "./components/account-form";
 
 export default async function Accounts() {

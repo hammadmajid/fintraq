@@ -28,6 +28,11 @@ import {
 import { Plus, FileText } from "lucide-react";
 import { type ChartConfig } from "@/components/ui/chart";
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 const incomeVsExpenseChart = {
   income: {

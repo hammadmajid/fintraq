@@ -15,6 +15,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { CreditCard, Check } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Billing",
+};
 
 export default function BillingSettings() {
   const [currentPlan, setCurrentPlan] = useState("free");

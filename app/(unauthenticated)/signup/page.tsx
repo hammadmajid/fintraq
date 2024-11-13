@@ -4,7 +4,7 @@ import SignUpForm from "@/components/auth/signup-form";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign up",
+  title: "Sign Up",
 };
 
 export default async function SignUpPage() {
