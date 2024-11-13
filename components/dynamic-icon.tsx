@@ -1,34 +1,12 @@
-import {
-  Banknote,
-  Building,
-  CircleDollarSign,
-  Coins,
-  CreditCard,
-  DollarSign,
-  Landmark,
-  PiggyBank,
-  Receipt,
-  Wallet,
-} from "lucide-react";
 import dynamic from "next/dynamic";
 import { LucideProps } from "lucide-react";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
+import { icons } from "@/lib/utils";
 
-export const icons = [
-  { name: "Wallet", icon: Wallet },
-  { name: "CreditCard", icon: CreditCard },
-  { name: "PiggyBank", icon: PiggyBank },
-  { name: "DollarSign", icon: DollarSign },
-  { name: "Banknote", icon: Banknote },
-  { name: "Coins", icon: Coins },
-  { name: "Receipt", icon: Receipt },
-  { name: "Landmark", icon: Landmark },
-  { name: "Building", icon: Building },
-  { name: "CircleDollarSign", icon: CircleDollarSign },
-];
+type IconName = (typeof icons)[number]; // Create a union type from the icons array
 
 interface DynamicIconProps extends LucideProps {
-  name: keyof typeof dynamicIconImports;
+  name: IconName;
 }
 
 export default function DynamicIcon({ name, ...props }: DynamicIconProps) {
