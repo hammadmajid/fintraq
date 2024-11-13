@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MoreVertical, Edit, Trash2 } from "lucide-react";
-import CreateAccountForm from "./components/account-form";
+import AccountForm from "./components/account-form";
 import { getUserId } from "@/app/utils";
 import { accountQueries } from "@/lib/db/queries/accounts";
 import DynamicIcon from "@/components/dynamic-icon";
@@ -25,7 +25,7 @@ export default async function Accounts() {
             Create or manage your accounts
           </p>
         </div>
-        <CreateAccountForm userId={userId} />
+        <AccountForm userId={userId} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

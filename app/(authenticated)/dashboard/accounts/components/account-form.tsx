@@ -41,7 +41,7 @@ const colors = [
   { name: "Orange", value: "#6d28d9" },
 ];
 
-export default function CreateAccountForm({ userId }: { userId: string }) {
+export default function AccountForm({ userId }: { userId: string }) {
   const router = useRouter();
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
