@@ -85,7 +85,10 @@ export function AppSidebar() {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild isActive={pathname === "/settings"}>
+            <SidebarMenuButton
+              asChild
+              isActive={pathname.startsWith("/settings")}
+            >
               <Link href="/settings">
                 <Settings />
                 <span>Settings</span>
