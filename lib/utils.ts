@@ -6,14 +6,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const icons = [
-  "wallet",
-  "credit-card",
-  "piggy-bank",
-  "dollar-sign",
-  "banknote",
-  "coins",
-  "receipt",
-  "landmark",
-  "building",
-  "circle-dollar-sign",
+  "Wallet",
+  "CreditCard",
+  "PiggyBank",
+  "DollarSign",
+  "Banknote",
+  "Coins",
+  "Receipt",
+  "Landmark",
+  "Building",
+  "CircleDollarSign",
 ] as const; // Add 'as const' to create a readonly tuple
