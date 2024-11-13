@@ -24,6 +24,26 @@ export async function POST(request: Request) {
     }
 }
 
+export async function DELETE(request: Request) {
+    try {
+        const { accountId } = await request.json();
+
+        const [session] = await sessionQueries.getByToken(await getSession());
+        const accountExists = await accountQueries.exists(accountId);
+
+        if (!session || !accountExists) {
+            return errorResponse("Unauthorized or account does not exist", 401);
+        }
+
+        await accountQueries.delete(accountId);
+
+        return new Response(JSON.stringify({ success: true }), { status: 200 });
+    } catch (error) {
+        console.error('Error in account deletion:', error);
+        return errorResponse('An error occurred during account deletion.', 500);
+    }
+}
+
 function errorResponse(message: string, status: number): Response {
     return new Response(JSON.stringify({ error: message }), {
         status,
