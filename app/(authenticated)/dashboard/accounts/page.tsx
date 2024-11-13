@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MoreVertical, Edit, Trash2 } from "lucide-react";
-import CreateAccountForm from "./create-account-form";
+import CreateAccountForm from "./components/create-account-form";
 import { getUserId } from "@/app/utils";
 import { accountQueries } from "@/lib/db/queries/accounts";
 import DynamicIcon from "@/components/dynamic-icon";
