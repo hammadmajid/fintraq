@@ -50,6 +50,13 @@
       "when": 1731220726124,
       "tag": "0006_nasty_gateway",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1731506576221,
+      "tag": "0007_odd_vance_astro",
+      "breakpoints": true
     }
   ]
 }

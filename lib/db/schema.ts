@@ -4,9 +4,12 @@ import {
   varchar,
   timestamp,
   decimal,
+  pgEnum,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
+import { icons } from "@/lib/utils";
+import { sql } from "drizzle-orm";
 
 export const users = pgTable("users", {
   id: uuid().primaryKey().defaultRandom(),
@@ -39,6 +42,18 @@ export const insertSessionSchema = createInsertSchema(sessions);
 export type SelectSession = z.infer<typeof selectSessionSchema>;
 export type InsertSession = z.infer<typeof insertSessionSchema>;
 
+// Create the enum type
+export const accountIconEnum = pgEnum('account_icon', icons);
+
+// Create the enum in the database
+export const createAccountIconEnum = sql`
+  DO $$ BEGIN
+    CREATE TYPE account_icon AS ENUM (${sql.join([...icons])});
+  EXCEPTION
+    WHEN duplicate_object THEN null;
+  END $$;
+`;
+
 export const accounts = pgTable("accounts", {
   id: uuid().primaryKey().defaultRandom(),
   userId: uuid("user_id")
@@ -47,7 +62,7 @@ export const accounts = pgTable("accounts", {
   title: varchar({ length: 255 }).notNull(),
   description: varchar({ length: 255 }),
   createdAt: timestamp("created_at").notNull().defaultNow(),
-  icon: varchar({ length: 255 }).notNull(),
+  icon: accountIconEnum().notNull(),
   color: varchar({ length: 7 }).notNull(),
   balance: decimal({ precision: 10, scale: 2 }).notNull().default("0"),
   type: varchar({ length: 255 }).notNull(),
