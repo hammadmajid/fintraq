@@ -142,8 +142,8 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.14)
       ua-parser-js:
-        specifier: 2.0.0-rc.2
-        version: 2.0.0-rc.2
+        specifier: 2.0.0-rc.3
+        version: 2.0.0-rc.3
       uuid:
         specifier: ^11.0.2
         version: 11.0.2
@@ -1932,8 +1932,8 @@ packages:
   delegates@1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
 
-  detect-europe-js@0.1.1:
-    resolution: {integrity: sha512-+bUXDf+tI3L4dcEuRdAFa44Amx9aEaJzoZssx7Xis4H1bXWc5fAcOP850BOj0wJPRzOdovOuOVEvrg6T+GflZA==}
+  detect-europe-js@0.1.2:
+    resolution: {integrity: sha512-lgdERlL3u0aUdHocoouzT10d9I89VVhk0qNRmll7mXdGfJT1/wqZ2ZLA4oJAjeACPY5fT1wsbq2AT+GkuInsow==}
 
   detect-libc@2.0.3:
     resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
@@ -3690,8 +3690,8 @@ packages:
   ua-is-frozen@0.1.2:
     resolution: {integrity: sha512-RwKDW2p3iyWn4UbaxpP2+VxwqXh0jpvdxsYpZ5j/MLLiQOfbsV5shpgQiw93+KMYQPcteeMQ289MaAFzs3G9pw==}
 
-  ua-parser-js@2.0.0-rc.2:
-    resolution: {integrity: sha512-rMiXOce12vFGW4PtcpL7D2SZfBSZ12sd1lLgodbiSPp+AUtibSwdDZuaM2EpkL9k3vlZvXY40VhHoeWu4Zv7MA==}
+  ua-parser-js@2.0.0-rc.3:
+    resolution: {integrity: sha512-XNVpE+u+FyK2fUOVO7Gpyy58yVmH5jV+9nn+NbzxPf2YulgjiE00ECd+uwyH5+Jb82AakfL0+xPxA6jJeCYB7Q==}
     hasBin: true
 
   unbox-primitive@1.0.2:
@@ -5748,7 +5748,7 @@ snapshots:
 
   delegates@1.0.0: {}
 
-  detect-europe-js@0.1.1: {}
+  detect-europe-js@0.1.2: {}
 
   detect-libc@2.0.3: {}
 
@@ -7749,9 +7749,9 @@ snapshots:
 
   ua-is-frozen@0.1.2: {}
 
-  ua-parser-js@2.0.0-rc.2:
+  ua-parser-js@2.0.0-rc.3:
     dependencies:
-      detect-europe-js: 0.1.1
+      detect-europe-js: 0.1.2
       is-standalone-pwa: 0.1.1
       ua-is-frozen: 0.1.2
 
