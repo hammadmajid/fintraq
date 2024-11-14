@@ -2,12 +2,11 @@ import { getUserId } from "@/app/utils";
 import { accountQueries } from "@/lib/db/queries/accounts";
 import AccountCard from "./components/account-card";
 import { Metadata } from "next";
+import CreateAccount from "./components/create-account";
 
 export const metadata: Metadata = {
   title: "Accounts",
 };
-
-import AccountForm from "./components/account-form";
 
 export default async function Accounts() {
   const userId = await getUserId();
@@ -22,7 +21,7 @@ export default async function Accounts() {
             Create or manage your accounts
           </p>
         </div>
-        <AccountForm userId={userId} />
+        <CreateAccount userId={userId} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
