@@ -1,4 +1,4 @@
-import { createAccountSchema } from '@/lib/schemas/account';
+import { accountSchema } from '@/lib/schemas/account';
 import { accountQueries } from '@/lib/db/queries/accounts';
 import { userQueries } from '@/lib/db/queries/users';
 import { sessionQueries } from '@/lib/db/queries/session';
@@ -6,7 +6,7 @@ import { getSession } from '@/app/utils';
 
 export async function POST(request: Request) {
     try {
-        const { userId, title, color, type, icon, description, balance } = createAccountSchema.parse(await request.json());
+        const { userId, title, color, type, icon, description, balance } = accountSchema.parse(await request.json());
 
         const [session] = await sessionQueries.getByToken(await getSession());
         const userExists = await userQueries.existsById(userId);
@@ -41,6 +41,26 @@ export async function DELETE(request: Request) {
     } catch (error) {
         console.error('Error in account deletion:', error);
         return errorResponse('An error occurred during account deletion.', 500);
+    }
+}
+
+export async function PUT(request: Request) {
+    try {
+        const { accountId, ...updateData } = await request.json();
+
+        const [session] = await sessionQueries.getByToken(await getSession());
+        const accountExists = await accountQueries.exists(accountId);
+
+        if (!session || !accountExists) {
+            return errorResponse("Unauthorized or account does not exist", 401);
+        }
+
+        await accountQueries.update(accountId, updateData);
+
+        return new Response(JSON.stringify({ success: true }), { status: 200 });
+    } catch (error) {
+        console.error('Error in account update:', error);
+        return errorResponse('An error occurred during account update.', 500);
     }
 }
 
