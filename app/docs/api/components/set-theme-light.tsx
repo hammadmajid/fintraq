@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 
 export function SetThemeLight() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme } = useTheme();
 
   setTheme("light");
 

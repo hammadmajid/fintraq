@@ -4,7 +4,7 @@ import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
 
 type Props = {
-  spec: Record<string, any>;
+  spec: Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
 function ReactSwagger({ spec }: Props) {
