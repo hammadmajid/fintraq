@@ -7,6 +7,11 @@ export const getApiDocs = async () => {
             openapi: "3.0.0",
             info: {
                 title: "Fintraq API Docs",
+                description: "A finance tracking app built with NextJs, shadcn/ui and Vercel.",
+                license: {
+                    name: "MIT",
+                    url: "https://github.com/hammadmajid/fintraq/blob/main/LICENSE"
+                },
                 version: "1.0",
             },
             components: {
