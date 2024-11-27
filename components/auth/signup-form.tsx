@@ -68,6 +68,7 @@ export default function SignUpForm() {
           error instanceof Error ? error.message : "An unknown error occurred",
         variant: "destructive",
       });
+      setIsLoading(false);
     }
   }
 
