@@ -1,3 +1,86 @@
+/**
+ * @swagger
+ * /api/v1/auth/sessions/verify:
+ *   post:
+ *     summary: Verify a session token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               token:
+ *                 type: string
+ *                 description: The session token to verify
+ *             required:
+ *               - token
+ *     responses:
+ *       200:
+ *         description: Session verification result
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 valid:
+ *                   type: boolean
+ *                   description: Indicates if the session is valid
+ *                 session:
+ *                   type: object
+ *                   description: The session details (if valid)
+ *                   properties:
+ *                     userId:
+ *                       type: string
+ *                     token:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                       format: date-time
+ *                     expiresAt:
+ *                       type: string
+ *                       format: date-time
+ *                     ipAddress:
+ *                       type: string
+ *                     device:
+ *                       type: string
+ *                 error:
+ *                   type: string
+ *                   description: Error message (if any)
+ *       400:
+ *         description: Invalid request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message
+ *                 details:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       path:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *                       message:
+ *                         type: string
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message
+ */
+
 import { sessionQueries } from '@/lib/db/queries/session';
 import { z } from 'zod';
 import { SelectSession } from '@/lib/db/schema';

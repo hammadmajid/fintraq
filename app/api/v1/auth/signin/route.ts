@@ -1,3 +1,58 @@
+/**
+ * @swagger
+ * /api/v1/auth/signin:
+ *   post:
+ *     summary: Sign in a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: The user's email address
+ *               password:
+ *                 type: string
+ *                 description: The user's password
+ *     responses:
+ *       200:
+ *         description: Successful sign in
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates if the sign in was successful
+ *       400:
+ *         description: Invalid email or password
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message
+ *       500:
+ *         description: An error occurred during sign in
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message
+ */
+
 import { sessionQueries } from '@/lib/db/queries/session';
 import { userQueries } from '@/lib/db/queries/users';
 import { signInForm } from '@/lib/schemas/auth';

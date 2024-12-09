@@ -1,3 +1,71 @@
+/**
+ * @swagger
+ * /api/v1/profile/avatar:
+ *   post:
+ *     summary: Upload or update a user's avatar
+ *     tags: [Account]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *                 format: uuid
+ *                 description: The UUID of the user
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *                 description: The image file to upload (JPEG, PNG, or WebP)
+ *     responses:
+ *       200:
+ *         description: Successfully uploaded the avatar
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 url:
+ *                   type: string
+ *                   description: The URL of the uploaded avatar
+ *       400:
+ *         description: Bad request, validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       path:
+ *                         type: string
+ *                       message:
+ *                         type: string
+ *       404:
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
+
 import { put, del, list } from '@vercel/blob';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';

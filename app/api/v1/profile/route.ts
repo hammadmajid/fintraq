@@ -1,3 +1,117 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Account
+ *   description: API endpoints for managing user accounts
+ */
+
+/**
+ * @swagger
+ * /api/v1/profile:
+ *   put:
+ *     summary: Update user profile
+ *     tags: [Account]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               fullName:
+ *                 type: string
+ *                 description: Full name of the user
+ *                 example: John Doe
+ *               email:
+ *                 type: string
+ *                 description: Email address of the user
+ *                 example: john.doe@example.com
+ *               bio:
+ *                 type: string
+ *                 description: Short biography of the user
+ *                 example: Software developer with 10 years of experience
+ *     responses:
+ *       200:
+ *         description: Profile updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Profile updated successfully
+ *       400:
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       path:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *                         example: ["fullName"]
+ *                       message:
+ *                         type: string
+ *                         example: Full name must be at least 2 characters long
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Internal server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/profile:
+ *   delete:
+ *     summary: Delete user account
+ *     tags: [Account]
+ *     responses:
+ *       200:
+ *         description: User account deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Unauthorized
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: An error occurred during user deletion.
+ */
+
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { userQueries } from '@/lib/db/queries/users';

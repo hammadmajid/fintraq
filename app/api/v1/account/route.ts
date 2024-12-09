@@ -1,3 +1,119 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Account
+ *   description: API for managing user accounts
+ */
+
+/**
+ * @swagger
+ * /api/v1/account:
+ *   post:
+ *     summary: Create a new account
+ *     tags: [Account]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               title:
+ *                 type: string
+ *               color:
+ *                 type: string
+ *               type:
+ *                 type: string
+ *               icon:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               balance:
+ *                 type: number
+ *     responses:
+ *       201:
+ *         description: Account created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 account:
+ *                   type: object
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/account:
+ *   delete:
+ *     summary: Delete an account
+ *     tags: [Account]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               accountId:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Account deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *       401:
+ *         description: Unauthorized or account does not exist
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * /api/v1/account:
+ *   put:
+ *     summary: Update an account
+ *     tags: [Account]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               accountId:
+ *                 type: string
+ *               updateData:
+ *                 type: object
+ *     responses:
+ *       200:
+ *         description: Account updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *       401:
+ *         description: Unauthorized or account does not exist
+ *       500:
+ *         description: Internal server error
+ */
+
 import { accountSchema } from '@/lib/schemas/account';
 import { accountQueries } from '@/lib/db/queries/accounts';
 import { userQueries } from '@/lib/db/queries/users';
