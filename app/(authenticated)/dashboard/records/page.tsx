@@ -1,4 +1,7 @@
+import { getUserId } from "@/app/utils";
+import { accountQueries } from "@/lib/db/queries/accounts";
 import { Metadata } from "next";
+import CreateRecord from "./components/create-record";
 import RecordsTable from "./components/records-table";
 
 export const metadata: Metadata = {
@@ -121,10 +124,21 @@ const initialRecords: Record[] = [
   },
 ];
 
-export default function Records() {
+export default async function Records() {
+  const userId = await getUserId();
+  const accounts = await accountQueries.getByUserId(userId);
+
   return (
     <main>
-      <h1 className="text-3xl font-bold mb-4">Records</h1>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">Records</h1>
+          <p className="text-muted-foreground mb-6">
+            Create or manage your records
+          </p>
+        </div>
+        <CreateRecord accounts={accounts} />
+      </div>
       <RecordsTable initialRecords={initialRecords} />
     </main>
   );
