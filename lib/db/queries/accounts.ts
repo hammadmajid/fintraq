@@ -24,7 +24,7 @@ export const accountQueries = {
         } as InsertAccount)
         .returning(),
 
-    getById: (id: string): Promise<SelectAccount[]> => db.select()
+    getByAccountId: (id: string): Promise<SelectAccount[]> => db.select()
         .from(accounts)
         .where(eq(accounts.id, id)),
 
