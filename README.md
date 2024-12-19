@@ -5,11 +5,11 @@ A modern finance tracking app built with Next.js, Vercel Postgres, and shadcn/ui
 ## Features
 
 - [x] **User Authentication**: Secure sign-up and login functionality.
+- [ ] **Dashboard**: Get a quick glance at your finances with informative charts.
 - [x] **Multiple Accounts**: Track your expenses across multiple accounts.
 - [x] **Track Expenses**: Easily log and categorize your expenses.
-- [ ] **Budgeting Tools**: Set and manage your budgets effectively.
 - [x] **Responsive Design**: Optimized for both desktop and mobile use.
-- [ ] **Reports**: Generate insights on your spending habits.
+- [ ] **Reports**: Generate PDF of your finances to share with others.
 
 ## Local Development
 
