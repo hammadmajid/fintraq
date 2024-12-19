@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const recordSchema = z.object({
-    id: z.string(),
+    id: z.string().optional(),
     amount: z.number(),
     type: z.enum(["Income", "Expense", "Transfer"]),
     account: z.string(),

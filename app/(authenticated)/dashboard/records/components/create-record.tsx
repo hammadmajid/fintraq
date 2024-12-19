@@ -9,8 +9,6 @@ import {
 } from "@/components/responsive-dialog";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { recordQueries } from "@/lib/db/queries/records";
-import type { SelectAccount } from "@/lib/db/schema";
 import { recordSchema } from "@/lib/schemas/record";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
@@ -19,6 +17,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import RecordForm from "./record-form";
+import { createRecord } from "../actions";
+import { SelectAccount } from "@/lib/db/schema";
 
 interface CreateRecordProps {
   accounts: SelectAccount[];
@@ -43,33 +43,24 @@ export default function CreateRecord({ accounts }: CreateRecordProps) {
     },
   });
 
-  async function onSubmit({
-    account,
-    amount,
-    category,
-    status,
-    type,
-  }: z.infer<typeof recordSchema>) {
-    console.log("here")
+  async function onSubmit(data: z.infer<typeof recordSchema>) {
     setIsLoading(true);
 
     try {
-      await recordQueries.create(
-        account,
-        String(amount),
-        category,
-        type,
-        status
-      );
+      const result = await createRecord(data);
 
-      toast({
-        title: "Record Created",
-        description: "Your new record has been successfully created.",
-      });
+      if (result.success) {
+        toast({
+          title: "Record Created",
+          description: "Your new record has been successfully created.",
+        });
 
-      form.reset();
-      setOpen(false);
-      router.refresh();
+        form.reset();
+        setOpen(false);
+        router.refresh();
+      } else {
+        throw new Error(result.message);
+      }
     } catch (error) {
       toast({
         title: "Record Creation Error",
