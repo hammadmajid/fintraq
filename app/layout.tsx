@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     default: "Fintraq",
   },
   description: "A barebone, modern finance tracking app built with NextJs.",
+  metadataBase: new URL("https://fintraq.vercel.app"),
 };
 
 export default function RootLayout({
