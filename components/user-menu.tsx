@@ -11,11 +11,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Moon, Sun, User2, LogOut, RefreshCcw } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import type { User } from "next-auth";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 interface UserMenuProps {
   user: User;
+  id: string;
 }
 
 export default function UserMenu({ user }: UserMenuProps) {
@@ -32,21 +34,6 @@ export default function UserMenu({ user }: UserMenuProps) {
     }
   };
 
-  const { toast } = useToast();
-
-  const handleLogout = async () => {
-    try {
-      // TODO: use db to perform server action
-    } catch (error) {
-      console.error(error);
-      toast({
-        title: "Logout Error",
-        description: "An error occurred during logout. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
-
   const handleSync = () => {
     router.refresh();
   };
@@ -54,7 +41,7 @@ export default function UserMenu({ user }: UserMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="w-9 h-9 hover:cursor-pointer">
+        <Avatar className="w-7 h-7 hover:cursor-pointer">
           <AvatarImage src={user.image || ""} alt={user.name || " avatar"} />
           <AvatarFallback>
             <User2 size={24} />
@@ -63,8 +50,10 @@ export default function UserMenu({ user }: UserMenuProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem className="font-semibold">
-          <User2 className="mr-2" />
-          {user.name}
+          <Link href={`/u/${user.id}/settings/profile`} className="flex items-end">
+              <User2 className="mr-2" />
+              {user.name}
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleThemeChange}>
@@ -82,7 +71,7 @@ export default function UserMenu({ user }: UserMenuProps) {
           Sync
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleLogout}>
+        <DropdownMenuItem onClick={() => signOut()}>
           <LogOut className="mr-2" />
           Logout
         </DropdownMenuItem>
