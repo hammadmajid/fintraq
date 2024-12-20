@@ -84,3 +84,11 @@ export const authenticators = pgTable(
     }),
   })
 )
+
+export const preferences = pgTable("preference", {
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  currency: text("currency").notNull(),
+  // defaultAccount: text("defaultAccount").references(() => accounts.id),
+})
