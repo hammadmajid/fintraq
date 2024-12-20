@@ -2,6 +2,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import UserMenu from "@/components/user-menu";
 import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function Layout({
   children,
@@ -10,7 +11,9 @@ export default async function Layout({
 }>) {
   const session = await auth();
 
-  const user = session?.user!;
+  if (!session || !session.user) {
+    redirect("/login");
+  }
 
   return (
     <>
@@ -21,7 +24,7 @@ export default async function Layout({
             <div className="flex items-center px-4">
               <SidebarTrigger />
             </div>
-            <UserMenu user={user} />
+            <UserMenu user={session.user} />
           </div>
           <div className="mx-auto w-full px-4 h-full">{children}</div>
         </div>

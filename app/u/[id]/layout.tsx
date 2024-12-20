@@ -1,7 +1,5 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 
 export default async function Layout({
   children,
@@ -11,11 +9,6 @@ export default async function Layout({
   params: Promise<{ id: string }>;
 }>) {
   const { id } = await params;
-  const session = await auth();
-
-  if (!session?.user) {
-    redirect("/login");
-  }
 
   // TODO: implement multiple account support
   if (id !== "0")
