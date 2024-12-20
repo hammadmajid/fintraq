@@ -26,22 +26,22 @@ import { usePathname } from "next/navigation";
 const items = [
   {
     title: "Dashboard",
-    url: "/dashboard",
+    url: "/u/0/dashboard",
     icon: Home,
   },
   {
     title: "Records",
-    url: "/dashboard/records",
+    url: "/u/0/dashboard/records",
     icon: ArrowRightLeft,
   },
   {
     title: "Accounts",
-    url: "/dashboard/accounts",
+    url: "/u/0/dashboard/accounts",
     icon: Landmark,
   },
   {
     title: "Budgets",
-    url: "/dashboard/budgets",
+    url: "/u/0/dashboard/budgets",
     icon: HandCoins,
   },
 ];
@@ -70,7 +70,11 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild isActive={pathname === item.url}>
+                  <SidebarMenuButton
+                    className="py-6"
+                    asChild
+                    isActive={pathname === item.url}
+                  >
                     <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -86,6 +90,7 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
+              className="py-6"
               asChild
               isActive={pathname.startsWith("/settings")}
             >
