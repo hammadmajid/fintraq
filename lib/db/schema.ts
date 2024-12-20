@@ -1,92 +1,86 @@
 import {
-  pgTable,
-  uuid,
-  varchar,
+  boolean,
   timestamp,
-  decimal,
-  pgEnum,
-} from "drizzle-orm/pg-core";
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { z } from "zod";
-import { icons } from "@/lib/utils";
-import { sql } from "drizzle-orm";
+  pgTable,
+  text,
+  primaryKey,
+  integer,
+} from "drizzle-orm/pg-core"
+import type { AdapterAccountType } from "next-auth/adapters"
 
-export const users = pgTable("users", {
-  id: uuid().primaryKey().defaultRandom(),
-  fullName: varchar("full_name", { length: 255 }).notNull(),
-  email: varchar({ length: 255 }).notNull().unique(),
-  password: varchar({ length: 255 }).notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  bio: varchar({ length: 1200 }),
-  avatarURL: varchar("avatar_url", { length: 255 }),
-});
+export const users = pgTable("user", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text("name"),
+  email: text("email").unique(),
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
+  image: text("image"),
+})
 
-export const selectUserSchema = createSelectSchema(users);
-export const insertUserSchema = createInsertSchema(users);
-export type SelectUser = z.infer<typeof selectUserSchema>;
-export type InsertUser = z.infer<typeof insertUserSchema>;
+export const accounts = pgTable(
+  "account",
+  {
+    userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    type: text("type").$type<AdapterAccountType>().notNull(),
+    provider: text("provider").notNull(),
+    providerAccountId: text("providerAccountId").notNull(),
+    refresh_token: text("refresh_token"),
+    access_token: text("access_token"),
+    expires_at: integer("expires_at"),
+    token_type: text("token_type"),
+    scope: text("scope"),
+    id_token: text("id_token"),
+    session_state: text("session_state"),
+  },
+  (account) => ({
+    compoundKey: primaryKey({
+      columns: [account.provider, account.providerAccountId],
+    }),
+  })
+)
 
-export const sessions = pgTable("sessions", {
-  userId: uuid("user_id")
+export const sessions = pgTable("session", {
+  sessionToken: text("sessionToken").primaryKey(),
+  userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  token: uuid().primaryKey().defaultRandom(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  expiresAt: timestamp("expires_at").notNull(),
-  ipAddress: varchar("ip_address", { length: 45 }).notNull(), // IPv6 max length is 45
-  device: varchar({ length: 255 }).notNull(),
-});
+  expires: timestamp("expires", { mode: "date" }).notNull(),
+})
 
-export const selectSessionSchema = createSelectSchema(sessions);
-export const insertSessionSchema = createInsertSchema(sessions);
-export type SelectSession = z.infer<typeof selectSessionSchema>;
-export type InsertSession = z.infer<typeof insertSessionSchema>;
+export const verificationTokens = pgTable(
+  "verificationToken",
+  {
+    identifier: text("identifier").notNull(),
+    token: text("token").notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
+  },
+  (verificationToken) => ({
+    compositePk: primaryKey({
+      columns: [verificationToken.identifier, verificationToken.token],
+    }),
+  })
+)
 
-// Create the enum type
-export const accountIconEnum = pgEnum('account_icon', icons);
-
-// Create the enum in the database
-export const createAccountIconEnum = sql`
-  DO $$ BEGIN
-    CREATE TYPE account_icon AS ENUM (${sql.join([...icons])});
-  EXCEPTION
-    WHEN duplicate_object THEN null;
-  END $$;
-`;
-
-export const accounts = pgTable("accounts", {
-  id: uuid().primaryKey().defaultRandom(),
-  userId: uuid("user_id")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
-  title: varchar({ length: 255 }).notNull(),
-  description: varchar({ length: 255 }),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  icon: accountIconEnum().notNull(),
-  color: varchar({ length: 7 }).notNull(),
-  balance: decimal({ precision: 10, scale: 2 }).notNull().default("0"),
-  type: varchar({ length: 255 }).notNull(),
-});
-
-export const selectAccountSchema = createSelectSchema(accounts);
-export const insertAccountSchema = createInsertSchema(accounts);
-export type SelectAccount = z.infer<typeof selectAccountSchema>;
-export type InsertAccount = z.infer<typeof insertAccountSchema>;
-
-export const records = pgTable("records", {
-  id: uuid().primaryKey().defaultRandom(),
-  account: uuid()
-    .notNull()
-    .references(() => accounts.id, { onDelete: "cascade" }),
-  amount: decimal({ precision: 10, scale: 2 }).notNull(),
-  category: varchar({ length: 255 }).notNull(),
-  type: varchar({ length: 255 }).notNull(),
-  status: varchar({ length: 255 }).notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  updatedAt: timestamp("updated_at").notNull().defaultNow(),
-});
-
-export const selectRecordSchema = createSelectSchema(records);
-export const insertRecordSchema = createInsertSchema(records);
-export type SelectRecord = z.infer<typeof selectRecordSchema>;
-export type InsertRecord = z.infer<typeof insertRecordSchema>;
+export const authenticators = pgTable(
+  "authenticator",
+  {
+    credentialID: text("credentialID").notNull().unique(),
+    userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    providerAccountId: text("providerAccountId").notNull(),
+    credentialPublicKey: text("credentialPublicKey").notNull(),
+    counter: integer("counter").notNull(),
+    credentialDeviceType: text("credentialDeviceType").notNull(),
+    credentialBackedUp: boolean("credentialBackedUp").notNull(),
+    transports: text("transports"),
+  },
+  (authenticator) => ({
+    compositePK: primaryKey({
+      columns: [authenticator.userId, authenticator.credentialID],
+    }),
+  })
+)
