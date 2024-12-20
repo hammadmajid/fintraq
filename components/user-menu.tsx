@@ -11,10 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Moon, Sun, User2, LogOut, RefreshCcw } from "lucide-react";
-import type { SelectUser } from "@/lib/db/schema";
 import { useToast } from "@/hooks/use-toast";
+import type { User } from "next-auth";
 
-export default function UserMenu({ user }: { user: SelectUser }) {
+interface UserMenuProps {
+  user: User;
+}
+
+export default function UserMenu({ user }: UserMenuProps) {
   const { setTheme, theme } = useTheme();
   const router = useRouter();
 
@@ -32,21 +36,7 @@ export default function UserMenu({ user }: { user: SelectUser }) {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("/api/v1/auth/signout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (response.ok) {
-        router.push("/signin");
-      } else {
-        toast({
-          title: "Logout Error",
-          description: "Logout failed. Please try again.",
-          variant: "destructive",
-        });
-      }
+      // TODO: use db to perform server action
     } catch (error) {
       console.error(error);
       toast({
@@ -65,7 +55,7 @@ export default function UserMenu({ user }: { user: SelectUser }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="w-9 h-9 hover:cursor-pointer">
-          <AvatarImage src={user.avatarURL || ""} alt={user.fullName} />
+          <AvatarImage src={user.image || ""} alt={user.name || " avatar"} />
           <AvatarFallback>
             <User2 size={24} />
           </AvatarFallback>
@@ -74,7 +64,7 @@ export default function UserMenu({ user }: { user: SelectUser }) {
       <DropdownMenuContent>
         <DropdownMenuItem className="font-semibold">
           <User2 className="mr-2" />
-          {user.fullName}
+          {user.name}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleThemeChange}>
