@@ -5,6 +5,7 @@ import {
   text,
   primaryKey,
   integer,
+  decimal,
 } from "drizzle-orm/pg-core"
 import type { AdapterAccountType } from "next-auth/adapters"
 
@@ -92,3 +93,19 @@ export const preferences = pgTable("preference", {
   currency: text("currency").notNull(),
   // defaultAccount: text("defaultAccount").references(() => accounts.id),
 })
+
+export const bankAccounts = pgTable("bank_account", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  title: text("title").notNull(),
+  description: text("description"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  icon: text("icon").notNull(),
+  color: text("color").notNull(),
+  balance: decimal({ precision: 10, scale: 2 }).notNull().default("0"),
+  type: text("type").notNull(),
+});
