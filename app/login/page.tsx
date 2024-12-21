@@ -14,7 +14,7 @@ export default async function Login() {
   const session = await auth();
 
   if (session?.user) {
-    redirect("/u/0/dashboard/");
+    redirect("/onboard/step/1");
   }
 
   return (
