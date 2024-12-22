@@ -10,6 +10,8 @@ import {
   timestamp,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
+import { createSelectSchema } from "drizzle-zod";
+import { z } from "zod";
 
 export const users = pgTable("user", {
   id: text("id")
@@ -114,6 +116,9 @@ export const bankAccounts = pgTable("bank_account", {
   type: text("type").notNull(),
 });
 
+const selectBankAccountSchema = createSelectSchema(bankAccounts);
+export type SelectBankAccount = z.infer<typeof selectBankAccountSchema>;
+
 export const records = pgTable("records", {
   userId: text("userId")
     .notNull()
@@ -131,3 +136,6 @@ export const records = pgTable("records", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
+
+const selectRecordSchema = createSelectSchema(records);
+export type SelectRecord = z.infer<typeof selectRecordSchema>;
