@@ -1,13 +1,15 @@
+import { icons } from "@/lib/utils";
 import {
   boolean,
-  timestamp,
-  pgTable,
-  text,
-  primaryKey,
-  integer,
   decimal,
-} from "drizzle-orm/pg-core"
-import type { AdapterAccountType } from "next-auth/adapters"
+  integer,
+  pgEnum,
+  pgTable,
+  primaryKey,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
+import type { AdapterAccountType } from "next-auth/adapters";
 
 export const users = pgTable("user", {
   id: text("id")
@@ -94,6 +96,8 @@ export const preferences = pgTable("preference", {
   // defaultAccount: text("defaultAccount").references(() => accounts.id),
 })
 
+export const bankAccountIcon = pgEnum('bank_account_icon', icons);
+
 export const bankAccounts = pgTable("bank_account", {
   id: text("id")
     .primaryKey()
@@ -104,7 +108,7 @@ export const bankAccounts = pgTable("bank_account", {
   title: text("title").notNull(),
   description: text("description"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
-  icon: text("icon").notNull(),
+  icon: bankAccountIcon("icon").notNull(),
   color: text("color").notNull(),
   balance: decimal({ precision: 10, scale: 2 }).notNull().default("0"),
   type: text("type").notNull(),
