@@ -113,3 +113,21 @@ export const bankAccounts = pgTable("bank_account", {
   balance: decimal({ precision: 10, scale: 2 }).notNull().default("0"),
   type: text("type").notNull(),
 });
+
+export const records = pgTable("records", {
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  account: text("bank_account")
+    .notNull()
+    .references(() => bankAccounts.id, { onDelete: "cascade" }),
+  amount: decimal({ precision: 10, scale: 2 }).notNull(),
+  category: text("category").notNull(),
+  type: text("type").notNull(),
+  status: text("status").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
