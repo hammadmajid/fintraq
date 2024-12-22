@@ -25,7 +25,7 @@ import { icons } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
-import { accountSchema } from "./schema";
+import { accountSchema } from "@/lib/forms/account";
 
 const colors = [
   { name: "Red", value: "#dc2626" },

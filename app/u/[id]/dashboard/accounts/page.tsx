@@ -1,5 +1,5 @@
 import { Metadata } from "next/types";
-import CreateAccount from "./create-account";
+import CreateAccount from "@/components/account/create-account";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 

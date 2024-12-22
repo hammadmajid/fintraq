@@ -20,8 +20,8 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-import { DialogTitle } from "./ui/dialog";
-import { Button } from "./ui/button";
+import { DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export function CommandMenu() {
   const [open, setOpen] = React.useState(false);

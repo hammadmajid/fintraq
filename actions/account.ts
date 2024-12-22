@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { db } from "@/lib/db/client";
 import { bankAccounts } from "@/lib/db/schema";
-import { accountSchema } from "./schema";
+import { accountSchema } from "@/lib/forms/account";
 
 export async function createAccount(values: z.infer<typeof accountSchema>) {
     await db.insert(bankAccounts).values({

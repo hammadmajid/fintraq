@@ -7,8 +7,8 @@ import AccountForm from "./account-form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { accountSchema } from "./schema";
-import {createAccount} from "./action";
+import { accountSchema } from "@/lib/forms/account";
+import { createAccount } from "@/actions/account";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import {
@@ -40,7 +40,6 @@ export default function CreateAccount({ userId }: { userId: string }) {
 
   async function onSubmit(values: z.infer<typeof accountSchema>) {
     setIsLoading(true);
-
 
     try {
       await createAccount(values);

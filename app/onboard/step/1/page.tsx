@@ -1,5 +1,5 @@
 import { Metadata } from "next/types";
-import { CurrencySelector } from "./currency-selector";
+import { CurrencySelector } from "@/components/onboard/currency-selector";
 
 export const metadata: Metadata = {
   title: "Onboard",
@@ -17,7 +17,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { hasCurrencyPreference as hasPreference } from "./action";
+import { hasCurrencyPreference as hasPreference } from "@/actions/onboard";
 
 export default async function OnboardStep1() {
   const session = await auth();

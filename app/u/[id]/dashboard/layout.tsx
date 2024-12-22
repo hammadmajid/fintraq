@@ -1,9 +1,9 @@
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import UserMenu from "@/components/user-menu";
+import UserMenu from "@/components/dashboard/user-menu";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { CommandMenu } from "@/components/command-menu";
+import { CommandMenu } from "@/components/dashboard/command-menu";
 
 export default async function Layout({
   children,

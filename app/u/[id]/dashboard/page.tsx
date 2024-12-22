@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Plus, FileText } from "lucide-react";
 import { Metadata } from "next";
-import IncomeExpenseBarChart from "./income-expense-bar-chart";
-import ExpensesPieChart from "./expenses-pie-chart";
+import IncomeExpenseBarChart from "@/components/dashboard/income-expense-bar-chart";
+import ExpensesPieChart from "@/components/dashboard/expenses-pie-chart";
 
 export const metadata: Metadata = {
   title: "Dashboard",
