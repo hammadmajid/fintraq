@@ -1,15 +1,22 @@
-import dynamic from "next/dynamic";
 import { LucideProps } from "lucide-react";
-import dynamicIconImports from "lucide-react/dynamicIconImports";
+import { icons } from "@/lib/utils";
+import * as LucideIcons from "lucide-react";
 
-interface IconProps extends LucideProps {
-  name: keyof typeof dynamicIconImports;
+type IconName = (typeof icons)[number];
+
+interface DynamicIconProps extends Omit<LucideProps, "ref"> {
+  name: IconName;
 }
 
-const DynamicIcon = ({ name, ...props }: IconProps) => {
-  const LucideIcon = dynamic(dynamicIconImports[name]);
+export default function DynamicIcon({ name, ...props }: DynamicIconProps) {
+  const IconComponent = (
+    LucideIcons as unknown as Record<string, React.ComponentType<LucideProps>>
+  )[name];
 
-  return <LucideIcon {...props} />;
-};
+  if (!IconComponent) {
+    console.warn(`Icon "${name}" not found`);
+    return null;
+  }
 
-export default DynamicIcon;
+  return <IconComponent {...props} />;
+}
