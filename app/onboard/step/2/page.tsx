@@ -1,4 +1,5 @@
 import { Metadata } from "next/types";
+import SetInitialBalance from "@/components/onboard/set-initial-balance";
 
 export const metadata: Metadata = {
   title: "Onboard",
@@ -14,11 +15,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { hasFirstRecord } from "@/actions/onboard";
 
-export default function OnboardStep2() {
-  // TODO: check if user aleady has default account
+export default async function OnboardStep2() {
+  const session = await auth();
+
+  if (!session?.user || !session?.user?.id) {
+    redirect("/login");
+  }
+
+  if (await hasFirstRecord(session.user.id)) {
+    redirect("/u/0/dashboard");
+  }
 
   return (
     <Card className="w-[400px]">
@@ -29,9 +39,7 @@ export default function OnboardStep2() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Link href={"/onboard/step/3"}>
-          <Button>Next</Button>
-        </Link>
+        <SetInitialBalance userId={session.user.id} />
       </CardContent>
       <CardFooter>
         <Progress value={66} />
