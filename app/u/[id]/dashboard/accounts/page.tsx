@@ -1,7 +1,7 @@
 import { Metadata } from "next/types";
 import CreateAccount from "@/components/account/create-account";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Accounts",

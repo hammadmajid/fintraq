@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Github, KeyRound } from "lucide-react";
-import { signIn } from "@/auth";
+import { signIn } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Login",

@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import UserMenu from "@/components/dashboard/user-menu";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { CommandMenu } from "@/components/dashboard/command-menu";
 
