@@ -29,7 +29,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Configuration
 
-Before running the application, make sure to set up the environment variables in a `.env.local` file:
+Before running the application, make sure to set up the environment variables in a `.env` file:
 
 ```
 POSTGRES_URL="************"
@@ -40,7 +40,10 @@ POSTGRES_USER="************"
 POSTGRES_HOST="************"
 POSTGRES_PASSWORD="************"
 POSTGRES_DATABASE="************"
-NEXT_PUBLIC_API_URL="" # use localhost:3000 in local development and production URL when deployed
+AUTH_SECRET="************"
+AUTH_GITHUB_ID="************"
+AUTH_GITHUB_SECRET="************"
+AUTH_DRIZZLE_URL="************"
 ```
 
 ## Contributing
