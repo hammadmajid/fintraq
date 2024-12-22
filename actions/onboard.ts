@@ -1,7 +1,7 @@
 "use server";
 
-import { db } from "@/lib/db/client";
-import { preferences } from "@/lib/db/schema";
+import { db } from "@/drizzle/db/client";
+import { preferences } from "@/drizzle/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function hasCurrencyPreference(userId: string): Promise<boolean> {

@@ -1,8 +1,8 @@
 "use server";
 
 import { z } from "zod";
-import { db } from "@/lib/db/client";
-import { bankAccounts } from "@/lib/db/schema";
+import { db } from "@/drizzle/db/client";
+import { bankAccounts } from "@/drizzle/db/schema";
 import { accountSchema } from "@/lib/forms/account";
 
 export async function createAccount(values: z.infer<typeof accountSchema>) {
