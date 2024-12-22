@@ -2,6 +2,8 @@ import { Metadata } from "next/types";
 import CreateAccount from "@/components/account/create-account";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
+import { getAllAccounts } from "@/actions/account";
+import AccountCard from "@/components/account/account-card";
 
 export const metadata: Metadata = {
   title: "Accounts",
@@ -13,6 +15,8 @@ export default async function AccountsPage() {
   if (!session || !session.user?.id) {
     redirect("/login");
   }
+
+  const accounts = await getAllAccounts(session.user.id);
 
   return (
     <main>
@@ -27,13 +31,13 @@ export default async function AccountsPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* {accounts.length !== 0 ? (
+        {accounts.length !== 0 ? (
           accounts.map((account) => (
             <AccountCard account={account} key={account.id} />
           ))
         ) : (
           <p>No accounts yet...</p>
-        )} */}
+        )}
       </div>
     </main>
   );

@@ -51,7 +51,7 @@ export default function AccountForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6 px-2 pb-6"
+        className="space-y-6"
       >
         <FormField
           control={form.control}
