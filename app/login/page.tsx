@@ -4,6 +4,7 @@ import { Github, KeyRound } from "lucide-react";
 import { signIn } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
+import { hasCurrencyPreference, hasFirstRecord } from "@/actions/onboard";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -14,7 +15,13 @@ export default async function Login() {
   const session = await auth();
 
   if (session?.user) {
-    redirect("/onboard/step/1");
+    if (!hasCurrencyPreference) {
+      redirect("/onboard/step/1");
+    }
+    if (!hasFirstRecord) {
+      redirect("/onboard/step/2");
+    }
+    redirect("/u/0/dashboard");
   }
 
   return (
