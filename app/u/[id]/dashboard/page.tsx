@@ -14,7 +14,7 @@ export default function Dashboard() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <p className="text-muted-foreground">Balance</p>
-          <h1 className="text-3xl font-bold">$ 1234.56</h1>
+          <h1 className="text-2xl font-bold">$ 1234.56</h1>
         </div>
         <div className="space-x-2">
           <Button variant="outline">

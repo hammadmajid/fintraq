@@ -94,7 +94,7 @@ export function AppSidebar() {
               asChild
               isActive={pathname.startsWith("/settings")}
             >
-              <Link href="/settings">
+              <Link href="/u/0/settings">
                 <Settings />
                 <span>Settings</span>
               </Link>
