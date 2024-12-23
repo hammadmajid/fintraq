@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "db:gen": "drizzle-kit generate",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "email": "email dev"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
@@ -34,6 +35,7 @@
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.6",
     "@radix-ui/react-visually-hidden": "^1.1.1",
+    "@react-email/components": "^0.0.31",
     "@types/bcrypt": "^5.0.2",
     "@types/uuid": "^10.0.0",
     "@vercel/analytics": "^1.4.1",
@@ -74,6 +76,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.1.2",
     "postcss": "^8",
+    "react-email": "3.0.4",
     "tailwindcss": "^3.4.14",
     "typescript": "^5"
   }
