@@ -8,6 +8,13 @@ import { SiGithub, SiGoogle } from "react-icons/si";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface LoginFormProps {
   onSubmit: (
@@ -46,37 +53,69 @@ export function LoginForm({ onSubmit, onGithubLogin }: LoginFormProps) {
   };
 
   return (
-    <div className="space-y-2">
-      <form action={handleSubmit} className="space-y-2">
-        <Input type="text" name="email" placeholder="Email" required />
-        <Button className="w-full" type="submit" disabled={isLoading}>
-          <Mail className="w-4 h-4 mr-2" />{" "}
-          {isLoading ? "Sending..." : "Magic Link"}
-        </Button>
-      </form>
-      <div className="py-2">
-        <Separator />
-      </div>
-      <form
-        action={async () => {
-          try {
-            await onGithubLogin();
-          } catch {
-            toast({
-              title: "Error",
-              description: "Failed to login with GitHub. Please try again.",
-              variant: "destructive",
-            });
-          }
-        }}
-      >
-        <Button variant="outline" className="w-full" type="submit">
-          <SiGithub className="w-4 h-4 mr-2" /> GitHub
-        </Button>
-      </form>
-      <Button variant="outline" className="w-full" disabled>
-        <SiGoogle className="w-4 h-4 mr-2" /> Google
-      </Button>
-    </div>
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Hello, stranger!</CardTitle>
+        <CardDescription>Choose your preferred login method</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <form action={handleSubmit} className="space-y-4">
+          <Input
+            type="text"
+            name="email"
+            placeholder="Email"
+            required
+            className="w-full"
+          />
+          <Button className="w-full" type="submit" disabled={isLoading}>
+            <Mail className="w-4 h-4 mr-2" />{" "}
+            {isLoading ? "Sending..." : "Send Magic Link"}
+          </Button>
+        </form>
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <Separator className="w-full" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">
+              Or continue with
+            </span>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <form
+            action={async () => {
+              try {
+                await onGithubLogin();
+              } catch {
+                toast({
+                  title: "Error",
+                  description: "Failed to login with GitHub. Please try again.",
+                  variant: "destructive",
+                });
+              }
+            }}
+          >
+            <Button variant="outline" className="w-full" type="submit">
+              <SiGithub className="w-4 h-4 mr-2" /> GitHub
+            </Button>
+          </form>
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={() => {
+              toast({
+                title: "Not implemented yet",
+                description:
+                  "Google login is not implemented yet. Check back later.",
+                variant: "destructive",
+              });
+            }}
+          >
+            <SiGoogle className="w-4 h-4 mr-2" /> Google
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

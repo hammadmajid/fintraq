@@ -5,8 +5,8 @@ import { signIn } from "@/lib/auth";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Login",
-  description: "Login to your account",
+  title: "Login | Fintraq",
+  description: "Login to your Fintraq account",
 };
 
 export default function Login() {
@@ -30,16 +30,11 @@ export default function Login() {
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="min-h-screen grid place-content-center">
-        <div className="mx-auto grid w-[350px] gap-8">
-          <div>
-            <h1 className="text-3xl font-bold">Hello, stranger!</h1>
-            <p className="text-balance text-muted-foreground">
-              Choose a preferred method to login.
-            </p>
-          </div>
+      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-indigo-600 opacity-30 blur-3xl -z-10"></div>
+        <div className="relative z-10 w-full max-w-md">
           <LoginForm
             onSubmit={handleSubmit}
             onGithubLogin={handleGithubLogin}
@@ -47,6 +42,6 @@ export default function Login() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
