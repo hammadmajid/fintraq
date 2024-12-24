@@ -1,87 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import {
-  SiNextdotjs,
-  SiVercel,
-  SiPostgresql,
-  SiTypescript,
-  SiTailwindcss,
-  SiShadcnui,
-  SiGithub,
-  SiDrizzle,
-  SiResend,
-  SiZod,
-} from "react-icons/si";
+import { SiGithub } from "react-icons/si";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import {
-  UserCheck,
-  LayoutDashboard,
-  Wallet,
-  Receipt,
-  Smartphone,
-  FileText,
-} from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { PricingSection } from "@/components/pricing-section";
-
-const techStack = [
-  { Icon: SiNextdotjs, link: "https://nextjs.org/" },
-  { Icon: SiVercel, link: "https://vercel.com/" },
-  { Icon: SiPostgresql, link: "https://www.postgresql.org/" },
-  { Icon: SiDrizzle, link: "https://orm.drizzle.team/" },
-  { Icon: SiResend, link: "https://resend.com" },
-  { Icon: SiTypescript, link: "https://www.typescriptlang.org/" },
-  { Icon: SiTailwindcss, link: "https://tailwindcss.com/" },
-  { Icon: SiShadcnui, link: "https://ui.shadcn.com/" },
-  { Icon: SiZod, link: "https://zod.dev/" },
-];
-
-const features = [
-  {
-    title: "User Authentication",
-    description: "Secure sign-up and login functionality.",
-    icon: UserCheck,
-    implemented: true,
-  },
-  {
-    title: "Dashboard",
-    description: "Get a quick glance at your finances with informative charts.",
-    icon: LayoutDashboard,
-    implemented: false,
-  },
-  {
-    title: "Multiple Accounts",
-    description: "Track your expenses across multiple accounts.",
-    icon: Wallet,
-    implemented: true,
-  },
-  {
-    title: "Track Expenses",
-    description: "Easily log and categorize your expenses.",
-    icon: Receipt,
-    implemented: true,
-  },
-  {
-    title: "Responsive Design",
-    description: "Optimized for both desktop and mobile use.",
-    icon: Smartphone,
-    implemented: true,
-  },
-  {
-    title: "Reports",
-    description: "Generate PDF of your finances to share with others.",
-    icon: FileText,
-    implemented: false,
-  },
-];
+import { PricingSection } from "@/components/landing/pricing-section";
+import { TechStack } from "@/components/landing/tech-stack";
+import { FeaturesSection } from "@/components/landing/features-section";
 
 export default function Page() {
   return (
@@ -120,49 +45,9 @@ export default function Page() {
               </Button>
             </div>
           </div>
-
-          <div className="w-full">
-            <h2 className="sr-only">Tech Stack</h2>
-            <div className="flex flex-wrap justify-center gap-8">
-              {techStack.map(({ Icon, link }, index) => (
-                <a
-                  key={index}
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:scale-110 transition-transform"
-                >
-                  <Icon className="h-12 w-12 text-muted-foreground hover:text-purple-400 transition-colors" />
-                </a>
-              ))}
-            </div>
-          </div>
+          <TechStack />
         </div>
-
-        <section className="w-full">
-          <h2 className="text-3xl font-bold mb-8 text-center" id="features">Features</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className={`${
-                  feature.implemented ? "" : "opacity-50"
-                } group relative overflow-hidden transition-all hover:shadow-lg`}
-              >
-                <div className="absolute inset-0 bg-purple-600 opacity-0 blur-xl transition-opacity group-hover:opacity-10"></div>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <feature.icon className="h-6 w-6" />
-                    {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{feature.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+        <FeaturesSection />
         <PricingSection />
       </main>
       <Footer />
