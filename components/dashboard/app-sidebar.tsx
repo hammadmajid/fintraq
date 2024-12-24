@@ -92,7 +92,7 @@ export function AppSidebar() {
             <SidebarMenuButton
               className="py-6"
               asChild
-              isActive={pathname.startsWith("/settings")}
+              isActive={pathname.startsWith("/u/0/settings")}
             >
               <Link href="/u/0/settings">
                 <Settings />
