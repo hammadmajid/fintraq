@@ -44,6 +44,7 @@ export function CommandMenu() {
         onClick={() => setOpen(true)}
         variant="outline"
         className="flex"
+        size={"sm"}
       >
         <p className="text-muted-foreground text-sm">Command Menu</p>
         <p className="text-sm text-muted-foreground">
