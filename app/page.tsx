@@ -10,6 +10,9 @@ import {
   SiTailwindcss,
   SiShadcnui,
   SiGithub,
+  SiDrizzle,
+  SiResend,
+  SiZod,
 } from "react-icons/si";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -18,26 +21,31 @@ const techStack = [
   { Icon: SiNextdotjs, link: "https://nextjs.org/" },
   { Icon: SiVercel, link: "https://vercel.com/" },
   { Icon: SiPostgresql, link: "https://www.postgresql.org/" },
+  { Icon: SiDrizzle, link: "https://orm.drizzle.team/" },
+  { Icon: SiResend, link: "https://resend.com" },
   { Icon: SiTypescript, link: "https://www.typescriptlang.org/" },
-  { Icon: SiReact, link: "https://reactjs.org/" },
   { Icon: SiTailwindcss, link: "https://tailwindcss.com/" },
   { Icon: SiShadcnui, link: "https://ui.shadcn.com/" },
+  { Icon: SiZod, link: "https://zod.dev/" },
 ];
 
 export default function Page() {
   return (
     <>
       <Header />
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 lg:w-3/4 py-12">
         <div className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-0 min-h-screen">
           <div className="w-full flex flex-col gap-8 items-start justify-start">
-            <header>
-              <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-                Fintraq
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                A simple finance tracker built with NextJs
-              </p>
+            <header className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-400 opacity-30 blur-3xl -z-10 rounded-full"></div>
+              <div className="relative z-10 p-6">
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+                  Fintraq
+                </h1>
+                <p className="text-xl text-muted-foreground">
+                  A simple finance tracker built with NextJs
+                </p>
+              </div>
             </header>
             <div className="flex gap-2 items-center justify-center">
               <Button asChild>
@@ -70,7 +78,7 @@ export default function Page() {
                   rel="noopener noreferrer"
                   className="hover:scale-110 transition-transform"
                 >
-                  <Icon className="h-12 w-12 text-muted-foreground hover:text-foreground transition-colors" />
+                  <Icon className="h-12 w-12 text-muted-foreground hover:text-purple-400 transition-colors" />
                 </a>
               ))}
             </div>
