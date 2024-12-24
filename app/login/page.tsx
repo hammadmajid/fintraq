@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 import { Button } from "@/components/ui/button";
-import { Github, KeyRound } from "lucide-react";
+import { Mail } from "lucide-react";
 import { signIn } from "@/lib/auth";
+import { SiGithub, SiGoogle } from "react-icons/si";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
 import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
-import { hasCurrencyPreference, hasFirstRecord } from "@/actions/onboard";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -12,18 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Login() {
-  const session = await auth();
-
-  if (session?.user) {
-    if (!hasCurrencyPreference) {
-      redirect("/onboard/step/1");
-    }
-    if (!hasFirstRecord) {
-      redirect("/onboard/step/2");
-    }
-    redirect("/u/0/dashboard");
-  }
-
   return (
     <main className="min-h-screen grid place-content-center">
       <div className="mx-auto grid w-[350px] gap-8">
@@ -34,9 +23,28 @@ export default async function Login() {
           </p>
         </div>
         <div className="space-y-2">
-          <Button className="w-full" disabled>
-            <KeyRound className="w-4 h-4" /> Passkey
-          </Button>
+          <form
+            action={async (formData) => {
+              "use server";
+              try {
+                await signIn("resend", formData);
+                redirect("/login/sent");
+              } catch (error) {
+                // TODO: handle this error properly
+                // create a toast showing the error msg
+                console.error(error);
+              }
+            }}
+            className="space-y-2"
+          >
+            <Input type="text" name="email" placeholder="Email" required />
+            <Button className="w-full" type="submit">
+              <Mail className="w-4 h-4" /> Magic Link
+            </Button>
+          </form>
+          <div className="py-2">
+            <Separator />
+          </div>
           <form
             action={async () => {
               "use server";
@@ -44,9 +52,12 @@ export default async function Login() {
             }}
           >
             <Button variant="outline" className="w-full">
-              <Github className="w-4 h-4" /> GitHub
+              <SiGithub className="w-4 h-4" /> GitHub
             </Button>
           </form>
+          <Button variant="outline" className="w-full" disabled>
+            <SiGoogle className="w-4 h-4" /> Google
+          </Button>
         </div>
       </div>
     </main>
