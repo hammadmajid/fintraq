@@ -1,4 +1,4 @@
-import WelcomeEmail from '@/components/emails/welcome';
+import WelcomeEmail from '@/emails/welcome';
 import { Resend } from 'resend';
 import { z } from 'zod';
 
