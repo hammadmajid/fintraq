@@ -15,6 +15,21 @@ import {
 } from "react-icons/si";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import {
+  UserCheck,
+  LayoutDashboard,
+  Wallet,
+  Receipt,
+  Smartphone,
+  FileText,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const techStack = [
   { Icon: SiNextdotjs, link: "https://nextjs.org/" },
@@ -26,6 +41,45 @@ const techStack = [
   { Icon: SiTailwindcss, link: "https://tailwindcss.com/" },
   { Icon: SiShadcnui, link: "https://ui.shadcn.com/" },
   { Icon: SiZod, link: "https://zod.dev/" },
+];
+
+const features = [
+  {
+    title: "User Authentication",
+    description: "Secure sign-up and login functionality.",
+    icon: UserCheck,
+    implemented: true,
+  },
+  {
+    title: "Dashboard",
+    description: "Get a quick glance at your finances with informative charts.",
+    icon: LayoutDashboard,
+    implemented: false,
+  },
+  {
+    title: "Multiple Accounts",
+    description: "Track your expenses across multiple accounts.",
+    icon: Wallet,
+    implemented: true,
+  },
+  {
+    title: "Track Expenses",
+    description: "Easily log and categorize your expenses.",
+    icon: Receipt,
+    implemented: true,
+  },
+  {
+    title: "Responsive Design",
+    description: "Optimized for both desktop and mobile use.",
+    icon: Smartphone,
+    implemented: true,
+  },
+  {
+    title: "Reports",
+    description: "Generate PDF of your finances to share with others.",
+    icon: FileText,
+    implemented: false,
+  },
 ];
 
 export default function Page() {
@@ -83,6 +137,28 @@ export default function Page() {
             </div>
           </div>
         </div>
+
+        <section className="w-full">
+          <h2 className="text-3xl font-bold mb-8 text-center" id="features">Features</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <Card
+                key={index}
+                className={feature.implemented ? "" : "opacity-50"}
+              >
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <feature.icon className="h-6 w-6" />
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>{feature.description}</CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
       </main>
       <Footer />
     </>
