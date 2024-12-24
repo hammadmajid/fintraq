@@ -6,7 +6,6 @@ import {
   SiVercel,
   SiPostgresql,
   SiTypescript,
-  SiReact,
   SiTailwindcss,
   SiShadcnui,
   SiGithub,

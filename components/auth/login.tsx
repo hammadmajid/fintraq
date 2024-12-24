@@ -34,7 +34,7 @@ export function LoginForm({ onSubmit, onGithubLogin }: LoginFormProps) {
           variant: "destructive",
         });
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "An unexpected error occurred. Please try again.",
@@ -61,7 +61,7 @@ export function LoginForm({ onSubmit, onGithubLogin }: LoginFormProps) {
         action={async () => {
           try {
             await onGithubLogin();
-          } catch (error) {
+          } catch {
             toast({
               title: "Error",
               description: "Failed to login with GitHub. Please try again.",
