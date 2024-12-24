@@ -62,7 +62,9 @@ export function PricingSection() {
 
   return (
     <section className="w-full py-12">
-      <h2 className="text-3xl font-bold mb-8 text-center" id="pricing">Pricing</h2>
+      <h2 className="text-3xl font-bold mb-8 text-center" id="pricing">
+        Pricing
+      </h2>
       <div className="flex items-center justify-center mb-8">
         <span className="mr-2">Monthly</span>
         <Switch
@@ -73,7 +75,7 @@ export function PricingSection() {
         <span className="ml-2">Yearly</span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {plans.map((plan, index) => (
+        {plans.map((plan) => (
           <Card
             key={plan.name}
             className={`flex flex-col ${
