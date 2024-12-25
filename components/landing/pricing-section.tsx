@@ -117,7 +117,12 @@ export function PricingSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button className="w-full">Choose Plan</Button>
+              <Button
+                className="w-full"
+                variant={plan.name === "Hobbyist" ? "outline" : "default"}
+              >
+                Choose Plan
+              </Button>
             </CardFooter>
           </Card>
         ))}
