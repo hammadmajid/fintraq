@@ -34,7 +34,7 @@ export function Header() {
   ];
 
   return (
-    <header className="p-4">
+    <header className="container mx-auto border-b p-4 mb-4">
       <nav className="gap-6 text-lg font-medium flex flex-row items-center justify-between md:gap-5 md:text-sm lg:gap-6">
         <FintraqLogo />
         <ul className="hidden md:flex flex-row items-center justify-center">
