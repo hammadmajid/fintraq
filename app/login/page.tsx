@@ -5,7 +5,7 @@ import { signIn } from "@/lib/auth";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Login | Fintraq",
+  title: "Login",
   description: "Login to your Fintraq account",
 };
 

@@ -3,7 +3,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "About Fintraq",
+  title: "About",
   description: "Learn more about Fintraq, a modern finance tracking app",
 };
 
