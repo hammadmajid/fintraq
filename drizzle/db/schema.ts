@@ -108,11 +108,10 @@ export const bankAccounts = pgTable("bank_account", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
-  description: text("description"),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+  description: text("description").notNull(),
   icon: bankAccountIcon("icon").notNull(),
   color: text("color").notNull(),
-  balance: decimal({ precision: 10, scale: 2 }).notNull().default("0"),
+  balance: decimal({ precision: 10, scale: 2 }).notNull(),
   type: text("type").notNull(),
 });
 

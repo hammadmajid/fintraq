@@ -15,7 +15,6 @@ export async function createAccount(values: z.infer<typeof accountSchema>) {
         icon: values.icon,
         description: values.description,
         balance: String(values.balance),
-        createdAt: new Date(),
     })
 }
 
