@@ -9,8 +9,8 @@ import {
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
-import type { AdapterAccountType } from "next-auth/adapters";
 import { createSelectSchema } from "drizzle-zod";
+import type { AdapterAccountType } from "next-auth/adapters";
 import { z } from "zod";
 
 export const users = pgTable("user", {
@@ -21,7 +21,7 @@ export const users = pgTable("user", {
   email: text("email").unique(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
-})
+});
 
 export const accounts = pgTable(
   "account",
@@ -45,7 +45,7 @@ export const accounts = pgTable(
       columns: [account.provider, account.providerAccountId],
     }),
   })
-)
+);
 
 export const sessions = pgTable("session", {
   sessionToken: text("sessionToken").primaryKey(),
@@ -53,7 +53,7 @@ export const sessions = pgTable("session", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   expires: timestamp("expires", { mode: "date" }).notNull(),
-})
+});
 
 export const verificationTokens = pgTable(
   "verificationToken",
@@ -67,7 +67,7 @@ export const verificationTokens = pgTable(
       columns: [verificationToken.identifier, verificationToken.token],
     }),
   })
-)
+);
 
 export const authenticators = pgTable(
   "authenticator",
@@ -88,7 +88,7 @@ export const authenticators = pgTable(
       columns: [authenticator.userId, authenticator.credentialID],
     }),
   })
-)
+);
 
 export const preferences = pgTable("preference", {
   userId: text("userId")
@@ -96,9 +96,9 @@ export const preferences = pgTable("preference", {
     .references(() => users.id, { onDelete: "cascade" }),
   currency: text("currency").notNull(),
   // defaultAccount: text("defaultAccount").references(() => accounts.id),
-})
+});
 
-export const bankAccountIcon = pgEnum('bank_account_icon', icons);
+export const bankAccountIcon = pgEnum("bank_account_icon", icons);
 
 export const bankAccounts = pgTable("bank_account", {
   id: text("id")
