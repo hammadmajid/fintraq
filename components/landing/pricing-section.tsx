@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
+import { Check, X } from "lucide-react";
+import { useState } from "react";
 
 const plans = [
   {
@@ -62,7 +62,7 @@ export function PricingSection() {
 
   return (
     <section className="w-full py-12">
-      <h2 className="text-3xl font-bold mb-8 text-center" id="pricing">
+      <h2 className="mb-8 text-3xl font-bold text-center" id="pricing">
         Pricing
       </h2>
       <div className="flex items-center justify-center mb-8">
@@ -74,7 +74,7 @@ export function PricingSection() {
         />
         <span className="ml-2">Yearly</span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {plans.map((plan) => (
           <Card
             key={plan.name}
@@ -92,7 +92,7 @@ export function PricingSection() {
               <CardDescription>{plan.description}</CardDescription>
             </CardHeader>
             <CardContent className="flex-grow">
-              <div className="text-4xl font-bold mb-4">
+              <div className="mb-4 text-4xl font-bold">
                 ${isYearly ? plan.price.yearly : plan.price.monthly}
                 <span className="text-sm font-normal">
                   /{isYearly ? "year" : "month"}
@@ -101,7 +101,7 @@ export function PricingSection() {
               <ul className="space-y-2">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-center">
-                    <Check className="h-5 w-5 text-green-500 mr-2" />
+                    <Check className="w-5 h-5 mr-2 text-green-500" />
                     {feature}
                   </li>
                 ))}
@@ -110,7 +110,7 @@ export function PricingSection() {
                     key={feature}
                     className="flex items-center text-muted-foreground"
                   >
-                    <X className="h-5 w-5 text-red-500 mr-2" />
+                    <X className="w-5 h-5 mr-2 text-red-500" />
                     {feature}
                   </li>
                 ))}

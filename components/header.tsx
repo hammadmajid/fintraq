@@ -34,10 +34,10 @@ export function Header() {
   ];
 
   return (
-    <header className="container mx-auto border-b p-4 mb-4">
-      <nav className="gap-6 text-lg font-medium flex flex-row items-center justify-between md:gap-5 md:text-sm lg:gap-6">
+    <header className="container p-4 mx-auto mb-4 border-b">
+      <nav className="flex flex-row items-center justify-between gap-6 text-lg font-medium md:gap-5 md:text-sm lg:gap-6">
         <FintraqLogo />
-        <ul className="hidden md:flex flex-row items-center justify-center">
+        <ul className="flex-row items-center justify-center hidden md:flex">
           {links.map((link) => {
             return (
               <li key={link.text}>
@@ -86,7 +86,7 @@ function FintraqLogo() {
       href="/"
       className="flex items-center gap-2 text-lg font-semibold md:text-base"
     >
-      <WalletCards className="h-6 w-6" />
+      <WalletCards className="w-6 h-6" />
       <span>Fintraq</span>
     </Link>
   );

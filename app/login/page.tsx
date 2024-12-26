@@ -32,7 +32,7 @@ export default function Login() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <main className="relative flex items-center justify-center flex-grow px-4 overflow-hidden sm:px-6 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-indigo-600 opacity-30 blur-3xl -z-10"></div>
         <div className="relative z-10 w-full max-w-md">
           <LoginForm

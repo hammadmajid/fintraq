@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -10,17 +8,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Moon, Sun, User2, LogOut, RefreshCcw } from "lucide-react";
+import { LogOut, Moon, RefreshCcw, Sun, User2 } from "lucide-react";
 import type { User } from "next-auth";
 import { signOut } from "next-auth/react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   user: User;
   id: string;
 }
 
-export default function UserMenu({ user }: UserMenuProps) {
+export function UserMenu({ user }: UserMenuProps) {
   const { setTheme, theme } = useTheme();
   const router = useRouter();
 
@@ -50,9 +50,12 @@ export default function UserMenu({ user }: UserMenuProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem className="font-semibold">
-          <Link href={`/u/${user.id}/settings/profile`} className="flex items-end">
-              <User2 className="mr-2" />
-              {user.name}
+          <Link
+            href={`/u/${user.id}/settings/profile`}
+            className="flex items-end"
+          >
+            <User2 className="mr-2" />
+            {user.name}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

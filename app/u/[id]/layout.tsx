@@ -14,10 +14,10 @@ export default async function Layout({
   if (id !== "0")
     return (
       <>
-        <main className="min-h-screen grid place-content-center">
+        <main className="grid min-h-screen place-content-center">
           <div className="mx-auto grid w-[400px] gap-8">
             <Alert variant="destructive">
-              <AlertCircle className="h-4 w-4" />
+              <AlertCircle className="w-4 h-4" />
               <AlertTitle className="font-semibold">Not Implemented</AlertTitle>
               <AlertDescription>
                 Currently it is not possible to login into multiple account at

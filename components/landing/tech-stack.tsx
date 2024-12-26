@@ -1,4 +1,14 @@
-import { SiNextdotjs, SiVercel, SiPostgresql, SiTypescript, SiTailwindcss, SiShadcnui, SiDrizzle, SiResend, SiZod } from "react-icons/si";
+import {
+  SiDrizzle,
+  SiNextdotjs,
+  SiPostgresql,
+  SiResend,
+  SiShadcnui,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+  SiZod,
+} from "react-icons/si";
 
 const techStack = [
   { Icon: SiNextdotjs, link: "https://nextjs.org/" },
@@ -23,9 +33,9 @@ export function TechStack() {
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:scale-110 transition-transform"
+            className="transition-transform hover:scale-110"
           >
-            <Icon className="h-12 w-12 text-muted-foreground hover:text-purple-400 transition-colors" />
+            <Icon className="w-12 h-12 transition-colors text-muted-foreground hover:text-purple-400" />
           </a>
         ))}
       </div>

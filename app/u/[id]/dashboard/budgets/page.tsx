@@ -3,8 +3,8 @@ import { Plus } from "lucide-react";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
-    title: "Budgets",
-  };
+  title: "Budgets",
+};
 
 export default async function Page() {
   return (
@@ -12,7 +12,7 @@ export default async function Page() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Budgets</h1>
-          <p className="text-muted-foreground mb-6">
+          <p className="mb-6 text-muted-foreground">
             Create or manage your budgets
           </p>
         </div>

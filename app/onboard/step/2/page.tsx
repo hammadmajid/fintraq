@@ -1,11 +1,5 @@
-import { Metadata } from "next/types";
+import { hasFirstRecord } from "@/actions/onboard";
 import SetInitialBalance from "@/components/onboard/set-initial-balance";
-
-export const metadata: Metadata = {
-  title: "Onboard",
-  description: "Onboard your account",
-};
-
 import {
   Card,
   CardContent,
@@ -17,7 +11,12 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { hasFirstRecord } from "@/actions/onboard";
+import { Metadata } from "next/types";
+
+export const metadata: Metadata = {
+  title: "Onboard",
+  description: "Onboard your account",
+};
 
 export default async function OnboardStep2() {
   const session = await auth();

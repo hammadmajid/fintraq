@@ -1,10 +1,4 @@
-import { Metadata } from "next/types";
-
-export const metadata: Metadata = {
-  title: "Onboard",
-  description: "Onboard your account",
-};
-
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,14 +9,17 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
+import { Metadata } from "next/types";
+
+export const metadata: Metadata = {
+  title: "Onboard",
+  description: "Onboard your account",
+};
 
 export default function OnboardStep3() {
   return (
-    <main className="w-3/4 space-y-12 mx-auto min-h-screen grid place-content-center">
-      {/* <h1 className="font-extrabold text-3xl">Let's get you set up</h1> */}
-      <div></div>
+    <main className="grid w-3/4 min-h-screen mx-auto space-y-12 place-content-center">
       <Card className="w-[400px]">
         <CardHeader>
           <CardTitle>All done</CardTitle>

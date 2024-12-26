@@ -1,8 +1,8 @@
+import { ExpensesPieChart } from "@/components/dashboard/expenses-pie-chart";
+import { IncomeExpenseBarChart } from "@/components/dashboard/income-expense-bar-chart";
 import { Button } from "@/components/ui/button";
-import { Plus, FileText } from "lucide-react";
+import { FileText, Plus } from "lucide-react";
 import { Metadata } from "next";
-import IncomeExpenseBarChart from "@/components/dashboard/income-expense-bar-chart";
-import ExpensesPieChart from "@/components/dashboard/expenses-pie-chart";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Dashboard() {
   return (
     <main>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex items-center justify-between mb-8">
         <div>
           <p className="text-muted-foreground">Balance</p>
           <h1 className="text-2xl font-bold">$ 1234.56</h1>
@@ -26,7 +26,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <IncomeExpenseBarChart />
         <ExpensesPieChart />
       </div>

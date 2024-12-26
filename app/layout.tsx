@@ -1,11 +1,11 @@
-import { Metadata } from "next";
-import localFont from "next/font/local";
-import { Toaster } from "@/components/ui/toaster";
-import "./globals.css";
 import { ClientThemeWrapper } from "@/components/theme-provider";
-import { ViewTransitions } from "next-view-transitions";
+import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Metadata } from "next";
+import { ViewTransitions } from "next-view-transitions";
+import localFont from "next/font/local";
+import "./globals.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

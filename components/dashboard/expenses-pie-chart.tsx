@@ -11,10 +11,10 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
+  type ChartConfig,
 } from "@/components/ui/chart";
-import { Pie, PieChart, Label } from "recharts";
-import { type ChartConfig } from "@/components/ui/chart";
 import React from "react";
+import { Label, Pie, PieChart } from "recharts";
 
 const categoryExpenseData = [
   { category: "bills", expenses: 275, fill: "var(--color-bills)" },
@@ -54,7 +54,7 @@ const categoryExpenseChart = {
   },
 } satisfies ChartConfig;
 
-export default function ExpensesPieChart() {
+export function ExpensesPieChart() {
   const totalExpenses = React.useMemo(() => {
     return categoryExpenseData.reduce((acc, curr) => acc + curr.expenses, 0);
   }, []);
@@ -95,7 +95,7 @@ export default function ExpensesPieChart() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-foreground text-3xl font-bold"
+                          className="text-3xl font-bold fill-foreground"
                         >
                           {totalExpenses.toLocaleString()}
                         </tspan>

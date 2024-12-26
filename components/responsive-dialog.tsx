@@ -1,22 +1,22 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
 } from "@/components/ui/dialog";
 import {
   Drawer,
   DrawerContent,
   DrawerDescription,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerFooter,
 } from "@/components/ui/drawer";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Context
 const ResponsiveDialogContext = createContext<{ isMobile: boolean }>({

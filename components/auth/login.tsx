@@ -1,13 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Mail } from "lucide-react";
-import { SiGithub, SiGoogle } from "react-icons/si";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
 import {
   Card,
   CardContent,
@@ -15,6 +8,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { useToast } from "@/hooks/use-toast";
+import { Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { SiGithub, SiGoogle } from "react-icons/si";
 
 interface LoginFormProps {
   onSubmit: (
@@ -77,7 +77,7 @@ export function LoginForm({ onSubmit, onGithubLogin }: LoginFormProps) {
             <Separator className="w-full" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">
+            <span className="px-2 bg-background text-muted-foreground">
               Or continue with
             </span>
           </div>

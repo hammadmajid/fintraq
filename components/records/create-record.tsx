@@ -1,5 +1,6 @@
 "use client";
 
+import { createRecord } from "@/actions/records";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -8,6 +9,7 @@ import {
   ResponsiveDialogTitle,
 } from "@/components/responsive-dialog";
 import { Button } from "@/components/ui/button";
+import { SelectBankAccount } from "@/drizzle/db/schema";
 import { useToast } from "@/hooks/use-toast";
 import { recordSchema } from "@/lib/forms/record";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,15 +18,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import RecordForm from "./record-form";
-import { createRecord } from "@/actions/records";
-import { SelectBankAccount } from "@/drizzle/db/schema";
+import { RecordForm } from "./record-form";
 
 interface CreateRecordProps {
   accounts: SelectBankAccount[];
 }
 
-export default function CreateRecord({ accounts }: CreateRecordProps) {
+export function CreateRecord({ accounts }: CreateRecordProps) {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();

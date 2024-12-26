@@ -27,10 +27,10 @@ import {
 import type { SelectBankAccount } from "@/drizzle/db/schema";
 import { recordSchema } from "@/lib/forms/record";
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
-import { format } from "date-fns";
 
 interface RecordFormProps {
   accounts: SelectBankAccount[];
@@ -39,7 +39,7 @@ interface RecordFormProps {
   onSubmit: (values: z.infer<typeof recordSchema>) => Promise<void>;
 }
 
-export default function RecordForm({
+export function RecordForm({
   accounts,
   form,
   isLoading,
@@ -49,7 +49,7 @@ export default function RecordForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6 px-2 pb-6"
+        className="px-2 pb-6 space-y-6"
       >
         <FormField
           control={form.control}
@@ -197,7 +197,7 @@ export default function RecordForm({
                       ) : (
                         <span>Pick a date</span>
                       )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      <CalendarIcon className="w-4 h-4 ml-auto opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
@@ -222,7 +222,7 @@ export default function RecordForm({
         <Button type="submit" className="w-full" disabled={isLoading}>
           {isLoading ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin" />
               Submitting....
             </>
           ) : (

@@ -1,18 +1,18 @@
-import Link from "next/link";
 import {
   Card,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
 import {
-  User,
   CreditCard,
-  Shield,
   Palette,
+  Shield,
+  User,
   WalletCardsIcon,
 } from "lucide-react";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -54,7 +54,7 @@ export default function Settings() {
 
   return (
     <main>
-      <h1 className="text-3xl font-bold mb-6">Settings</h1>
+      <h1 className="mb-6 text-3xl font-bold">Settings</h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {settingsLinks.map((link) => (
           <Link key={link.href} href={link.href} className="block">

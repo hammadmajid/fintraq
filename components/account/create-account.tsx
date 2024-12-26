@@ -19,7 +19,7 @@ import {
   ResponsiveDialogDescription,
 } from "@/components/responsive-dialog";
 
-export default function CreateAccount({ userId }: { userId: string }) {
+export function CreateAccount({ userId }: { userId: string }) {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();

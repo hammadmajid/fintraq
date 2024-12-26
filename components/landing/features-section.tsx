@@ -1,18 +1,18 @@
 import {
-  UserCheck,
-  LayoutDashboard,
-  Wallet,
-  Receipt,
-  Smartphone,
-  FileText,
-} from "lucide-react";
-import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  FileText,
+  LayoutDashboard,
+  Receipt,
+  Smartphone,
+  UserCheck,
+  Wallet,
+} from "lucide-react";
 
 const features = [
   {
@@ -50,19 +50,19 @@ const features = [
 export function FeaturesSection() {
   return (
     <section className="w-full">
-      <h2 className="text-3xl font-bold mb-8 text-center" id="features">
+      <h2 className="mb-8 text-3xl font-bold text-center" id="features">
         Features
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {features.map((feature, index) => (
           <Card
             key={index}
-            className="group relative overflow-hidden transition-all hover:shadow-lg"
+            className="relative overflow-hidden transition-all group hover:shadow-lg"
           >
-            <div className="absolute inset-0 bg-purple-600 opacity-0 blur-xl transition-opacity group-hover:opacity-10"></div>
+            <div className="absolute inset-0 transition-opacity bg-purple-600 opacity-0 blur-xl group-hover:opacity-10"></div>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <feature.icon className="h-6 w-6" />
+                <feature.icon className="w-6 h-6" />
                 {feature.title}
               </CardTitle>
             </CardHeader>

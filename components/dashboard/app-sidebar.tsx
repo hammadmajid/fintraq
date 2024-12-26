@@ -1,14 +1,6 @@
 "use client";
 
 import {
-  ArrowRightLeft,
-  HandCoins,
-  Home,
-  Landmark,
-  WalletCards,
-  Settings,
-} from "lucide-react";
-import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
@@ -19,10 +11,17 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import {
+  ArrowRightLeft,
+  HandCoins,
+  Home,
+  Landmark,
+  Settings,
+  WalletCards,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// Menu items.
 const items = [
   {
     title: "Dashboard",
@@ -58,7 +57,7 @@ export function AppSidebar() {
               href="/"
               className="flex items-center gap-2 text-lg font-semibold md:text-base"
             >
-              <WalletCards className="h-6 w-6" />
+              <WalletCards className="w-6 h-6" />
               <span>Fintraq</span>
             </Link>
           </SidebarMenuItem>

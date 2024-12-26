@@ -1,11 +1,5 @@
-import { Metadata } from "next/types";
+import { hasCurrencyPreference as hasPreference } from "@/actions/onboard";
 import { CurrencySelector } from "@/components/onboard/currency-selector";
-
-export const metadata: Metadata = {
-  title: "Onboard",
-  description: "Onboard your account",
-};
-
 import {
   Card,
   CardContent,
@@ -17,7 +11,12 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { hasCurrencyPreference as hasPreference } from "@/actions/onboard";
+import { Metadata } from "next/types";
+
+export const metadata: Metadata = {
+  title: "Onboard",
+  description: "Onboard your account",
+};
 
 export default async function OnboardStep1() {
   const session = await auth();

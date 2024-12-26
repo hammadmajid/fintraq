@@ -1,9 +1,9 @@
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
+import { CommandMenu } from "@/components/dashboard/command-menu";
+import { UserMenu } from "@/components/dashboard/user-menu";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import UserMenu from "@/components/dashboard/user-menu";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { CommandMenu } from "@/components/dashboard/command-menu";
 
 export default async function Layout({
   children,
@@ -24,14 +24,14 @@ export default async function Layout({
       <SidebarProvider>
         <AppSidebar />
         <div className="flex flex-col w-full">
-          <div className="flex justify-between items-center py-2 pr-4">
-            <div className="flex items-center px-4 gap-4 justify-center">
+          <div className="flex items-center justify-between py-2 pr-4">
+            <div className="flex items-center justify-center gap-4 px-4">
               <SidebarTrigger />
               <CommandMenu />
             </div>
             <UserMenu user={session.user} id={id} />
           </div>
-          <div className="mx-auto w-full px-4 h-full">{children}</div>
+          <div className="w-full h-full px-4 mx-auto">{children}</div>
         </div>
       </SidebarProvider>
     </>

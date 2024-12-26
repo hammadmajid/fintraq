@@ -1,6 +1,6 @@
 "use client";
 
-import DynamicIcon from "@/components/dynamic-icon";
+import { DynamicIcon } from "@/components/dynamic-icon";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -21,11 +21,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { accountSchema } from "@/lib/forms/account";
 import { icons } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
-import { accountSchema } from "@/lib/forms/account";
 
 const colors = [
   { name: "Red", value: "#dc2626" },
@@ -49,10 +49,7 @@ export default function AccountForm({
 }: AccountFormProps) {
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="title"
@@ -191,7 +188,7 @@ export default function AccountForm({
                       </FormControl>
                       <FormLabel
                         htmlFor={name}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-muted peer-aria-checked:border-primary peer-aria-checked:ring-1 peer-aria-checked:ring-primary peer-aria-checked:ring-offset-1"
+                        className="flex items-center justify-center w-10 h-10 border-2 rounded-full border-muted peer-aria-checked:border-primary peer-aria-checked:ring-1 peer-aria-checked:ring-primary peer-aria-checked:ring-offset-1"
                       >
                         <DynamicIcon name={name} />
                       </FormLabel>
@@ -210,7 +207,7 @@ export default function AccountForm({
         <Button type="submit" className="w-full" disabled={isLoading}>
           {isLoading ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin" />
               Submitting....
             </>
           ) : (

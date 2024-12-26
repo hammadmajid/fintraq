@@ -15,7 +15,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Bar, BarChart, XAxis, YAxis, CartesianGrid } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 const incomeVsExpenseChart = {
   income: {
@@ -37,7 +37,7 @@ const incomeVsExpenseData = [
   { month: "Jun", income: 6500, expenses: 5000 },
 ];
 
-export default function IncomeExpenseBarChart() {
+export function IncomeExpenseBarChart() {
   return (
     <Card>
       <CardHeader>

@@ -8,7 +8,7 @@ interface DynamicIconProps extends Omit<LucideProps, "ref"> {
   name: IconName;
 }
 
-export default function DynamicIcon({ name, ...props }: DynamicIconProps) {
+export function DynamicIcon({ name, ...props }: DynamicIconProps) {
   const IconComponent = (
     LucideIcons as unknown as Record<string, React.ComponentType<LucideProps>>
   )[name];

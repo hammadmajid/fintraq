@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function Sent() {
   return (
-    <main className="min-h-screen grid place-content-center">
+    <main className="grid min-h-screen place-content-center">
       <div className="mx-auto grid w-[350px] gap-8">
         <div>
           <h1 className="text-3xl font-bold">Check Your Inbox</h1>

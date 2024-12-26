@@ -4,18 +4,18 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function Loading() {
   return (
     <main>
-      <div className="flex justify-between items-center mb-8">
-        <Skeleton className="h-9 w-40" />
+      <div className="flex items-center justify-between mb-8">
+        <Skeleton className="w-40 h-9" />
         <div className="space-x-2">
-          <Skeleton className="h-10 w-36 inline-block" />
-          <Skeleton className="h-10 w-32 inline-block" />
+          <Skeleton className="inline-block h-10 w-36" />
+          <Skeleton className="inline-block w-32 h-10" />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <Skeleton className="h-6 w-40 mb-2" />
+            <Skeleton className="w-40 h-6 mb-2" />
             <Skeleton className="h-4 w-60" />
           </CardHeader>
           <CardContent>
@@ -25,8 +25,8 @@ export default function Loading() {
 
         <Card>
           <CardHeader>
-            <Skeleton className="h-6 w-24 mb-2" />
-            <Skeleton className="h-4 w-48" />
+            <Skeleton className="w-24 h-6 mb-2" />
+            <Skeleton className="w-48 h-4" />
           </CardHeader>
           <CardContent>
             <Skeleton className="h-[250px] w-[250px] rounded-full mx-auto" />
