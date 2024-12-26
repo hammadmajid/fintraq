@@ -1,50 +1,34 @@
 "use client";
 
+import {useState} from "react";
+import {useRouter} from "next/navigation";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {z} from "zod";
+import {Trash2} from "lucide-react";
+import {SelectBankAccount} from "@/drizzle/db/schema";
+import {useToast} from "@/hooks/use-toast";
+import {deleteAccount, editAccount} from "@/actions/account";
+import {accountSchema} from "@/lib/forms/account";
 import DynamicIcon from "@/components/dynamic-icon";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
-import { SelectBankAccount } from "@/drizzle/db/schema";
-import { Trash2 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { deleteAccount, editAccount } from "@/actions/account";
+import {Button} from "@/components/ui/button";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card";
 import {
-  ResponsiveDialog,
-  ResponsiveDialogContent,
-  ResponsiveDialogHeader,
-  ResponsiveDialogTitle,
-  ResponsiveDialogDescription,
+    ResponsiveDialog,
+    ResponsiveDialogContent,
+    ResponsiveDialogDescription,
+    ResponsiveDialogHeader,
+    ResponsiveDialogTitle,
 } from "@/components/responsive-dialog";
 import AccountForm from "./account-form";
-import { useState } from "react";
-import { accountSchema } from "@/lib/forms/account";
-import { z } from "zod";
 
 interface AccountCardProps {
   account: SelectBankAccount;
 }
 
-export default function Component({ account }: AccountCardProps) {
+export function AccountCard({account}: AccountCardProps) {
   const router = useRouter();
   const { toast } = useToast();
-
-  async function handleDeletion(id: string) {
-    try {
-      await deleteAccount(id);
-      setOpen(false);
-    } catch (error) {
-      toast({
-        title: "Deletion Error",
-        description:
-          error instanceof Error ? error.message : "An unknown error occurred",
-        variant: "destructive",
-      });
-    }
-    router.refresh();
-  }
-
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -61,17 +45,29 @@ export default function Component({ account }: AccountCardProps) {
     },
   });
 
+    async function handleDeletion(id: string) {
+        try {
+            await deleteAccount(id);
+            setOpen(false);
+            router.refresh();
+        } catch (error) {
+            toast({
+                title: "Deletion Error",
+                description:
+                    error instanceof Error ? error.message : "An unknown error occurred",
+                variant: "destructive",
+            });
+        }
+    }
+
   async function onSubmit(values: z.infer<typeof accountSchema>) {
     setIsLoading(true);
-
     try {
       await editAccount(values);
-
       toast({
         title: "Account Updated",
         description: "Your account has been successfully updated.",
       });
-
       setOpen(false);
       router.refresh();
     } catch (error) {
@@ -90,26 +86,32 @@ export default function Component({ account }: AccountCardProps) {
     <>
       <Button
         onClick={() => setOpen(true)}
-        className="h-max hover:cursor-pointer block"
+        className="h-max hover:cursor-pointer block w-full p-0"
         variant="outline"
         asChild
       >
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex justify-between items-start mb-4">
-              <div className="flex items-center">
-                <DynamicIcon name={account.icon} className="mr-2 h-6 w-6" />
-                <div>
-                  <h2 className="text-xl font-bold">{account.title}</h2>
-                  <p className="text-sm text-muted-foreground">
-                    {account.type} Account
-                  </p>
-                </div>
-              </div>
-              <p className="text-3xl font-bold">${account.balance}</p>
-            </div>
+          <Card className="relative overflow-hidden">
+              <div
+                  className="absolute inset-0 opacity-20 blur-xl transition-opacity"
+                  style={{backgroundColor: account.color}}
+              ></div>
+              <CardHeader>
+                  <CardTitle className="flex items-center">
+                      <DynamicIcon
+                          name={account.icon}
+                          className="mr-2 h-8 w-8"
+                          style={{color: account.color}}
+                      />
+                      <h2 className="text-lg font-bold">
+                          {account.title}
+                      </h2>
+                  </CardTitle>
+                  <CardDescription>{account.type} Account</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                  <p className="text-3xl font-extrabold">${account.balance}</p>
+                  <p className="text-sm">{account.description}</p>
           </CardContent>
-          <CardFooter></CardFooter>
         </Card>
       </Button>
       <ResponsiveDialog open={open} onOpenChange={setOpen}>
@@ -130,7 +132,7 @@ export default function Component({ account }: AccountCardProps) {
               variant="destructive"
               onClick={() => handleDeletion(account.id)}
             >
-              <Trash2 />
+                <Trash2 className="mr-2 h-4 w-4"/>
               Delete account
             </Button>
           </div>

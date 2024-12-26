@@ -1,9 +1,9 @@
-import { Metadata } from "next/types";
+import {Metadata} from "next/types";
 import CreateAccount from "@/components/account/create-account";
-import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
-import { getAllAccounts } from "@/actions/account";
-import AccountCard from "@/components/account/account-card";
+import {redirect} from "next/navigation";
+import {auth} from "@/lib/auth";
+import {getAllAccounts} from "@/actions/account";
+import {AccountCard} from "@/components/account/account-card";
 
 export const metadata: Metadata = {
   title: "Accounts",
