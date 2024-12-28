@@ -17,3 +17,39 @@ export const icons = [
   "Building",
   "CircleDollarSign",
 ] as const; // Add 'as const' to create a readonly tuple
+
+export const bankAccountTypes = [
+  "Cash",
+  "Checking",
+  "Savings",
+  "Credit",
+  "Debit",
+  "Investment",
+  "Loan",
+  "Other",
+] as const;
+
+export const recordTypes = ["Income", "Expense", "Transfer"] as const;
+
+export const recordCategories = [
+  "Salary",
+  "Bonus",
+  "Interest",
+  "Dividend",
+  "Gift",
+  "Investment",
+  "Rent",
+  "Utilities",
+  "Groceries",
+  "Dining",
+  "Transportation",
+  "Entertainment",
+  "Health",
+  "Insurance",
+  "Education",
+  "Charity",
+  "Transfer",
+  "Other",
+] as const;
+
+export const recordStatuses = ["Pending", "Completed", "Failed"] as const;
