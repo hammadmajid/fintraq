@@ -43,7 +43,7 @@ export function AccountCard({ account }: AccountCardProps) {
     defaultValues: {
       userId: account.userId,
       title: account.title,
-      type: account.type as "Checking" | "Saving" | undefined,
+      type: account.type,
       balance: parseFloat(account.balance),
       color: account.color,
       icon: account.icon,

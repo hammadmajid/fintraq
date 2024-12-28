@@ -1,4 +1,10 @@
-import { icons } from "@/lib/utils";
+import {
+  bankAccountTypes,
+  icons,
+  recordCategories,
+  recordStatuses,
+  recordTypes,
+} from "@/lib/utils";
 import {
   boolean,
   decimal,
@@ -95,10 +101,11 @@ export const preferences = pgTable("preference", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   currency: text("currency").notNull(),
-  // defaultAccount: text("defaultAccount").references(() => accounts.id),
+  defaultAccount: text("defaultAccount").references(() => bankAccounts.id),
 });
 
 export const bankAccountIcon = pgEnum("bank_account_icon", icons);
+export const bankAccountType = pgEnum("bank_account_type", bankAccountTypes);
 
 export const bankAccounts = pgTable("bank_account", {
   id: text("id")
@@ -112,11 +119,15 @@ export const bankAccounts = pgTable("bank_account", {
   icon: bankAccountIcon("icon").notNull(),
   color: text("color").notNull(),
   balance: decimal({ precision: 10, scale: 2 }).notNull(),
-  type: text("type").notNull(),
+  type: bankAccountType("type").notNull(),
 });
 
 const selectBankAccountSchema = createSelectSchema(bankAccounts);
 export type SelectBankAccount = z.infer<typeof selectBankAccountSchema>;
+
+export const recordType = pgEnum("record_type", recordTypes);
+export const recordCategory = pgEnum("record_category", recordCategories);
+export const recordStatus = pgEnum("record_status", recordStatuses);
 
 export const records = pgTable("records", {
   userId: text("userId")
@@ -129,9 +140,9 @@ export const records = pgTable("records", {
     .notNull()
     .references(() => bankAccounts.id, { onDelete: "cascade" }),
   amount: decimal({ precision: 10, scale: 2 }).notNull(),
-  category: text("category").notNull(),
-  type: text("type").notNull(),
-  status: text("status").notNull(),
+  category: recordCategory("category").notNull(),
+  type: recordType("type").notNull(),
+  status: recordStatus("status").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
