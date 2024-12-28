@@ -111,8 +111,8 @@ importers:
         specifier: ^0.5.1
         version: 0.5.1(drizzle-orm@0.36.1(@neondatabase/serverless@0.9.5)(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0))(zod@3.23.8)
       lucide-react:
-        specifier: ^0.456.0
-        version: 0.456.0(react@19.0.0)
+        specifier: ^0.469.0
+        version: 0.469.0(react@19.0.0)
       next:
         specifier: 15.1.2
         version: 15.1.2(@babel/core@7.24.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -3252,10 +3252,10 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@0.456.0:
-    resolution: {integrity: sha512-DIIGJqTT5X05sbAsQ+OhA8OtJYyD4NsEMCA/HQW/Y6ToPQ7gwbtujIoeAaup4HpHzV35SQOarKAWH8LYglB6eA==}
+  lucide-react@0.469.0:
+    resolution: {integrity: sha512-28vvUnnKQ/dBwiCQtwJw7QauYnE7yd2Cyp4tTTJpvglX4EMpbflcdBgrgToX2j71B3YvugK/NH3BGUk+E/p/Fw==}
     peerDependencies:
-      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   marked@7.0.4:
     resolution: {integrity: sha512-t8eP0dXRJMtMvBojtkcsA7n48BkauktUKzfkPSCq85ZMTJ0v76Rke4DYz01omYpPTUh4p/f7HePgRo3ebG8+QQ==}
@@ -7152,7 +7152,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.456.0(react@19.0.0):
+  lucide-react@0.469.0(react@19.0.0):
     dependencies:
       react: 19.0.0
 
