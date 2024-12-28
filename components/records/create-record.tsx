@@ -35,8 +35,8 @@ export function CreateRecord({ accounts }: CreateRecordProps) {
     defaultValues: {
       userId: accounts[0].userId,
       amount: 0,
-      category: "Transportation",
-      status: "Cleared",
+      category: "Other",
+      status: "Completed",
       type: "Income",
       account: accounts[0].id,
     },

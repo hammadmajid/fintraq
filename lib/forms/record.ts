@@ -1,13 +1,13 @@
 import { z } from "zod";
+import { recordCategories, recordStatuses, recordTypes } from "../utils";
 
 export const recordSchema = z.object({
   id: z.string().optional(),
   userId: z.string(),
   amount: z.number(),
-  type: z.enum(["Income", "Expense", "Transfer"]),
+  type: z.enum(recordTypes),
   account: z.string(),
-  category: z.string(),
-  status: z.enum(["Cleared", "Pending"]),
-  created: z.date().optional(),
-  updated: z.date().optional(),
+  category: z.enum(recordCategories),
+  status: z.enum(recordStatuses),
+  created: z.date(),
 });

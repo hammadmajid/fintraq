@@ -52,9 +52,9 @@ export async function createFirstAccountAndRecord(
   await db.insert(records).values({
     userId,
     amount: String(balance),
-    status: "Cleared",
+    status: "Completed",
     account: account.id,
-    category: "Initial balance",
+    category: "Transfer",
     type: "Income",
   });
 }
