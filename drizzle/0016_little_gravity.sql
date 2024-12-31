@@ -1,0 +1,1 @@
+ALTER TABLE "preference" ADD COLUMN "onboard_completed" boolean DEFAULT false NOT NULL;
