@@ -3,7 +3,7 @@
 import { db } from "@/drizzle/db/client";
 import { bankAccounts, preferences, records, users } from "@/drizzle/db/schema";
 import { eq } from "drizzle-orm";
-import { put, del, list, head } from '@vercel/blob';
+import { put, del } from '@vercel/blob';
 
 export async function hasCurrencyPreference(userId: string): Promise<boolean> {
   const results = await db
