@@ -1,8 +1,9 @@
 "use server";
 
 import { db } from "@/drizzle/db/client";
-import { bankAccounts, preferences, records } from "@/drizzle/db/schema";
+import { bankAccounts, preferences, records, users } from "@/drizzle/db/schema";
 import { eq } from "drizzle-orm";
+import { put, del, list, head } from '@vercel/blob';
 
 export async function hasCurrencyPreference(userId: string): Promise<boolean> {
   const results = await db
@@ -57,4 +58,23 @@ export async function createFirstAccountAndRecord(
     category: "Transfer",
     type: "Income",
   });
+}
+
+export async function setName(userId: string, name: string) {
+  await db.update(users).set({ name }).where(eq(users.id, userId));
+}
+
+export async function uploadImage(userId: string, image: File): Promise<string> {
+  const pathname = `avatars/${userId}`;
+  await del(pathname);
+
+  const { url } = await put(pathname, image, {
+    access: 'public',
+    addRandomSuffix: false,
+    contentType: image.type,
+  });
+
+  await db.update(users).set({ image: url }).where(eq(users.id, userId));
+
+  return url;
 }
