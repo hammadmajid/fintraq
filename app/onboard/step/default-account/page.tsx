@@ -41,7 +41,7 @@ export default async function OnboardStep2() {
         <SetInitialBalance userId={session.user.id} />
       </CardContent>
       <CardFooter>
-        <Progress value={66} />
+        <Progress value={75} />
       </CardFooter>
     </Card>
   );

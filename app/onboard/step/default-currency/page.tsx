@@ -42,7 +42,7 @@ export default async function OnboardStep1() {
         <CurrencySelector userId={userId} />
       </CardContent>
       <CardFooter>
-        <Progress value={33} />
+        <Progress value={50} />
       </CardFooter>
     </Card>
   );
