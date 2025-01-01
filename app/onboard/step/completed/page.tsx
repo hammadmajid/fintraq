@@ -30,6 +30,7 @@ export default async function OnboardStep3() {
   const userId = session.user.id;
 
   async function handleSubmit() {
+    "use server";
     await setOnboardCompleted(userId);
     redirect("/u/0/dashboard");
   }
