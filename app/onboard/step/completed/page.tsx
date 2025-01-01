@@ -1,3 +1,4 @@
+import { setOnboardCompleted } from "@/actions/onboard";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,8 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { auth } from "@/lib/auth";
 import { ArrowRight } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Form from "next/form";
+import { redirect } from "next/navigation";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
@@ -17,7 +20,20 @@ export const metadata: Metadata = {
   description: "Onboard your account",
 };
 
-export default function OnboardStep3() {
+export default async function OnboardStep3() {
+  const session = await auth();
+
+  if (!session || !session.user?.id) {
+    redirect("/login");
+  }
+
+  const userId = session.user.id;
+
+  async function handleSubmit() {
+    await setOnboardCompleted(userId);
+    redirect("/u/0/dashboard");
+  }
+
   return (
     <main className="grid w-3/4 min-h-screen mx-auto space-y-12 place-content-center">
       <Card className="w-[400px]">
@@ -26,12 +42,12 @@ export default function OnboardStep3() {
           <CardDescription>You are ready to use the app.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Link href="/u/0/dashboard">
-            <Button>
+          <Form action={handleSubmit}>
+            <Button type="submit">
               Continue
               <ArrowRight />
             </Button>
-          </Link>
+          </Form>
         </CardContent>
         <CardFooter>
           <Progress value={100} />

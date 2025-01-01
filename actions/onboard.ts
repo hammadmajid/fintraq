@@ -90,3 +90,11 @@ export async function hasOnboarded(userId: string): Promise<boolean> {
   return (result && result.onboardCompleted) || false;
 }
 
+export async function setOnboardCompleted(userId: string) {
+  await db
+    .update(preferences)
+    .set({
+      onboardCompleted: true,
+    })
+    .where(eq(preferences.userId, userId));
+}
