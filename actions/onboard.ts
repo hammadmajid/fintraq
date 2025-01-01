@@ -3,7 +3,7 @@
 import { db } from "@/drizzle/db/client";
 import { bankAccounts, preferences, records, users } from "@/drizzle/db/schema";
 import { eq } from "drizzle-orm";
-import { put, del } from '@vercel/blob';
+import { put, del } from "@vercel/blob";
 
 export async function hasCurrencyPreference(userId: string): Promise<boolean> {
   const results = await db
@@ -16,7 +16,7 @@ export async function hasCurrencyPreference(userId: string): Promise<boolean> {
 
 export async function storePreferencce(
   userId: string,
-  currency: string
+  currency: string,
 ): Promise<void> {
   await db.insert(preferences).values({
     userId,
@@ -35,7 +35,7 @@ export async function hasFirstRecord(userId: string): Promise<boolean> {
 
 export async function createFirstAccountAndRecord(
   userId: string,
-  balance: number
+  balance: number,
 ) {
   const [account] = await db
     .insert(bankAccounts)
@@ -64,12 +64,15 @@ export async function setName(userId: string, name: string) {
   await db.update(users).set({ name }).where(eq(users.id, userId));
 }
 
-export async function uploadImage(userId: string, image: File): Promise<string> {
+export async function uploadImage(
+  userId: string,
+  image: File,
+): Promise<string> {
   const pathname = `avatars/${userId}`;
   await del(pathname);
 
   const { url } = await put(pathname, image, {
-    access: 'public',
+    access: "public",
     addRandomSuffix: false,
     contentType: image.type,
   });
@@ -80,6 +83,10 @@ export async function uploadImage(userId: string, image: File): Promise<string> 
 }
 
 export async function hasOnboarded(userId: string): Promise<boolean> {
-  const [result] = await db.select().from(preferences).where(eq(preferences.userId, userId));
-  return result && result.onboardCompleted || false;
+  const [result] = await db
+    .select()
+    .from(preferences)
+    .where(eq(preferences.userId, userId));
+  return (result && result.onboardCompleted) || false;
 }
+
