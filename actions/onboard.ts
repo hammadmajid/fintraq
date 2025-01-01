@@ -78,3 +78,8 @@ export async function uploadImage(userId: string, image: File): Promise<string> 
 
   return url;
 }
+
+export async function hasOnboarded(userId: string): Promise<boolean> {
+  const [result] = await db.select().from(preferences).where(eq(preferences.userId, userId));
+  return result && result.onboardCompleted || false;
+}

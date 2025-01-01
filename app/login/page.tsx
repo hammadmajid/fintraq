@@ -1,3 +1,4 @@
+import { hasOnboarded } from "@/actions/onboard";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,11 @@ export default async function Login() {
   const session = await auth();
 
   if (session && session.user?.id) {
-    redirect("/onboard/step/setup-profile");
+    if (await hasOnboarded(session.user.id)) {
+      redirect("/u/0/dashboard")
+    } else {
+      redirect("/onboard/step/setup-profile");
+    }
   }
 
   return (
