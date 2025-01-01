@@ -102,6 +102,7 @@ export const preferences = pgTable("preference", {
     .references(() => users.id, { onDelete: "cascade" }),
   currency: text("currency").notNull(),
   defaultAccount: text("defaultAccount").references(() => bankAccounts.id),
+  onboardCompleted: boolean("onboard_completed").default(false).notNull(),
 });
 
 export const bankAccountIcon = pgEnum("bank_account_icon", icons);

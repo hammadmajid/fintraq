@@ -1,5 +1,5 @@
-import { hasCurrencyPreference as hasPreference } from "@/actions/onboard";
-import { CurrencySelector } from "@/components/onboard/currency-selector";
+import { hasFirstRecord } from "@/actions/onboard";
+import SetInitialBalance from "@/components/onboard/set-initial-balance";
 import {
   Card,
   CardContent,
@@ -18,31 +18,30 @@ export const metadata: Metadata = {
   description: "Onboard your account",
 };
 
-export default async function OnboardStep1() {
+export default async function OnboardStep2() {
   const session = await auth();
 
-  if (!session?.user || !session?.user.id) {
+  if (!session?.user || !session?.user?.id) {
     redirect("/login");
   }
-  const userId = session.user.id;
 
-  if (await hasPreference(userId)) {
-    redirect("/u/0/dashboard");
+  if (await hasFirstRecord(session.user.id)) {
+    redirect("/onboard/step/completed");
   }
 
   return (
     <Card className="w-[400px]">
       <CardHeader>
-        <CardTitle>Default currency</CardTitle>
+        <CardTitle>Default account</CardTitle>
         <CardDescription>
-          This is the currency that will be used in the dashboard.{" "}
+          Choose initial balance for your default cash account.
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <CurrencySelector userId={userId} />
+        <SetInitialBalance userId={session.user.id} />
       </CardContent>
       <CardFooter>
-        <Progress value={33} />
+        <Progress value={75} />
       </CardFooter>
     </Card>
   );
