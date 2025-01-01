@@ -26,7 +26,7 @@ export default async function OnboardStep2() {
   }
 
   if (await hasFirstRecord(session.user.id)) {
-    redirect("/u/0/dashboard");
+    redirect("/onboard/step/completed");
   }
 
   return (

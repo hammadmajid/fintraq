@@ -27,7 +27,7 @@ export default async function OnboardStep1() {
   const userId = session.user.id;
 
   if (await hasPreference(userId)) {
-    redirect("/u/0/dashboard");
+    redirect("/onboard/step/default-account");
   }
 
   return (
