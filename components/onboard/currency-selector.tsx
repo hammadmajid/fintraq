@@ -102,12 +102,12 @@ export function CurrencySelector({ userId }: { userId: string }) {
                       role="combobox"
                       className={cn(
                         "w-full justify-between",
-                        !field.value && "text-muted-foreground"
+                        !field.value && "text-muted-foreground",
                       )}
                     >
                       {field.value
                         ? currencies.find(
-                            (currency) => currency.value === field.value
+                            (currency) => currency.value === field.value,
                           )?.label
                         : "Select currency"}
                       <ChevronsUpDown className="opacity-50" />
@@ -137,7 +137,7 @@ export function CurrencySelector({ userId }: { userId: string }) {
                                 "ml-auto",
                                 currency.value === field.value
                                   ? "opacity-100"
-                                  : "opacity-0"
+                                  : "opacity-0",
                               )}
                             />
                           </CommandItem>
