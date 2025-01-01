@@ -39,7 +39,7 @@ export default function SetInitialBalance({ userId }: { userId: string }) {
     setIsLoading(true);
     try {
       await createFirstAccountAndRecord(userId, data.balance);
-      router.push("/onboard/step/3");
+      router.push("/onboard/step/completed");
     } catch {
       toast({
         title: "Error",

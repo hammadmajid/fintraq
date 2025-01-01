@@ -76,7 +76,7 @@ export function CurrencySelector({ userId }: { userId: string }) {
 
     try {
       await storePreferencce(userId, data.currency);
-      router.push("/onboard/step/2");
+      router.push("/onboard/step/default-account");
     } catch {
       toast({
         title: "Error",
