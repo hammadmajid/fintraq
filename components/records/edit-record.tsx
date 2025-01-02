@@ -18,7 +18,7 @@ import {
 } from "../responsive-dialog";
 import { Button } from "../ui/button";
 import { RecordForm } from "./record-form";
-import { editRecord } from "@/actions/records";
+import { deleteRecord, editRecord } from "@/actions/records";
 
 interface EditAccoutProps {
   record: SelectRecord;
@@ -62,8 +62,25 @@ export function EditRecord({ record, accounts }: EditAccoutProps) {
     router.refresh();
   }
 
-  function handleDeletion(id: string): void {
-    throw new Error("Function not implemented.");
+  async function handleDeletion(id: string) {
+    setIsLoading(true);
+    const result = await deleteRecord(id);
+
+    if (result.success) {
+      toast({
+        title: "Successfull",
+        description: result.message,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: result.message,
+        variant: "destructive",
+      });
+    }
+
+    setOpen(false);
+    router.refresh();
   }
 
   return (
@@ -90,9 +107,10 @@ export function EditRecord({ record, accounts }: EditAccoutProps) {
             <Button
               variant="destructive"
               onClick={() => handleDeletion(record.id)}
+              disabled={isLoading}
             >
               <Trash2 className="w-4 h-4 mr-2" />
-              Delete account
+              Delete record
             </Button>
           </div>
         </ResponsiveDialogContent>

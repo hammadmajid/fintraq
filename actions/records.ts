@@ -66,3 +66,18 @@ export async function editRecord(data: z.infer<typeof recordSchema>) {
     };
   }
 }
+
+export async function deleteRecord(id: string) {
+  try {
+    await db.delete(records).where(eq(records.id, id));
+    revalidatePath("/u/0/records");
+
+    return { success: true, message: "Record edited successfully" };
+  } catch (error) {
+    return {
+      success: false,
+      message:
+        error instanceof Error ? error.message : "An unknown error occurred",
+    };
+  }
+}
