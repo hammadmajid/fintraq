@@ -36,7 +36,7 @@ export default async function Page() {
       {accounts.length == 0 || records.length == 0 ? (
         <p>No records</p>
       ) : (
-        <RecordsTable records={records} />
+        <RecordsTable records={records} accounts={accounts} />
       )}
     </main>
   );

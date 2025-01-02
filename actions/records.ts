@@ -36,3 +36,33 @@ export async function createRecord(data: z.infer<typeof recordSchema>) {
     };
   }
 }
+
+export async function editRecord(data: z.infer<typeof recordSchema>) {
+  try {
+    const { id, account, amount, category, type, status, userId, created } =
+      data;
+
+    await db
+      .update(records)
+      .set({
+        userId,
+        amount: String(amount),
+        type,
+        account,
+        category,
+        status,
+        createdAt: created,
+      })
+      .where(eq(records.id, id as string));
+
+    revalidatePath("/u/0/records");
+    return { success: true, message: "Record edited successfully" };
+  } catch (error) {
+    console.error("Failed to edit record:", error);
+    return {
+      success: false,
+      message:
+        error instanceof Error ? error.message : "An unknown error occurred",
+    };
+  }
+}
