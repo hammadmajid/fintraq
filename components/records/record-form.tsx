@@ -43,7 +43,7 @@ export function RecordForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmitAction)}
-        className="px-2 pb-6 space-y-6"
+        className="px-2 pb-6 space-y-4"
       >
         <FormField
           control={form.control}
@@ -187,26 +187,28 @@ export function RecordForm({
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="created"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Date</FormLabel>
-              <Calendar
-                className="w-full"
-                mode="single"
-                selected={field.value}
-                onSelect={field.onChange}
-                initialFocus
-              />
-              <FormDescription className="sr-only">
-                The date of transaction.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="w-full mx-auto">
+          <FormField
+            control={form.control}
+            name="created"
+            render={({ field }) => (
+              <FormItem className="w-full mx-auto">
+                <FormLabel>Date</FormLabel>
+                <Calendar
+                  className="max-w-min mx-auto"
+                  mode="single"
+                  selected={field.value}
+                  onSelect={field.onChange}
+                  initialFocus
+                />
+                <FormDescription className="sr-only">
+                  The date of transaction.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <Button type="submit" className="w-full" disabled={isLoading}>
           {isLoading ? (
