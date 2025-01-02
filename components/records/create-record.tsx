@@ -42,7 +42,7 @@ export function CreateRecord({ accounts }: CreateRecordProps) {
     },
   });
 
-  async function onSubmit(data: z.infer<typeof recordSchema>) {
+  async function onSubmitAction(data: z.infer<typeof recordSchema>) {
     setIsLoading(true);
 
     try {
@@ -90,7 +90,7 @@ export function CreateRecord({ accounts }: CreateRecordProps) {
             accounts={accounts}
             form={form}
             isLoading={isLoading}
-            onSubmit={onSubmit}
+            onSubmitAction={onSubmitAction}
           />
         </ResponsiveDialogContent>
       </ResponsiveDialog>

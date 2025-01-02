@@ -21,6 +21,7 @@ export default async function Page() {
 
   const accounts = await getAllAccounts(userId);
   const records = await getRecords(userId);
+
   return (
     <main>
       <div className="flex items-center justify-between">
@@ -32,7 +33,11 @@ export default async function Page() {
         </div>
         <CreateRecord accounts={accounts} />
       </div>
-      <RecordsTable records={records} />
+      {accounts.length == 0 || records.length == 0 ? (
+        <p>No records</p>
+      ) : (
+        <RecordsTable records={records} accounts={accounts} />
+      )}
     </main>
   );
 }
