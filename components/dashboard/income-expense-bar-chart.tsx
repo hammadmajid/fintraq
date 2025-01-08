@@ -34,7 +34,7 @@ const incomeVsExpenseChart = {
 } satisfies ChartConfig;
 
 function getMonthName(monthNum: number): string {
-  return new Date(0, monthNum - 1).toLocaleString("en-US", { month: "short" });
+  return new Date(0, monthNum).toLocaleString("en-US", { month: "short" });
 }
 
 // Aggregate income and expenses by month
