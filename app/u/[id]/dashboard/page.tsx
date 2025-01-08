@@ -1,14 +1,27 @@
+import { getRecords } from "@/actions/records";
 import { ExpensesPieChart } from "@/components/dashboard/expenses-pie-chart";
 import { IncomeExpenseBarChart } from "@/components/dashboard/income-expense-bar-chart";
 import { Button } from "@/components/ui/button";
+import { auth } from "@/lib/auth";
 import { FileText, Plus } from "lucide-react";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard",
 };
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const session = await auth();
+
+  if (!session || !session.user?.id) {
+    redirect("/login");
+  }
+
+  const userId = session.user.id;
+
+  const records = await getRecords(userId);
+
   return (
     <main>
       <div className="flex items-center justify-between mb-8">
@@ -27,7 +40,7 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <IncomeExpenseBarChart />
+        <IncomeExpenseBarChart records={records} />
         <ExpensesPieChart />
       </div>
     </main>
