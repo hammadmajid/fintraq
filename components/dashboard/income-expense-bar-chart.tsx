@@ -50,10 +50,10 @@ function aggregateRecords(records: SelectRecord[]) {
     }
 
     const monthData = data.get(month)!;
-    if (amount > 0) {
+    if (record.type === "Income") {
       monthData.income += amount;
     } else {
-      monthData.expenses += Math.abs(amount); // Ensure expenses are positive
+      monthData.expenses += amount;
     }
   });
 
