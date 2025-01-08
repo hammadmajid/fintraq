@@ -15,7 +15,12 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { SelectRecord } from "@/drizzle/db/schema";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+
+interface IncomeExpenseBarChartProps {
+  records: SelectRecord[];
+}
 
 const incomeVsExpenseChart = {
   income: {
@@ -28,50 +33,87 @@ const incomeVsExpenseChart = {
   },
 } satisfies ChartConfig;
 
-const incomeVsExpenseData = [
-  { month: "Jan", income: 5000, expenses: 4000 },
-  { month: "Feb", income: 5500, expenses: 4200 },
-  { month: "Mar", income: 6000, expenses: 4500 },
-  { month: "Apr", income: 5800, expenses: 4300 },
-  { month: "May", income: 6200, expenses: 4800 },
-  { month: "Jun", income: 6500, expenses: 5000 },
-];
+function getMonthName(monthNum: number): string {
+  return new Date(0, monthNum).toLocaleString("en-US", { month: "short" });
+}
 
-export function IncomeExpenseBarChart() {
+// Aggregate income and expenses by month
+function aggregateRecords(records: SelectRecord[]) {
+  const data = new Map<string, { income: number; expenses: number }>();
+
+  records.forEach((record) => {
+    const month = getMonthName(record.createdAt.getMonth());
+    const amount = Number(record.amount);
+
+    if (!data.has(month)) {
+      data.set(month, { income: 0, expenses: 0 });
+    }
+
+    const monthData = data.get(month)!;
+    if (record.type === "Income") {
+      monthData.income += amount;
+    } else {
+      monthData.expenses += amount;
+    }
+  });
+
+  return Array.from(data.entries()).map(([month, values]) => ({
+    month,
+    ...values,
+  }));
+}
+
+export function IncomeExpenseBarChart({ records }: IncomeExpenseBarChartProps) {
+  const chartData = aggregateRecords(records);
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Income v Expenses</CardTitle>
+        <CardTitle>Income vs Expenses</CardTitle>
         <CardDescription>
           Are you spending more than what you are making?
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer
-          config={incomeVsExpenseChart}
-          className="min-h-[200px] w-full"
-        >
-          <BarChart accessibilityLayer data={incomeVsExpenseData}>
-            <CartesianGrid vertical={false} />
-            <YAxis
-              dataKey="income"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-            />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip content={<ChartTooltipContent />} />
-            <ChartLegend content={<ChartLegendContent />} />
-            <Bar dataKey="income" fill="var(--color-income)" radius={4} />
-            <Bar dataKey="expenses" fill="var(--color-expenses)" radius={4} />
-          </BarChart>
-        </ChartContainer>
+        <Card>
+          <CardHeader>
+            <CardTitle>Income vs Expenses</CardTitle>
+            <CardDescription>
+              Are you spending more than what you are making?
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer
+              config={incomeVsExpenseChart}
+              className="min-h-[200px] w-full"
+            >
+              <BarChart data={chartData}>
+                <CartesianGrid vertical={false} />
+                <YAxis
+                  dataKey="income"
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                />
+                <XAxis
+                  dataKey="month"
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                  tickFormatter={(value) => value.slice(0, 3)}
+                />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <ChartLegend content={<ChartLegendContent />} />
+                <Bar dataKey="income" fill="var(--color-income)" radius={4} />
+                <Bar
+                  dataKey="expenses"
+                  fill="var(--color-expenses)"
+                  radius={4}
+                />
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
       </CardContent>
     </Card>
   );

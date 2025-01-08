@@ -13,48 +13,49 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart";
+import { SelectRecord } from "@/drizzle/db/schema";
 import React from "react";
 import { Label, Pie, PieChart } from "recharts";
+import { recordCategories } from "@/lib/utils";
 
-const categoryExpenseData = [
-  { category: "bills", expenses: 275, fill: "var(--color-bills)" },
-  { category: "food", expenses: 200, fill: "var(--color-food)" },
-  {
-    category: "transportation",
-    expenses: 287,
-    fill: "var(--color-transportation)",
-  },
-  { category: "education", expenses: 173, fill: "var(--color-education)" },
-  { category: "other", expenses: 190, fill: "var(--color-other)" },
-];
+function aggregateData(records: SelectRecord[]) {
+  const categoryTotals: Record<string, number> = {};
+
+  recordCategories.forEach((category) => {
+    categoryTotals[category] = 0;
+  });
+
+  // Aggregate expenses by category
+  records.forEach((record) => {
+    const category = record.category;
+    const amount = Number(record.amount);
+    if (categoryTotals[category] !== undefined) {
+      categoryTotals[category] += amount;
+    }
+  });
+
+  // Convert the totals into the desired format
+  return Object.entries(categoryTotals).map(([category, expenses]) => ({
+    category,
+    expenses,
+    fill: `var(--color-${category})`,
+  }));
+}
 
 const categoryExpenseChart = {
-  expenses: {
-    label: "expenses",
-  },
-  bills: {
-    label: "bills",
-    color: "hsl(var(--chart-1))",
-  },
-  food: {
-    label: "food",
-    color: "hsl(var(--chart-2))",
-  },
-  transportation: {
-    label: "transportation",
-    color: "hsl(var(--chart-3))",
-  },
-  education: {
-    label: "education",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
+  ...Object.fromEntries(
+    recordCategories.map((category, index) => [
+      category,
+      {
+        label: category,
+        color: `hsl(var(--chart-${index + 1}))`,
+      },
+    ]),
+  ),
 } satisfies ChartConfig;
 
-export function ExpensesPieChart() {
+export function ExpensesPieChart({ records }: { records: SelectRecord[] }) {
+  const categoryExpenseData = aggregateData(records);
   const totalExpenses = React.useMemo(() => {
     return categoryExpenseData.reduce((acc, curr) => acc + curr.expenses, 0);
   }, []);
