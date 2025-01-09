@@ -4,13 +4,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  CreditCard,
-  Palette,
-  Shield,
-  User,
-  WalletCardsIcon,
-} from "lucide-react";
+import { Palette, Shield, User, WalletCardsIcon } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -22,32 +16,26 @@ export default function Settings() {
   const settingsLinks = [
     {
       title: "Profile",
-      description: "Manage how your profile appears to others",
-      href: "/settings/profile",
+      description: "Manage how your profile and account settings",
+      href: "/u/0/settings/profile",
       icon: User,
     },
     {
       title: "Billing",
       description: "Manage your subscription and payment methods",
-      href: "/settings/billing",
+      href: "/u/0/settings/billing",
       icon: WalletCardsIcon,
-    },
-    {
-      title: "Account",
-      description: "Manage your account settings and preferences",
-      href: "/settings/account",
-      icon: CreditCard,
     },
     {
       title: "Security",
       description: "Manage your security preferences",
-      href: "/settings/security",
+      href: "/u/0/settings/security",
       icon: Shield,
     },
     {
       title: "Appearance",
       description: "Customize the look and feel of the application",
-      href: "/settings/appearance",
+      href: "/u/0/settings/appearance",
       icon: Palette,
     },
   ];
