@@ -25,17 +25,23 @@ import { setName, uploadImage } from "@/actions/onboard";
 
 const FormSchema = z.object({
   name: z.string({
-    required_error: "Please enter your name"
+    required_error: "Please enter your name",
   }),
-})
+});
 
 interface SetupProfileProps {
-  userId: string,
-  imageUrl?: string | null,
-  name?: string | null,
+  userId: string;
+  imageUrl?: string | null;
+  name?: string | null;
+  redirect?: boolean | null;
 }
 
-export function SetupProfile({ userId, imageUrl, name }: SetupProfileProps) {
+export function SetupProfile({
+  userId,
+  imageUrl,
+  name,
+  redirect,
+}: SetupProfileProps) {
   const router = useRouter();
   const [avatarUrl, setAvatarUrl] = useState(imageUrl);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +58,7 @@ export function SetupProfile({ userId, imageUrl, name }: SetupProfileProps) {
 
     try {
       await setName(userId, data.name);
-      router.push("/onboard/step/default-currency");
+      if (redirect) router.push("/onboard/step/default-currency");
     } catch {
       toast({
         title: "Error",
@@ -81,7 +87,6 @@ export function SetupProfile({ userId, imageUrl, name }: SetupProfileProps) {
   }
 
   return (
-
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <div className="flex items-center space-x-4">
@@ -139,5 +144,5 @@ export function SetupProfile({ userId, imageUrl, name }: SetupProfileProps) {
         </Button>
       </form>
     </Form>
-  )
+  );
 }

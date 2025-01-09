@@ -1,6 +1,13 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Progress } from "@radix-ui/react-progress";
-import { Metadata } from "next"
+import { Metadata } from "next";
 import { SetupProfile } from "@/components/onboard/setup-profile";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
@@ -23,12 +30,15 @@ export default async function Page() {
     <Card className="w-[400px]">
       <CardHeader>
         <CardTitle>Setup profile</CardTitle>
-        <CardDescription>
-          Tell us a little about yourself
-        </CardDescription>
+        <CardDescription>Tell us a little about yourself</CardDescription>
       </CardHeader>
       <CardContent>
-        <SetupProfile userId={id} name={name} imageUrl={image} />
+        <SetupProfile
+          userId={id}
+          name={name}
+          imageUrl={image}
+          redirect={true}
+        />
       </CardContent>
       <CardFooter>
         <Progress value={25} />
