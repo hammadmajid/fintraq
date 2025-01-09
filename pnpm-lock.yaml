@@ -105,11 +105,11 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       drizzle-orm:
-        specifier: ^0.36.1
-        version: 0.36.1(@neondatabase/serverless@0.9.5)(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0)
+        specifier: ^0.38.3
+        version: 0.38.3(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0)
       drizzle-zod:
         specifier: ^0.5.1
-        version: 0.5.1(drizzle-orm@0.36.1(@neondatabase/serverless@0.9.5)(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0))(zod@3.23.8)
+        version: 0.5.1(drizzle-orm@0.38.3(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0))(zod@3.23.8)
       lucide-react:
         specifier: ^0.469.0
         version: 0.469.0(react@19.0.0)
@@ -2550,15 +2550,15 @@ packages:
     resolution: {integrity: sha512-HmA/NeewvHywhJ2ENXD3KvOuM/+K2dGLJfxVfIHsGwaqKICJnS+Ke2L6UcSrSrtMJLJaT0Im1Qv4TFXfaZShyw==}
     hasBin: true
 
-  drizzle-orm@0.36.1:
-    resolution: {integrity: sha512-F4hbimnMEhyWzDowQB4xEuVJJWXLHZYD7FYwvo8RImY+N7pStGqsbfmT95jDbec1s4qKmQbiuxEDZY90LRrfIw==}
+  drizzle-orm@0.38.3:
+    resolution: {integrity: sha512-w41Y+PquMpSff/QDRGdItG0/aWca+/J3Sda9PPGkTxBtjWQvgU1jxlFBXdjog5tYvTu58uvi3PwR1NuCx0KeZg==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
-      '@cloudflare/workers-types': '>=3'
+      '@cloudflare/workers-types': '>=4'
       '@electric-sql/pglite': '>=0.2.0'
       '@libsql/client': '>=0.10.0'
       '@libsql/client-wasm': '>=0.10.0'
-      '@neondatabase/serverless': '>=0.1'
+      '@neondatabase/serverless': '>=0.10.0'
       '@op-engineering/op-sqlite': '>=2'
       '@opentelemetry/api': ^1.4.1
       '@planetscale/database': '>=1'
@@ -2572,7 +2572,7 @@ packages:
       '@xata.io/client': '*'
       better-sqlite3: '>=7'
       bun-types: '*'
-      expo-sqlite: '>=13.2.0'
+      expo-sqlite: '>=14.0.0'
       knex: '*'
       kysely: '*'
       mysql2: '>=2'
@@ -6339,17 +6339,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.36.1(@neondatabase/serverless@0.9.5)(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0):
+  drizzle-orm@0.38.3(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0):
     optionalDependencies:
-      '@neondatabase/serverless': 0.9.5
       '@types/pg': 8.11.6
       '@types/react': 19.0.2
       '@vercel/postgres': 0.10.0
       react: 19.0.0
 
-  drizzle-zod@0.5.1(drizzle-orm@0.36.1(@neondatabase/serverless@0.9.5)(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0))(zod@3.23.8):
+  drizzle-zod@0.5.1(drizzle-orm@0.38.3(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0))(zod@3.23.8):
     dependencies:
-      drizzle-orm: 0.36.1(@neondatabase/serverless@0.9.5)(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0)
+      drizzle-orm: 0.38.3(@types/pg@8.11.6)(@types/react@19.0.2)(@vercel/postgres@0.10.0)(react@19.0.0)
       zod: 3.23.8
 
   dunder-proto@1.0.1:
