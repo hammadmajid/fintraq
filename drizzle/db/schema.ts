@@ -154,3 +154,21 @@ export const records = pgTable("records", {
 
 const selectRecordSchema = createSelectSchema(records);
 export type SelectRecord = z.infer<typeof selectRecordSchema>;
+
+export const budgets = pgTable("budget", {
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  account: text("bank_account")
+    .notNull()
+    .references(() => bankAccounts.id, { onDelete: "cascade" }),
+  spent: decimal({ precision: 10, scale: 2 }).notNull(),
+  target: decimal({ precision: 10, scale: 2 }).notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+const selectBudgetSchema = createSelectSchema(records);
+export type Budget = z.infer<typeof selectBudgetSchema>;
