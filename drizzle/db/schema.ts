@@ -4,6 +4,7 @@ import {
   recordCategories,
   recordStatuses,
   recordTypes,
+  subscriptionPlans,
 } from "@/lib/utils";
 import {
   boolean,
@@ -50,7 +51,7 @@ export const accounts = pgTable(
     compoundKey: primaryKey({
       columns: [account.provider, account.providerAccountId],
     }),
-  })
+  }),
 );
 
 export const sessions = pgTable("session", {
@@ -72,7 +73,7 @@ export const verificationTokens = pgTable(
     compositePk: primaryKey({
       columns: [verificationToken.identifier, verificationToken.token],
     }),
-  })
+  }),
 );
 
 export const authenticators = pgTable(
@@ -93,8 +94,10 @@ export const authenticators = pgTable(
     compositePK: primaryKey({
       columns: [authenticator.userId, authenticator.credentialID],
     }),
-  })
+  }),
 );
+
+export const subscriptionPlanType = pgEnum("plan_type", subscriptionPlans);
 
 export const preferences = pgTable("preference", {
   userId: text("userId")
@@ -103,6 +106,7 @@ export const preferences = pgTable("preference", {
   currency: text("currency").notNull(),
   defaultAccount: text("defaultAccount").references(() => bankAccounts.id),
   onboardCompleted: boolean("onboard_completed").default(false).notNull(),
+  plan: subscriptionPlanType("plan").default("Hobbyist").notNull(),
 });
 
 export const bankAccountIcon = pgEnum("bank_account_icon", icons);

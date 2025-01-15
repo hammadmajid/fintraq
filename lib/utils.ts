@@ -53,3 +53,11 @@ export const recordCategories = [
 ] as const;
 
 export const recordStatuses = ["Pending", "Completed", "Failed"] as const;
+
+export const subscriptionPlans = [
+  "Hobbyist",
+  "Pro Monthly",
+  "Pro Yearly",
+  "Premium Monthly",
+  "Premium Yearly",
+] as const;

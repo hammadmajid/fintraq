@@ -1,0 +1,1 @@
+CREATE TYPE "public"."plan_type" AS ENUM('Hobbyist', 'Pro Montly', 'Pro Yearly', 'Premium Monthly', 'Premium Yearly');
