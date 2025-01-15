@@ -37,7 +37,11 @@ export default async function Page() {
         </CardHeader>
         <CardContent>
           {plan === "Hobbyist" ? (
-            <Plans name={name || undefined} email={email as string} />
+            <Plans
+              userId={id}
+              name={name || undefined}
+              email={email as string}
+            />
           ) : (
             <div>
               <p>
