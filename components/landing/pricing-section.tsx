@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Check, X } from "lucide-react";
+import { Link } from "next-view-transitions";
 import { useState } from "react";
 
 const plans = [
@@ -120,8 +121,9 @@ export function PricingSection() {
               <Button
                 className="w-full"
                 variant={plan.name === "Hobbyist" ? "outline" : "default"}
+                asChild
               >
-                Choose Plan
+                <Link href="/login">Choose Plan</Link>
               </Button>
             </CardFooter>
           </Card>
