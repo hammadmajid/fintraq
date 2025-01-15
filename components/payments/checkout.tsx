@@ -79,7 +79,9 @@ export function Checkout({ userId, name, email, plan }: CheckoutProps) {
     <Card>
       <CardHeader>
         <CardTitle>Complete your purchase</CardTitle>
-        <CardDescription>You're subscribing to the {plan} plan</CardDescription>
+        <CardDescription>
+          You&apos;re subscribing to the {plan} plan
+        </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent>
