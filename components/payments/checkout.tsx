@@ -13,6 +13,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { subscriptionPlans } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface CheckoutProps {
   userId: string;
@@ -26,6 +27,7 @@ export function Checkout({ userId, name, email, plan }: CheckoutProps) {
   const elements = useElements();
   const [error, setError] = useState<string | null>(null);
   const [processing, setProcessing] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -73,8 +75,7 @@ export function Checkout({ userId, name, email, plan }: CheckoutProps) {
           setError(session.error);
           setProcessing(false);
         } else {
-          // Handle successful payment (e.g., show a success message, update user's subscription status)
-          console.log("Payment successful:", session);
+          router.refresh();
           setProcessing(false);
         }
       }
