@@ -97,7 +97,7 @@ export const authenticators = pgTable(
   }),
 );
 
-const subscriptionPlanType = pgEnum("plan_type", subscriptionPlans);
+export const subscriptionPlanType = pgEnum("plan_type", subscriptionPlans);
 
 export const preferences = pgTable("preference", {
   userId: text("userId")
