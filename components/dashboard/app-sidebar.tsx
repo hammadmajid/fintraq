@@ -25,22 +25,22 @@ import { usePathname } from "next/navigation";
 const items = [
   {
     title: "Dashboard",
-    url: "/u/0/dashboard",
+    url: "/u/dashboard",
     icon: Home,
   },
   {
     title: "Records",
-    url: "/u/0/dashboard/records",
+    url: "/u/dashboard/records",
     icon: ArrowRightLeft,
   },
   {
     title: "Accounts",
-    url: "/u/0/dashboard/accounts",
+    url: "/u/dashboard/accounts",
     icon: Landmark,
   },
   {
     title: "Budgets",
-    url: "/u/0/dashboard/budgets",
+    url: "/u/dashboard/budgets",
     icon: HandCoins,
   },
 ];
@@ -91,9 +91,9 @@ export function AppSidebar() {
             <SidebarMenuButton
               className="py-6"
               asChild
-              isActive={pathname.startsWith("/u/0/settings")}
+              isActive={pathname.startsWith("/u/settings")}
             >
-              <Link href="/u/0/settings">
+              <Link href="/u/settings">
                 <Settings />
                 <span>Settings</span>
               </Link>

@@ -28,7 +28,7 @@ export default async function Login() {
 
   if (session && session.user?.id) {
     if (await hasOnboarded(session.user.id)) {
-      redirect("/u/0/dashboard")
+      redirect("/u/dashboard");
     } else {
       redirect("/onboard/step/setup-profile");
     }

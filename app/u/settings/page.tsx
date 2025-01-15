@@ -17,19 +17,19 @@ export default function Settings() {
     {
       title: "Profile",
       description: "Manage how your profile and account settings",
-      href: "/u/0/settings/profile",
+      href: "/u/settings/profile",
       icon: User,
     },
     {
       title: "Billing",
       description: "Manage your subscription and payment methods",
-      href: "/u/0/settings/billing",
+      href: "/u/settings/billing",
       icon: WalletCardsIcon,
     },
     {
       title: "Appearance",
       description: "Customize the look and feel of the application",
-      href: "/u/0/settings/appearance",
+      href: "/u/settings/appearance",
       icon: Palette,
     },
   ];
