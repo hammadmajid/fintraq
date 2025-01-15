@@ -17,7 +17,6 @@ import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   user: User;
-  id: string;
 }
 
 export function UserMenu({ user }: UserMenuProps) {
@@ -50,10 +49,7 @@ export function UserMenu({ user }: UserMenuProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem className="font-semibold">
-          <Link
-            href={`/u/${user.id}/settings/profile`}
-            className="flex items-end"
-          >
+          <Link href={`/u/settings/profile`} className="flex items-end">
             <User2 className="mr-2" />
             {user.name}
           </Link>

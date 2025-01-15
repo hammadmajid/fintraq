@@ -32,7 +32,7 @@ export default async function OnboardStep3() {
   async function handleSubmit() {
     "use server";
     await setOnboardCompleted(userId);
-    redirect("/u/0/dashboard");
+    redirect("/u/dashboard");
   }
 
   return (

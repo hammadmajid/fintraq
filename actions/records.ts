@@ -25,7 +25,7 @@ export async function createRecord(data: z.infer<typeof recordSchema>) {
       createdAt: created,
     });
 
-    revalidatePath("/u/0/records");
+    revalidatePath("/u/records");
     return { success: true, message: "Record created successfully" };
   } catch (error) {
     console.error("Failed to create record:", error);
@@ -55,7 +55,7 @@ export async function editRecord(data: z.infer<typeof recordSchema>) {
       })
       .where(eq(records.id, id as string));
 
-    revalidatePath("/u/0/records");
+    revalidatePath("/u/records");
     return { success: true, message: "Record edited successfully" };
   } catch (error) {
     console.error("Failed to edit record:", error);
@@ -70,7 +70,7 @@ export async function editRecord(data: z.infer<typeof recordSchema>) {
 export async function deleteRecord(id: string) {
   try {
     await db.delete(records).where(eq(records.id, id));
-    revalidatePath("/u/0/records");
+    revalidatePath("/u/records");
 
     return { success: true, message: "Record edited successfully" };
   } catch (error) {
