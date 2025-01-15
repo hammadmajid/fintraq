@@ -9,7 +9,7 @@ type PlanDetails = {
 
 export const plansData: PlanDetails[] = [
   {
-    name: "Pro Montly",
+    name: "Pro Monthly",
     description: "Ideal for freelancers and small businesses",
     price: { monthly: 4, yearly: 40 },
     features: [
