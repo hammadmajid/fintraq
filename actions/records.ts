@@ -13,13 +13,13 @@ export async function getRecords(userId: string): Promise<SelectRecord[]> {
 
 export async function createRecord(data: z.infer<typeof recordSchema>) {
   try {
-    const { account, amount, category, type, status, userId, created } = data;
+    const { accountId, amount, category, type, status, userId, created } = data;
 
     await db.insert(records).values({
       userId,
       amount: String(amount),
       type,
-      account,
+      accountId,
       category,
       status,
       createdAt: created,
@@ -39,7 +39,7 @@ export async function createRecord(data: z.infer<typeof recordSchema>) {
 
 export async function editRecord(data: z.infer<typeof recordSchema>) {
   try {
-    const { id, account, amount, category, type, status, userId, created } =
+    const { id, accountId, amount, category, type, status, userId, created } =
       data;
 
     await db
@@ -48,7 +48,7 @@ export async function editRecord(data: z.infer<typeof recordSchema>) {
         userId,
         amount: String(amount),
         type,
-        account,
+        accountId,
         category,
         status,
         createdAt: created,

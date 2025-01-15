@@ -38,7 +38,7 @@ export function CreateRecord({ accounts }: CreateRecordProps) {
       category: "Other",
       status: "Completed",
       type: "Income",
-      account: accounts[0].id,
+      accountId: accounts[0].id,
     },
   });
 

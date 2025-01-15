@@ -6,7 +6,7 @@ export const recordSchema = z.object({
   userId: z.string(),
   amount: z.number(),
   type: z.enum(recordTypes),
-  account: z.string(),
+  accountId: z.string(),
   category: z.enum(recordCategories),
   status: z.enum(recordStatuses),
   created: z.date(),

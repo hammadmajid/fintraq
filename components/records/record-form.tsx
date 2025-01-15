@@ -137,7 +137,7 @@ export function RecordForm({
 
         <FormField
           control={form.control}
-          name="account"
+          name="accountId"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Account</FormLabel>

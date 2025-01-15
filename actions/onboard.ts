@@ -54,7 +54,7 @@ export async function createFirstAccountAndRecord(
     userId,
     amount: String(balance),
     status: "Completed",
-    account: account.id,
+    accountId: account.id,
     category: "Transfer",
     type: "Income",
   });
