@@ -169,8 +169,10 @@ export const budgets = pgTable("budgets", {
     .notNull()
     .references(() => bankAccounts.id, { onDelete: "cascade" }),
   spent: decimal({ precision: 10, scale: 2 }).notNull(),
+  title: text("title").notNull(),
   target: decimal({ precision: 10, scale: 2 }).notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+  startDate: timestamp("start_date").notNull().defaultNow(),
+  endDate: timestamp("end_date").notNull().defaultNow(),
 });
 
 const selectBudgetSchema = createSelectSchema(budgets);
