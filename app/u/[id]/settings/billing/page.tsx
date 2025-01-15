@@ -1,8 +1,16 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Metadata } from "next";
-import { Wrench } from "lucide-react";
+import { getPlan } from "@/actions/payments";
+import { Plans } from "@/components/payments/plans";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Billing",
@@ -15,14 +23,29 @@ export default async function Page() {
     redirect("/login");
   }
 
+  const { id, name, email } = session.user;
+  const plan = await getPlan(id);
+
   return (
-    <main className="w-3/4 min-h-screen grid place-content-center mx-auto">
+    <main className="">
       <Card>
-        <CardContent className="p-6">
-          <p className="flex gap-2 items-center">
-            <Wrench />
-            <span>Coming soon</span>
-          </p>
+        <CardHeader>
+          <CardTitle>Billing</CardTitle>
+          <CardDescription>
+            Manage your payments method and subsciption
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {plan === "Hobbyist" ? (
+            <Plans name={name || undefined} email={email as string} />
+          ) : (
+            <div>
+              <p>
+                You are subscribed to <strong>{plan}</strong>
+              </p>
+              <Button variant="destructive">Cancel</Button>
+            </div>
+          )}
         </CardContent>
       </Card>
     </main>
