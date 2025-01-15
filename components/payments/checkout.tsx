@@ -12,6 +12,7 @@ import {
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { subscriptionPlans } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 interface CheckoutProps {
   userId: string;
@@ -30,7 +31,12 @@ export function Checkout({ userId, name, email, plan }: CheckoutProps) {
     event.preventDefault();
 
     if (!stripe || !elements) {
-      return;
+      return (
+        <div className="p-4">
+          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          Loading...
+        </div>
+      );
     }
 
     setProcessing(true);
