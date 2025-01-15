@@ -1,2 +1,0 @@
-CREATE TYPE "public"."account_icon" AS ENUM('wallet', 'credit-card', 'piggy-bank', 'dollar-sign', 'banknote', 'coins', 'receipt', 'landmark', 'building', 'circle-dollar-sign');--> statement-breakpoint
-ALTER TABLE "accounts" ALTER COLUMN "icon" SET DATA TYPE account_icon;
