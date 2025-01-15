@@ -4,6 +4,7 @@ import {
   recordCategories,
   recordStatuses,
   recordTypes,
+  subscriptionPlans,
 } from "@/lib/utils";
 import {
   boolean,
@@ -96,6 +97,8 @@ export const authenticators = pgTable(
   }),
 );
 
+const subscriptionPlanType = pgEnum("plan_type", subscriptionPlans);
+
 export const preferences = pgTable("preference", {
   userId: text("userId")
     .notNull()
@@ -103,7 +106,7 @@ export const preferences = pgTable("preference", {
   currency: text("currency").notNull(),
   defaultAccount: text("defaultAccount").references(() => bankAccounts.id),
   onboardCompleted: boolean("onboard_completed").default(false).notNull(),
-  subscribed: boolean("subscribed").default(false).notNull(),
+  plan: subscriptionPlanType("plan").default("Hobbyist").notNull(),
 });
 
 export const bankAccountIcon = pgEnum("bank_account_icon", icons);
@@ -151,13 +154,3 @@ export const records = pgTable("records", {
 
 const selectRecordSchema = createSelectSchema(records);
 export type SelectRecord = z.infer<typeof selectRecordSchema>;
-
-export const invoices = pgTable("invoice", {
-  userId: text("userId")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
-  amount: decimal({ precision: 10, scale: 2 }).notNull(),
-});
