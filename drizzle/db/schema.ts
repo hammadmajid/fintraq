@@ -20,25 +20,25 @@ import { createSelectSchema } from "drizzle-zod";
 import type { AdapterAccountType } from "next-auth/adapters";
 import { z } from "zod";
 
-export const users = pgTable("user", {
+export const users = pgTable("users", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   name: text("name"),
   email: text("email").unique(),
-  emailVerified: timestamp("emailVerified", { mode: "date" }),
+  email_verified: timestamp("email_verified", { mode: "date" }),
   image: text("image"),
 });
 
 export const accounts = pgTable(
-  "account",
+  "accounts",
   {
-    userId: text("userId")
+    user_id: text("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
     type: text("type").$type<AdapterAccountType>().notNull(),
     provider: text("provider").notNull(),
-    providerAccountId: text("providerAccountId").notNull(),
+    provider_account_id: text("provider_account_id").notNull(),
     refresh_token: text("refresh_token"),
     access_token: text("access_token"),
     expires_at: integer("expires_at"),
@@ -48,127 +48,130 @@ export const accounts = pgTable(
     session_state: text("session_state"),
   },
   (account) => ({
-    compoundKey: primaryKey({
-      columns: [account.provider, account.providerAccountId],
+    compound_key: primaryKey({
+      columns: [account.provider, account.provider_account_id],
     }),
   }),
 );
 
-export const sessions = pgTable("session", {
-  sessionToken: text("sessionToken").primaryKey(),
-  userId: text("userId")
+export const sessions = pgTable("sessions", {
+  session_token: text("session_token").primaryKey(),
+  user_id: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   expires: timestamp("expires", { mode: "date" }).notNull(),
 });
 
-export const verificationTokens = pgTable(
-  "verificationToken",
+export const verification_tokens = pgTable(
+  "verification_tokens",
   {
     identifier: text("identifier").notNull(),
     token: text("token").notNull(),
     expires: timestamp("expires", { mode: "date" }).notNull(),
   },
   (verificationToken) => ({
-    compositePk: primaryKey({
+    composite_pk: primaryKey({
       columns: [verificationToken.identifier, verificationToken.token],
     }),
   }),
 );
 
 export const authenticators = pgTable(
-  "authenticator",
+  "authenticators",
   {
-    credentialID: text("credentialID").notNull().unique(),
-    userId: text("userId")
+    credential_id: text("credential_id").notNull().unique(),
+    user_id: text("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    providerAccountId: text("providerAccountId").notNull(),
-    credentialPublicKey: text("credentialPublicKey").notNull(),
+    provider_account_id: text("provider_account_id").notNull(),
+    credential_public_key: text("credential_public_key").notNull(),
     counter: integer("counter").notNull(),
-    credentialDeviceType: text("credentialDeviceType").notNull(),
-    credentialBackedUp: boolean("credentialBackedUp").notNull(),
+    credential_device_type: text("credential_device_type").notNull(),
+    credential_backed_up: boolean("credential_backed_up").notNull(),
     transports: text("transports"),
   },
   (authenticator) => ({
-    compositePK: primaryKey({
-      columns: [authenticator.userId, authenticator.credentialID],
+    composite_pk: primaryKey({
+      columns: [authenticator.user_id, authenticator.credential_id],
     }),
   }),
 );
 
-export const subscriptionPlanType = pgEnum("plan_type", subscriptionPlans);
+export const subscription_plan_type = pgEnum(
+  "subscription_plan_type",
+  subscriptionPlans,
+);
 
-export const preferences = pgTable("preference", {
-  userId: text("userId")
+export const preferences = pgTable("preferences", {
+  user_id: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   currency: text("currency").notNull(),
-  defaultAccount: text("defaultAccount").references(() => bankAccounts.id),
-  onboardCompleted: boolean("onboard_completed").default(false).notNull(),
-  plan: subscriptionPlanType("plan").default("Hobbyist").notNull(),
+  default_account: text("default_account").references(() => bank_accounts.id),
+  onboard_completed: boolean("onboard_completed").default(false).notNull(),
+  plan: subscription_plan_type("plan").default("Hobbyist").notNull(),
 });
 
-export const bankAccountIcon = pgEnum("bank_account_icon", icons);
-export const bankAccountType = pgEnum("bank_account_type", bankAccountTypes);
+export const bank_account_icon = pgEnum("bank_account_icon", icons);
+export const bank_account_type = pgEnum("bank_account_type", bankAccountTypes);
 
-export const bankAccounts = pgTable("bank_account", {
+export const bank_accounts = pgTable("bank_accounts", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  userId: text("userId")
+  user_id: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
   description: text("description").notNull(),
-  icon: bankAccountIcon("icon").notNull(),
+  icon: bank_account_icon("icon").notNull(),
   color: text("color").notNull(),
   balance: decimal({ precision: 10, scale: 2 }).notNull(),
-  type: bankAccountType("type").notNull(),
+  type: bank_account_type("type").notNull(),
 });
 
-const selectBankAccountSchema = createSelectSchema(bankAccounts);
+const selectBankAccountSchema = createSelectSchema(bank_accounts);
 export type SelectBankAccount = z.infer<typeof selectBankAccountSchema>;
 
-export const recordType = pgEnum("record_type", recordTypes);
-export const recordCategory = pgEnum("record_category", recordCategories);
-export const recordStatus = pgEnum("record_status", recordStatuses);
+export const record_type = pgEnum("record_type", recordTypes);
+export const record_category = pgEnum("record_category", recordCategories);
+export const record_status = pgEnum("record_status", recordStatuses);
 
 export const records = pgTable("records", {
-  userId: text("userId")
+  user_id: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  account: text("bank_account")
+  account_id: text("bank_account")
     .notNull()
-    .references(() => bankAccounts.id, { onDelete: "cascade" }),
+    .references(() => bank_accounts.id, { onDelete: "cascade" }),
   amount: decimal({ precision: 10, scale: 2 }).notNull(),
-  category: recordCategory("category").notNull(),
-  type: recordType("type").notNull(),
-  status: recordStatus("status").notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  category: record_category("category").notNull(),
+  type: record_type("type").notNull(),
+  status: record_status("status").notNull(),
+  created_at: timestamp("created_at").notNull().defaultNow(),
+  updated_at: timestamp("updated_at").notNull().defaultNow(),
 });
 
 const selectRecordSchema = createSelectSchema(records);
 export type SelectRecord = z.infer<typeof selectRecordSchema>;
 
-export const budgets = pgTable("budget", {
-  userId: text("userId")
+export const budgets = pgTable("budgets", {
+  user_id: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  account: text("bank_account")
+  account_id: text("bank_account")
     .notNull()
-    .references(() => bankAccounts.id, { onDelete: "cascade" }),
+    .references(() => bank_accounts.id, { onDelete: "cascade" }),
   spent: decimal({ precision: 10, scale: 2 }).notNull(),
   target: decimal({ precision: 10, scale: 2 }).notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+  created_at: timestamp("created_at").notNull().defaultNow(),
 });
 
-const selectBudgetSchema = createSelectSchema(records);
+const selectBudgetSchema = createSelectSchema(budgets);
 export type Budget = z.infer<typeof selectBudgetSchema>;
