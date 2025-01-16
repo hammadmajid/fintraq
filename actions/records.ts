@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/drizzle/db/client";
-import { records, SelectRecord } from "@/drizzle/db/schema";
+import { bankAccounts, records, SelectRecord } from "@/drizzle/db/schema";
 import { recordSchema } from "@/lib/forms/record";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
@@ -24,6 +24,20 @@ export async function createRecord(data: z.infer<typeof recordSchema>) {
       status,
       createdAt: created,
     });
+
+    const [acc] = await db
+      .select()
+      .from(bankAccounts)
+      .where(eq(bankAccounts.id, account));
+
+    const newBalance = Number(acc.balance) + amount;
+
+    await db
+      .update(bankAccounts)
+      .set({
+        balance: String(newBalance),
+      })
+      .where(eq(bankAccounts.id, account));
 
     revalidatePath("/u/records");
     return { success: true, message: "Record created successfully" };
