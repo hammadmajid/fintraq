@@ -58,7 +58,7 @@ export function ExpensesPieChart({ records }: { records: SelectRecord[] }) {
   const categoryExpenseData = aggregateData(records);
   const totalExpenses = React.useMemo(() => {
     return categoryExpenseData.reduce((acc, curr) => acc + curr.expenses, 0);
-  }, []);
+  }, [categoryExpenseData]);
 
   return (
     <Card className="flex flex-col">
