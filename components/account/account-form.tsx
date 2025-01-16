@@ -26,6 +26,7 @@ import { icons } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
+import { bankAccountTypes } from "@/lib/utils";
 
 const colors = [
   { name: "Red", value: "#dc2626" },
@@ -95,8 +96,11 @@ export default function AccountForm({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="Checking">Checking</SelectItem>
-                  <SelectItem value="Saving">Saving</SelectItem>
+                  {bankAccountTypes.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               <FormDescription>Select type of your account.</FormDescription>
@@ -208,10 +212,10 @@ export default function AccountForm({
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              Submitting....
+              Saving....
             </>
           ) : (
-            "Submit"
+            "Save"
           )}
         </Button>
       </form>
