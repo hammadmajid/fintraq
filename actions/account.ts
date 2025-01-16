@@ -18,6 +18,13 @@ export async function createAccount(values: z.infer<typeof accountSchema>) {
   });
 }
 
+export async function getAccountById(accountId: string) {
+  return await db
+    .select()
+    .from(bankAccounts)
+    .where(eq(bankAccounts.id, accountId));
+}
+
 export async function getAllAccounts(userId: string) {
   return await db
     .select()
@@ -26,15 +33,18 @@ export async function getAllAccounts(userId: string) {
 }
 
 export async function editAccount(values: z.infer<typeof accountSchema>) {
-  await db.update(bankAccounts).set({
-    userId: values.userId,
-    title: values.title,
-    color: values.color,
-    type: values.type,
-    icon: values.icon,
-    description: values.description,
-    balance: String(values.balance),
-  });
+  await db
+    .update(bankAccounts)
+    .set({
+      userId: values.userId,
+      title: values.title,
+      color: values.color,
+      type: values.type,
+      icon: values.icon,
+      description: values.description,
+      balance: String(values.balance),
+    })
+    .where(eq(bankAccounts.id, values.id));
 }
 
 export async function deleteAccount(accoundId: string) {
