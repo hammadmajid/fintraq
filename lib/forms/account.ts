@@ -3,7 +3,7 @@ import { bankAccountTypes } from "@/lib/utils";
 import { z } from "zod";
 
 export const accountSchema = z.object({
-  id: z.string().optional(),
+  id: z.string(),
   userId: z.string(),
   title: z.string().min(1, "Enter at least 1 character"),
   color: z

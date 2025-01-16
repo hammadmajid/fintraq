@@ -18,6 +18,7 @@ export function CreateAccount({ userId }: { userId: string }) {
   const form = useForm<z.infer<typeof accountSchema>>({
     resolver: zodResolver(accountSchema),
     defaultValues: {
+      id: "",
       userId,
       title: "",
       type: "Checking",
