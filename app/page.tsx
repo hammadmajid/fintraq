@@ -4,8 +4,9 @@ import { FAQ } from "@/components/landing/faq";
 import { FeaturesSection } from "@/components/landing/features-section";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { TechStack } from "@/components/landing/tech-stack";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { AlertCircle, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 
@@ -14,6 +15,13 @@ export default function Page() {
     <>
       <Header />
       <main className="container px-4 py-12 mx-auto sm:px-6 lg:px-8 lg:w-3/4">
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle className="font-semibold">Head up!</AlertTitle>
+          <AlertDescription>
+            This app is in active development. Expect bugs and data loss.
+          </AlertDescription>
+        </Alert>
         <div className="flex flex-col items-center justify-center min-h-screen gap-16 md:flex-row md:gap-0">
           <div className="flex flex-col items-start justify-start w-full gap-8">
             <header className="relative">
