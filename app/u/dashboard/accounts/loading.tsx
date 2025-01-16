@@ -1,27 +1,28 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Landmark } from "lucide-react";
 
-export default function AccountsLoading() {
+export default function Loading() {
   return (
     <main>
-      <Skeleton className="h-9 w-[200px] mb-2" />
-      <Skeleton className="h-5 w-[300px] mb-6" />
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold flex gap-2 items-center">
+            <Landmark />
+            Accounts
+          </h1>
+          <p className="mb-6 text-muted-foreground">
+            Create or manage your accounts
+          </p>
+        </div>
+        <Button size="lg" disabled>
+          Create
+        </Button>
+      </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {[...Array(5)].map((_, index) => (
-          <Card key={index}>
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center">
-                  <Skeleton className="w-6 h-6 mr-2" />
-                  <Skeleton className="h-6 w-[100px]" />
-                </div>
-                <Skeleton className="w-8 h-8 rounded-full" />
-              </div>
-              <Skeleton className="w-full h-4 mb-4" />
-              <Skeleton className="h-8 w-[120px]" />
-            </CardContent>
-          </Card>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {[...Array(3)].map((_, i) => (
+          <Skeleton key={i} className="h-[200px] w-full" />
         ))}
       </div>
     </main>

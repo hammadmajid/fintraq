@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 import AccountForm from "./account-form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,16 +9,8 @@ import { accountSchema } from "@/lib/forms/account";
 import { createAccount } from "@/actions/account";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import {
-  ResponsiveDialog,
-  ResponsiveDialogContent,
-  ResponsiveDialogHeader,
-  ResponsiveDialogTitle,
-  ResponsiveDialogDescription,
-} from "@/components/responsive-dialog";
 
 export function CreateAccount({ userId }: { userId: string }) {
-  const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
@@ -50,7 +40,7 @@ export function CreateAccount({ userId }: { userId: string }) {
       });
 
       form.reset();
-      setOpen(false);
+      router.back();
       router.refresh();
     } catch (error) {
       toast({
@@ -64,23 +54,5 @@ export function CreateAccount({ userId }: { userId: string }) {
     }
   }
 
-  return (
-    <>
-      <Button onClick={() => setOpen(true)} size="lg">
-        <Plus />
-        New
-      </Button>
-      <ResponsiveDialog open={open} onOpenChange={setOpen}>
-        <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle>Create Account</ResponsiveDialogTitle>
-          <ResponsiveDialogDescription>
-            Fill out the form to create new account.
-          </ResponsiveDialogDescription>
-        </ResponsiveDialogHeader>
-        <ResponsiveDialogContent>
-          <AccountForm form={form} isLoading={isLoading} onSubmit={onSubmit} />
-        </ResponsiveDialogContent>
-      </ResponsiveDialog>
-    </>
-  );
+  return <AccountForm form={form} isLoading={isLoading} onSubmit={onSubmit} />;
 }
