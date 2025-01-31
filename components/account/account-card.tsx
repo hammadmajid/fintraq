@@ -21,7 +21,10 @@ export function AccountCard({ account }: AccountCardProps) {
       variant="outline"
       asChild
     >
-      <Link className="block" href={`/u/dashboard/accounts/edit/${account.id}`}>
+      <Link
+        className="block"
+        href={`/u/dashboard/accounts/edit?id=${account.id}`}
+      >
         <Card className="relative overflow-hidden">
           <div
             className="absolute inset-0 transition-opacity opacity-20 blur-xl"

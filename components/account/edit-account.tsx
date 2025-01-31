@@ -11,11 +11,7 @@ import { z } from "zod";
 import AccountForm from "./account-form";
 import { SelectBankAccount } from "@/drizzle/db/schema";
 
-export function EditAccount({
-  account,
-}: {
-  account: SelectBankAccount;
-}) {
+export function EditAccount({ account }: { account: SelectBankAccount }) {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);

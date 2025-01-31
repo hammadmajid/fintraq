@@ -6,6 +6,17 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { CardFooter } from "../ui/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export function DeleteBankAccount({ id }: { id: string }) {
   const router = useRouter();
@@ -28,23 +39,27 @@ export function DeleteBankAccount({ id }: { id: string }) {
   }
 
   return (
-    <CardFooter className="grid gap-2">
-      <Button
-        variant="destructive"
-        className="w-full"
-        onClick={onSubmit}
-        disabled={isLoading}
-      >
-        Confirm
-      </Button>
-      <Button
-        variant="outline"
-        onClick={() => {
-          router.back();
-        }}
-      >
-        Cancel
-      </Button>
-    </CardFooter>
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive" className="w-full">
+          Delete
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete this
+            account and remove related data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={onSubmit} disabled={isLoading}>
+            Continue
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }

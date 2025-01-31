@@ -3,17 +3,16 @@ import { redirect } from "next/navigation";
 import { Metadata } from "next/types";
 import { EditAccount } from "@/components/account/edit-account";
 import { getAccountById } from "@/actions/account";
-import { Button } from "@/components/ui/button";
-import { Link } from "next-view-transitions";
+import { DeleteBankAccount } from "@/components/account/delete-account";
 
 export const metadata: Metadata = {
   title: "Edit account",
 };
 
 export default async function EditAccountsPage({
-  params,
+  searchParams,
 }: {
-  params: Promise<{ id: string }>;
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const session = await auth();
 
@@ -21,21 +20,18 @@ export default async function EditAccountsPage({
     redirect("/login");
   }
 
-  const { id } = await params;
+  const accountId = searchParams.id as string;
 
-  const [account] = await getAccountById(id);
+  const [account] = await getAccountById(accountId);
+
+  if (!account) {
+    return <div>Invalid id</div>;
+  }
 
   return (
     <main className="p-12 space-y-2">
       <EditAccount account={account} />
-      <Button variant="destructive" asChild>
-        <Link
-          className="block w-full"
-          href={`/u/dashboard/accounts/delete/${id}`}
-        >
-          Delete
-        </Link>
-      </Button>
+      <DeleteBankAccount id={accountId} />
     </main>
   );
 }
