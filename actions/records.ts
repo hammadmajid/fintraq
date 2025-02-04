@@ -73,6 +73,8 @@ export async function editRecord(data: z.infer<typeof recordSchema>) {
       })
       .where(eq(records.id, id as string));
 
+    // TODO: Update balance in bank account based on
+
     revalidatePath("/u/records");
     return { success: true, message: "Record edited successfully" };
   } catch (error) {
