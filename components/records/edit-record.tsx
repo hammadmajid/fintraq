@@ -4,21 +4,12 @@ import { SelectBankAccount, SelectRecord } from "@/drizzle/db/schema";
 import { useToast } from "@/hooks/use-toast";
 import { recordSchema } from "@/lib/forms/record";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Edit, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  ResponsiveDialog,
-  ResponsiveDialogContent,
-  ResponsiveDialogDescription,
-  ResponsiveDialogHeader,
-  ResponsiveDialogTitle,
-} from "../responsive-dialog";
-import { Button } from "../ui/button";
 import { RecordForm } from "./record-form";
-import { deleteRecord, editRecord } from "@/actions/records";
+import { editRecord } from "@/actions/records";
 
 interface EditAccoutProps {
   record: SelectRecord;
@@ -28,7 +19,6 @@ interface EditAccoutProps {
 export function EditRecord({ record, accounts }: EditAccoutProps) {
   const router = useRouter();
   const { toast } = useToast();
-  const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof recordSchema>>({
@@ -58,63 +48,16 @@ export function EditRecord({ record, accounts }: EditAccoutProps) {
       });
     }
 
-    setOpen(false);
-    router.refresh();
-  }
-
-  async function handleDeletion(id: string) {
-    setIsLoading(true);
-    const result = await deleteRecord(id);
-
-    if (result.success) {
-      toast({
-        title: "Successfull",
-        description: result.message,
-      });
-    } else {
-      toast({
-        title: "Error",
-        description: result.message,
-        variant: "destructive",
-      });
-    }
-
-    setOpen(false);
+    router.push("/u/dashboard/records");
     router.refresh();
   }
 
   return (
-    <>
-      <Button onClick={() => setOpen(true)} variant="outline" size="icon">
-        <Edit className="w-4 h-4" />
-      </Button>
-
-      <ResponsiveDialog open={open} onOpenChange={setOpen}>
-        <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle>Edit Account</ResponsiveDialogTitle>
-          <ResponsiveDialogDescription>
-            Change your account information below.
-          </ResponsiveDialogDescription>
-        </ResponsiveDialogHeader>
-        <ResponsiveDialogContent>
-          <div className="grid gap-4">
-            <RecordForm
-              accounts={accounts}
-              form={form}
-              isLoading={isLoading}
-              onSubmitAction={onSubmit}
-            />
-            <Button
-              variant="destructive"
-              onClick={() => handleDeletion(record.id)}
-              disabled={isLoading}
-            >
-              <Trash2 className="w-4 h-4 mr-2" />
-              Delete record
-            </Button>
-          </div>
-        </ResponsiveDialogContent>
-      </ResponsiveDialog>
-    </>
+    <RecordForm
+      accounts={accounts}
+      form={form}
+      isLoading={isLoading}
+      onSubmitAction={onSubmit}
+    />
   );
 }
