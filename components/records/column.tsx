@@ -45,12 +45,24 @@ export const createColumns = (
   },
   {
     accessorKey: "account",
-    header: "Account",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => {
+            column.toggleSorting(column.getIsSorted() === "asc");
+          }}
+        >
+          Account
+          <ArrowUpDown className="h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const record = row.original;
       const account = accounts.find((acc) => acc.id === record.account)!;
       return (
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center mx-4">
           <DynamicIcon name={account.icon} className="w-5" />
           {account.title}
         </div>
@@ -59,7 +71,22 @@ export const createColumns = (
   },
   {
     accessorKey: "type",
-    header: "Type",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => {
+            column.toggleSorting(column.getIsSorted() === "asc");
+          }}
+        >
+          Type
+          <ArrowUpDown className="h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return <div className="mx-4">{row.original.type}</div>;
+    },
   },
   {
     accessorKey: "createdAt",
@@ -93,11 +120,41 @@ export const createColumns = (
   },
   {
     accessorKey: "category",
-    header: "Category",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => {
+            column.toggleSorting(column.getIsSorted() === "asc");
+          }}
+        >
+          Category
+          <ArrowUpDown className="h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return <div className="mx-4">{row.original.category}</div>;
+    },
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => {
+            column.toggleSorting(column.getIsSorted() === "asc");
+          }}
+        >
+          Status
+          <ArrowUpDown className="h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return <div className="mx-4">{row.original.status}</div>;
+    },
   },
   {
     id: "actions",
