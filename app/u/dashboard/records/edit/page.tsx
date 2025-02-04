@@ -4,6 +4,9 @@ import { redirect } from "next/navigation";
 import { getRecordById } from "@/actions/records";
 import { getAllAccounts } from "@/actions/account";
 import { EditRecord } from "@/components/records/edit-record";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
+import { Link } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "Edit record",
@@ -23,14 +26,27 @@ export default async function EditRecordPage({
   const resolvedSearchParams = await searchParams;
 
   const recordId = resolvedSearchParams.id as string;
-
   const userId = session.user.id;
 
   const accounts = await getAllAccounts(userId);
   const [record] = await getRecordById(recordId);
 
   return (
-    <main className="p-12 space-y-2">
+    <main>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Edit</h1>
+          <p className="mb-6 text-muted-foreground">
+            Update the details of this record.
+          </p>
+        </div>
+        <Button size="lg" variant="secondary" asChild>
+          <Link href="/u/dashboard/records">
+            <X />
+            Cancel
+          </Link>
+        </Button>
+      </div>
       <EditRecord accounts={accounts} record={record} />
     </main>
   );

@@ -55,10 +55,7 @@ export function RecordForm({
   }, [form.watch("account"), accounts, form]);
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmitAction)}
-        className="px-4 py-6 space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmitAction)} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             control={form.control}

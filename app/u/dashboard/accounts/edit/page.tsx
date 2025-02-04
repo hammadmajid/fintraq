@@ -4,6 +4,9 @@ import { Metadata } from "next/types";
 import { EditAccount } from "@/components/account/edit-account";
 import { getAccountById } from "@/actions/account";
 import { DeleteBankAccount } from "@/components/account/delete-account";
+import { Button } from "@/components/ui/button";
+import { Link } from "next-view-transitions";
+import { X } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Edit account",
@@ -30,7 +33,21 @@ export default async function EditAccountsPage({
   }
 
   return (
-    <main className="p-12 space-y-2">
+    <main>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Create</h1>
+          <p className="mb-6 text-muted-foreground">
+            Add new transaction record.
+          </p>
+        </div>
+        <Button size="lg" variant="secondary" asChild>
+          <Link href="/u/dashboard/accounts">
+            <X />
+            Cancel
+          </Link>
+        </Button>
+      </div>
       <EditAccount account={account} />
       <DeleteBankAccount id={accountId} />
     </main>
