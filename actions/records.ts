@@ -11,6 +11,10 @@ export async function getRecords(userId: string): Promise<SelectRecord[]> {
   return db.select().from(records).where(eq(records.userId, userId));
 }
 
+export async function getRecordById(id: string) {
+  return db.select().from(records).where(eq(records.id, id));
+}
+
 export async function createRecord(data: z.infer<typeof recordSchema>) {
   try {
     const { account, amount, category, type, status, userId, created } = data;
