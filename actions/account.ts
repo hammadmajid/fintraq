@@ -1,20 +1,35 @@
 "use server";
 
 import { db } from "@/drizzle/db/client";
-import { bankAccounts } from "@/drizzle/db/schema";
+import { bankAccounts, records } from "@/drizzle/db/schema";
 import { accountSchema } from "@/lib/forms/account";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 
 export async function createAccount(values: z.infer<typeof accountSchema>) {
-  await db.insert(bankAccounts).values({
-    userId: values.userId,
-    title: values.title,
-    color: values.color,
-    type: values.type,
-    icon: values.icon,
-    description: values.description,
-    balance: String(values.balance),
+  const { userId, title, color, type, icon, description, balance } = values;
+
+  const [account] = await db
+    .insert(bankAccounts)
+    .values({
+      userId,
+      title,
+      color,
+      type,
+      icon,
+      description,
+      balance: String(balance),
+    })
+    .returning();
+
+  await db.insert(records).values({
+    userId,
+    amount: String(balance),
+    type: "Transfer",
+    account: account.id,
+    category: "Transfer",
+    status: "Completed",
+    createdAt: new Date(),
   });
 }
 
