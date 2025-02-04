@@ -7,6 +7,12 @@ import { Edit } from "lucide-react";
 import { Link } from "next-view-transitions";
 import type { SelectRecord, SelectBankAccount } from "@/drizzle/db/schema";
 import { ArrowUpDown } from "lucide-react";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { getRelativeTime } from "@/lib/utils";
 
 export const createColumns = (
   accounts: SelectBankAccount[],
@@ -72,7 +78,16 @@ export const createColumns = (
     },
     cell: ({ row }) => {
       return (
-        <div className="mx-4">{row.original.createdAt.toLocaleString()}</div>
+        <HoverCard>
+          <HoverCardTrigger>
+            <div className="mx-4">
+              {row.original.createdAt.toLocaleString()}
+            </div>
+          </HoverCardTrigger>
+          <HoverCardContent>
+            {getRelativeTime(row.original.createdAt)}
+          </HoverCardContent>
+        </HoverCard>
       );
     },
   },
