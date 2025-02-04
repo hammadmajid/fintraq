@@ -5,7 +5,6 @@ import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/button";
-import { CardFooter } from "../ui/card";
 import {
   AlertDialog,
   AlertDialogAction,
