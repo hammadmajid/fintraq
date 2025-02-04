@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import {
   ArrowRightLeft,
+  CalendarSync,
   HandCoins,
   Home,
   Landmark,
@@ -48,6 +49,11 @@ const items = [
     title: "Loans",
     url: "/u/dashboard/loans",
     icon: HandCoins,
+  },
+  {
+    title: "Recurring",
+    url: "/u/dashboard/recurring",
+    icon: CalendarSync,
   },
 ];
 
