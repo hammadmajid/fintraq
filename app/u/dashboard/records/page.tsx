@@ -3,8 +3,10 @@ import { RecordsTable } from "@/components/records/table";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { getRecords } from "@/actions/records";
-import { CreateRecord } from "@/components/records/create-record";
 import { getAllAccounts } from "@/actions/account";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import { Link } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "Records",
@@ -31,7 +33,12 @@ export default async function Page() {
             Create or manage your transactional records
           </p>
         </div>
-        <CreateRecord accounts={accounts} />
+        <Button size="lg" asChild>
+          <Link href="/u/dashboard/records/create">
+            <Plus />
+            New
+          </Link>
+        </Button>
       </div>
       {accounts.length == 0 || records.length == 0 ? (
         <p>No records</p>
