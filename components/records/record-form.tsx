@@ -80,7 +80,7 @@ export function RecordForm({
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription className="sr-only">
+                <FormDescription>
                   Select the category of record.
                 </FormDescription>
                 <FormMessage />
@@ -111,9 +111,7 @@ export function RecordForm({
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription className="sr-only">
-                  Select the status of record.
-                </FormDescription>
+                <FormDescription>Select the status of record.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -142,9 +140,7 @@ export function RecordForm({
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription className="sr-only">
-                  Select type of your account.
-                </FormDescription>
+                <FormDescription>Select type of your account.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -192,9 +188,7 @@ export function RecordForm({
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription className="sr-only">
-                  Select associated account.
-                </FormDescription>
+                <FormDescription>Select associated account.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -216,9 +210,7 @@ export function RecordForm({
                     }
                   />
                 </FormControl>
-                <FormDescription className="sr-only">
-                  Enter the amount.
-                </FormDescription>
+                <FormDescription>Enter the amount.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -258,9 +250,7 @@ export function RecordForm({
                     />
                   </PopoverContent>
                 </Popover>
-                <FormDescription className="sr-only">
-                  The date of transaction.
-                </FormDescription>
+                <FormDescription>The date of transaction.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
