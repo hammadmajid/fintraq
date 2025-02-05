@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import {
   ArrowRightLeft,
-  CalendarSync,
+  CalendarClock,
   HandCoins,
   Home,
   Landmark,
@@ -51,9 +51,9 @@ const items = [
     icon: HandCoins,
   },
   {
-    title: "Recurring",
-    url: "/u/dashboard/recurring",
-    icon: CalendarSync,
+    title: "Planned",
+    url: "/u/dashboard/planned",
+    icon: CalendarClock,
   },
 ];
 

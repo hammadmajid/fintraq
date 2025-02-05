@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Recurring",
+  title: "Planned",
 };
 
 export default async function Page() {
@@ -18,9 +18,9 @@ export default async function Page() {
     <main className="h-full">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Recurring</h1>
+          <h1 className="text-2xl font-bold">Planned</h1>
           <p className="mb-6 text-muted-foreground">
-            Create or manage your reccuring payments here.
+            Create or manage your future planned payments here.
           </p>
         </div>
         <Button size="lg">
