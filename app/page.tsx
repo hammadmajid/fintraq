@@ -39,7 +39,7 @@ export default function Page() {
               <Button asChild>
                 <Link href="/login">
                   Get started
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
               <Button variant="outline" asChild>
@@ -48,8 +48,8 @@ export default function Page() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <SiGithub className="w-4 h-4 mr-2" />
-                  Source code
+                  <SiGithub className="w-4 h-4" />
+                  GitHub
                 </a>
               </Button>
             </div>
