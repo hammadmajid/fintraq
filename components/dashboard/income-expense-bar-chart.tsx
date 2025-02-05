@@ -50,7 +50,7 @@ function aggregateRecords(records: SelectRecord[]) {
     }
 
     const monthData = data.get(month)!;
-    if (record.type === "Income") {
+    if (record.type === "Income" || record.type === "Transfer In") {
       monthData.income += amount;
     } else {
       monthData.expenses += amount;
