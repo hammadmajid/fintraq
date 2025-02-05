@@ -1,15 +1,14 @@
 "use server";
 
 import { db } from "@/drizzle/db/client";
-import { bankAccounts, records } from "@/drizzle/db/schema";
+import { bankAccounts } from "@/drizzle/db/schema";
 import { accountSchema } from "@/lib/forms/account";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 
 export async function createAccount(values: z.infer<typeof accountSchema>) {
-  const { userId, title, color, type, icon, description, balance } = values;
-
-  const [account] = await db
+  const { userId, title, color, type, icon, description } = values;
+  await db
     .insert(bankAccounts)
     .values({
       userId,
@@ -18,19 +17,8 @@ export async function createAccount(values: z.infer<typeof accountSchema>) {
       type,
       icon,
       description,
-      balance: String(balance),
     })
     .returning();
-
-  await db.insert(records).values({
-    userId,
-    amount: String(balance),
-    type: "Transfer",
-    account: account.id,
-    category: "Transfer",
-    status: "Completed",
-    createdAt: new Date(),
-  });
 }
 
 export async function getAccountById(accountId: string) {
@@ -57,7 +45,6 @@ export async function editAccount(values: z.infer<typeof accountSchema>) {
       type: values.type,
       icon: values.icon,
       description: values.description,
-      balance: String(values.balance),
     })
     .where(eq(bankAccounts.id, values.id));
 }

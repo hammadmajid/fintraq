@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { accountSchema } from "@/lib/forms/account";
+import { accountSchema as accountSchema } from "@/lib/forms/account";
 import { icons } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
@@ -104,28 +104,6 @@ export default function AccountForm({
                 </SelectContent>
               </Select>
               <FormDescription>Select type of your account.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="balance"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Initial Balance</FormLabel>
-              <FormControl>
-                <Input
-                  type="number"
-                  placeholder="0.00"
-                  {...field}
-                  onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                />
-              </FormControl>
-              <FormDescription>
-                Enter the initial balance of your account.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

@@ -12,7 +12,4 @@ export const accountSchema = z.object({
   type: z.enum(bankAccountTypes, { message: "Invalid account type" }),
   icon: z.enum(icons, { message: "Invalid icon" }),
   description: z.string().min(1, "Enter at least 1 character"),
-  balance: z.number({
-    invalid_type_error: "Please enter a number",
-  }),
 });

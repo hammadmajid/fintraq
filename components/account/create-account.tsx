@@ -22,7 +22,6 @@ export function CreateAccount({ userId }: { userId: string }) {
       userId,
       title: "",
       type: "Checking",
-      balance: 0,
       color: "#dc2626",
       icon: "Wallet",
       description: "",

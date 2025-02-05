@@ -23,7 +23,6 @@ export function EditAccount({ account }: { account: SelectBankAccount }) {
       userId: account.userId,
       title: account.title,
       type: account.type,
-      balance: parseFloat(account.balance),
       color: account.color,
       icon: account.icon,
       description: account.description ?? "",

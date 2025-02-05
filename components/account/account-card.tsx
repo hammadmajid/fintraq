@@ -1,3 +1,4 @@
+import { getAccountRecords } from "@/actions/records";
 import { DynamicIcon } from "@/components/dynamic-icon";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,12 @@ interface AccountCardProps {
   account: SelectBankAccount;
 }
 
-export function AccountCard({ account }: AccountCardProps) {
+export async function AccountCard({ account }: AccountCardProps) {
+  const records = await getAccountRecords(account.id);
+
+  const balance = records.reduce((accumulator, current) => {
+    return accumulator + Number(current.amount);
+  }, 0);
   return (
     <Button
       className="block w-full p-0 h-max hover:cursor-pointer"
@@ -42,7 +48,7 @@ export function AccountCard({ account }: AccountCardProps) {
             <CardDescription>{account.type} Account</CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <p className="text-3xl font-extrabold">${account.balance}</p>
+            <p className="text-3xl font-extrabold">${balance}</p>
             <p className="text-sm">{account.description}</p>
           </CardContent>
         </Card>

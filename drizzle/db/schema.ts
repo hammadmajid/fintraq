@@ -123,7 +123,6 @@ export const bankAccounts = pgTable("bank_account", {
   description: text("description").notNull(),
   icon: bankAccountIcon("icon").notNull(),
   color: text("color").notNull(),
-  balance: decimal({ precision: 10, scale: 2 }).notNull(),
   type: bankAccountType("type").notNull(),
 });
 
