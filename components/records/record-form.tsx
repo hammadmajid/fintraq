@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import type { SelectBankAccount } from "@/drizzle/db/schema";
 import type { recordSchema } from "@/lib/forms/record";
-import { CalendarIcon, Loader2 } from "lucide-react";
+import { CalendarIcon, Loader2, Save } from "lucide-react";
 import type { UseFormReturn } from "react-hook-form";
 import type { z } from "zod";
 import { cn, recordCategories, recordStatuses, recordTypes } from "@/lib/utils";
@@ -270,11 +270,14 @@ export function RecordForm({
         <Button type="submit" className="w-full mt-6" disabled={isLoading}>
           {isLoading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin mr-2" />
-              Submitting...
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Saving...
             </>
           ) : (
-            "Submit"
+            <>
+              <Save />
+              Save
+            </>
           )}
         </Button>
       </form>

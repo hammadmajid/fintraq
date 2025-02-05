@@ -23,7 +23,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { accountSchema as accountSchema } from "@/lib/forms/account";
 import { icons } from "@/lib/utils";
-import { Loader2 } from "lucide-react";
+import { Loader2, Save } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 import { bankAccountTypes } from "@/lib/utils";
@@ -193,7 +193,10 @@ export default function AccountForm({
               Saving....
             </>
           ) : (
-            "Save"
+            <>
+              <Save />
+              Save
+            </>
           )}
         </Button>
       </form>

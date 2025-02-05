@@ -48,7 +48,7 @@ export default async function EditAccountsPage({
           </Link>
         </Button>
       </div>
-      <div className="grid gap-4">
+      <div className="grid gap-2">
         <EditAccount account={account} />
         <DeleteBankAccount id={accountId} />
       </div>

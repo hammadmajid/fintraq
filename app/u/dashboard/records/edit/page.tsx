@@ -48,7 +48,7 @@ export default async function EditRecordPage({
           </Link>
         </Button>
       </div>
-      <div className="grid gap-4">
+      <div className="grid gap-2">
         <EditRecord accounts={accounts} record={record} />
         <DeleteRecord id={recordId} />
       </div>

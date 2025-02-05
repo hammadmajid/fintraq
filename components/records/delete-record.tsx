@@ -16,6 +16,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Trash2 } from "lucide-react";
 
 export function DeleteRecord({ id }: { id: string }) {
   const router = useRouter();
@@ -41,6 +42,7 @@ export function DeleteRecord({ id }: { id: string }) {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="destructive" className="w-full">
+          <Trash2 />
           Delete
         </Button>
       </AlertDialogTrigger>
