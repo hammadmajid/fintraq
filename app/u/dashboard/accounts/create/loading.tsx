@@ -2,7 +2,16 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AccountFormSkeleton() {
   return (
-    <main className="p-12">
+    <main>
+      <div className="flex justify-between">
+        <Skeleton className="h-10 w-[250px] mb-4" />
+        <Skeleton className="h-10 w-[150px] mb-4" />
+      </div>
+
+      <div className="flex justify-between items-center mb-4">
+        <Skeleton className="h-6 w-[200px]" />
+      </div>
+
       <div className="space-y-6">
         {/* Title field */}
         <div className="space-y-2">

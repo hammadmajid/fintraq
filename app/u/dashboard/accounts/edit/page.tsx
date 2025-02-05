@@ -33,7 +33,7 @@ export default async function EditAccountsPage({
   }
 
   return (
-    <main>
+    <main className="pb-12">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Create</h1>
@@ -48,8 +48,10 @@ export default async function EditAccountsPage({
           </Link>
         </Button>
       </div>
-      <EditAccount account={account} />
-      <DeleteBankAccount id={accountId} />
+      <div className="grid gap-4">
+        <EditAccount account={account} />
+        <DeleteBankAccount id={accountId} />
+      </div>
     </main>
   );
 }

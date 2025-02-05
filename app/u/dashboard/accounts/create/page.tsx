@@ -18,7 +18,7 @@ export default async function AccountsPage() {
   }
 
   return (
-    <main>
+    <main className="pb-12">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Create</h1>
