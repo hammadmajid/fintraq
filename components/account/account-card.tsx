@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SelectBankAccount } from "@/drizzle/db/schema";
+import { SelectBankAccount, SelectRecord } from "@/drizzle/db/schema";
 import { Link } from "next-view-transitions";
 
 interface AccountCardProps {
@@ -18,9 +18,7 @@ interface AccountCardProps {
 export async function AccountCard({ account }: AccountCardProps) {
   const records = await getAccountRecords(account.id);
 
-  const balance = records.reduce((accumulator, current) => {
-    return accumulator + Number(current.amount);
-  }, 0);
+  const balance = getAccountBalance(records);
   return (
     <Button
       className="block w-full p-0 h-max hover:cursor-pointer"
@@ -55,4 +53,20 @@ export async function AccountCard({ account }: AccountCardProps) {
       </Link>
     </Button>
   );
+}
+
+function getAccountBalance(records: SelectRecord[]): number {
+  // TODO: handle transfers
+  const income = records.reduce((accumulator, current) => {
+    return current.type === "Income"
+      ? accumulator + Number(current.amount)
+      : accumulator;
+  }, 0);
+  const expenses = records.reduce((accumulator, current) => {
+    return current.type === "Expense"
+      ? accumulator + Number(current.amount)
+      : accumulator;
+  }, 0);
+
+  return income - expenses;
 }
