@@ -56,14 +56,13 @@ export async function AccountCard({ account }: AccountCardProps) {
 }
 
 function getAccountBalance(records: SelectRecord[]): number {
-  // TODO: handle transfers
   const income = records.reduce((accumulator, current) => {
-    return current.type === "Income"
+    return current.type === "Income" || current.type === "Transfer In"
       ? accumulator + Number(current.amount)
       : accumulator;
   }, 0);
   const expenses = records.reduce((accumulator, current) => {
-    return current.type === "Expense"
+    return current.type === "Expense" || current.type === "Transfer Out"
       ? accumulator + Number(current.amount)
       : accumulator;
   }, 0);

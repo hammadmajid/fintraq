@@ -162,6 +162,13 @@
       "when": 1738765518240,
       "tag": "0022_friendly_midnight",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1738766594078,
+      "tag": "0023_fat_wraith",
+      "breakpoints": true
     }
   ]
 }

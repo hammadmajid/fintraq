@@ -29,7 +29,12 @@ export const bankAccountTypes = [
   "Other",
 ] as const;
 
-export const recordTypes = ["Income", "Expense", "Transfer"] as const;
+export const recordTypes = [
+  "Income",
+  "Expense",
+  "Transfer In",
+  "Transfer Out",
+] as const;
 
 export const recordCategories = [
   "Salary",
