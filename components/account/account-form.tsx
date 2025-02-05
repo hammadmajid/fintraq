@@ -21,11 +21,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { accountSchema } from "@/lib/forms/account";
+import { accountSchema as accountSchema } from "@/lib/forms/account";
 import { icons } from "@/lib/utils";
-import { Loader2 } from "lucide-react";
+import { Loader2, Save } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
+import { bankAccountTypes } from "@/lib/utils";
 
 const colors = [
   { name: "Red", value: "#dc2626" },
@@ -95,33 +96,14 @@ export default function AccountForm({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="Checking">Checking</SelectItem>
-                  <SelectItem value="Saving">Saving</SelectItem>
+                  {bankAccountTypes.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               <FormDescription>Select type of your account.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="balance"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Initial Balance</FormLabel>
-              <FormControl>
-                <Input
-                  type="number"
-                  placeholder="0.00"
-                  {...field}
-                  onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                />
-              </FormControl>
-              <FormDescription>
-                Enter the initial balance of your account.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -208,10 +190,13 @@ export default function AccountForm({
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              Submitting....
+              Saving....
             </>
           ) : (
-            "Submit"
+            <>
+              <Save />
+              Save
+            </>
           )}
         </Button>
       </form>

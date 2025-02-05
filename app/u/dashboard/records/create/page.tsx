@@ -1,15 +1,14 @@
 import { Metadata } from "next/types";
-import { RecordsTable } from "@/components/records/table";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { getRecords } from "@/actions/records";
+import { CreateRecord } from "@/components/records/create-record";
 import { getAllAccounts } from "@/actions/account";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { X } from "lucide-react";
 import { Link } from "next-view-transitions";
 
 export const metadata: Metadata = {
-  title: "Records",
+  title: "Create record",
 };
 
 export default async function Page() {
@@ -22,29 +21,24 @@ export default async function Page() {
   const userId = session.user.id;
 
   const accounts = await getAllAccounts(userId);
-  const records = await getRecords(userId);
 
   return (
-    <main>
+    <main className="">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Records</h1>
+          <h1 className="text-2xl font-bold">Create</h1>
           <p className="mb-6 text-muted-foreground">
-            Create or manage your transactional records
+            Add new transaction record.
           </p>
         </div>
-        <Button size="lg" asChild>
-          <Link href="/u/dashboard/records/create">
-            <Plus />
-            New
+        <Button size="lg" variant="secondary" asChild>
+          <Link href="/u/dashboard/records">
+            <X />
+            Cancel
           </Link>
         </Button>
       </div>
-      {accounts.length == 0 || records.length == 0 ? (
-        <p>No records</p>
-      ) : (
-        <RecordsTable records={records} accounts={accounts} />
-      )}
+      <CreateRecord accounts={accounts} />
     </main>
   );
 }

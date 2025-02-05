@@ -4,11 +4,18 @@ import { db } from "@/drizzle/db/client";
 import { records, SelectRecord } from "@/drizzle/db/schema";
 import { recordSchema } from "@/lib/forms/record";
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 export async function getRecords(userId: string): Promise<SelectRecord[]> {
   return db.select().from(records).where(eq(records.userId, userId));
+}
+
+export async function getRecordById(id: string) {
+  return db.select().from(records).where(eq(records.id, id));
+}
+
+export async function getAccountRecords(accountId: string) {
+  return db.select().from(records).where(eq(records.account, accountId));
 }
 
 export async function createRecord(data: z.infer<typeof recordSchema>) {
@@ -25,7 +32,6 @@ export async function createRecord(data: z.infer<typeof recordSchema>) {
       createdAt: created,
     });
 
-    revalidatePath("/u/records");
     return { success: true, message: "Record created successfully" };
   } catch (error) {
     console.error("Failed to create record:", error);
@@ -55,7 +61,6 @@ export async function editRecord(data: z.infer<typeof recordSchema>) {
       })
       .where(eq(records.id, id as string));
 
-    revalidatePath("/u/records");
     return { success: true, message: "Record edited successfully" };
   } catch (error) {
     console.error("Failed to edit record:", error);
@@ -70,7 +75,6 @@ export async function editRecord(data: z.infer<typeof recordSchema>) {
 export async function deleteRecord(id: string) {
   try {
     await db.delete(records).where(eq(records.id, id));
-    revalidatePath("/u/records");
 
     return { success: true, message: "Record edited successfully" };
   } catch (error) {

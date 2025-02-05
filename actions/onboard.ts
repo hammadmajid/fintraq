@@ -46,7 +46,6 @@ export async function createFirstAccountAndRecord(
       type: "Checking",
       icon: "Coins",
       description: "Your default cash account",
-      balance: String(balance),
     })
     .returning();
 

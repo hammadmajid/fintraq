@@ -3,6 +3,7 @@ import { bankAccountTypes } from "@/lib/utils";
 import { z } from "zod";
 
 export const accountSchema = z.object({
+  id: z.string(),
   userId: z.string(),
   title: z.string().min(1, "Enter at least 1 character"),
   color: z
@@ -11,5 +12,4 @@ export const accountSchema = z.object({
   type: z.enum(bankAccountTypes, { message: "Invalid account type" }),
   icon: z.enum(icons, { message: "Invalid icon" }),
   description: z.string().min(1, "Enter at least 1 character"),
-  balance: z.number().default(0),
 });

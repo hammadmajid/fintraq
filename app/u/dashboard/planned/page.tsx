@@ -10,22 +10,22 @@ import {
 } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Budgets",
+  title: "Planned",
 };
 
 export default async function Page() {
   return (
-    <main>
+    <main className="h-full">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Budgets</h1>
+          <h1 className="text-2xl font-bold">Planned</h1>
           <p className="mb-6 text-muted-foreground">
-            Create or manage your budgets
+            Create or manage your future planned payments here.
           </p>
         </div>
         <Button size="lg">
           <Plus />
-          Budget
+          New
         </Button>
       </div>
       <div>

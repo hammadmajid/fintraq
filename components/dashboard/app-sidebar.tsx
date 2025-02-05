@@ -13,9 +13,11 @@ import {
 } from "@/components/ui/sidebar";
 import {
   ArrowRightLeft,
+  CalendarClock,
   HandCoins,
   Home,
   Landmark,
+  PiggyBank,
   Settings,
   WalletCards,
 } from "lucide-react";
@@ -41,7 +43,17 @@ const items = [
   {
     title: "Budgets",
     url: "/u/dashboard/budgets",
+    icon: PiggyBank,
+  },
+  {
+    title: "Loans",
+    url: "/u/dashboard/loans",
     icon: HandCoins,
+  },
+  {
+    title: "Planned",
+    url: "/u/dashboard/planned",
+    icon: CalendarClock,
   },
 ];
 
@@ -72,7 +84,11 @@ export function AppSidebar() {
                   <SidebarMenuButton
                     className="py-6"
                     asChild
-                    isActive={pathname === item.url}
+                    isActive={
+                      item.url === "/u/dashboard"
+                        ? pathname === item.url
+                        : pathname.startsWith(item.url)
+                    }
                   >
                     <Link href={item.url}>
                       <item.icon />

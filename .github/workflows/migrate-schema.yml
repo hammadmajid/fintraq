@@ -28,6 +28,6 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Apply migrations
-        run: pnpm run db:push
+        run: pnpm run db:push --force
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
