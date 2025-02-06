@@ -10,8 +10,6 @@ import {
 import {
   ChartConfig,
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
@@ -75,45 +73,30 @@ export function IncomeExpenseBarChart({ records }: IncomeExpenseBarChartProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Card>
-          <CardHeader>
-            <CardTitle>Income vs Expenses</CardTitle>
-            <CardDescription>
-              Are you spending more than what you are making?
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer
-              config={incomeVsExpenseChart}
-              className="min-h-[200px] w-full"
-            >
-              <BarChart data={chartData}>
-                <CartesianGrid vertical={false} />
-                <YAxis
-                  dataKey="income"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                />
-                <XAxis
-                  dataKey="month"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) => value.slice(0, 3)}
-                />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <ChartLegend content={<ChartLegendContent />} />
-                <Bar dataKey="income" fill="var(--color-income)" radius={4} />
-                <Bar
-                  dataKey="expenses"
-                  fill="var(--color-expenses)"
-                  radius={4}
-                />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
+        <ChartContainer
+          config={incomeVsExpenseChart}
+          className="min-h-[300px] w-full"
+        >
+          <BarChart data={chartData}>
+            <CartesianGrid vertical={false} />
+            <YAxis
+              dataKey="income"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+            />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            <Bar dataKey="income" fill="var(--color-income)" radius={4} />
+            <Bar dataKey="expenses" fill="var(--color-expenses)" radius={4} />
+          </BarChart>
+        </ChartContainer>
       </CardContent>
     </Card>
   );
