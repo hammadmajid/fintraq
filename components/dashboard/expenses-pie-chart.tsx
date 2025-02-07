@@ -27,10 +27,12 @@ function aggregateData(records: SelectRecord[]) {
 
   // Aggregate expenses by category
   records.forEach((record) => {
-    const category = record.category;
-    const amount = Number(record.amount);
-    if (categoryTotals[category] !== undefined) {
-      categoryTotals[category] += amount;
+    if (record.type === "Expense" || record.type === "Transfer Out") {
+      const category = record.category;
+      const amount = Number(record.amount);
+      if (categoryTotals[category] !== undefined) {
+        categoryTotals[category] += amount;
+      }
     }
   });
 
