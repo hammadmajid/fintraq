@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   transpilePackages: ["lucide-react"],
   experimental: {
     ppr: true,
-    reactCompiler: true,
+    reactCompiler: false,
   },
 };
 
