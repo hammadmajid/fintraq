@@ -2,65 +2,81 @@
 
 import { deleteRecord } from "@/actions/records";
 import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button } from "../ui/button";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
-export function DeleteRecord({ id }: { id: string }) {
-  const router = useRouter();
+interface DeleteRecordProps {
+  id: string;
+}
+
+export function DeleteRecord({ id }: DeleteRecordProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
-  async function onSubmit() {
+  async function handleDeletion() {
     setIsLoading(true);
 
     try {
       await deleteRecord(id);
-      router.push("/u/dashboard/records");
+      toast({
+        title: "Record deleted",
+        description: "The record has been successfully deleted.",
+      });
+      setIsOpen(false);
     } catch {
       toast({
-        title: "Failed to delete account",
+        title: "Failed to delete record",
         description:
-          "An unexpected error occured while performing this action. Please try again.",
+          "An unexpected error occurred while performing this action. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
+      router.refresh();
     }
   }
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="destructive" className="w-full">
-          <Trash2 />
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
+        <Button variant="ghost">
+          <Trash2 className="mr-2 h-4 w-4" />
           Delete
         </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete this
-            record.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onSubmit} disabled={isLoading}>
-            Continue
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Are you sure you want to delete this record?</SheetTitle>
+          <SheetDescription>
+            This action cannot be undone. This will permanently delete the
+            record from our servers.
+          </SheetDescription>
+        </SheetHeader>
+        <SheetFooter className="mt-4">
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant="destructive"
+            onClick={handleDeletion}
+            disabled={isLoading}
+          >
+            {isLoading ? "Deleting..." : "Delete"}
+          </Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 }
