@@ -7,7 +7,6 @@ import { EditRecord } from "@/components/records/edit-record";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { Link } from "next-view-transitions";
-import { DeleteRecord } from "@/components/records/delete-record";
 
 export const metadata: Metadata = {
   title: "Edit record",
@@ -50,7 +49,6 @@ export default async function EditRecordPage({
       </div>
       <div className="grid gap-2">
         <EditRecord accounts={accounts} record={record} />
-        <DeleteRecord id={recordId} />
       </div>
     </main>
   );

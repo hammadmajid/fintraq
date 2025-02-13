@@ -3,7 +3,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { DynamicIcon } from "@/components/dynamic-icon";
-import { Copy, FileDown, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
+import { Copy, FileDown, MoreHorizontal, Pencil } from "lucide-react";
 import { Link } from "next-view-transitions";
 import type { SelectRecord, SelectBankAccount } from "@/drizzle/db/schema";
 import { ArrowUpDown } from "lucide-react";
@@ -23,6 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/hooks/use-toast";
+import { DeleteRecord } from "./delete-record";
 
 export const createColumns = (
   accounts: SelectBankAccount[],
@@ -170,6 +171,7 @@ export const createColumns = (
     id: "actions",
     cell: ({ row }) => {
       const record = row.original;
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -187,12 +189,7 @@ export const createColumns = (
                   <span>Edit</span>
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => console.log("Delete", record.id)}
-              >
-                <Trash2 className="mr-2 h-4 w-4" />
-                <span>Delete</span>
-              </DropdownMenuItem>
+              <DeleteRecord id={record.id} />
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuLabel>Share</DropdownMenuLabel>
