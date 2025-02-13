@@ -2,7 +2,7 @@ import { CreateAccount } from "@/components/account/create-account";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { X } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from 'next/link';
 import { redirect } from "next/navigation";
 import { Metadata } from "next/types";
 

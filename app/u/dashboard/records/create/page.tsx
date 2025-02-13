@@ -5,7 +5,7 @@ import { CreateRecord } from "@/components/records/create-record";
 import { getAllAccounts } from "@/actions/account";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "Create record",

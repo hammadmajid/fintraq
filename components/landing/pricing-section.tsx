@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Check, X } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from 'next/link';
 import { useState } from "react";
 
 const plans = [

@@ -6,7 +6,7 @@ import { SelectRecord } from "@/drizzle/db/schema";
 import { auth } from "@/lib/auth";
 import { FileText, Plus } from "lucide-react";
 import { Metadata } from "next";
-import { Link } from "next-view-transitions";
+import Link from 'next/link';
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {

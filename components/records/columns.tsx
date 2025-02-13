@@ -4,7 +4,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { DynamicIcon } from "@/components/dynamic-icon";
 import { Copy, FileDown, MoreHorizontal, Pencil } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from 'next/link';
 import type { SelectRecord, SelectBankAccount } from "@/drizzle/db/schema";
 import { ArrowUpDown } from "lucide-react";
 import {

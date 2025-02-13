@@ -6,7 +6,7 @@ import { getRecords } from "@/actions/records";
 import { getAllAccounts } from "@/actions/account";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "Records",

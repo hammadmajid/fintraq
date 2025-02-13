@@ -5,7 +5,7 @@ import { EditAccount } from "@/components/account/edit-account";
 import { getAccountById } from "@/actions/account";
 import { DeleteBankAccount } from "@/components/account/delete-account";
 import { Button } from "@/components/ui/button";
-import { Link } from "next-view-transitions";
+import Link from 'next/link';
 import { X } from "lucide-react";
 
 export const metadata: Metadata = {

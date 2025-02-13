@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SelectBankAccount, SelectRecord } from "@/drizzle/db/schema";
-import { Link } from "next-view-transitions";
+import Link from 'next/link';
 
 interface AccountCardProps {
   account: SelectBankAccount;
