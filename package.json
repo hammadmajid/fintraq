@@ -82,5 +82,14 @@
     "react-email": "3.0.4",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "@vercel/speed-insights",
+      "bufferutil",
+      "esbuild",
+      "sharp"
+    ]
   }
 }
