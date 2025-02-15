@@ -4,7 +4,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { DynamicIcon } from "@/components/dynamic-icon";
 import { Copy, FileDown, MoreHorizontal, Pencil } from "lucide-react";
-import Link from 'next/link';
+import Link from "next/link";
 import type { SelectRecord, SelectBankAccount } from "@/drizzle/db/schema";
 import { ArrowUpDown } from "lucide-react";
 import {
@@ -183,7 +183,7 @@ export const createColumns = (
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuGroup>
-              <DropdownMenuItem asChild>
+              <DropdownMenuItem asChild className="hover:cursor-pointer">
                 <Link href={`/u/dashboard/records/edit?id=${record.id}`}>
                   <Pencil className="mr-2 h-4 w-4" />
                   <span>Edit</span>

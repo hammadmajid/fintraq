@@ -51,7 +51,7 @@ export function DeleteRecord({ id }: DeleteRecordProps) {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost">
+        <Button variant="ghost" className="w-full flex justify-start px-2">
           <Trash2 className="mr-2 h-4 w-4" />
           Delete
         </Button>
@@ -65,7 +65,11 @@ export function DeleteRecord({ id }: DeleteRecordProps) {
           </SheetDescription>
         </SheetHeader>
         <SheetFooter className="mt-4">
-          <Button variant="outline" onClick={() => setIsOpen(false)}>
+          <Button
+            variant="outline"
+            onClick={() => setIsOpen(false)}
+            disabled={isLoading}
+          >
             Cancel
           </Button>
           <Button
