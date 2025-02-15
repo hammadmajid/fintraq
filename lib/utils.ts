@@ -1,3 +1,4 @@
+import { SelectRecord } from "@/drizzle/db/schema";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -102,4 +103,19 @@ export function getRelativeTime(date: Date): string {
   return result.length > 0
     ? `${tense === "in" ? "in " : ""}${result.join(" and ")}${tense === "ago" ? " ago" : ""}`
     : "just now";
+}
+
+export function calculateTotalBalance(records: SelectRecord[]): number {
+  const income = records.reduce((accumulator, current) => {
+    return current.type === "Income" || current.type === "Transfer In"
+      ? accumulator + Number(current.amount)
+      : accumulator;
+  }, 0);
+  const expenses = records.reduce((accumulator, current) => {
+    return current.type === "Expense" || current.type === "Transfer Out"
+      ? accumulator + Number(current.amount)
+      : accumulator;
+  }, 0);
+
+  return income - expenses;
 }

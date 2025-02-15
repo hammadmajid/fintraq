@@ -9,7 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SelectBankAccount, SelectRecord } from "@/drizzle/db/schema";
-import Link from 'next/link';
+import { calculateTotalBalance } from "@/lib/utils";
+import Link from "next/link";
 
 interface AccountCardProps {
   account: SelectBankAccount;
@@ -18,7 +19,7 @@ interface AccountCardProps {
 export async function AccountCard({ account }: AccountCardProps) {
   const records = await getAccountRecords(account.id);
 
-  const balance = getAccountBalance(records);
+  const balance = calculateTotalBalance(records);
   return (
     <Button
       className="block w-full p-0 h-max hover:cursor-pointer"
@@ -53,19 +54,4 @@ export async function AccountCard({ account }: AccountCardProps) {
       </Link>
     </Button>
   );
-}
-
-function getAccountBalance(records: SelectRecord[]): number {
-  const income = records.reduce((accumulator, current) => {
-    return current.type === "Income" || current.type === "Transfer In"
-      ? accumulator + Number(current.amount)
-      : accumulator;
-  }, 0);
-  const expenses = records.reduce((accumulator, current) => {
-    return current.type === "Expense" || current.type === "Transfer Out"
-      ? accumulator + Number(current.amount)
-      : accumulator;
-  }, 0);
-
-  return income - expenses;
 }
