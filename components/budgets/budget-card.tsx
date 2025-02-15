@@ -11,7 +11,7 @@ import { Progress } from "@/components/ui/progress";
 import { getAccountById } from "@/actions/account";
 import { DynamicIcon } from "@/components/dynamic-icon";
 import { getAccountRecords } from "@/actions/records";
-import { calculateTotalBalance, getRelativeTime } from "@/lib/utils";
+import { calculateTotalExpenses, getRelativeTime } from "@/lib/utils";
 import {
   HoverCard,
   HoverCardContent,
@@ -22,7 +22,7 @@ export async function BudgetCard({ budget }: { budget: SelectBudget }) {
   const [account] = await getAccountById(budget.account);
   const records = await getAccountRecords(account.id);
 
-  const totalBalance = calculateTotalBalance(records);
+  const totalBalance = calculateTotalExpenses(records);
   const percentage = (totalBalance / Number(budget.goal)) * 100;
 
   return (

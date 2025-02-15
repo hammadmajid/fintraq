@@ -119,3 +119,13 @@ export function calculateTotalBalance(records: SelectRecord[]): number {
 
   return income - expenses;
 }
+
+export function calculateTotalExpenses(records: SelectRecord[]): number {
+  const expenses = records.reduce((accumulator, current) => {
+    return current.type === "Expense" || current.type === "Transfer Out"
+      ? accumulator + Number(current.amount)
+      : accumulator;
+  }, 0);
+
+  return expenses;
+}
