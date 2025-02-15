@@ -42,9 +42,11 @@ export default async function Page() {
         {budgets.length === 0 ? (
           <p>No budgets</p>
         ) : (
-          budgets.map((budget) => {
-            return <BudgetCard key={budget.id} budget={budget} />;
-          })
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {budgets.map((budget) => {
+              return <BudgetCard key={budget.id} budget={budget} />;
+            })}
+          </div>
         )}
       </div>
     </main>
