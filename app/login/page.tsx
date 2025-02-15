@@ -37,8 +37,8 @@ export default async function Login() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="relative flex items-center justify-center flex-grow px-4 overflow-hidden sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-indigo-600 opacity-30 blur-3xl -z-10"></div>
+      <main className="relative flex items-center justify-center grow px-4 overflow-hidden sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-linear-to-br from-purple-400 to-indigo-600 opacity-30 blur-3xl -z-10"></div>
         <div className="relative z-10 w-full max-w-md">
           <Card className="w-full max-w-md">
             <CardHeader>

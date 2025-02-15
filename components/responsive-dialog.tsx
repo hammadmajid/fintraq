@@ -63,7 +63,7 @@ export function ResponsiveDialogContent({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={`flex-grow overflow-y-auto ${className}`} {...props}>
+    <div className={`grow overflow-y-auto ${className}`} {...props}>
       {children}
     </div>
   );
@@ -79,7 +79,7 @@ export function ResponsiveDialogHeader({
   const HeaderComponent = isMobile ? DrawerHeader : DialogHeader;
 
   return (
-    <HeaderComponent className={`flex-shrink-0 ${className}`} {...props}>
+    <HeaderComponent className={`shrink-0 ${className}`} {...props}>
       {children}
     </HeaderComponent>
   );
@@ -95,7 +95,7 @@ export function ResponsiveDialogFooter({
   const FooterComponent = isMobile ? DrawerFooter : DialogFooter;
 
   return (
-    <FooterComponent className={`flex-shrink-0 ${className}`} {...props}>
+    <FooterComponent className={`shrink-0 ${className}`} {...props}>
       {children}
     </FooterComponent>
   );
