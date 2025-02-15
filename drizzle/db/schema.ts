@@ -170,3 +170,6 @@ export const budgets = pgTable("budgets", {
   startsAt: timestamp("starts_at").notNull().defaultNow(),
   endsAt: timestamp("ends_at").notNull().defaultNow(),
 });
+
+const selectBudgetSchema = createSelectSchema(budgets);
+export type SelectBudget = z.infer<typeof selectBudgetSchema>;
