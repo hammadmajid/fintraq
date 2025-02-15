@@ -88,9 +88,16 @@ export default async function Login() {
                     <SiGithub className="w-4 h-4 mr-2" /> GitHub
                   </Button>
                 </Form>
-                <Button variant="outline" className="w-full" disabled>
-                  <SiGoogle className="w-4 h-4 mr-2" /> Google
-                </Button>
+                <Form
+                  action={async () => {
+                    "use server";
+                    await signIn("google");
+                  }}
+                >
+                  <Button variant="outline" className="w-full">
+                    <SiGoogle className="w-4 h-4 mr-2" /> Google
+                  </Button>
+                </Form>
               </div>
             </CardContent>
           </Card>
