@@ -10,7 +10,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { getAccountById } from "@/actions/account";
 import { DynamicIcon } from "@/components/dynamic-icon";
-import { getAccountRecords, getRecordById } from "@/actions/records";
+import { getAccountRecords } from "@/actions/records";
 import { calculateTotalBalance, getRelativeTime } from "@/lib/utils";
 import {
   HoverCard,

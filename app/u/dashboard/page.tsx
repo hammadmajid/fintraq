@@ -2,7 +2,6 @@ import { getRecords } from "@/actions/records";
 import { ExpensesPieChart } from "@/components/dashboard/expenses-pie-chart";
 import { IncomeExpenseBarChart } from "@/components/dashboard/income-expense-bar-chart";
 import { Button } from "@/components/ui/button";
-import { SelectRecord } from "@/drizzle/db/schema";
 import { auth } from "@/lib/auth";
 import { calculateTotalBalance } from "@/lib/utils";
 import { FileText, Plus } from "lucide-react";

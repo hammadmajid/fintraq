@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SelectBankAccount, SelectRecord } from "@/drizzle/db/schema";
+import { SelectBankAccount } from "@/drizzle/db/schema";
 import { calculateTotalBalance } from "@/lib/utils";
 import Link from "next/link";
 

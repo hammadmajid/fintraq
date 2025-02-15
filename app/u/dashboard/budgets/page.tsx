@@ -1,13 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Plus, SquareArrowOutUpRight, Wrench } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Metadata } from "next/types";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { getAllBudgets } from "@/actions/budgets";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";

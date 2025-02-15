@@ -13,8 +13,6 @@ import {
 } from "@/components/ui/sidebar";
 import {
   ArrowRightLeft,
-  CalendarClock,
-  HandCoins,
   Home,
   Landmark,
   PiggyBank,
