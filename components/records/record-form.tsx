@@ -48,11 +48,12 @@ export function RecordForm({
   onSubmitAction,
 }: RecordFormProps) {
   const [selectedAccount, setSelectedAccount] = useState<SelectBankAccount>();
+  const watchedAccount = form.watch("account");
 
   useEffect(() => {
     const account = accounts.find((acc) => acc.id === form.watch("account"));
     setSelectedAccount(account);
-  }, [form.watch("account"), accounts, form]);
+  }, [watchedAccount, accounts, form]);
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmitAction)} className="space-y-6">
