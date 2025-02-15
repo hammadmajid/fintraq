@@ -92,7 +92,7 @@ export function PricingSection() {
               <CardTitle>{plan.name}</CardTitle>
               <CardDescription>{plan.description}</CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow">
+            <CardContent className="grow">
               <div className="mb-4 text-4xl font-bold">
                 ${isYearly ? plan.price.yearly : plan.price.monthly}
                 <span className="text-sm font-normal">

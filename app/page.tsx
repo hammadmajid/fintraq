@@ -25,7 +25,7 @@ export default function Page() {
         <div className="flex flex-col items-center justify-center min-h-screen gap-16 md:flex-row md:gap-0">
           <div className="flex flex-col items-start justify-start w-full gap-8">
             <header className="relative">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 opacity-30 blur-3xl -z-10"></div>
+              <div className="absolute inset-0 rounded-full bg-linear-to-r from-purple-600 to-purple-400 opacity-30 blur-3xl -z-10"></div>
               <div className="relative z-10 p-6">
                 <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl">
                   Fintraq
