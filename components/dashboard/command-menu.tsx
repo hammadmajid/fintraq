@@ -9,21 +9,24 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
 import { DialogTitle } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 import {
-  Calculator,
-  Calendar,
+  ArrowRightLeft,
   CreditCard,
+  FileText,
+  Landmark,
   Settings,
-  Smile,
   User,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 
 export function CommandMenu() {
   const [open, setOpen] = React.useState(false);
+  const { toast } = useToast();
+  const router = useRouter();
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -37,13 +40,26 @@ export function CommandMenu() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  const handleCreateReport = () => {
+    setOpen(false);
+    toast({
+      title: "Feature not implemented",
+      description: "The create report feature is not yet available.",
+    });
+  };
+
+  const handleNavigation = (path: string) => {
+    setOpen(false);
+    router.push(path);
+  };
+
   return (
     <>
       <Button
         onClick={() => setOpen(true)}
         variant="outline"
         className="flex"
-        size={"sm"}
+        size="sm"
       >
         <p className="text-sm text-muted-foreground">Command Menu</p>
         <p className="text-sm text-muted-foreground">
@@ -57,36 +73,41 @@ export function CommandMenu() {
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
-            <CommandItem>
-              <Calendar />
-              <span>Calendar</span>
+          <CommandGroup heading="Create">
+            <CommandItem
+              onSelect={() => handleNavigation("/u/dashboard/records/create")}
+            >
+              <ArrowRightLeft className="mr-2 h-4 w-4" />
+              <span>Create new record</span>
             </CommandItem>
-            <CommandItem>
-              <Smile />
-              <span>Search Emoji</span>
+            <CommandItem
+              onSelect={() => handleNavigation("/u/dashboard/accounts/create")}
+            >
+              <Landmark className="mr-2 h-4 w-4" />
+              <span>Create new account</span>
             </CommandItem>
-            <CommandItem>
-              <Calculator />
-              <span>Calculator</span>
+            <CommandItem onSelect={handleCreateReport}>
+              <FileText className="mr-2 h-4 w-4" />
+              <span>Create new report</span>
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Settings">
-            <CommandItem>
-              <User />
+            <CommandItem
+              onSelect={() => handleNavigation("/u/settings/profile")}
+            >
+              <User className="mr-2 h-4 w-4" />
               <span>Profile</span>
-              <CommandShortcut>⌘P</CommandShortcut>
             </CommandItem>
-            <CommandItem>
-              <CreditCard />
+            <CommandItem
+              onSelect={() => handleNavigation("/u/settings/billing")}
+            >
+              <CreditCard className="mr-2 h-4 w-4" />
               <span>Billing</span>
-              <CommandShortcut>⌘B</CommandShortcut>
             </CommandItem>
-            <CommandItem>
-              <Settings />
+            <CommandItem onSelect={() => handleNavigation("/u/settings")}>
+              <Settings className="mr-2 h-4 w-4" />
               <span>Settings</span>
-              <CommandShortcut>⌘S</CommandShortcut>
             </CommandItem>
           </CommandGroup>
         </CommandList>
