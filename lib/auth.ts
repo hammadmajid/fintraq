@@ -10,7 +10,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     GitHub,
     Resend({
       apiKey: process.env.RESEND_API_KEY,
-      from: "fintraq@bine.codes",
+      from: "no-reply@fintraq.xyz",
     }),
   ],
 });
