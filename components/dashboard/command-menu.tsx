@@ -13,12 +13,12 @@ import {
 import { DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import {
+  ArrowRightLeft,
   CreditCard,
   FileText,
-  PlusCircle,
+  Landmark,
   Settings,
   User,
-  UserPlus,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
@@ -77,13 +77,13 @@ export function CommandMenu() {
             <CommandItem
               onSelect={() => handleNavigation("/u/dashboard/records/create")}
             >
-              <PlusCircle className="mr-2 h-4 w-4" />
+              <ArrowRightLeft className="mr-2 h-4 w-4" />
               <span>Create new record</span>
             </CommandItem>
             <CommandItem
               onSelect={() => handleNavigation("/u/dashboard/accounts/create")}
             >
-              <UserPlus className="mr-2 h-4 w-4" />
+              <Landmark className="mr-2 h-4 w-4" />
               <span>Create new account</span>
             </CommandItem>
             <CommandItem onSelect={handleCreateReport}>
