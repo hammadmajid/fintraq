@@ -45,16 +45,6 @@ const items = [
     url: "/u/dashboard/budgets",
     icon: PiggyBank,
   },
-  {
-    title: "Loans",
-    url: "/u/dashboard/loans",
-    icon: HandCoins,
-  },
-  {
-    title: "Planned",
-    url: "/u/dashboard/planned",
-    icon: CalendarClock,
-  },
 ];
 
 export function AppSidebar() {
