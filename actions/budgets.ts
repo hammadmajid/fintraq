@@ -59,6 +59,10 @@ export async function editBudget(data: z.infer<typeof budgetSchema>) {
   }
 }
 
+export async function deleteBudget(id: string) {
+  await db.delete(budgets).where(eq(budgets.id, id));
+}
+
 export async function getAllBudgets(userId: string): Promise<SelectBudget[]> {
   return await db.select().from(budgets).where(eq(budgets.userId, userId));
 }
