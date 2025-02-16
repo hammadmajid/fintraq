@@ -19,7 +19,7 @@ export function FormatCurrency({ userId, amount }: FormatCurrencyProps) {
     };
 
     fetchCurrency();
-  }, [userId, amount]);
+  }, [userId]);
 
   const formatCurrency = (amount: number, currency: string): string => {
     return new Intl.NumberFormat("en-US", {
