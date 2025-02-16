@@ -17,6 +17,7 @@ import {
   CreditCard,
   FileText,
   Landmark,
+  PiggyBank,
   Settings,
   User,
 } from "lucide-react";
@@ -85,6 +86,14 @@ export function CommandMenu() {
             >
               <Landmark className="mr-2 h-4 w-4" />
               <span>Create new account</span>
+            </CommandItem>
+            <CommandItem
+              onSelect={() =>
+                handleNavigation("/u/dashboard/accounts/budgets/create")
+              }
+            >
+              <PiggyBank className="mr-2 h-4 w-4" />
+              <span>Create new budget</span>
             </CommandItem>
             <CommandItem onSelect={handleCreateReport}>
               <FileText className="mr-2 h-4 w-4" />
