@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { budgetSchema } from "@/lib/forms/budget";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { createBudget, editBudget } from "@/actions/budgets";
+import { editBudget } from "@/actions/budgets";
 
 interface EditBudgetProps {
   budget: SelectBudget;
