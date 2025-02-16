@@ -1,4 +1,4 @@
-import { SelectBudget } from "@/drizzle/db/schema";
+import { SelectBudget, SelectRecord } from "@/drizzle/db/schema";
 import {
   Card,
   CardTitle,
@@ -11,7 +11,7 @@ import { Progress } from "@/components/ui/progress";
 import { getAccountById } from "@/actions/account";
 import { DynamicIcon } from "@/components/dynamic-icon";
 import { getAccountRecords } from "@/actions/records";
-import { calculateTotalExpenses, getRelativeTime } from "@/lib/utils";
+import { getRelativeTime } from "@/lib/utils";
 import {
   HoverCard,
   HoverCardContent,
@@ -24,7 +24,11 @@ export async function BudgetCard({ budget }: { budget: SelectBudget }) {
   const [account] = await getAccountById(budget.account);
   const records = await getAccountRecords(account.id);
 
-  const totalBalance = calculateTotalExpenses(records);
+  const totalBalance = calculateTotalExpenses(
+    records,
+    budget.startsAt,
+    budget.endsAt,
+  );
   const percentage = Math.round((totalBalance / Number(budget.goal)) * 100);
 
   return (
@@ -70,4 +74,26 @@ export async function BudgetCard({ budget }: { budget: SelectBudget }) {
       </Link>
     </Button>
   );
+}
+
+export function calculateTotalExpenses(
+  records: SelectRecord[],
+  startDate: Date,
+  endDate: Date,
+): number {
+  const expenses = records.reduce((accumulator, current) => {
+    const recordDate = new Date(current.createdAt);
+
+    // Only accumulate if record is between startDate and endDate and type is "Expense" or "Transfer Out"
+    if (
+      (current.type === "Expense" || current.type === "Transfer Out") &&
+      recordDate >= startDate &&
+      recordDate <= endDate
+    ) {
+      return accumulator + Number(current.amount);
+    }
+    return accumulator;
+  }, 0);
+
+  return expenses;
 }
