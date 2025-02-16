@@ -1,9 +1,26 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { getCurrency } from "@/actions/preferences";
+
 interface FormatCurrencyProps {
+  userId: string;
   amount: number;
-  currency: string;
 }
 
-export function FormatCurrency({ amount, currency }: FormatCurrencyProps) {
+export function FormatCurrency({ userId, amount }: FormatCurrencyProps) {
+  const [formattedAmount, setFormattedAmount] = useState<string>("");
+
+  useEffect(() => {
+    const fetchCurrency = async () => {
+      const currency = await getCurrency(userId);
+      const formatted = formatCurrency(amount, currency);
+      setFormattedAmount(formatted);
+    };
+
+    fetchCurrency();
+  }, [userId, amount]);
+
   const formatCurrency = (amount: number, currency: string): string => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -11,5 +28,5 @@ export function FormatCurrency({ amount, currency }: FormatCurrencyProps) {
     }).format(amount);
   };
 
-  return <span>{formatCurrency(amount, currency)}</span>;
+  return <span>{formattedAmount}</span>;
 }
