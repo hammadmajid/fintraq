@@ -17,6 +17,8 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
 export async function BudgetCard({ budget }: { budget: SelectBudget }) {
   const [account] = await getAccountById(budget.account);
@@ -26,24 +28,39 @@ export async function BudgetCard({ budget }: { budget: SelectBudget }) {
   const percentage = (totalBalance / Number(budget.goal)) * 100;
 
   return (
-    <Card className="md:max-w-[350px]">
-      <CardHeader>
-        <CardTitle>{budget.title}</CardTitle>
-        <CardDescription>{budget.description}</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="flex items-center justify-start gap-2">
-          <DynamicIcon name={account.icon} />
-          <span>{account.title}</span>
-        </div>
-        <Progress value={percentage} />
-      </CardContent>
-      <CardFooter className="text-muted-foreground">
-        <HoverCard>
-          <HoverCardTrigger>{budget.endsAt.toLocaleString()}</HoverCardTrigger>
-          <HoverCardContent>{getRelativeTime(budget.endsAt)}</HoverCardContent>
-        </HoverCard>
-      </CardFooter>
-    </Card>
+    <Button
+      className="block w-full p-0 h-max hover:cursor-pointer"
+      variant="outline"
+      asChild
+    >
+      <Link
+        href={`/u/dashboard/budgets/edit/?id=${budget.id}`}
+        className="block"
+      >
+        <Card className="md:max-w-[350px]">
+          <CardHeader>
+            <CardTitle>{budget.title}</CardTitle>
+            <CardDescription>{budget.description}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-start gap-2">
+              <DynamicIcon name={account.icon} />
+              <span>{account.title}</span>
+            </div>
+            <Progress value={percentage} />
+          </CardContent>
+          <CardFooter className="text-muted-foreground">
+            <HoverCard>
+              <HoverCardTrigger>
+                {budget.endsAt.toLocaleString()}
+              </HoverCardTrigger>
+              <HoverCardContent>
+                {getRelativeTime(budget.endsAt)}
+              </HoverCardContent>
+            </HoverCard>
+          </CardFooter>
+        </Card>
+      </Link>
+    </Button>
   );
 }
