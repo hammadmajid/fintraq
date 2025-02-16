@@ -25,7 +25,7 @@ export async function BudgetCard({ budget }: { budget: SelectBudget }) {
   const records = await getAccountRecords(account.id);
 
   const totalBalance = calculateTotalExpenses(records);
-  const percentage = (totalBalance / Number(budget.goal)) * 100;
+  const percentage = Math.round((totalBalance / Number(budget.goal)) * 100);
 
   return (
     <Button
@@ -37,27 +37,34 @@ export async function BudgetCard({ budget }: { budget: SelectBudget }) {
         href={`/u/dashboard/budgets/edit/?id=${budget.id}`}
         className="block"
       >
-        <Card className="md:max-w-[350px]">
+        <Card
+          className={`md:max-w-[350px] ${percentage >= 100 ? "text-destructive" : ""}`}
+        >
           <CardHeader>
             <CardTitle>{budget.title}</CardTitle>
             <CardDescription>{budget.description}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            <p>
+              Spent {percentage}% of ${budget.goal} goal
+            </p>
+            <Progress value={percentage} />
+          </CardContent>
+          <CardFooter className="text-muted-foreground text-sm flex justify-between">
+            <div>
+              <HoverCard>
+                <HoverCardTrigger>
+                  {budget.endsAt.toLocaleString()}
+                </HoverCardTrigger>
+                <HoverCardContent>
+                  {getRelativeTime(budget.endsAt)}
+                </HoverCardContent>
+              </HoverCard>
+            </div>
             <div className="flex items-center justify-start gap-2">
               <DynamicIcon name={account.icon} />
               <span>{account.title}</span>
             </div>
-            <Progress value={percentage} />
-          </CardContent>
-          <CardFooter className="text-muted-foreground">
-            <HoverCard>
-              <HoverCardTrigger>
-                {budget.endsAt.toLocaleString()}
-              </HoverCardTrigger>
-              <HoverCardContent>
-                {getRelativeTime(budget.endsAt)}
-              </HoverCardContent>
-            </HoverCard>
           </CardFooter>
         </Card>
       </Link>
