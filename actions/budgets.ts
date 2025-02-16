@@ -32,6 +32,37 @@ export async function createBudget(data: z.infer<typeof budgetSchema>) {
   }
 }
 
+export async function editBudget(data: z.infer<typeof budgetSchema>) {
+  try {
+    const { id, account, goal, title, description, startsAt, endsAt } = data;
+
+    await db
+      .update(budgets)
+      .set({
+        title,
+        account,
+        goal: String(goal),
+        description,
+        startsAt,
+        endsAt,
+      })
+      .where(eq(budgets.id, id!));
+
+    return { success: true, message: "Budget updated successfully" };
+  } catch (error) {
+    console.error("Failed to edit record:", error);
+    return {
+      success: false,
+      message:
+        error instanceof Error ? error.message : "An unknown error occurred",
+    };
+  }
+}
+
 export async function getAllBudgets(userId: string): Promise<SelectBudget[]> {
   return await db.select().from(budgets).where(eq(budgets.userId, userId));
+}
+
+export async function getBudgetById(budgetId: string) {
+  return await db.select().from(budgets).where(eq(budgets.id, budgetId));
 }
