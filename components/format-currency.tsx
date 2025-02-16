@@ -2,23 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { getCurrency } from "@/actions/preferences";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface FormatCurrencyProps {
   userId: string;
   amount: number;
 }
 
-export function FormatCurrency({ userId, amount }: FormatCurrencyProps) {
-  const [formattedAmount, setFormattedAmount] = useState<string>("");
+function CurrencyFormatter({ userId, amount }: FormatCurrencyProps) {
+  const [currency, setCurrency] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchCurrency = async () => {
-      const currency = await getCurrency(userId);
-      const formatted = formatCurrency(amount, currency);
-      setFormattedAmount(formatted);
-    };
-
-    fetchCurrency();
+    getCurrency(userId).then(setCurrency);
   }, [userId]);
 
   const formatCurrency = (amount: number, currency: string): string => {
@@ -28,5 +23,13 @@ export function FormatCurrency({ userId, amount }: FormatCurrencyProps) {
     }).format(amount);
   };
 
-  return <span>{formattedAmount}</span>;
+  if (!currency) {
+    return <Skeleton className="h-4 w-20" />;
+  }
+
+  return <span>{formatCurrency(amount, currency)}</span>;
+}
+
+export function FormatCurrency(props: FormatCurrencyProps) {
+  return <CurrencyFormatter {...props} />;
 }
