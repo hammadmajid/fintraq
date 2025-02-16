@@ -13,8 +13,6 @@ import {
 } from "@/components/ui/sidebar";
 import {
   ArrowRightLeft,
-  CalendarClock,
-  HandCoins,
   Home,
   Landmark,
   PiggyBank,
@@ -44,16 +42,6 @@ const items = [
     title: "Budgets",
     url: "/u/dashboard/budgets",
     icon: PiggyBank,
-  },
-  {
-    title: "Loans",
-    url: "/u/dashboard/loans",
-    icon: HandCoins,
-  },
-  {
-    title: "Planned",
-    url: "/u/dashboard/planned",
-    icon: CalendarClock,
   },
 ];
 

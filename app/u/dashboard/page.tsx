@@ -2,11 +2,11 @@ import { getRecords } from "@/actions/records";
 import { ExpensesPieChart } from "@/components/dashboard/expenses-pie-chart";
 import { IncomeExpenseBarChart } from "@/components/dashboard/income-expense-bar-chart";
 import { Button } from "@/components/ui/button";
-import { SelectRecord } from "@/drizzle/db/schema";
 import { auth } from "@/lib/auth";
+import { calculateTotalBalance } from "@/lib/utils";
 import { FileText, Plus } from "lucide-react";
 import { Metadata } from "next";
-import Link from 'next/link';
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -52,18 +52,4 @@ export default async function Dashboard() {
       </div>
     </main>
   );
-}
-function calculateTotalBalance(records: SelectRecord[]): number {
-  const income = records.reduce((accumulator, current) => {
-    return current.type === "Income" || current.type === "Transfer In"
-      ? accumulator + Number(current.amount)
-      : accumulator;
-  }, 0);
-  const expenses = records.reduce((accumulator, current) => {
-    return current.type === "Expense" || current.type === "Transfer Out"
-      ? accumulator + Number(current.amount)
-      : accumulator;
-  }, 0);
-
-  return income - expenses;
 }

@@ -169,6 +169,13 @@
       "when": 1738766594078,
       "tag": "0023_fat_wraith",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1739635452970,
+      "tag": "0024_third_supreme_intelligence",
+      "breakpoints": true
     }
   ]
 }
