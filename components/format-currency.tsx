@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { getCurrency } from "@/actions/preferences";
+import { useMemo } from "react";
+import { useCurrency } from "@/hooks/use-currency";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface FormatCurrencyProps {
@@ -10,24 +10,22 @@ interface FormatCurrencyProps {
 }
 
 function CurrencyFormatter({ userId, amount }: FormatCurrencyProps) {
-  const [currency, setCurrency] = useState<string | null>(null);
+  const currency = useCurrency(userId);
 
-  useEffect(() => {
-    getCurrency(userId).then(setCurrency);
-  }, [userId]);
+  const formattedCurrency = useMemo(() => {
+    if (!currency) return null;
 
-  const formatCurrency = (amount: number, currency: string): string => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency,
     }).format(amount);
-  };
+  }, [amount, currency]);
 
   if (!currency) {
     return <Skeleton className="h-4 w-20" />;
   }
 
-  return <span>{formatCurrency(amount, currency)}</span>;
+  return <span>{formattedCurrency}</span>;
 }
 
 export function FormatCurrency(props: FormatCurrencyProps) {
