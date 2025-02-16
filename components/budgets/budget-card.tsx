@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/hover-card";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { FormatCurrency } from "../format-currency";
 
 export async function BudgetCard({ budget }: { budget: SelectBudget }) {
   const [account] = await getAccountById(budget.account);
@@ -50,7 +51,12 @@ export async function BudgetCard({ budget }: { budget: SelectBudget }) {
           </CardHeader>
           <CardContent className="space-y-4">
             <p>
-              Spent {percentage}% of ${budget.goal} goal
+              Spent {percentage}% of{" "}
+              <FormatCurrency
+                userId={budget.userId}
+                amount={Number(budget.goal)}
+              />{" "}
+              goal
             </p>
             <Progress value={percentage} />
           </CardContent>

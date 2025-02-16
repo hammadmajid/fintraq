@@ -1,6 +1,7 @@
 import { getRecords } from "@/actions/records";
 import { ExpensesPieChart } from "@/components/dashboard/expenses-pie-chart";
 import { IncomeExpenseBarChart } from "@/components/dashboard/income-expense-bar-chart";
+import { FormatCurrency } from "@/components/format-currency";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { calculateTotalBalance } from "@/lib/utils";
@@ -30,7 +31,9 @@ export default async function Dashboard() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <p className="text-muted-foreground">Balance</p>
-          <h1 className="text-2xl font-bold">$ {totalBalance}</h1>
+          <h1 className="text-2xl font-bold">
+            <FormatCurrency userId={userId} amount={totalBalance} />
+          </h1>
         </div>
         <div className="space-x-2">
           <Button variant="outline">

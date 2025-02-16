@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/hooks/use-toast";
 import { DeleteRecord } from "./delete-record";
+import { FormatCurrency } from "../format-currency";
 
 export const createColumns = (
   accounts: SelectBankAccount[],
@@ -44,14 +45,13 @@ export const createColumns = (
       );
     },
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-      // TODO: get the currency from preferences table
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
+      const amount = Number(row.original.amount);
 
-      return <div className="font-medium px-4">{formatted}</div>;
+      return (
+        <div className="font-medium px-4">
+          <FormatCurrency userId={row.original.userId} amount={amount} />
+        </div>
+      );
     },
   },
   {

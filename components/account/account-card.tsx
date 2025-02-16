@@ -11,6 +11,7 @@ import {
 import { SelectBankAccount } from "@/drizzle/db/schema";
 import { calculateTotalBalance } from "@/lib/utils";
 import Link from "next/link";
+import { FormatCurrency } from "../format-currency";
 
 interface AccountCardProps {
   account: SelectBankAccount;
@@ -47,7 +48,9 @@ export async function AccountCard({ account }: AccountCardProps) {
             <CardDescription>{account.type} Account</CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <p className="text-3xl font-extrabold">${balance}</p>
+            <p className="text-3xl font-extrabold">
+              <FormatCurrency userId={account.userId} amount={balance} />
+            </p>
             <p className="text-sm">{account.description}</p>
           </CardContent>
         </Card>
