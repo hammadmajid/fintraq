@@ -6,7 +6,7 @@ import { getRecords } from "@/actions/records";
 import { getAllAccounts } from "@/actions/account";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import Link from 'next/link';
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Records",
@@ -34,7 +34,7 @@ export default async function Page() {
           </p>
         </div>
         <Button size="lg" asChild>
-          <Link href="/u/dashboard/records/create">
+          <Link href="/records/create">
             <Plus />
             New
           </Link>

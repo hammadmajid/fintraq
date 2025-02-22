@@ -28,7 +28,7 @@ export default async function AccountsPage() {
           <p className="mb-6 text-muted-foreground">Add new budget.</p>
         </div>
         <Button size="lg" variant="secondary" asChild>
-          <Link href="/u/dashboard/budgets">
+          <Link href="/budgets">
             <X />
             Cancel
           </Link>

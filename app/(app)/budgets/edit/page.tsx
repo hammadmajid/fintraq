@@ -43,7 +43,7 @@ export default async function EditBudgetPage({
           <p className="mb-6 text-muted-foreground">Edit budget</p>
         </div>
         <Button size="lg" variant="secondary" asChild>
-          <Link href="/u/dashboard/budgets">
+          <Link href="/budgets">
             <X />
             Cancel
           </Link>

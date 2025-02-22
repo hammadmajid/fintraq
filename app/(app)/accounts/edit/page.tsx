@@ -40,7 +40,7 @@ export default async function EditAccountsPage({
           <p className="mb-6 text-muted-foreground">Edit existing account.</p>
         </div>
         <Button size="lg" variant="secondary" asChild>
-          <Link href="/u/dashboard/accounts">
+          <Link href="/accounts">
             <X />
             Cancel
           </Link>

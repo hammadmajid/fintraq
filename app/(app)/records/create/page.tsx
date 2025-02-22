@@ -5,7 +5,7 @@ import { CreateRecord } from "@/components/records/create-record";
 import { getAllAccounts } from "@/actions/account";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import Link from 'next/link';
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create record",
@@ -32,7 +32,7 @@ export default async function Page() {
           </p>
         </div>
         <Button size="lg" variant="secondary" asChild>
-          <Link href="/u/dashboard/records">
+          <Link href="/records">
             <X />
             Cancel
           </Link>

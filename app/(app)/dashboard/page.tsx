@@ -41,7 +41,7 @@ export default async function Dashboard() {
             Create report
           </Button>
           <Button asChild>
-            <Link href="/u/dashboard/records/create">
+            <Link href="/records/create">
               <Plus />
               New record
             </Link>

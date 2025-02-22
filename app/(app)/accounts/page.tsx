@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { Landmark, Plus } from "lucide-react";
-import Link from 'next/link';
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Metadata } from "next/types";
 import { Suspense } from "react";
@@ -32,7 +32,7 @@ export default async function AccountsPage() {
           </p>
         </div>
         <Button size="lg" asChild>
-          <Link href="/u/dashboard/accounts/create">
+          <Link href="/accounts/create">
             <Plus />
             Create
           </Link>

@@ -75,22 +75,16 @@ export function CommandMenu() {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Create">
-            <CommandItem
-              onSelect={() => handleNavigation("/u/dashboard/records/create")}
-            >
+            <CommandItem onSelect={() => handleNavigation("/records/create")}>
               <ArrowRightLeft className="mr-2 h-4 w-4" />
               <span>Create new record</span>
             </CommandItem>
-            <CommandItem
-              onSelect={() => handleNavigation("/u/dashboard/accounts/create")}
-            >
+            <CommandItem onSelect={() => handleNavigation("/accounts/create")}>
               <Landmark className="mr-2 h-4 w-4" />
               <span>Create new account</span>
             </CommandItem>
             <CommandItem
-              onSelect={() =>
-                handleNavigation("/u/dashboard/accounts/budgets/create")
-              }
+              onSelect={() => handleNavigation("/accounts/budgets/create")}
             >
               <PiggyBank className="mr-2 h-4 w-4" />
               <span>Create new budget</span>
@@ -102,19 +96,15 @@ export function CommandMenu() {
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Settings">
-            <CommandItem
-              onSelect={() => handleNavigation("/u/settings/profile")}
-            >
+            <CommandItem onSelect={() => handleNavigation("/settings/profile")}>
               <User className="mr-2 h-4 w-4" />
               <span>Profile</span>
             </CommandItem>
-            <CommandItem
-              onSelect={() => handleNavigation("/u/settings/billing")}
-            >
+            <CommandItem onSelect={() => handleNavigation("/settings/billing")}>
               <CreditCard className="mr-2 h-4 w-4" />
               <span>Billing</span>
             </CommandItem>
-            <CommandItem onSelect={() => handleNavigation("/u/settings")}>
+            <CommandItem onSelect={() => handleNavigation("/settings")}>
               <Settings className="mr-2 h-4 w-4" />
               <span>Settings</span>
             </CommandItem>
