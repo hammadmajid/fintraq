@@ -14,12 +14,10 @@ import { DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import {
   ArrowRightLeft,
-  CreditCard,
   FileText,
   Landmark,
   PiggyBank,
   Settings,
-  User,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
