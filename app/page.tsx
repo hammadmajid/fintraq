@@ -55,8 +55,10 @@ export default function Page() {
           </div>
           <TechStack />
         </div>
-        <FeaturesSection />
-        <FAQ />
+        <div className="space-y-8">
+          <FeaturesSection />
+          <FAQ />
+        </div>
       </main>
       <Footer />
     </>
