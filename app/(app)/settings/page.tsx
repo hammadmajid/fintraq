@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Github, Palette, User, WalletCardsIcon } from "lucide-react";
+import { Github, Palette, User } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -20,12 +20,6 @@ export default function Settings() {
       description: "Manage how your profile and account settings",
       href: "/settings/profile",
       icon: User,
-    },
-    {
-      title: "Billing",
-      description: "Manage your subscription and payment methods",
-      href: "/settings/billing",
-      icon: WalletCardsIcon,
     },
     {
       title: "Appearance",

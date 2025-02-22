@@ -74,36 +74,24 @@ export function CommandMenu() {
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Create">
+          <CommandGroup>
             <CommandItem onSelect={() => handleNavigation("/records/create")}>
               <ArrowRightLeft className="mr-2 h-4 w-4" />
-              <span>Create new record</span>
+              <span>New record</span>
             </CommandItem>
             <CommandItem onSelect={() => handleNavigation("/accounts/create")}>
               <Landmark className="mr-2 h-4 w-4" />
-              <span>Create new account</span>
+              <span>New account</span>
             </CommandItem>
-            <CommandItem
-              onSelect={() => handleNavigation("/accounts/budgets/create")}
-            >
+            <CommandItem onSelect={() => handleNavigation("/budgets/create")}>
               <PiggyBank className="mr-2 h-4 w-4" />
-              <span>Create new budget</span>
+              <span>New budget</span>
             </CommandItem>
             <CommandItem onSelect={handleCreateReport}>
               <FileText className="mr-2 h-4 w-4" />
-              <span>Create new report</span>
+              <span>New report</span>
             </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="Settings">
-            <CommandItem onSelect={() => handleNavigation("/settings/profile")}>
-              <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-            </CommandItem>
-            <CommandItem onSelect={() => handleNavigation("/settings/billing")}>
-              <CreditCard className="mr-2 h-4 w-4" />
-              <span>Billing</span>
-            </CommandItem>
+            <CommandSeparator />
             <CommandItem onSelect={() => handleNavigation("/settings")}>
               <Settings className="mr-2 h-4 w-4" />
               <span>Settings</span>
