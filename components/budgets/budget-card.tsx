@@ -38,10 +38,7 @@ export async function BudgetCard({ budget }: { budget: SelectBudget }) {
       variant="outline"
       asChild
     >
-      <Link
-        href={`/u/dashboard/budgets/edit/?id=${budget.id}`}
-        className="block"
-      >
+      <Link href={`/budgets/edit/?id=${budget.id}`} className="block">
         <Card
           className={`md:max-w-[350px] ${percentage >= 100 ? "text-destructive" : ""}`}
         >

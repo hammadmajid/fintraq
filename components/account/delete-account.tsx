@@ -27,7 +27,7 @@ export function DeleteBankAccount({ id }: { id: string }) {
 
     try {
       await deleteAccount(id);
-      router.push("/u/dashboard/accounts");
+      router.push("/accounts");
     } catch {
       toast({
         title: "Failed to delete account",

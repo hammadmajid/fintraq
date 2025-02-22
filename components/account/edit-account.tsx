@@ -37,7 +37,7 @@ export function EditAccount({ account }: { account: SelectBankAccount }) {
         title: "Account Updated",
         description: "Your account has been successfully updated.",
       });
-      router.push("/u/dashboard/accounts");
+      router.push("/accounts");
     } catch (error) {
       toast({
         title: "Account Update Error",

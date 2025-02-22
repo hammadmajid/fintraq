@@ -45,7 +45,7 @@ export function EditBudget({ budget, accounts }: EditBudgetProps) {
         title: "Budget edited",
         description: "Your budget has been successfully edited.",
       });
-      router.push("/u/dashboard/budgets");
+      router.push("/budgets");
       router.refresh();
     } else {
       toast({

@@ -32,7 +32,7 @@ export default async function Page() {
           </p>
         </div>
         <Button size="lg" asChild>
-          <Link href="/u/dashboard/budgets/create">
+          <Link href="/budgets/create">
             <Plus />
             New
           </Link>

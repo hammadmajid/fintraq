@@ -1,18 +1,18 @@
-import { Metadata } from "next/types";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { getRecordById } from "@/actions/records";
-import { getAllAccounts } from "@/actions/account";
-import { EditRecord } from "@/components/records/edit-record";
+import { Metadata } from "next/types";
+import { EditAccount } from "@/components/account/edit-account";
+import { getAccountById } from "@/actions/account";
+import { DeleteBankAccount } from "@/components/account/delete-account";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { X } from "lucide-react";
-import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Edit record",
+  title: "Edit account",
 };
 
-export default async function EditRecordPage({
+export default async function EditAccountsPage({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -25,30 +25,30 @@ export default async function EditRecordPage({
 
   const resolvedSearchParams = await searchParams;
 
-  const recordId = resolvedSearchParams.id as string;
-  const userId = session.user.id;
+  const accountId = resolvedSearchParams.id as string;
+  const [account] = await getAccountById(accountId);
 
-  const accounts = await getAllAccounts(userId);
-  const [record] = await getRecordById(recordId);
+  if (!account) {
+    return <div>Invalid id</div>;
+  }
 
   return (
-    <main>
+    <main className="pb-12">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Edit</h1>
-          <p className="mb-6 text-muted-foreground">
-            Update the details of this record.
-          </p>
+          <p className="mb-6 text-muted-foreground">Edit existing account.</p>
         </div>
         <Button size="lg" variant="secondary" asChild>
-          <Link href="/u/dashboard/records">
+          <Link href="/accounts">
             <X />
             Cancel
           </Link>
         </Button>
       </div>
       <div className="grid gap-2">
-        <EditRecord accounts={accounts} record={record} />
+        <EditAccount account={account} />
+        <DeleteBankAccount id={accountId} />
       </div>
     </main>
   );

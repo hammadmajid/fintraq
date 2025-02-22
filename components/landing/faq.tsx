@@ -22,11 +22,6 @@ const FAQs: FAQ[] = [
       "This is a pre-alpha version of the software. While it has some basic functionality, it is still in development and may not be fully operational.",
   },
   {
-    question: "Are payments supported?",
-    answer:
-      "No, the payment features are not active yet. It will be implemented in the future.",
-  },
-  {
     question: "Can I contribute to this project?",
     answer:
       "Yes, you can contribute to this project by submitting a pull request on GitHub.",

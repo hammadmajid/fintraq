@@ -45,7 +45,7 @@ export function CreateRecord({ accounts }: CreateRecordProps) {
         });
 
         form.reset();
-        router.push("/u/dashboard/records");
+        router.push("/records");
         router.refresh();
       } else {
         throw new Error(result.message);

@@ -184,7 +184,7 @@ export const createColumns = (
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuGroup>
               <DropdownMenuItem asChild className="hover:cursor-pointer">
-                <Link href={`/u/dashboard/records/edit?id=${record.id}`}>
+                <Link href={`/records/edit?id=${record.id}`}>
                   <Pencil className="mr-2 h-4 w-4" />
                   <span>Edit</span>
                 </Link>
