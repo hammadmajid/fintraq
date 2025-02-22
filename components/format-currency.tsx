@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import { useCurrency } from "@/hooks/use-currency";
-import { Skeleton } from "@/components/ui/skeleton";
 
 interface FormatCurrencyProps {
   userId: string;
@@ -22,10 +21,10 @@ function CurrencyFormatter({ userId, amount }: FormatCurrencyProps) {
   }, [amount, currency]);
 
   if (!currency) {
-    return <Skeleton className="h-4 w-20" />;
+    return <span className="animate-pulse rounded-md bg-primary/10 h-4 w-20" />;
   }
 
-  return <span>{formattedCurrency}</span>;
+  return <>{formattedCurrency}</>;
 }
 
 export function FormatCurrency(props: FormatCurrencyProps) {
