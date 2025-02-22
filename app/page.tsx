@@ -2,7 +2,6 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { FAQ } from "@/components/landing/faq";
 import { FeaturesSection } from "@/components/landing/features-section";
-import { PricingSection } from "@/components/landing/pricing-section";
 import { TechStack } from "@/components/landing/tech-stack";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -57,7 +56,6 @@ export default function Page() {
           <TechStack />
         </div>
         <FeaturesSection />
-        <PricingSection />
         <FAQ />
       </main>
       <Footer />
