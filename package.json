@@ -42,7 +42,7 @@
     "@vercel/analytics": "^1.4.1",
     "@vercel/blob": "^0.27.0",
     "@vercel/speed-insights": "^1.1.0",
-    "babel-plugin-react-compiler": "19.0.0-beta-e552027-20250112",
+    "babel-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",
