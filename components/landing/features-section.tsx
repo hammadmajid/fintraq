@@ -6,8 +6,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  FileText,
   LayoutDashboard,
+  PiggyBank,
   Receipt,
   Smartphone,
   UserCheck,
@@ -41,9 +41,9 @@ const features = [
     icon: Smartphone,
   },
   {
-    title: "Reports",
-    description: "Generate PDF of your finances to share with others.",
-    icon: FileText,
+    title: "Budgets",
+    description: "Easily create and manage budgets.",
+    icon: PiggyBank,
   },
 ];
 

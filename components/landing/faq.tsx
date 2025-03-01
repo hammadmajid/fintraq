@@ -19,12 +19,11 @@ const FAQs: FAQ[] = [
   {
     question: "Is the software functional?",
     answer:
-      "This is a pre-alpha version of the software. While it has some basic functionality, it is still in development and may not be fully operational.",
+      "This is a pre-alpha version of the software and it is still in development.",
   },
   {
     question: "Are payments supported?",
-    answer:
-      "No, the payment features are not active yet. It will be implemented in the future.",
+    answer: "Yes, the payment are enabled in test mode.",
   },
   {
     question: "Can I contribute to this project?",
