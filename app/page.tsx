@@ -21,7 +21,7 @@ export default function Page() {
             This app is in active development. Expect bugs and data loss.
           </AlertDescription>
         </Alert>
-        <div className="flex flex-col items-center justify-center min-h-screen gap-16 md:flex-row md:gap-0">
+        <div className="flex flex-col items-center justify-center min-h-96 gap-16 md:flex-row md:gap-0">
           <div className="flex flex-col items-start justify-start w-full gap-8">
             <header className="relative">
               <div className="absolute inset-0 rounded-full bg-linear-to-r from-purple-600 to-purple-400 opacity-30 blur-3xl -z-10"></div>
@@ -30,7 +30,7 @@ export default function Page() {
                   Fintraq
                 </h1>
                 <p className="text-xl text-muted-foreground">
-                  A simple finance tracker built with NextJs
+                  Finance tracking for the 21st century.
                 </p>
               </div>
             </header>
