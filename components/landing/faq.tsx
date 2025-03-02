@@ -19,7 +19,7 @@ const FAQs: FAQ[] = [
   {
     question: "Is the software functional?",
     answer:
-      "This is a pre-alpha version of the software. While it has some basic functionality, it is still in development and may not be fully operational.",
+      "This is a pre-alpha version of the software and it is still in development.",
   },
   {
     question: "Can I contribute to this project?",
