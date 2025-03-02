@@ -37,6 +37,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -172,6 +173,9 @@ export function ChangeCurrency({
           </form>
         </Form>
       </CardContent>
+      <CardFooter className="text-muted-foreground">
+        Note: this will NOT update record values.
+      </CardFooter>
     </Card>
   );
 }
