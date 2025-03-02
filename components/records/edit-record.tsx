@@ -48,7 +48,7 @@ export function EditRecord({ record, accounts }: EditAccoutProps) {
       });
     }
 
-    router.push("/u/dashboard/records");
+    router.push("/records");
     router.refresh();
   }
 

@@ -39,7 +39,7 @@ export function CreateBudget({ accounts }: CreateBudgetProps) {
         title: "Budget created",
         description: "Your budget has been successfully created.",
       });
-      router.push("/u/dashboard/budgets");
+      router.push("/budgets");
       router.refresh();
     } else {
       toast({

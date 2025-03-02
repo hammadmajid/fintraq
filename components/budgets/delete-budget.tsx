@@ -27,7 +27,7 @@ export function DeleteBudget({ id }: { id: string }) {
 
     try {
       await deleteBudget(id);
-      router.push("/u/dashboard/budgets");
+      router.push("/budgets");
     } catch {
       toast({
         title: "Failed to delete budget",

@@ -24,8 +24,8 @@ export function Header() {
       href: "/#features",
     },
     {
-      text: "Pricing",
-      href: "/#pricing",
+      text: "FAQs",
+      href: "/#faqs",
     },
     {
       text: "About",

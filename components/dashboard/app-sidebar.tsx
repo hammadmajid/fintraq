@@ -6,7 +6,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -17,7 +16,6 @@ import {
   Landmark,
   PiggyBank,
   Settings,
-  WalletCards,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,22 +23,22 @@ import { usePathname } from "next/navigation";
 const items = [
   {
     title: "Dashboard",
-    url: "/u/dashboard",
+    url: "/dashboard",
     icon: Home,
   },
   {
     title: "Records",
-    url: "/u/dashboard/records",
+    url: "/records",
     icon: ArrowRightLeft,
   },
   {
     title: "Accounts",
-    url: "/u/dashboard/accounts",
+    url: "/accounts",
     icon: Landmark,
   },
   {
     title: "Budgets",
-    url: "/u/dashboard/budgets",
+    url: "/budgets",
     icon: PiggyBank,
   },
 ];
@@ -49,20 +47,7 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar collapsible="offcanvas">
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem className="p-2">
-            <Link
-              href="/"
-              className="flex items-center gap-2 text-lg font-semibold md:text-base"
-            >
-              <WalletCards className="w-6 h-6" />
-              <span>Fintraq</span>
-            </Link>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
+    <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -73,7 +58,7 @@ export function AppSidebar() {
                     className="py-6"
                     asChild
                     isActive={
-                      item.url === "/u/dashboard"
+                      item.url === "/dashboard"
                         ? pathname === item.url
                         : pathname.startsWith(item.url)
                     }
@@ -95,9 +80,9 @@ export function AppSidebar() {
             <SidebarMenuButton
               className="py-6"
               asChild
-              isActive={pathname.startsWith("/u/settings")}
+              isActive={pathname.startsWith("/settings")}
             >
-              <Link href="/u/settings">
+              <Link href="/settings">
                 <Settings />
                 <span>Settings</span>
               </Link>
