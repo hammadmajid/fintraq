@@ -13,3 +13,9 @@ export const getCurrency = cache(async (userId: string) => {
 
   return result.currency;
 });
+
+export async function updateCurrency(userId: string, currency: string) {
+  await db.update(preferences).set({
+    currency
+  }).where(eq(preferences.userId, userId));
+}

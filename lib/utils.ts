@@ -129,3 +129,29 @@ export function calculateTotalExpenses(records: SelectRecord[]): number {
 
   return expenses;
 }
+
+export const CURRENCY_CACHE_KEY = "userPreferredCurrency";
+
+export const currencies = [
+  { label: "USD - United States Dollar", value: "USD" },
+  { label: "EUR - Euro", value: "EUR" },
+  { label: "JPY - Japanese Yen", value: "JPY" },
+  { label: "GBP - British Pound Sterling", value: "GBP" },
+  { label: "AUD - Australian Dollar", value: "AUD" },
+  { label: "CAD - Canadian Dollar", value: "CAD" },
+  { label: "CHF - Swiss Franc", value: "CHF" },
+  { label: "CNY - Chinese Yuan", value: "CNY" },
+  { label: "SEK - Swedish Krona", value: "SEK" },
+  { label: "NZD - New Zealand Dollar", value: "NZD" },
+  { label: "PKR - Pakistani Rupee", value: "PKR" },
+  { label: "MXN - Mexican Peso", value: "MXN" },
+  { label: "SGD - Singapore Dollar", value: "SGD" },
+  { label: "HKD - Hong Kong Dollar", value: "HKD" },
+  { label: "NOK - Norwegian Krone", value: "NOK" },
+  { label: "KRW - South Korean Won", value: "KRW" },
+  { label: "TRY - Turkish Lira", value: "TRY" },
+  { label: "RUB - Russian Ruble", value: "RUB" },
+  { label: "INR - Indian Rupee", value: "INR" },
+  { label: "BRL - Brazilian Real", value: "BRL" },
+  { label: "ZAR - South African Rand", value: "ZAR" },
+] as const;
