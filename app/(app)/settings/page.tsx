@@ -1,53 +1,57 @@
 import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Github, Palette, User } from "lucide-react";
+import { SiGithub } from "react-icons/si";
 import { Metadata } from "next";
 import Link from "next/link";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { getCurrency } from "@/actions/preferences";
+import { ChangeCurrency } from "@/components/settings/change-currency";
+import { SetupProfile } from "@/components/onboard/setup-profile";
+import { DeleteAccount } from "@/components/settings/delete-account";
 
 export const metadata: Metadata = {
   title: "Settings",
 };
 
-export default function Settings() {
-  const settingsLinks = [
-    {
-      title: "Profile",
-      description: "Manage how your profile and account settings",
-      href: "/settings/profile",
-      icon: User,
-    },
-    {
-      title: "Appearance",
-      description: "Customize the look and feel of the application",
-      href: "/settings/appearance",
-      icon: Palette,
-    },
-  ];
+export default async function Settings() {
+  const session = await auth();
+
+  if (!session || !session.user?.id) {
+    redirect("/login");
+  }
+
+  const userId = session.user.id;
+
+  const currency = await getCurrency(userId);
 
   return (
     <div className="flex flex-col justify-between h-full pb-8">
-      <main>
-        <h1 className="mb-4 text-3xl font-bold">Settings</h1>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {settingsLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="block">
-              <Card className="h-full transition-colors hover:bg-muted/50">
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <link.icon className="w-5 h-5" />
-                    <span>{link.title}</span>
-                  </CardTitle>
-                  <CardDescription>{link.description}</CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
-          ))}
+      <main className="space-y-4">
+        <div className="grid md:grid-cols-2 gap-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Profile</CardTitle>
+              <CardDescription>Update your profile info.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <SetupProfile
+                userId={userId}
+                imageUrl={session.user.image}
+                name={session.user.name}
+                redirect={false}
+              />
+            </CardContent>
+          </Card>
+          <ChangeCurrency userId={userId} currency={currency} />
         </div>
+        <DeleteAccount userId={userId} />
       </main>
       <div className="text-center">
         <Button variant="link" asChild>
@@ -55,7 +59,7 @@ export default function Settings() {
             href="https://github.com/hammadmajid/fintraq"
             className="flex gap-2"
           >
-            <Github />
+            <SiGithub />
             <span>hammadmajid/fintraq</span>
           </Link>
         </Button>
