@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn more about Fintraq, a modern finance tracking app",
+  description: "Learn more about Fintraq, a modern finance tracking app.",
 };
 
 export default function AboutPage() {
@@ -24,6 +24,7 @@ export default function AboutPage() {
             Multiple Accounts: Track your expenses across multiple accounts.
           </li>
           <li>Track Expenses: Easily log and categorize your expenses.</li>
+          <li>Manage Budgets: Control your spending with budgets.</li>
           <li>Responsive Design: Optimized for both desktop and mobile use.</li>
         </ul>
         <p>
