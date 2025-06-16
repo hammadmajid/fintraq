@@ -35,7 +35,7 @@ const FAQs: FAQ[] = [
 
 export function FAQ() {
   return (
-    <section>
+    <section id="faqs">
       <div className="text-center">
         <h2 className="text-3xl font-bold">FAQ</h2>
       </div>
