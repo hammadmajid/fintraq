@@ -3,11 +3,11 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/components/ui/accordion"
 
 interface FAQ {
-  question: string;
-  answer: string;
+  question: string
+  answer: string
 }
 
 const FAQs: FAQ[] = [
@@ -31,7 +31,7 @@ const FAQs: FAQ[] = [
     answer:
       "Yes, you can use the code as a learning resource or as a base for your own projects.",
   },
-];
+]
 
 export function FAQ() {
   return (
@@ -39,7 +39,7 @@ export function FAQ() {
       <div className="text-center">
         <h2 className="text-3xl font-bold">FAQ</h2>
       </div>
-      <Accordion className="w-full max-w-3xl mx-auto">
+      <Accordion className="mx-auto w-full max-w-3xl">
         {FAQs.map(({ question, answer }, index) => (
           <AccordionItem key={index} value={String(index)}>
             <AccordionTrigger>{question}</AccordionTrigger>
@@ -48,5 +48,5 @@ export function FAQ() {
         ))}
       </Accordion>
     </section>
-  );
+  )
 }

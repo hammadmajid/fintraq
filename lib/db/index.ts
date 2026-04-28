@@ -1,9 +1,9 @@
-import { drizzle } from 'drizzle-orm/neon-http';
+import { drizzle } from "drizzle-orm/neon-http"
 
-const dbUrl = process.env.DATABASE_URL;
+const dbUrl = process.env.DATABASE_URL
 
 if (!dbUrl) {
-    throw new Error("DATABASE_URL is not defined", {cause: "Undefined"});
+  throw new Error("DATABASE_URL is not defined", { cause: "Undefined" })
 }
 
-export const db = drizzle(dbUrl);
+export const db = drizzle(dbUrl)
