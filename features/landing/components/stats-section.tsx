@@ -3,18 +3,18 @@ import { BarChart3, Users, TrendingUp } from "lucide-react"
 const stats = [
   {
     icon: Users,
-    value: "5,000+",
-    label: "Active Users",
+    value: "10,000+",
+    label: "Freelancers Trusting Us",
   },
   {
     icon: TrendingUp,
-    value: "$50M+",
-    label: "Assets Managed",
+    value: "$500M+",
+    label: "Income Tracked",
   },
   {
     icon: BarChart3,
     value: "99.9%",
-    label: "Uptime SLA",
+    label: "Data Security",
   },
 ]
 

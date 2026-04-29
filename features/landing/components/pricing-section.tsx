@@ -10,48 +10,50 @@ import Link from "next/link"
 
 const plans = [
   {
-    name: "Starter",
-    description: "Perfect for freelancers and solopreneurs",
-    monthlyPrice: 29,
-    annualPrice: 290,
+    name: "Free",
+    description: "Perfect for trying Fintraq",
+    monthlyPrice: 0,
+    annualPrice: 0,
     features: [
-      "Up to 5 bank accounts",
-      "Expense tracking & categorization",
-      "Basic reports",
+      "Up to 3 bank accounts",
+      "Basic invoice tracking",
+      "Expense categorization",
+      "Monthly reports",
+      "Community support",
+      "Mobile app access",
+    ],
+  },
+  {
+    name: "Starter",
+    description: "Perfect for freelancers just starting out",
+    monthlyPrice: 9,
+    annualPrice: 90,
+    popular: true,
+    features: [
+      "Up to 10 bank accounts",
+      "Invoice creation & tracking",
+      "Advanced expense categorization",
+      "Monthly financial reports",
       "Email support",
       "Mobile app access",
+      "Multi-currency support",
     ],
   },
   {
     name: "Professional",
-    description: "For growing small businesses",
-    monthlyPrice: 79,
-    annualPrice: 790,
-    popular: true,
+    description: "For established freelancers and self-employed pros",
+    monthlyPrice: 29,
+    annualPrice: 290,
     features: [
       "Unlimited bank accounts",
-      "Advanced expense tracking",
-      "Custom budgets & forecasting",
-      "Priority email & chat support",
+      "Advanced invoice management",
+      "Multi-project income tracking",
+      "Tax preparation reports",
+      "Automated expense categorization",
+      "Priority support",
       "Mobile app access",
-      "Team collaboration (up to 3 users)",
-      "API access",
-      "Advanced reporting",
-    ],
-  },
-  {
-    name: "Enterprise",
-    description: "For larger organizations",
-    monthlyPrice: 199,
-    annualPrice: 1990,
-    features: [
-      "Everything in Professional",
-      "Unlimited team members",
-      "Custom integrations",
-      "Dedicated account manager",
-      "Advanced security features",
-      "SLA guarantee",
-      "White-label options",
+      "Client portal",
+      "Advanced income analytics",
     ],
   },
 ]
@@ -62,10 +64,10 @@ export function PricingSection() {
   return (
     <section className="w-full py-24">
       <div className="mb-12 text-center">
-        <h2 className="mb-4 text-3xl font-bold md:text-4xl">Simple, Transparent Pricing</h2>
-        <p className="mb-8 text-lg text-muted-foreground">
-          Choose the plan that fits your business. All plans include a 14-day free trial.
-        </p>
+         <h2 className="mb-4 text-3xl font-bold md:text-4xl">Affordable Pricing for Solo Creators</h2>
+         <p className="mb-8 text-lg text-muted-foreground">
+           Choose the plan that fits your freelance journey. All plans include a 14-day free trial.
+         </p>
 
         <div className="flex items-center justify-center gap-4">
           <span className={`text-sm ${!isAnnual ? "font-semibold" : "text-muted-foreground"}`}>
@@ -82,7 +84,7 @@ export function PricingSection() {
       </div>
 
       <div className="grid gap-8 md:grid-cols-3">
-        {plans.map((plan, index) => (
+         {plans.map((plan, index) => (
           <Card
             key={index}
             className={`relative flex flex-col transition-all ${
@@ -113,14 +115,14 @@ export function PricingSection() {
                 )}
               </div>
 
-              <Button
-                size="lg"
-                className="w-full"
-                variant={plan.popular ? "default" : "outline"}
-                render={<Link href="/signup" />}
-              >
-                Start Free Trial
-              </Button>
+               <Button
+                 size="lg"
+                 className="w-full"
+                 variant={plan.popular ? "default" : "outline"}
+                 render={<Link href={plan.monthlyPrice === 0 ? "/signup" : "/signup"} />}
+               >
+                 {plan.monthlyPrice === 0 ? "Get Started Free" : "Start Free Trial"}
+               </Button>
 
               <ul className="flex flex-1 flex-col gap-3">
                 {plan.features.map((feature, featureIndex) => (
@@ -136,14 +138,14 @@ export function PricingSection() {
       </div>
 
       <div className="mt-12 rounded-lg bg-card/50 p-6 text-center">
-        <p className="mb-2 text-sm font-medium text-muted-foreground">Need a custom plan?</p>
-        <p className="mb-4 text-lg">
-          For organizations with specific requirements, we offer tailored solutions.
-        </p>
-        <Button variant="outline" render={<a href="mailto:sales@fintraq.tech" />}>
-          Contact Sales
-        </Button>
-      </div>
+         <p className="mb-2 text-sm font-medium text-muted-foreground">Need a custom plan?</p>
+         <p className="mb-4 text-lg">
+           For specific requirements or team collaboration needs, let's chat about what works best for you.
+         </p>
+         <Button variant="outline" render={<a href="mailto:hello@fintraq.tech" />}>
+           Contact Us
+         </Button>
+       </div>
     </section>
   )
 }

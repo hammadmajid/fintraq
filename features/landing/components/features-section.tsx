@@ -16,8 +16,8 @@ import {
 
 const features = [
   {
-    title: "Real-Time Dashboard",
-    description: "See your financial position at a glance with interactive charts and KPIs.",
+    title: "Invoice Management",
+    description: "Create professional invoices, track payments, and send reminders to clients automatically.",
     icon: BarChart3,
   },
   {
@@ -26,13 +26,13 @@ const features = [
     icon: Lock,
   },
   {
-    title: "Multi-Account Management",
-    description: "Manage all business accounts and track cash flow in one place.",
+    title: "Multi-Project Tracking",
+    description: "Organize income and expenses by project, client, or category.",
     icon: RefreshCw,
   },
   {
-    title: "Smart Budget Planning",
-    description: "Set budgets, track spending, and get alerts when you're approaching limits.",
+    title: "Simplified Tax Prep",
+    description: "Auto-categorize expenses and generate tax reports. Deductible expenses at a glance.",
     icon: Target,
   },
   {
@@ -41,8 +41,8 @@ const features = [
     icon: Smartphone,
   },
   {
-    title: "Instant Expense Tracking",
-    description: "Log, categorize, and tag expenses in seconds.",
+    title: "Income Tracking",
+    description: "Monitor all income streams, invoices, and earnings in one place.",
     icon: Zap,
   },
 ]
@@ -51,13 +51,13 @@ export function FeaturesSection() {
   return (
     <section className="w-full py-16">
       <div className="mb-12 text-center">
-        <h2 className="mb-4 text-3xl font-bold md:text-4xl" id="features">
-          Powerful Features for Business Growth
-        </h2>
-        <p className="text-lg text-muted-foreground">
-          Everything you need to manage your business finances in one platform
-        </p>
-      </div>
+         <h2 className="mb-4 text-3xl font-bold md:text-4xl" id="features">
+           Tools Built for Freelancers
+         </h2>
+         <p className="text-lg text-muted-foreground">
+           Everything you need to manage your personal finances and grow your freelance business
+         </p>
+       </div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {features.map((feature, index) => (
           <Card

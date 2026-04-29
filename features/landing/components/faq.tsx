@@ -14,32 +14,32 @@ const FAQs: FAQ[] = [
   {
     question: "How does the 14-day free trial work?",
     answer:
-      "Simply sign up with your email and start using Fintraq immediately. No credit card required. After 14 days, you can upgrade to a paid plan or continue exploring the free tier features.",
+      "Simply sign up with your email and start using Fintraq immediately. No credit card required. After 14 days, you can upgrade to a paid plan or continue with the free tier.",
   },
   {
     question: "Is my financial data secure?",
     answer:
-      "Yes, we take security seriously. All data is encrypted in transit and at rest using industry-standard protocols. We comply with GDPR, SOC 2, and other compliance standards. Your data is never shared with third parties.",
+      "Yes, we take security seriously. All data is encrypted in transit and at rest using industry-standard protocols. We comply with GDPR and other compliance standards. Your data is never shared with third parties.",
   },
   {
-    question: "Can I import my existing data?",
+    question: "Can I import my existing invoices and expenses?",
     answer:
-      "Absolutely! Fintraq supports importing data from CSV files, QuickBooks, and other accounting software. Our import wizard makes it easy to migrate your existing data in minutes.",
+      "Absolutely! Fintraq supports importing data from CSV files and other accounting software. Our import wizard makes it easy to migrate your existing data in minutes.",
   },
   {
-    question: "Does Fintraq integrate with my bank?",
+    question: "Does Fintraq work with my bank?",
     answer:
-      "Professional and Enterprise plans include bank integration for real-time transaction syncing. We currently support most major US and international banks through secure API connections.",
+      "Yes! Our Professional plan includes bank integration for real-time transaction syncing. We currently support most major US and international banks through secure API connections.",
   },
   {
-    question: "Can multiple team members use the same account?",
+    question: "Can I generate tax reports for deductions?",
     answer:
-      "Yes! Professional plans include up to 3 team members, and Enterprise plans have unlimited users. You can assign different permission levels to control what each team member can access.",
+      "Yes! Fintraq automatically categorizes expenses and generates comprehensive tax reports organized by deductible categories. Perfect for filing taxes or working with a CPA.",
   },
   {
     question: "What payment methods do you accept?",
     answer:
-      "We accept all major credit cards, ACH transfers, and wire transfers for annual subscriptions. Monthly billing is available for credit card payments.",
+      "We accept all major credit cards for monthly and annual subscriptions. Choose what works best for your cash flow.",
   },
 ]
 
