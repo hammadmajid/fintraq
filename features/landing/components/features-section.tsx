@@ -6,53 +6,58 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-  LayoutDashboard,
-  PiggyBank,
-  Receipt,
+  BarChart3,
+  Lock,
+  RefreshCw,
   Smartphone,
-  UserCheck,
-  Wallet,
+  Target,
+  Zap,
 } from "lucide-react"
 
 const features = [
   {
-    title: "User Authentication",
-    description: "Secure sign-up and login functionality.",
-    icon: UserCheck,
+    title: "Real-Time Dashboard",
+    description: "See your financial position at a glance with interactive charts and KPIs.",
+    icon: BarChart3,
   },
   {
-    title: "Dashboard",
-    description: "Get a quick glance at your finances with informative charts.",
-    icon: LayoutDashboard,
+    title: "Bank-Level Security",
+    description: "Your data is encrypted and secured with enterprise-grade protection.",
+    icon: Lock,
   },
   {
-    title: "Multiple Accounts",
-    description: "Track your expenses across multiple accounts.",
-    icon: Wallet,
+    title: "Multi-Account Management",
+    description: "Manage all business accounts and track cash flow in one place.",
+    icon: RefreshCw,
   },
   {
-    title: "Track Expenses",
-    description: "Easily log and categorize your expenses.",
-    icon: Receipt,
+    title: "Smart Budget Planning",
+    description: "Set budgets, track spending, and get alerts when you're approaching limits.",
+    icon: Target,
   },
   {
-    title: "Responsive Design",
-    description: "Optimized for both desktop and mobile use.",
+    title: "Mobile & Desktop",
+    description: "Manage your finances anywhere, anytime on any device.",
     icon: Smartphone,
   },
   {
-    title: "Budgets",
-    description: "Easily create and manage budgets.",
-    icon: PiggyBank,
+    title: "Instant Expense Tracking",
+    description: "Log, categorize, and tag expenses in seconds.",
+    icon: Zap,
   },
 ]
 
 export function FeaturesSection() {
   return (
-    <section className="w-full">
-      <h2 className="mb-8 text-center text-3xl font-bold" id="features">
-        Features
-      </h2>
+    <section className="w-full py-16">
+      <div className="mb-12 text-center">
+        <h2 className="mb-4 text-3xl font-bold md:text-4xl" id="features">
+          Powerful Features for Business Growth
+        </h2>
+        <p className="text-lg text-muted-foreground">
+          Everything you need to manage your business finances in one platform
+        </p>
+      </div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {features.map((feature, index) => (
           <Card

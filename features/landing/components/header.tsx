@@ -24,58 +24,98 @@ export function Header() {
       href: "/#features",
     },
     {
-      text: "FAQs",
-      href: "/#faqs",
+      text: "Pricing",
+      href: "/#pricing",
     },
     {
-      text: "About",
-      href: "/about",
+      text: "FAQs",
+      href: "/#faqs",
     },
   ]
 
   return (
-    <header className="container mx-auto mb-4 border-b p-4">
-      <nav className="flex flex-row items-center justify-between gap-6 text-lg font-medium md:gap-5 md:text-sm lg:gap-6">
-        <FintraqLogo />
-        <ul className="hidden flex-row items-center justify-center md:flex">
-          {links.map((link) => {
-            return (
-              <li key={link.text}>
-                <Button variant="ghost">
-                  <Link href={link.href}>{link.text}</Link>
-                </Button>
-              </li>
-            )
-          })}
-        </ul>
-        <Sheet>
-          <SheetTrigger className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu />
+    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container mx-auto px-4 py-4">
+        <nav className="flex items-center justify-between">
+          <FintraqLogo />
+
+          <div className="hidden lg:flex items-center gap-1">
+            {links.map((link) => (
+              <Button 
+                key={link.text}
+                variant="ghost" 
+                size="sm" 
+                render={<Link href={link.href} />}
+                className="text-sm font-medium"
+              >
+                {link.text}
+              </Button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              size="sm"
+              className="hidden sm:inline-flex"
+              render={<Link href="/login" />}
+            >
+              Sign In
             </Button>
-          </SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle>
-                <FintraqLogo />
-              </SheetTitle>
-              <SheetDescription>
-                <ul className="flex flex-col items-start">
-                  {links.map((link) => {
-                    return (
-                      <li key={link.text}>
-                        <Button className="p-0" variant="ghost">
-                          <Link href={link.href}>{link.text}</Link>
+            <Button
+              size="sm"
+              render={<Link href="/signup" />}
+            >
+              Get Started
+            </Button>
+
+            <Sheet>
+              <SheetTrigger className="lg:hidden">
+                <Button variant="ghost" size="icon">
+                  <Menu />
+                </Button>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>
+                    <FintraqLogo />
+                  </SheetTitle>
+                  <SheetDescription>
+                    <ul className="flex flex-col items-start gap-2 pt-6">
+                      {links.map((link) => {
+                        return (
+                          <li key={link.text} className="w-full">
+                            <Button className="w-full justify-start p-0" variant="ghost">
+                              <Link href={link.href}>{link.text}</Link>
+                            </Button>
+                          </li>
+                        )
+                      })}
+                      <li className="w-full border-t pt-4 mt-4">
+                        <Button
+                          className="w-full"
+                          variant="outline"
+                          render={<Link href="/login" />}
+                        >
+                          Sign In
                         </Button>
                       </li>
-                    )
-                  })}
-                </ul>
-              </SheetDescription>
-            </SheetHeader>
-          </SheetContent>
-        </Sheet>
-      </nav>
+                      <li className="w-full">
+                        <Button
+                          className="w-full mt-2"
+                          render={<Link href="/signup" />}
+                        >
+                          Get Started
+                        </Button>
+                      </li>
+                    </ul>
+                  </SheetDescription>
+                </SheetHeader>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </nav>
+      </div>
     </header>
   )
 }
