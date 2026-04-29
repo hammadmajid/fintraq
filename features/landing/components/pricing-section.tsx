@@ -139,8 +139,8 @@ export function PricingSection() {
 
       <div className="mt-12 rounded-lg bg-card/50 p-6 text-center">
          <p className="mb-2 text-sm font-medium text-muted-foreground">Need a custom plan?</p>
-         <p className="mb-4 text-lg">
-           For specific requirements or team collaboration needs, let's chat about what works best for you.
+          <p className="mb-4 text-lg">
+            For specific requirements or team collaboration needs, let&apos;s chat about what works best for you.
          </p>
          <Button variant="outline" render={<a href="mailto:hello@fintraq.tech" />}>
            Contact Us
