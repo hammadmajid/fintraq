@@ -1,7 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Switch } from "@/components/ui/switch"
@@ -64,18 +70,25 @@ export function PricingSection() {
   return (
     <section className="w-full py-24">
       <div className="mb-12 text-center">
-         <h2 className="mb-4 text-3xl font-bold md:text-4xl">Affordable Pricing for Solo Creators</h2>
-         <p className="mb-8 text-lg text-muted-foreground">
-           Choose the plan that fits your freelance journey. All plans include a 14-day free trial.
-         </p>
+        <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+          Affordable Pricing for Solo Creators
+        </h2>
+        <p className="mb-8 text-lg text-muted-foreground">
+          Choose the plan that fits your freelance journey. All plans include a
+          14-day free trial.
+        </p>
 
         <div className="flex items-center justify-center gap-4">
-          <span className={`text-sm ${!isAnnual ? "font-semibold" : "text-muted-foreground"}`}>
+          <span
+            className={`text-sm ${!isAnnual ? "font-semibold" : "text-muted-foreground"}`}
+          >
             Monthly
           </span>
           <Switch checked={isAnnual} onCheckedChange={setIsAnnual} />
           <div className="flex items-center gap-2">
-            <span className={`text-sm ${isAnnual ? "font-semibold" : "text-muted-foreground"}`}>
+            <span
+              className={`text-sm ${isAnnual ? "font-semibold" : "text-muted-foreground"}`}
+            >
               Annually
             </span>
             <Badge variant="secondary">Save 17%</Badge>
@@ -84,7 +97,7 @@ export function PricingSection() {
       </div>
 
       <div className="grid gap-8 md:grid-cols-3">
-         {plans.map((plan, index) => (
+        {plans.map((plan, index) => (
           <Card
             key={index}
             className={`relative flex flex-col transition-all ${
@@ -115,14 +128,20 @@ export function PricingSection() {
                 )}
               </div>
 
-               <Button
-                 size="lg"
-                 className="w-full"
-                 variant={plan.popular ? "default" : "outline"}
-                 render={<Link href={plan.monthlyPrice === 0 ? "/signup" : "/signup"} />}
-               >
-                 {plan.monthlyPrice === 0 ? "Get Started Free" : "Start Free Trial"}
-               </Button>
+              <Button
+                size="lg"
+                className="w-full"
+                variant={plan.popular ? "default" : "outline"}
+                render={
+                  <Link
+                    href={plan.monthlyPrice === 0 ? "/signup" : "/signup"}
+                  />
+                }
+              >
+                {plan.monthlyPrice === 0
+                  ? "Get Started Free"
+                  : "Start Free Trial"}
+              </Button>
 
               <ul className="flex flex-1 flex-col gap-3">
                 {plan.features.map((feature, featureIndex) => (
@@ -138,14 +157,20 @@ export function PricingSection() {
       </div>
 
       <div className="mt-12 rounded-lg bg-card/50 p-6 text-center">
-         <p className="mb-2 text-sm font-medium text-muted-foreground">Need a custom plan?</p>
-          <p className="mb-4 text-lg">
-            For specific requirements or team collaboration needs, let&apos;s chat about what works best for you.
-         </p>
-         <Button variant="outline" render={<a href="mailto:hello@fintraq.tech" />}>
-           Contact Us
-         </Button>
-       </div>
+        <p className="mb-2 text-sm font-medium text-muted-foreground">
+          Need a custom plan?
+        </p>
+        <p className="mb-4 text-lg">
+          For specific requirements or team collaboration needs, let&apos;s chat
+          about what works best for you.
+        </p>
+        <Button
+          variant="outline"
+          render={<a href="mailto:hello@fintraq.tech" />}
+        >
+          Contact Us
+        </Button>
+      </div>
     </section>
   )
 }

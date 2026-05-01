@@ -38,15 +38,19 @@ export function Footer() {
 
           {/* Product links */}
           <div>
-            <h4 className="mb-4 font-semibold text-sm">Product</h4>
+            <h4 className="mb-4 text-sm font-semibold">Product</h4>
             <ul className="space-y-2">
               {productLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    rel={
+                      link.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     {link.label}
                   </a>
@@ -57,15 +61,24 @@ export function Footer() {
 
           {/* Company links */}
           <div>
-            <h4 className="mb-4 font-semibold text-sm">Company</h4>
+            <h4 className="mb-4 text-sm font-semibold">Company</h4>
             <ul className="space-y-2">
               {companyLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    target={link.href.startsWith("http") || link.href.startsWith("mailto:") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    target={
+                      link.href.startsWith("http") ||
+                      link.href.startsWith("mailto:")
+                        ? "_blank"
+                        : undefined
+                    }
+                    rel={
+                      link.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     {link.label}
                   </a>
@@ -76,13 +89,13 @@ export function Footer() {
 
           {/* Legal links */}
           <div>
-            <h4 className="mb-4 font-semibold text-sm">Legal</h4>
+            <h4 className="mb-4 text-sm font-semibold">Legal</h4>
             <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     {link.label}
                   </a>

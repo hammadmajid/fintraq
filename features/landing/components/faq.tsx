@@ -47,10 +47,16 @@ export function FAQ() {
   return (
     <section id="faqs" className="w-full py-24">
       <div className="mb-12 text-center">
-        <h2 className="mb-4 text-3xl font-bold md:text-4xl">Frequently Asked Questions</h2>
-         <p className="text-lg text-muted-foreground">
-           Have questions? We have answers. Can&apos;t find what you&apos;re looking for?{" "}
-          <a href="mailto:support@fintraq.com" className="font-medium text-primary hover:underline">
+        <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+          Frequently Asked Questions
+        </h2>
+        <p className="text-lg text-muted-foreground">
+          Have questions? We have answers. Can&apos;t find what you&apos;re
+          looking for?{" "}
+          <a
+            href="mailto:support@fintraq.com"
+            className="font-medium text-primary hover:underline"
+          >
             Contact our support team
           </a>
           .
@@ -62,7 +68,9 @@ export function FAQ() {
             <AccordionTrigger className="text-left text-base font-medium hover:text-primary">
               {question}
             </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground">{answer}</AccordionContent>
+            <AccordionContent className="text-muted-foreground">
+              {answer}
+            </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>

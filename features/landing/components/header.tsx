@@ -39,12 +39,12 @@ export function Header() {
         <nav className="flex items-center justify-between">
           <FintraqLogo />
 
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden items-center gap-1 lg:flex">
             {links.map((link) => (
-              <Button 
+              <Button
                 key={link.text}
-                variant="ghost" 
-                size="sm" 
+                variant="ghost"
+                size="sm"
                 render={<Link href={link.href} />}
                 className="text-sm font-medium"
               >
@@ -62,10 +62,7 @@ export function Header() {
             >
               Sign In
             </Button>
-            <Button
-              size="sm"
-              render={<Link href="/signup" />}
-            >
+            <Button size="sm" render={<Link href="/signup" />}>
               Get Started
             </Button>
 
@@ -85,13 +82,16 @@ export function Header() {
                       {links.map((link) => {
                         return (
                           <li key={link.text} className="w-full">
-                            <Button className="w-full justify-start p-0" variant="ghost">
+                            <Button
+                              className="w-full justify-start p-0"
+                              variant="ghost"
+                            >
                               <Link href={link.href}>{link.text}</Link>
                             </Button>
                           </li>
                         )
                       })}
-                      <li className="w-full border-t pt-4 mt-4">
+                      <li className="mt-4 w-full border-t pt-4">
                         <Button
                           className="w-full"
                           variant="outline"
@@ -102,7 +102,7 @@ export function Header() {
                       </li>
                       <li className="w-full">
                         <Button
-                          className="w-full mt-2"
+                          className="mt-2 w-full"
                           render={<Link href="/signup" />}
                         >
                           Get Started
