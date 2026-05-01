@@ -1,5 +1,3 @@
-import { Footer } from "@/features/landing/components/footer"
-import { Header } from "@/features/landing/components/header"
 import { FAQ } from "@/features/landing/components/faq"
 import { FeaturesSection } from "@/features/landing/components/features-section"
 import { HeroSection } from "@/features/landing/components/hero-section"
@@ -38,7 +36,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Header />
       <main className="w-full">
         <HeroSection />
 
@@ -72,7 +69,6 @@ export default function Page() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   )
 }
