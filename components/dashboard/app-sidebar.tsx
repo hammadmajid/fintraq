@@ -93,7 +93,7 @@ export function AppSidebar() {
 
   const handleSignOut = async () => {
     await signOut()
-    router.push("/signin")
+    router.push("/login")
   }
 
   const toggleTheme = () => {
