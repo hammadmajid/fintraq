@@ -23,18 +23,39 @@ import {
   FieldError,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { signIn } from "@/lib/auth-client"
-import { loginSchema, type LoginFormData } from "@/lib/schemas/auth"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import { signIn, authClient } from "@/lib/auth-client"
+import {
+  loginSchema,
+  type LoginFormData,
+  forgotPasswordSchema,
+  type ForgotPasswordFormData,
+} from "@/lib/schemas/auth"
 
 export default function LoginPage() {
   const router = useRouter()
   const [error, setError] = React.useState<string | null>(null)
+  const [forgotPasswordOpen, setForgotPasswordOpen] = React.useState(false)
+  const [resetEmailSent, setResetEmailSent] = React.useState(false)
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
+    },
+  })
+
+  const forgotPasswordForm = useForm<ForgotPasswordFormData>({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: "",
     },
   })
 
@@ -59,6 +80,29 @@ export default function LoginPage() {
     } catch (err) {
       setError("Unable to sign in right now.")
     }
+  }
+
+  const onForgotPasswordSubmit = async (data: ForgotPasswordFormData) => {
+    try {
+      const result = await authClient.requestPasswordReset({
+        email: data.email,
+        redirectTo: `${window.location.origin}/reset-password`,
+      })
+
+      // Show success message regardless of whether email exists (generic message for security)
+      setResetEmailSent(true)
+      forgotPasswordForm.reset()
+    } catch (err) {
+      console.error("Error requesting password reset:", err)
+      // Still show success message for security
+      setResetEmailSent(true)
+      forgotPasswordForm.reset()
+    }
+  }
+
+  const handleCloseForgotPassword = () => {
+    setForgotPasswordOpen(false)
+    setResetEmailSent(false)
   }
 
   return (
@@ -101,7 +145,16 @@ export default function LoginPage() {
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor="password">Password</FieldLabel>
+                    <div className="flex items-center justify-between">
+                      <FieldLabel htmlFor="password">Password</FieldLabel>
+                      <button
+                        type="button"
+                        onClick={() => setForgotPasswordOpen(true)}
+                        className={buttonVariants({ variant: "link" })}
+                      >
+                        Forgot?
+                      </button>
+                    </div>
                     <Input
                       {...field}
                       id="password"
@@ -134,6 +187,63 @@ export default function LoginPage() {
           </Link>
         </CardFooter>
       </Card>
+
+      <Dialog
+        open={forgotPasswordOpen}
+        onOpenChange={handleCloseForgotPassword}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Reset your password</DialogTitle>
+            <DialogDescription>
+              {resetEmailSent
+                ? "Check your email for password reset instructions"
+                : "Enter your email address and we'll send you a link to reset your password."}
+            </DialogDescription>
+          </DialogHeader>
+
+          {!resetEmailSent ? (
+            <form
+              className="flex flex-col gap-4"
+              onSubmit={forgotPasswordForm.handleSubmit(onForgotPasswordSubmit)}
+            >
+              <Controller
+                name="email"
+                control={forgotPasswordForm.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="reset-email">Email</FieldLabel>
+                    <Input
+                      {...field}
+                      id="reset-email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="you@studio.com"
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Button
+                type="submit"
+                disabled={forgotPasswordForm.formState.isSubmitting}
+              >
+                {forgotPasswordForm.formState.isSubmitting
+                  ? "Sending..."
+                  : "Send reset link"}
+              </Button>
+            </form>
+          ) : (
+            <div className="text-center text-sm text-muted-foreground">
+              If an account exists with this email address, you will receive a
+              password reset link shortly.
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
