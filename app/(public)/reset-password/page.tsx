@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -27,7 +28,7 @@ import {
   type ResetPasswordFormData,
 } from "@/lib/schemas/auth"
 
-export default function ResetPasswordPage() {
+function ResetPasswordForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [error, setError] = React.useState<string | null>(null)
@@ -184,5 +185,23 @@ export default function ResetPasswordPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen">
+          <Card className="mx-auto mt-22 max-w-lg">
+            <CardHeader>
+              <CardTitle>Loading...</CardTitle>
+            </CardHeader>
+          </Card>
+        </div>
+      }
+    >
+      <ResetPasswordForm />
+    </Suspense>
   )
 }
