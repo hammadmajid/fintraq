@@ -22,9 +22,12 @@ import {
   Users,
   BarChart3,
   WalletCards,
+  Moon,
+  Sun,
+  Settings,
 } from "lucide-react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useSession, signOut } from "@/lib/auth-client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -33,6 +36,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useTheme } from "next-themes"
 
 const items = [
   {
@@ -74,7 +78,9 @@ const items = [
 
 export function AppSidebar() {
   const pathname = usePathname()
+  const router = useRouter()
   const { data: session } = useSession()
+  const { theme, setTheme } = useTheme()
 
   const user = session?.user
   const initials = user?.name
@@ -84,6 +90,15 @@ export function AppSidebar() {
         .join("")
         .toUpperCase()
     : (user?.email?.[0]?.toUpperCase() ?? "U")
+
+  const handleSignOut = async () => {
+    await signOut()
+    router.push("/signin")
+  }
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark")
+  }
 
   return (
     <Sidebar collapsible="icon">
@@ -150,11 +165,24 @@ export function AppSidebar() {
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuItem
-                  onSelect={async () => {
-                    await signOut()
-                  }}
-                >
+                <DropdownMenuItem onClick={() => router.push("/settings")}>
+                  <Settings className="size-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={toggleTheme}>
+                  {theme === "dark" ? (
+                    <>
+                      <Sun className="size-4" />
+                      <span>Light theme</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="size-4" />
+                      <span>Dark theme</span>
+                    </>
+                  )}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut}>
                   <LogOut className="size-4" />
                   <span>Sign out</span>
                 </DropdownMenuItem>
