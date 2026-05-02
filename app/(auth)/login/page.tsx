@@ -3,6 +3,8 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { Controller, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -14,35 +16,37 @@ import {
   CardFooter,
   CardTitle,
 } from "@/components/ui/card"
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
+import {
+  Field,
+  FieldGroup,
+  FieldLabel,
+  FieldError,
+} from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { signIn } from "@/lib/auth-client"
+import { loginSchema, type LoginFormData } from "@/lib/schemas/auth"
 
 export default function LoginPage() {
   const router = useRouter()
   const [error, setError] = React.useState<string | null>(null)
-  const [isSubmitting, setIsSubmitting] = React.useState(false)
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const form = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  })
+
+  const onSubmit = async (data: LoginFormData) => {
     setError(null)
 
-    const formData = new FormData(event.currentTarget)
-    const email = String(formData.get("email") ?? "").trim()
-    const password = String(formData.get("password") ?? "")
-
-    if (!email || !password) {
-      setError("Email and password are required.")
-      return
-    }
-
-    setIsSubmitting(true)
     const callbackURL = `${window.location.origin}/`
 
     try {
       const { error: signInError } = await signIn.email({
-        email,
-        password,
+        email: data.email,
+        password: data.password,
         callbackURL,
       })
 
@@ -54,8 +58,6 @@ export default function LoginPage() {
       router.push("/")
     } catch (err) {
       setError("Unable to sign in right now.")
-    } finally {
-      setIsSubmitting(false)
     }
   }
 
@@ -69,29 +71,50 @@ export default function LoginPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+          <form
+            className="flex flex-col gap-6"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
             <FieldGroup>
-              <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="you@studio.com"
-                  required
-                />
-              </Field>
-              <Field>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                />
-              </Field>
+              <Controller
+                name="email"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="email">Email</FieldLabel>
+                    <Input
+                      {...field}
+                      id="email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="you@studio.com"
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Controller
+                name="password"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="password">Password</FieldLabel>
+                    <Input
+                      {...field}
+                      id="password"
+                      type="password"
+                      autoComplete="current-password"
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
             </FieldGroup>
             {error ? (
               <Alert variant="destructive">
@@ -99,8 +122,8 @@ export default function LoginPage() {
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             ) : null}
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Signing in..." : "Sign in"}
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? "Signing in..." : "Sign in"}
             </Button>
           </form>
         </CardContent>
