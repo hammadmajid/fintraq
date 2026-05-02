@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from "motion/react"
 import { ArrowRight, TrendingUp } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
 
 export function HeroSection() {
@@ -64,13 +64,19 @@ export function HeroSection() {
         variants={itemVariants}
         className="flex flex-col gap-4 sm:flex-row sm:justify-center"
       >
-        <Button size="lg" className="gap-2" render={<Link href="/signup" />}>
+        <Link
+          href="/signup"
+          className={buttonVariants({ size: "lg" }) + " gap-2 flex items-center"}
+        >
           Start Free Trial
           <ArrowRight data-icon="inline-end" />
-        </Button>
-        <Button size="lg" variant="outline" render={<Link href="/login" />}>
+        </Link>
+        <Link
+          href="/login"
+          className={buttonVariants({ size: "lg", variant: "outline" })}
+        >
           Sign In
-        </Button>
+        </Link>
       </motion.div>
 
       <motion.div

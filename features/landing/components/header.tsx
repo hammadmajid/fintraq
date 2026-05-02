@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Sheet,
   SheetContent,
@@ -41,36 +41,33 @@ export function Header() {
 
           <div className="hidden items-center gap-1 lg:flex">
             {links.map((link) => (
-              <Button
+              <Link
                 key={link.text}
-                variant="ghost"
-                size="sm"
-                render={<Link href={link.href} />}
-                className="text-sm font-medium"
+                href={link.href}
+                className={buttonVariants({ variant: "ghost", size: "sm" }) + " text-sm font-medium"}
               >
                 {link.text}
-              </Button>
+              </Link>
             ))}
           </div>
 
           <div className="flex items-center gap-3">
-            <Button
-              variant="outline"
-              size="sm"
-              className="hidden sm:inline-flex"
-              render={<Link href="/login" />}
+            <Link
+              href="/login"
+              className={buttonVariants({ variant: "outline", size: "sm" }) + " hidden sm:inline-flex"}
             >
               Sign In
-            </Button>
-            <Button size="sm" render={<Link href="/signup" />}>
+            </Link>
+            <Link
+              href="/signup"
+              className={buttonVariants({ size: "sm" })}
+            >
               Get Started
-            </Button>
+            </Link>
 
             <Sheet>
-              <SheetTrigger className="lg:hidden">
-                <Button variant="ghost" size="icon">
-                  <Menu />
-                </Button>
+              <SheetTrigger className={buttonVariants({ variant: "ghost", size: "icon" }) + " lg:hidden"}>
+                <Menu />
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>
@@ -79,35 +76,34 @@ export function Header() {
                   </SheetTitle>
                   <SheetDescription>
                     <ul className="flex flex-col items-start gap-2 pt-6">
-                      {links.map((link) => {
-                        return (
-                          <li key={link.text} className="w-full">
-                            <Button
-                              className="w-full justify-start p-0"
-                              variant="ghost"
-                            >
-                              <Link href={link.href}>{link.text}</Link>
-                            </Button>
-                          </li>
-                        )
-                      })}
-                      <li className="mt-4 w-full border-t pt-4">
-                        <Button
-                          className="w-full"
-                          variant="outline"
-                          render={<Link href="/login" />}
-                        >
-                          Sign In
-                        </Button>
-                      </li>
-                      <li className="w-full">
-                        <Button
-                          className="mt-2 w-full"
-                          render={<Link href="/signup" />}
-                        >
-                          Get Started
-                        </Button>
-                      </li>
+                       {links.map((link) => {
+                         return (
+                           <li key={link.text} className="w-full">
+                             <Link
+                               href={link.href}
+                               className={buttonVariants({ variant: "ghost" }) + " w-full justify-start p-0"}
+                             >
+                               {link.text}
+                             </Link>
+                           </li>
+                         )
+                       })}
+                       <li className="mt-4 w-full border-t pt-4">
+                         <Link
+                           href="/login"
+                           className={buttonVariants({ variant: "outline" }) + " w-full block"}
+                         >
+                           Sign In
+                         </Link>
+                       </li>
+                       <li className="w-full">
+                         <Link
+                           href="/signup"
+                           className={buttonVariants() + " mt-2 w-full block"}
+                         >
+                           Get Started
+                         </Link>
+                       </li>
                     </ul>
                   </SheetDescription>
                 </SheetHeader>

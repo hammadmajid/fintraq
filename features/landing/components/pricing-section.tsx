@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Switch } from "@/components/ui/switch"
 import { Check } from "lucide-react"
@@ -128,20 +128,17 @@ export function PricingSection() {
                 )}
               </div>
 
-              <Button
-                size="lg"
-                className="w-full"
-                variant={plan.popular ? "default" : "outline"}
-                render={
-                  <Link
-                    href={plan.monthlyPrice === 0 ? "/signup" : "/signup"}
-                  />
-                }
+              <Link
+                href={plan.monthlyPrice === 0 ? "/signup" : "/signup"}
+                className={buttonVariants({
+                  size: "lg",
+                  variant: plan.popular ? "default" : "outline",
+                }) + " w-full"}
               >
                 {plan.monthlyPrice === 0
                   ? "Get Started Free"
                   : "Start Free Trial"}
-              </Button>
+              </Link>
 
               <ul className="flex flex-1 flex-col gap-3">
                 {plan.features.map((feature, featureIndex) => (
@@ -164,12 +161,12 @@ export function PricingSection() {
           For specific requirements or team collaboration needs, let&apos;s chat
           about what works best for you.
         </p>
-        <Button
-          variant="outline"
-          render={<a href="mailto:hello@fintraq.tech" />}
+        <a
+          href="mailto:hello@fintraq.tech"
+          className={buttonVariants({ variant: "outline" })}
         >
           Contact Us
-        </Button>
+        </a>
       </div>
     </section>
   )

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
@@ -15,13 +15,19 @@ export function CTASection() {
         </p>
 
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-          <Button size="lg" className="gap-2" render={<Link href="/signup" />}>
+          <Link
+            href="/signup"
+            className={buttonVariants({ size: "lg" }) + " gap-2 flex items-center justify-center"}
+          >
             Start Free Trial
             <ArrowRight data-icon="inline-end" />
-          </Button>
-          <Button size="lg" variant="outline" render={<Link href="/login" />}>
+          </Link>
+          <Link
+            href="/login"
+            className={buttonVariants({ size: "lg", variant: "outline" })}
+          >
             Already have an account?
-          </Button>
+          </Link>
         </div>
 
         <p className="mt-8 text-sm text-muted-foreground">
