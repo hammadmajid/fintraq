@@ -17,7 +17,10 @@ export function CTASection() {
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
           <Link
             href="/signup"
-            className={buttonVariants({ size: "lg" }) + " gap-2 flex items-center justify-center"}
+            className={
+              buttonVariants({ size: "lg" }) +
+              " flex items-center justify-center gap-2"
+            }
           >
             Start Free Trial
             <ArrowRight data-icon="inline-end" />

@@ -17,9 +17,7 @@ export async function proxy(request: NextRequest) {
   const protectedRoutes = ["/dashboard"]
 
   // Check if current route matches any group
-  const isPublicRoute = publicRoutes.some((route) =>
-    pathname.startsWith(route)
-  )
+  const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route))
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route))
   const isProtectedRoute = protectedRoutes.some((route) =>
     pathname.startsWith(route)

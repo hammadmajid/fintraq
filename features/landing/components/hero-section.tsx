@@ -66,7 +66,9 @@ export function HeroSection() {
       >
         <Link
           href="/signup"
-          className={buttonVariants({ size: "lg" }) + " gap-2 flex items-center"}
+          className={
+            buttonVariants({ size: "lg" }) + " flex items-center gap-2"
+          }
         >
           Start Free Trial
           <ArrowRight data-icon="inline-end" />

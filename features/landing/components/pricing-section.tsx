@@ -130,10 +130,12 @@ export function PricingSection() {
 
               <Link
                 href={plan.monthlyPrice === 0 ? "/signup" : "/signup"}
-                className={buttonVariants({
-                  size: "lg",
-                  variant: plan.popular ? "default" : "outline",
-                }) + " w-full"}
+                className={
+                  buttonVariants({
+                    size: "lg",
+                    variant: plan.popular ? "default" : "outline",
+                  }) + " w-full"
+                }
               >
                 {plan.monthlyPrice === 0
                   ? "Get Started Free"

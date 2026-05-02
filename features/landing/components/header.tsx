@@ -44,7 +44,10 @@ export function Header() {
               <Link
                 key={link.text}
                 href={link.href}
-                className={buttonVariants({ variant: "ghost", size: "sm" }) + " text-sm font-medium"}
+                className={
+                  buttonVariants({ variant: "ghost", size: "sm" }) +
+                  " text-sm font-medium"
+                }
               >
                 {link.text}
               </Link>
@@ -54,19 +57,24 @@ export function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className={buttonVariants({ variant: "outline", size: "sm" }) + " hidden sm:inline-flex"}
+              className={
+                buttonVariants({ variant: "outline", size: "sm" }) +
+                " hidden sm:inline-flex"
+              }
             >
               Sign In
             </Link>
-            <Link
-              href="/signup"
-              className={buttonVariants({ size: "sm" })}
-            >
+            <Link href="/signup" className={buttonVariants({ size: "sm" })}>
               Get Started
             </Link>
 
             <Sheet>
-              <SheetTrigger className={buttonVariants({ variant: "ghost", size: "icon" }) + " lg:hidden"}>
+              <SheetTrigger
+                className={
+                  buttonVariants({ variant: "ghost", size: "icon" }) +
+                  " lg:hidden"
+                }
+              >
                 <Menu />
               </SheetTrigger>
               <SheetContent>
@@ -76,34 +84,40 @@ export function Header() {
                   </SheetTitle>
                   <SheetDescription>
                     <ul className="flex flex-col items-start gap-2 pt-6">
-                       {links.map((link) => {
-                         return (
-                           <li key={link.text} className="w-full">
-                             <Link
-                               href={link.href}
-                               className={buttonVariants({ variant: "ghost" }) + " w-full justify-start p-0"}
-                             >
-                               {link.text}
-                             </Link>
-                           </li>
-                         )
-                       })}
-                       <li className="mt-4 w-full border-t pt-4">
-                         <Link
-                           href="/login"
-                           className={buttonVariants({ variant: "outline" }) + " w-full block"}
-                         >
-                           Sign In
-                         </Link>
-                       </li>
-                       <li className="w-full">
-                         <Link
-                           href="/signup"
-                           className={buttonVariants() + " mt-2 w-full block"}
-                         >
-                           Get Started
-                         </Link>
-                       </li>
+                      {links.map((link) => {
+                        return (
+                          <li key={link.text} className="w-full">
+                            <Link
+                              href={link.href}
+                              className={
+                                buttonVariants({ variant: "ghost" }) +
+                                " w-full justify-start p-0"
+                              }
+                            >
+                              {link.text}
+                            </Link>
+                          </li>
+                        )
+                      })}
+                      <li className="mt-4 w-full border-t pt-4">
+                        <Link
+                          href="/login"
+                          className={
+                            buttonVariants({ variant: "outline" }) +
+                            " block w-full"
+                          }
+                        >
+                          Sign In
+                        </Link>
+                      </li>
+                      <li className="w-full">
+                        <Link
+                          href="/signup"
+                          className={buttonVariants() + " mt-2 block w-full"}
+                        >
+                          Get Started
+                        </Link>
+                      </li>
                     </ul>
                   </SheetDescription>
                 </SheetHeader>
