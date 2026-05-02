@@ -55,7 +55,7 @@ export default function LoginPage() {
         return
       }
 
-      router.push("/")
+      router.push("/dasboard")
     } catch (err) {
       setError("Unable to sign in right now.")
     }
