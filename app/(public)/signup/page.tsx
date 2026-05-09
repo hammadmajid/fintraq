@@ -42,7 +42,7 @@ export default function SignupPage() {
   const onSubmit = async (data: SignupFormData) => {
     setError(null)
 
-    const callbackURL = `${window.location.origin}/`
+    const callbackURL = `${window.location.origin}/dashboard`
 
     try {
       const { error: signUpError } = await signUp.email({

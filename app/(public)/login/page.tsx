@@ -62,7 +62,7 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     setError(null)
 
-    const callbackURL = `${window.location.origin}/`
+    const callbackURL = `${window.location.origin}/dashboard`
 
     try {
       const { error: signInError } = await signIn.email({
