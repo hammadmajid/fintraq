@@ -1,12 +1,23 @@
-import { UnderConstruction } from "@/components/under-construction"
-import { Landmark } from "lucide-react"
+import { getAccountsByUserId } from "@/features/accounts/actions"
+import { getServerSession } from "@/lib/auth-helpers"
+import { AccountsPageClient } from "@/features/accounts/components/account-page"
 
-export default function AccountsPage() {
+// Server component wrapper
+export default async function AccountsPage() {
+  const session = await getServerSession()
+
+  if (!session?.user?.id) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-muted-foreground">Please log in to view accounts</p>
+      </div>
+    )
+  }
+
+  const result = await getAccountsByUserId(session.user.id)
+  const initialAccounts = result.success ? result.data ?? [] : []
+
   return (
-    <UnderConstruction
-      title="Accounts"
-      description="Manage your bank accounts, savings, investments, and other financial accounts. Monitor balances and account details in one place."
-      icon={Landmark}
-    />
+    <AccountsPageClient initialAccounts={initialAccounts} userId={session.user.id} />
   )
 }
