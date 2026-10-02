@@ -1,7 +1,8 @@
 "use client"
 
+import { InteractiveDashboard } from "@/components/landing/interactive-dashboard"
+
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 
 const reviews = [
@@ -111,20 +112,7 @@ export default function OperatorSignalPage() {
             </p>
           </div>
 
-          <div className="screenshot-frame mb-12">
-            <div className="frame-bar">
-              <span>● ● ●</span>
-              <b>FINTRAQ // OPERATOR_ACCOUNTS_MATRIX</b>
-              <span>SIGNAL_TELEMETRY // 01/02</span>
-            </div>
-            <Image
-              src="/fintraq-accounts-lime.png"
-              alt="FinTraq Operator Accounts Matrix screenshot"
-              width={1600}
-              height={980}
-              className="dashboard-screenshot"
-            />
-          </div>
+          <InteractiveDashboard initialView="accounts" className="mb-12" />
           <div className="screenshot-caption">
             <span>FIG. 01 — OPERATOR VAULT DIRECTORY & LIQUIDITY STREAM</span>
             <span>
@@ -153,20 +141,7 @@ export default function OperatorSignalPage() {
               </p>
             </div>
 
-            <div className="screenshot-frame">
-              <div className="frame-bar">
-                <span>● ● ●</span>
-                <b>FINTRAQ // OVERVIEW_LIVE_TELEMETRY</b>
-                <span>SIGNAL_TELEMETRY // 02/02</span>
-              </div>
-              <Image
-                src="/fintraq-overview-lime.png"
-                alt="FinTraq Financial Overview and Live Ledger screenshot"
-                width={1600}
-                height={980}
-                className="dashboard-screenshot"
-              />
-            </div>
+            <InteractiveDashboard initialView="overview" />
             <div className="screenshot-caption">
               <span>FIG. 02 — LIVE LEDGER & INFLOW VELOCITY</span>
               <span>

@@ -1,7 +1,8 @@
 "use client"
 
+import { InteractiveDashboard } from "@/components/landing/interactive-dashboard"
+
 import Link from "next/link"
-import Image from "next/image"
 import {
   ArrowUpRight,
   FileText,
@@ -118,20 +119,7 @@ export default function CapabilitiesPage() {
             </p>
           </div>
 
-          <div className="screenshot-frame mb-12">
-            <div className="frame-bar">
-              <span>● ● ●</span>
-              <b>FINTRAQ // INVOICING_FORGE</b>
-              <span>CAPABILITIES_TELEMETRY // 01/02</span>
-            </div>
-            <Image
-              src="/fintraq-invoices-lime.png"
-              alt="FinTraq Invoicing Forge capabilities screenshot"
-              width={1600}
-              height={980}
-              className="dashboard-screenshot"
-            />
-          </div>
+          <InteractiveDashboard initialView="invoices" className="mb-12" />
           <div className="screenshot-caption">
             <span>FIG. 01 — INVOICING FORGE & PAYMENT STATE PIPELINE</span>
             <span>
@@ -158,20 +146,7 @@ export default function CapabilitiesPage() {
               </p>
             </div>
 
-            <div className="screenshot-frame">
-              <div className="frame-bar">
-                <span>● ● ●</span>
-                <b>FINTRAQ // ACCOUNTS_MATRIX_DIRECTORY</b>
-                <span>CAPABILITIES_TELEMETRY // 02/02</span>
-              </div>
-              <Image
-                src="/fintraq-accounts-lime.png"
-                alt="FinTraq Accounts Matrix capabilities screenshot"
-                width={1600}
-                height={980}
-                className="dashboard-screenshot"
-              />
-            </div>
+            <InteractiveDashboard initialView="accounts" />
             <div className="screenshot-caption">
               <span>FIG. 02 — ACCOUNTS MATRIX & VAULT ALLOCATION</span>
               <span>

@@ -1,8 +1,9 @@
 "use client"
 
+import { InteractiveDashboard } from "@/components/landing/interactive-dashboard"
+
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import {
   ArrowUpRight,
   Check,
@@ -161,20 +162,7 @@ export default function TaxShieldPage() {
             </p>
           </div>
 
-          <div className="screenshot-frame mb-12">
-            <div className="frame-bar">
-              <span>● ● ●</span>
-              <b>FINTRAQ // TAX_RESERVES_AND_BUDGET_MATRIX</b>
-              <span>VAULT_TELEMETRY // 01/02</span>
-            </div>
-            <Image
-              src="/fintraq-budgets-lime.png"
-              alt="FinTraq Budgets and Tax Reserves screenshot"
-              width={1600}
-              height={980}
-              className="dashboard-screenshot"
-            />
-          </div>
+          <InteractiveDashboard initialView="budgets" className="mb-12" />
           <div className="screenshot-caption">
             <span>FIG. 01 — DYNAMIC TAX RESERVE & BUDGET SHIELD</span>
             <span>
@@ -202,20 +190,7 @@ export default function TaxShieldPage() {
               </p>
             </div>
 
-            <div className="screenshot-frame">
-              <div className="frame-bar">
-                <span>● ● ●</span>
-                <b>FINTRAQ // CASHFLOW_LEDGER_OVERVIEW</b>
-                <span>VAULT_TELEMETRY // 02/02</span>
-              </div>
-              <Image
-                src="/fintraq-overview-lime.png"
-                alt="FinTraq Financial Overview screenshot"
-                width={1600}
-                height={980}
-                className="dashboard-screenshot"
-              />
-            </div>
+            <InteractiveDashboard initialView="overview" />
             <div className="screenshot-caption">
               <span>FIG. 02 — OVERVIEW TELEMETRY & TAX GAUGE</span>
               <span>
