@@ -8,16 +8,19 @@ export default async function AccountsPage() {
 
   if (!session?.user?.id) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex min-h-screen items-center justify-center">
         <p className="text-muted-foreground">Please log in to view accounts</p>
       </div>
     )
   }
 
   const result = await getAccountsByUserId(session.user.id)
-  const initialAccounts = result.success ? result.data ?? [] : []
+  const initialAccounts = result.success ? (result.data ?? []) : []
 
   return (
-    <AccountsPageClient initialAccounts={initialAccounts} userId={session.user.id} />
+    <AccountsPageClient
+      initialAccounts={initialAccounts}
+      userId={session.user.id}
+    />
   )
 }

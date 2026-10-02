@@ -110,12 +110,8 @@
           "name": "account_user_id_user_id_fk",
           "tableFrom": "account",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -202,12 +198,8 @@
           "name": "session_user_id_user_id_fk",
           "tableFrom": "session",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -217,9 +209,7 @@
         "session_token_unique": {
           "name": "session_token_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "token"
-          ]
+          "columns": ["token"]
         }
       },
       "policies": {},
@@ -283,9 +273,7 @@
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
@@ -414,12 +402,8 @@
           "name": "bank_account_userId_user_id_fk",
           "tableFrom": "bank_account",
           "tableTo": "user",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -466,12 +450,8 @@
           "name": "preference_userId_user_id_fk",
           "tableFrom": "preference",
           "tableTo": "user",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -479,12 +459,8 @@
           "name": "preference_defaultAccount_bank_account_id_fk",
           "tableFrom": "preference",
           "tableTo": "bank_account",
-          "columnsFrom": [
-            "defaultAccount"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["defaultAccount"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -565,12 +541,8 @@
           "name": "records_userId_user_id_fk",
           "tableFrom": "records",
           "tableTo": "user",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -578,12 +550,8 @@
           "name": "records_bank_account_bank_account_id_fk",
           "tableFrom": "records",
           "tableTo": "bank_account",
-          "columnsFrom": [
-            "bank_account"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["bank_account"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -655,12 +623,8 @@
           "name": "budgets_userId_user_id_fk",
           "tableFrom": "budgets",
           "tableTo": "user",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -668,12 +632,8 @@
           "name": "budgets_bank_account_bank_account_id_fk",
           "tableFrom": "budgets",
           "tableTo": "bank_account",
-          "columnsFrom": [
-            "bank_account"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["bank_account"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -775,12 +735,8 @@
           "name": "clients_userId_user_id_fk",
           "tableFrom": "clients",
           "tableTo": "user",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -899,12 +855,8 @@
           "name": "invoices_userId_user_id_fk",
           "tableFrom": "invoices",
           "tableTo": "user",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -912,12 +864,8 @@
           "name": "invoices_clientId_clients_id_fk",
           "tableFrom": "invoices",
           "tableTo": "clients",
-          "columnsFrom": [
-            "clientId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["clientId"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         },
@@ -925,12 +873,8 @@
           "name": "invoices_bankAccountId_bank_account_id_fk",
           "tableFrom": "invoices",
           "tableTo": "bank_account",
-          "columnsFrom": [
-            "bankAccountId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["bankAccountId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -1000,32 +944,17 @@
     "public.record_status": {
       "name": "record_status",
       "schema": "public",
-      "values": [
-        "Pending",
-        "Completed",
-        "Failed"
-      ]
+      "values": ["Pending", "Completed", "Failed"]
     },
     "public.record_type": {
       "name": "record_type",
       "schema": "public",
-      "values": [
-        "Income",
-        "Expense",
-        "Transfer In",
-        "Transfer Out"
-      ]
+      "values": ["Income", "Expense", "Transfer In", "Transfer Out"]
     },
     "public.invoice_status": {
       "name": "invoice_status",
       "schema": "public",
-      "values": [
-        "Draft",
-        "Sent",
-        "Paid",
-        "Overdue",
-        "Cancelled"
-      ]
+      "values": ["Draft", "Sent", "Paid", "Overdue", "Cancelled"]
     }
   },
   "schemas": {},

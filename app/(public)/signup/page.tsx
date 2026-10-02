@@ -58,14 +58,14 @@ export default function SignupPage() {
       }
 
       router.push("/dashboard")
-    } catch (err) {
+    } catch {
       setError("Unable to create an account right now.")
     }
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto grid min-h-screen max-w-xl grid-cols-1 items-center gap-10 px-6 py-12">
+    <div className="flex min-h-screen items-center justify-center pt-28 pb-16">
+      <div className="container mx-auto max-w-xl px-6">
         <Card>
           <CardHeader>
             <CardTitle>Create your account</CardTitle>

@@ -85,7 +85,7 @@ export function AccountFormDialog({
       title: "",
       description: "",
       icon: "Wallet",
-      color: "#3b82f6",
+      color: "#b8ff2c",
       type: "Checking",
     },
   })
@@ -105,7 +105,7 @@ export function AccountFormDialog({
         title: "",
         description: "",
         icon: "Wallet",
-        color: "#3b82f6",
+        color: "#b8ff2c",
         type: "Checking",
       })
     }
@@ -206,10 +206,7 @@ export function AccountFormDialog({
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel htmlFor="icon">Icon</FieldLabel>
-                    <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
-                    >
+                    <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger
                         id="icon"
                         aria-invalid={fieldState.invalid}
@@ -237,10 +234,7 @@ export function AccountFormDialog({
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel htmlFor="type">Account Type</FieldLabel>
-                    <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
-                    >
+                    <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger
                         id="type"
                         aria-invalid={fieldState.invalid}
@@ -274,12 +268,12 @@ export function AccountFormDialog({
                       {...field}
                       id="color"
                       type="color"
-                      className="w-16 h-10 p-1 cursor-pointer"
+                      className="h-10 w-16 cursor-pointer p-1"
                       aria-invalid={fieldState.invalid}
                     />
                     <Input
                       {...field}
-                      placeholder="#3b82f6"
+                      placeholder="#b8ff2c"
                       className="flex-1"
                       aria-invalid={fieldState.invalid}
                     />
@@ -302,7 +296,7 @@ export function AccountFormDialog({
             </Alert>
           )}
 
-          <div className="flex gap-2 justify-end pt-4">
+          <div className="flex justify-end gap-2 pt-4">
             <Button
               type="button"
               variant="outline"

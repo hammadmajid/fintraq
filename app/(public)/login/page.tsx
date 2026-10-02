@@ -77,14 +77,14 @@ export default function LoginPage() {
       }
 
       router.push("/dashboard")
-    } catch (err) {
+    } catch {
       setError("Unable to sign in right now.")
     }
   }
 
   const onForgotPasswordSubmit = async (data: ForgotPasswordFormData) => {
     try {
-      const result = await authClient.requestPasswordReset({
+      await authClient.requestPasswordReset({
         email: data.email,
         redirectTo: `${window.location.origin}/reset-password`,
       })
@@ -106,87 +106,92 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen">
-      <Card className="mx-auto mt-22 max-w-lg">
-        <CardHeader>
-          <CardTitle>Sign in</CardTitle>
-          <CardDescription>
-            Use your email and password to access your workspace.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form
-            className="flex flex-col gap-6"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
-            <FieldGroup>
-              <Controller
-                name="email"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor="email">Email</FieldLabel>
-                    <Input
-                      {...field}
-                      id="email"
-                      type="email"
-                      autoComplete="email"
-                      placeholder="you@studio.com"
-                      aria-invalid={fieldState.invalid}
-                    />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-              <Controller
-                name="password"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <div className="flex items-center justify-between">
-                      <FieldLabel htmlFor="password">Password</FieldLabel>
-                      <button
-                        type="button"
-                        onClick={() => setForgotPasswordOpen(true)}
-                        className={buttonVariants({ variant: "link" })}
-                      >
-                        Forgot?
-                      </button>
-                    </div>
-                    <Input
-                      {...field}
-                      id="password"
-                      type="password"
-                      autoComplete="current-password"
-                      aria-invalid={fieldState.invalid}
-                    />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-            </FieldGroup>
-            {error ? (
-              <Alert variant="destructive">
-                <AlertTitle>Sign in failed</AlertTitle>
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            ) : null}
-            <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? "Signing in..." : "Sign in"}
-            </Button>
-          </form>
-        </CardContent>
-        <CardFooter className="justify-center">
-          Don't have an account?
-          <Link className={buttonVariants({ variant: "link" })} href="/signup">
-            Get started
-          </Link>
-        </CardFooter>
-      </Card>
+    <div className="flex min-h-screen items-center justify-center pt-28 pb-16">
+      <div className="container mx-auto max-w-lg px-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Sign in</CardTitle>
+            <CardDescription>
+              Use your email and password to access your workspace.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form
+              className="flex flex-col gap-6"
+              onSubmit={form.handleSubmit(onSubmit)}
+            >
+              <FieldGroup>
+                <Controller
+                  name="email"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <FieldLabel htmlFor="email">Email</FieldLabel>
+                      <Input
+                        {...field}
+                        id="email"
+                        type="email"
+                        autoComplete="email"
+                        placeholder="you@studio.com"
+                        aria-invalid={fieldState.invalid}
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+                <Controller
+                  name="password"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <div className="flex items-center justify-between">
+                        <FieldLabel htmlFor="password">Password</FieldLabel>
+                        <button
+                          type="button"
+                          onClick={() => setForgotPasswordOpen(true)}
+                          className={buttonVariants({ variant: "link" })}
+                        >
+                          Forgot?
+                        </button>
+                      </div>
+                      <Input
+                        {...field}
+                        id="password"
+                        type="password"
+                        autoComplete="current-password"
+                        aria-invalid={fieldState.invalid}
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+              </FieldGroup>
+              {error ? (
+                <Alert variant="destructive">
+                  <AlertTitle>Sign in failed</AlertTitle>
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              ) : null}
+              <Button type="submit" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting ? "Signing in..." : "Sign in"}
+              </Button>
+            </form>
+          </CardContent>
+          <CardFooter className="justify-center">
+            Don&apos;t have an account?
+            <Link
+              className={buttonVariants({ variant: "link" })}
+              href="/signup"
+            >
+              Get started
+            </Link>
+          </CardFooter>
+        </Card>
+      </div>
 
       <Dialog
         open={forgotPasswordOpen}
