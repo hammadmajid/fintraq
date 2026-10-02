@@ -85,7 +85,7 @@ export function AccountFormDialog({
       title: "",
       description: "",
       icon: "Wallet",
-      color: "#3b82f6",
+      color: "#b8ff2c",
       type: "Checking",
     },
   })
@@ -105,7 +105,7 @@ export function AccountFormDialog({
         title: "",
         description: "",
         icon: "Wallet",
-        color: "#3b82f6",
+        color: "#b8ff2c",
         type: "Checking",
       })
     }
@@ -279,7 +279,7 @@ export function AccountFormDialog({
                     />
                     <Input
                       {...field}
-                      placeholder="#3b82f6"
+                      placeholder="#b8ff2c"
                       className="flex-1"
                       aria-invalid={fieldState.invalid}
                     />

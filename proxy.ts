@@ -12,16 +12,23 @@ export async function proxy(request: NextRequest) {
   const isAuthenticated = !!sessionResponse?.session
 
   // Define route groups
-  const publicRoutes = ["/"]
-  const authRoutes = ["/login", "/signup"]
-  const protectedRoutes = ["/dashboard"]
+  const authRoutes = ["/login", "/signup", "/reset-password"]
+  const protectedRoutes = [
+    "/dashboard",
+    "/accounts",
+    "/budgets",
+    "/clients",
+    "/invoices",
+    "/records",
+    "/reports",
+    "/settings",
+  ]
 
   // Check if current route matches any group
-  const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route))
-  const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route))
-  const isProtectedRoute = protectedRoutes.some((route) =>
-    pathname.startsWith(route)
-  )
+  const matchesRoute = (route: string) =>
+    pathname === route || pathname.startsWith(`${route}/`)
+  const isAuthRoute = authRoutes.some(matchesRoute)
+  const isProtectedRoute = protectedRoutes.some(matchesRoute)
   const isApiRoute = pathname.startsWith("/api")
 
   // Allow API routes to pass through
@@ -37,11 +44,6 @@ export async function proxy(request: NextRequest) {
   // Redirect unauthenticated users from protected routes to login
   if (!isAuthenticated && isProtectedRoute) {
     return NextResponse.redirect(new URL("/login", request.url))
-  }
-
-  // Redirect unauthenticated users from home to landing
-  if (!isAuthenticated && pathname === "/" && !isPublicRoute) {
-    return NextResponse.redirect(new URL("/", request.url))
   }
 
   // Allow all other requests

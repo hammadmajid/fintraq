@@ -1,198 +1,22 @@
 "use client"
 
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarRail,
-} from "@/components/ui/sidebar"
-import {
-  ArrowRightLeft,
-  FileText,
-  Home,
-  Landmark,
-  LogOut,
-  PiggyBank,
-  Users,
-  BarChart3,
-  WalletCards,
-  Moon,
-  Sun,
-  Settings,
-} from "lucide-react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useSession, signOut } from "@/lib/auth-client"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { useTheme } from "next-themes"
+import { ArrowRightLeft, BarChart3, FileText, Home, Landmark, LogOut, Moon, PiggyBank, Settings, Sun, Users } from "lucide-react"
 
 const items = [
-  {
-    title: "Dashboard",
-    url: "/dashboard",
-    icon: Home,
-  },
-  {
-    title: "Records",
-    url: "/records",
-    icon: ArrowRightLeft,
-  },
-  {
-    title: "Accounts",
-    url: "/accounts",
-    icon: Landmark,
-  },
-  {
-    title: "Budgets",
-    url: "/budgets",
-    icon: PiggyBank,
-  },
-  {
-    title: "Invoices",
-    url: "/invoices",
-    icon: FileText,
-  },
-  {
-    title: "Clients",
-    url: "/clients",
-    icon: Users,
-  },
-  {
-    title: "Reports",
-    url: "/reports",
-    icon: BarChart3,
-  },
-]
+  ["Dashboard", "/dashboard", Home], ["Records", "/records", ArrowRightLeft], ["Accounts", "/accounts", Landmark], ["Budgets", "/budgets", PiggyBank], ["Invoices", "/invoices", FileText], ["Clients", "/clients", Users], ["Reports", "/reports", BarChart3],
+] as const
 
 export function AppSidebar() {
   const pathname = usePathname()
   const router = useRouter()
   const { data: session } = useSession()
   const { theme, setTheme } = useTheme()
-
-  const user = session?.user
-  const initials = user?.name
-    ? user.name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-    : (user?.email?.[0]?.toUpperCase() ?? "U")
-
-  const handleSignOut = async () => {
-    await signOut()
-    router.push("/login")
-  }
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
-
-  return (
-    <Sidebar collapsible="icon">
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              render={<Link href="/dashboard" />}
-              className="gap-2"
-            >
-              <WalletCards className="size-5" />
-              <span className="font-semibold">Fintraq</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    render={<Link href={item.url} />}
-                    isActive={pathname === item.url}
-                  >
-                    <item.icon className="size-4" />
-                    <span>{item.title}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={
-                  <SidebarMenuButton
-                    size="lg"
-                    className="data-open:bg-sidebar-accent data-open:text-sidebar-accent-foreground"
-                  />
-                }
-              >
-                <Avatar className="size-8 rounded-lg">
-                  <AvatarImage
-                    src={user?.image || undefined}
-                    alt={user?.name || "User"}
-                  />
-                  <AvatarFallback className="rounded-lg bg-sidebar-accent text-sidebar-accent-foreground">
-                    {initials}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user?.name}</span>
-                  <span className="truncate text-xs text-muted-foreground">
-                    {user?.email}
-                  </span>
-                </div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuItem onClick={() => router.push("/settings")}>
-                  <Settings className="size-4" />
-                  <span>Settings</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={toggleTheme}>
-                  {theme === "dark" ? (
-                    <>
-                      <Sun className="size-4" />
-                      <span>Light theme</span>
-                    </>
-                  ) : (
-                    <>
-                      <Moon className="size-4" />
-                      <span>Dark theme</span>
-                    </>
-                  )}
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleSignOut}>
-                  <LogOut className="size-4" />
-                  <span>Sign out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
-
-      <SidebarRail />
-    </Sidebar>
-  )
+  const name = session?.user?.name || session?.user?.email || "Operator"
+  const initials = name.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()
+  const handleSignOut = async () => { await signOut(); router.push("/login") }
+  return <aside className="cyber-app-sidebar"><div className="app-sidebar-logo"><Link href="/dashboard"><span>✳</span> FINTRAQ<span>.</span></Link></div><p className="app-sidebar-label">COMMAND DECK</p><nav>{items.map(([label, href, Icon], index) => <Link key={href} href={href} className={pathname === href ? "active" : ""}><span className="app-nav-number">0{index + 1}</span><Icon size={15} />{label}</Link>)}</nav><p className="app-sidebar-label app-sidebar-spaced">SYSTEM</p><Link href="/settings" className={pathname === "/settings" ? "active" : ""}><span className="app-nav-number">08</span><Settings size={15} />Settings</Link><div className="app-sidebar-footer"><div className="app-user"><span>{initials}</span><div><b>{name}</b><small>OPERATOR // DEMO</small></div></div><div className="app-sidebar-actions"><button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} title="Toggle theme">{theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}</button><button type="button" onClick={handleSignOut} title="Sign out"><LogOut size={15} /></button></div></div></aside>
 }

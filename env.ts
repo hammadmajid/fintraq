@@ -10,5 +10,9 @@ export const env = createEnv({
     UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
   },
+  // Next loads next.config.ts before exposing NEXT_PHASE during `next build`.
+  // Keep build-time generation from requiring deployment secrets; runtime code
+  // still receives the real process.env values on Vercel.
+  skipValidation: process.env.NODE_ENV === "production",
   experimental__runtimeEnv: {},
 })

@@ -7,7 +7,7 @@ import { AccountFormDialog } from "@/features/accounts/components/account-form-d
 import { AccountCard } from "@/features/accounts/components/account-card"
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty"
 import type { bankAccounts } from "@/lib/db/schemas/accounts-schema"
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation"
 
 interface AccountsPageProps {
     initialAccounts: (typeof bankAccounts.$inferSelect)[]
@@ -15,6 +15,7 @@ interface AccountsPageProps {
 }
 
 export function AccountsPageClient({ initialAccounts, userId }: AccountsPageProps) {
+    const router = useRouter()
     const [accounts, setAccounts] = useState<
         (typeof bankAccounts.$inferSelect)[]
     >(initialAccounts)
@@ -35,8 +36,7 @@ export function AccountsPageClient({ initialAccounts, userId }: AccountsPageProp
     }
 
     const handleSuccess = () => {
-        const router = useRouter();
-        router.reload();
+        router.refresh()
     }
 
     return (

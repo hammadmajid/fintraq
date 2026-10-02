@@ -64,8 +64,8 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto grid min-h-screen max-w-xl grid-cols-1 items-center gap-10 px-6 py-12">
+    <div className="min-h-screen pt-28 pb-16 flex items-center justify-center">
+      <div className="container mx-auto max-w-xl px-6">
         <Card>
           <CardHeader>
             <CardTitle>Create your account</CardTitle>

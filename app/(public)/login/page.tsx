@@ -106,8 +106,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen">
-      <Card className="mx-auto mt-22 max-w-lg">
+    <div className="min-h-screen pt-28 pb-16 flex items-center justify-center">
+      <div className="container mx-auto max-w-lg px-6">
+        <Card>
         <CardHeader>
           <CardTitle>Sign in</CardTitle>
           <CardDescription>
@@ -181,12 +182,13 @@ export default function LoginPage() {
           </form>
         </CardContent>
         <CardFooter className="justify-center">
-          Don't have an account?
+          Don&apos;t have an account?
           <Link className={buttonVariants({ variant: "link" })} href="/signup">
             Get started
           </Link>
         </CardFooter>
       </Card>
+    </div>
 
       <Dialog
         open={forgotPasswordOpen}
