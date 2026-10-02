@@ -4,7 +4,10 @@ import { db } from "@/lib/db"
 import { bankAccounts } from "@/lib/db/schemas/accounts-schema"
 import { eq } from "drizzle-orm"
 import { getServerSession } from "@/lib/auth-helpers"
-import type { CreateAccountFormData, UpdateAccountFormData } from "@/features/accounts/schemas/accounts"
+import type {
+  CreateAccountFormData,
+  UpdateAccountFormData,
+} from "@/features/accounts/schemas/accounts"
 
 export async function getAccountsByUserId(userId: string) {
   try {
@@ -40,10 +43,7 @@ export async function getAccountById(id: string, userId: string) {
 }
 
 // Internal function - for server-to-server use
-async function createAccount(
-  userId: string,
-  data: CreateAccountFormData
-) {
+async function createAccount(userId: string, data: CreateAccountFormData) {
   try {
     const account = await db.insert(bankAccounts).values({
       userId,
@@ -103,7 +103,10 @@ export async function createAccountAction(data: CreateAccountFormData) {
     const session = await getServerSession()
 
     if (!session?.user?.id) {
-      return { success: false, error: "You must be logged in to create an account" }
+      return {
+        success: false,
+        error: "You must be logged in to create an account",
+      }
     }
 
     return createAccount(session.user.id, data)

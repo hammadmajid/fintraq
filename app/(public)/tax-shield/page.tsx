@@ -29,9 +29,27 @@ function TaxShieldCalibrator() {
     max: number
     setter: (next: number) => void
   }[] = [
-    { label: "GROSS MONTHLY INFLOW", value: gross, min: 3000, max: 50000, setter: setGross },
-    { label: "BUSINESS EXPENSES", value: expenses, min: 500, max: 15000, setter: setExpenses },
-    { label: "TARGET RESERVE", value: target, min: 15, max: 45, setter: setTarget },
+    {
+      label: "GROSS MONTHLY INFLOW",
+      value: gross,
+      min: 3000,
+      max: 50000,
+      setter: setGross,
+    },
+    {
+      label: "BUSINESS EXPENSES",
+      value: expenses,
+      min: 500,
+      max: 15000,
+      setter: setExpenses,
+    },
+    {
+      label: "TARGET RESERVE",
+      value: target,
+      min: 15,
+      max: 45,
+      setter: setTarget,
+    },
   ]
 
   return (
@@ -44,7 +62,9 @@ function TaxShieldCalibrator() {
         <label className="range-row" key={label}>
           <span>
             <b>{label}</b>
-            <strong>{label === "TARGET RESERVE" ? `${value}%` : money(value)}</strong>
+            <strong>
+              {label === "TARGET RESERVE" ? `${value}%` : money(value)}
+            </strong>
           </span>
           <input
             type="range"
@@ -102,12 +122,19 @@ export default function TaxShieldPage() {
         <div className="section-wrap split-layout">
           <div>
             <p className="section-kicker">03 // TAX VAULT TERMINAL</p>
-            <h2>Protect the upside<br /><em>before it lands.</em></h2>
+            <h2>
+              Protect the upside
+              <br />
+              <em>before it lands.</em>
+            </h2>
             <p className="section-copy">
-              Dial in an intentional reserve and see the exact amount you can actually spend without second-guessing the next tax quarter. Built specifically for irregular contractor and freelance income.
+              Dial in an intentional reserve and see the exact amount you can
+              actually spend without second-guessing the next tax quarter. Built
+              specifically for irregular contractor and freelance income.
             </p>
             <p className="honest-note mt-6">
-              <Check size={14} /> Illustrative planning tool — tailored for independent operators
+              <Check size={14} /> Illustrative planning tool — tailored for
+              independent operators
             </p>
           </div>
           <TaxShieldCalibrator />
@@ -119,11 +146,18 @@ export default function TaxShieldPage() {
         <div className="section-wrap">
           <div className="section-heading">
             <div>
-              <p className="section-kicker">03.1 // TAX RESERVE HUD & ALLOCATIONS</p>
-              <h2>Real-Time Reserve Telemetry.<br /><em>Zero End-Of-Quarter Panic.</em></h2>
+              <p className="section-kicker">
+                03.1 // TAX RESERVE HUD & ALLOCATIONS
+              </p>
+              <h2>
+                Real-Time Reserve Telemetry.
+                <br />
+                <em>Zero End-Of-Quarter Panic.</em>
+              </h2>
             </div>
             <p className="section-copy">
-              Visual allocation gauges monitor accumulated tax vaults against projected tax liability in real time.
+              Visual allocation gauges monitor accumulated tax vaults against
+              projected tax liability in real time.
             </p>
           </div>
 
@@ -143,18 +177,28 @@ export default function TaxShieldPage() {
           </div>
           <div className="screenshot-caption">
             <span>FIG. 01 — DYNAMIC TAX RESERVE & BUDGET SHIELD</span>
-            <span>Live visual gauges compute runway preservation and quarter-to-date tax accumulation.</span>
+            <span>
+              Live visual gauges compute runway preservation and quarter-to-date
+              tax accumulation.
+            </span>
           </div>
 
           {/* Screenshot Frame 2: Financial Overview & Ledger Gauge */}
           <div className="mt-20">
             <div className="section-heading">
               <div>
-                <p className="section-kicker">03.2 // RECONCILIATION & LEDGER SHIELD</p>
-                <h2>Settlement Velocity.<br /><em>Automated Reserve Locks.</em></h2>
+                <p className="section-kicker">
+                  03.2 // RECONCILIATION & LEDGER SHIELD
+                </p>
+                <h2>
+                  Settlement Velocity.
+                  <br />
+                  <em>Automated Reserve Locks.</em>
+                </h2>
               </div>
               <p className="section-copy">
-                Track how incoming revenue streams from multiple clients automatically allocate towards required tax quotas.
+                Track how incoming revenue streams from multiple clients
+                automatically allocate towards required tax quotas.
               </p>
             </div>
 
@@ -174,7 +218,10 @@ export default function TaxShieldPage() {
             </div>
             <div className="screenshot-caption">
               <span>FIG. 02 — OVERVIEW TELEMETRY & TAX GAUGE</span>
-              <span>Central command deck displaying current tax reserve target status (92% Q4 target locked) alongside liquidity.</span>
+              <span>
+                Central command deck displaying current tax reserve target
+                status (92% Q4 target locked) alongside liquidity.
+              </span>
             </div>
           </div>
 
@@ -182,7 +229,9 @@ export default function TaxShieldPage() {
           <div className="capability-grid mt-20">
             {taxPillars.map(({ title, desc, Icon }, index) => (
               <article className="capability-card" key={index}>
-                <span className="capability-index">0{index + 1} {"//"}</span>
+                <span className="capability-index">
+                  0{index + 1} {"//"}
+                </span>
                 <span className="capability-icon">
                   <Icon size={22} />
                 </span>
@@ -198,7 +247,11 @@ export default function TaxShieldPage() {
       <section className="cyber-cta">
         <div className="section-wrap">
           <p className="section-kicker">TAX VAULT AUTOMATION // 2026</p>
-          <h2>Shield your revenue<br /><em>starting today.</em></h2>
+          <h2>
+            Shield your revenue
+            <br />
+            <em>starting today.</em>
+          </h2>
           <Link href="/signup" className="cyber-button dark-button">
             INITIALIZE WORKSPACE <ArrowUpRight size={17} />
           </Link>

@@ -10,6 +10,7 @@
 Fintraq is an uncompromising financial operations terminal for digital freelancers and independent mercenaries. The design language is **pure Cyberpunk** — high-tech, razor-sharp, data-dense, and nocturnal.
 
 ### 🚫 Strictly Forbidden (Anti-AI Slop Rules)
+
 - **NO pastel gradients** or blurry rainbow blobs.
 - **NO generic, bubbly, rounded SaaS cards** (`rounded-3xl` or `rounded-2xl`).
 - **NO bubbly glassmorphism** or muddy backdrop-blurs.
@@ -21,6 +22,7 @@ Fintraq is an uncompromising financial operations terminal for digital freelance
 ## 🎨 Visual Identity & Design Tokens
 
 ### 1. Palette & Atmosphere
+
 - **Canvas / Background**:
   - Deep Obsidian Black (`#050508`) & Deep Cyber Noir (`#0a0b12`)
   - Subsurfaces: Tactical Charcoal (`#12131c`), Inset Panel (`#0e0f17`)
@@ -35,6 +37,7 @@ Fintraq is an uncompromising financial operations terminal for digital freelance
   - Optional subtle scanline texture on preview consoles.
 
 ### 2. Typography & HUD Instrumentation
+
 - **Headers & Display**: Sharp, industrial geometric sans or technical display face (e.g., `Orbitron`, `Rajdhani`, or bold technical `Geist`) with tight tracking and uppercase data prefixes (`SYSTEM // LEDGER_v2.4`).
 - **Body & Data**: Clean readable sans (`Geist Sans` or `Inter`) paired with dense monospaced figures (`JetBrains Mono` or `Fira Code`) for currency, transaction IDs, timestamps, and hash fingerprints.
 - **HUD Motifs**:
@@ -46,6 +49,7 @@ Fintraq is an uncompromising financial operations terminal for digital freelance
 ---
 
 ## 🛠️ Interactive Product Previews & Slices
+
 - **Freelance Cashflow HUD**: Realtime streaming-style ticker of income, expense, and tax allocations.
 - **Interactive Invoicing Forge**: Holographic-style cyber invoice generator with line-item calculations, client selector, and encrypted PDF preview.
 - **Tax Vault Terminal**: Visual percentage allocation dials (Federal, State, Self-Employment) with interactive tax estimation sliders.
@@ -54,5 +58,6 @@ Fintraq is an uncompromising financial operations terminal for digital freelance
 ---
 
 ## 🧩 Components from 21st.dev
+
 - Actively pull and customize components from **https://21st.dev/** (terminal windows, animated numbers/counters, HUD docks, command palettes, matrix text decoders).
 - Re-skin them to match the exact Cyberpunk palette (cyan/yellow/magenta on obsidian black with razor edges).

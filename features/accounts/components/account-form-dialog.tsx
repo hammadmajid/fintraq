@@ -206,10 +206,7 @@ export function AccountFormDialog({
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel htmlFor="icon">Icon</FieldLabel>
-                    <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
-                    >
+                    <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger
                         id="icon"
                         aria-invalid={fieldState.invalid}
@@ -237,10 +234,7 @@ export function AccountFormDialog({
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel htmlFor="type">Account Type</FieldLabel>
-                    <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
-                    >
+                    <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger
                         id="type"
                         aria-invalid={fieldState.invalid}
@@ -274,7 +268,7 @@ export function AccountFormDialog({
                       {...field}
                       id="color"
                       type="color"
-                      className="w-16 h-10 p-1 cursor-pointer"
+                      className="h-10 w-16 cursor-pointer p-1"
                       aria-invalid={fieldState.invalid}
                     />
                     <Input
@@ -302,7 +296,7 @@ export function AccountFormDialog({
             </Alert>
           )}
 
-          <div className="flex gap-2 justify-end pt-4">
+          <div className="flex justify-end gap-2 pt-4">
             <Button
               type="button"
               variant="outline"

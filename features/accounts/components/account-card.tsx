@@ -29,12 +29,15 @@ export function AccountCard({ account, onEditClick }: AccountCardProps) {
   const icon = iconMap[account.icon] || "💰"
 
   return (
-    <Card className="flex flex-col hover:shadow-lg transition-shadow">
+    <Card className="flex flex-col transition-shadow hover:shadow-lg">
       <CardHeader className="flex flex-row items-start justify-between gap-4">
-        <Link href={`/accounts/${account.id}`} className="flex-1 hover:opacity-80">
+        <Link
+          href={`/accounts/${account.id}`}
+          className="flex-1 hover:opacity-80"
+        >
           <div className="flex items-center gap-3">
             <div
-              className="flex items-center justify-center w-10 h-10 rounded-lg text-xl"
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-xl"
               style={{ backgroundColor: `${account.color}20` }}
             >
               {icon}
@@ -51,11 +54,11 @@ export function AccountCard({ account, onEditClick }: AccountCardProps) {
           onClick={onEditClick}
           className="shrink-0"
         >
-          <PencilIcon className="w-4 h-4" />
+          <PencilIcon className="h-4 w-4" />
         </Button>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground line-clamp-2">
+        <p className="line-clamp-2 text-sm text-muted-foreground">
           {account.description}
         </p>
       </CardContent>

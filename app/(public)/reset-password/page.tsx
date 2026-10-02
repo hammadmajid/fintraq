@@ -77,7 +77,7 @@ function ResetPasswordForm() {
 
   if (!token) {
     return (
-      <div className="min-h-screen pt-28 pb-16 flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center pt-28 pb-16">
         <div className="container mx-auto max-w-lg px-6">
           <Card>
             <CardHeader>
@@ -100,7 +100,7 @@ function ResetPasswordForm() {
 
   if (success) {
     return (
-      <div className="min-h-screen pt-28 pb-16 flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center pt-28 pb-16">
         <div className="container mx-auto max-w-lg px-6">
           <Card>
             <CardHeader>
@@ -121,74 +121,76 @@ function ResetPasswordForm() {
   }
 
   return (
-    <div className="min-h-screen pt-28 pb-16 flex items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center pt-28 pb-16">
       <div className="container mx-auto max-w-lg px-6">
         <Card>
           <CardHeader>
             <CardTitle>Reset your password</CardTitle>
             <CardDescription>Enter your new password below.</CardDescription>
           </CardHeader>
-        <CardContent>
-          <form
-            className="flex flex-col gap-6"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
-            <FieldGroup>
-              <Controller
-                name="password"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor="password">New Password</FieldLabel>
-                    <Input
-                      {...field}
-                      id="password"
-                      type="password"
-                      autoComplete="new-password"
-                      placeholder="Enter your new password"
-                      aria-invalid={fieldState.invalid}
-                    />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-              <Controller
-                name="confirmPassword"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor="confirmPassword">
-                      Confirm Password
-                    </FieldLabel>
-                    <Input
-                      {...field}
-                      id="confirmPassword"
-                      type="password"
-                      autoComplete="new-password"
-                      placeholder="Confirm your new password"
-                      aria-invalid={fieldState.invalid}
-                    />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-            </FieldGroup>
-            {error ? (
-              <Alert variant="destructive">
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            ) : null}
-            <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? "Resetting..." : "Reset password"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+          <CardContent>
+            <form
+              className="flex flex-col gap-6"
+              onSubmit={form.handleSubmit(onSubmit)}
+            >
+              <FieldGroup>
+                <Controller
+                  name="password"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <FieldLabel htmlFor="password">New Password</FieldLabel>
+                      <Input
+                        {...field}
+                        id="password"
+                        type="password"
+                        autoComplete="new-password"
+                        placeholder="Enter your new password"
+                        aria-invalid={fieldState.invalid}
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+                <Controller
+                  name="confirmPassword"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <FieldLabel htmlFor="confirmPassword">
+                        Confirm Password
+                      </FieldLabel>
+                      <Input
+                        {...field}
+                        id="confirmPassword"
+                        type="password"
+                        autoComplete="new-password"
+                        placeholder="Confirm your new password"
+                        aria-invalid={fieldState.invalid}
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+              </FieldGroup>
+              {error ? (
+                <Alert variant="destructive">
+                  <AlertTitle>Error</AlertTitle>
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              ) : null}
+              <Button type="submit" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting
+                  ? "Resetting..."
+                  : "Reset password"}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
@@ -198,7 +200,7 @@ export default function ResetPasswordPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen pt-28 pb-16 flex items-center justify-center">
+        <div className="flex min-h-screen items-center justify-center pt-28 pb-16">
           <div className="container mx-auto max-w-lg px-6">
             <Card>
               <CardHeader>

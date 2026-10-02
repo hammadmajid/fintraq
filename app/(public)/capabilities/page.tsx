@@ -60,10 +60,16 @@ export default function CapabilitiesPage() {
           <div className="section-heading">
             <div>
               <p className="section-kicker">02 // CAPABILITIES MATRIX</p>
-              <h2>Precision Instruments.<br /><em>Zero Admin Drag.</em></h2>
+              <h2>
+                Precision Instruments.
+                <br />
+                <em>Zero Admin Drag.</em>
+              </h2>
             </div>
             <p className="section-copy">
-              Engineered specifically for solo operators, independent consultants, and agile mercenary squads who require razor-sharp financial clarity.
+              Engineered specifically for solo operators, independent
+              consultants, and agile mercenary squads who require razor-sharp
+              financial clarity.
             </p>
           </div>
 
@@ -71,7 +77,9 @@ export default function CapabilitiesPage() {
           <div className="capability-grid mb-16">
             {capabilitiesList.map(({ index, title, copy, Icon }) => (
               <article className="capability-card" key={index}>
-                <span className="capability-index">{index} {"//"}</span>
+                <span className="capability-index">
+                  {index} {"//"}
+                </span>
                 <span className="capability-icon">
                   <Icon size={22} />
                 </span>
@@ -83,7 +91,9 @@ export default function CapabilitiesPage() {
           </div>
 
           <div className="cyber-marquee mb-16">
-            ACCOUNTS <span>✳</span> CASHFLOW <span>✳</span> INVOICES <span>✳</span> CLIENTS <span>✳</span> BUDGETS <span>✳</span> TAX RESERVES
+            ACCOUNTS <span>✳</span> CASHFLOW <span>✳</span> INVOICES{" "}
+            <span>✳</span> CLIENTS <span>✳</span> BUDGETS <span>✳</span> TAX
+            RESERVES
           </div>
         </div>
       </section>
@@ -93,11 +103,18 @@ export default function CapabilitiesPage() {
         <div className="section-wrap">
           <div className="section-heading">
             <div>
-              <p className="section-kicker">02.1 // RECEIVABLES & INVOICING ENGINE</p>
-              <h2>Accelerate Inflow.<br /><em>Eliminate Overdue Lag.</em></h2>
+              <p className="section-kicker">
+                02.1 // RECEIVABLES & INVOICING ENGINE
+              </p>
+              <h2>
+                Accelerate Inflow.
+                <br />
+                <em>Eliminate Overdue Lag.</em>
+              </h2>
             </div>
             <p className="section-copy">
-              Track multi-stage invoicing states with automatic client ledger reconciliation and real-time payment status monitors.
+              Track multi-stage invoicing states with automatic client ledger
+              reconciliation and real-time payment status monitors.
             </p>
           </div>
 
@@ -117,7 +134,10 @@ export default function CapabilitiesPage() {
           </div>
           <div className="screenshot-caption">
             <span>FIG. 01 — INVOICING FORGE & PAYMENT STATE PIPELINE</span>
-            <span>Comprehensive pipeline showing draft, sent, pending, and cleared payments across all client accounts.</span>
+            <span>
+              Comprehensive pipeline showing draft, sent, pending, and cleared
+              payments across all client accounts.
+            </span>
           </div>
 
           {/* Showcase Screenshot 2: Accounts Matrix */}
@@ -125,10 +145,16 @@ export default function CapabilitiesPage() {
             <div className="section-heading">
               <div>
                 <p className="section-kicker">02.2 // MULTI-VAULT MATRIX</p>
-                <h2>Every Money Vault.<br /><em>Indexed In One View.</em></h2>
+                <h2>
+                  Every Money Vault.
+                  <br />
+                  <em>Indexed In One View.</em>
+                </h2>
               </div>
               <p className="section-copy">
-                Consolidate checking, business savings, tax reserves, and offshore or crypto holdings into an integrated financial dashboard.
+                Consolidate checking, business savings, tax reserves, and
+                offshore or crypto holdings into an integrated financial
+                dashboard.
               </p>
             </div>
 
@@ -148,7 +174,10 @@ export default function CapabilitiesPage() {
             </div>
             <div className="screenshot-caption">
               <span>FIG. 02 — ACCOUNTS MATRIX & VAULT ALLOCATION</span>
-              <span>Visual directory mapping multi-institution balances, liquid runway, and asset allocations in real time.</span>
+              <span>
+                Visual directory mapping multi-institution balances, liquid
+                runway, and asset allocations in real time.
+              </span>
             </div>
           </div>
         </div>
@@ -158,7 +187,11 @@ export default function CapabilitiesPage() {
       <section className="cyber-cta">
         <div className="section-wrap">
           <p className="section-kicker">OPERATIONAL READINESS // 2026</p>
-          <h2>Upgrade your financial<br /><em>command deck.</em></h2>
+          <h2>
+            Upgrade your financial
+            <br />
+            <em>command deck.</em>
+          </h2>
           <Link href="/signup" className="cyber-button dark-button">
             INITIALIZE WORKSPACE <ArrowUpRight size={17} />
           </Link>
