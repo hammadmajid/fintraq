@@ -57,7 +57,7 @@ function TaxShieldCalibrator() {
     <div className="shield-console">
       <div className="console-top">
         <span>SHIELD_CALIBRATOR // LIVE COMPUTATION</span>
-        <span className="text-green">● ALL COEFFICIENTS NOMINAL</span>
+        <span className="text-cyber-accent">● ALL COEFFICIENTS NOMINAL</span>
       </div>
       {sliders.map(({ label, value, min, max, setter }) => (
         <label className="range-row" key={label}>

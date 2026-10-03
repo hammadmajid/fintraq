@@ -72,7 +72,7 @@ function TaxShield() {
         <div className="shield-console">
           <div className="console-top">
             <span>SHIELD_CALIBRATOR {"//"} LIVE</span>
-            <span className="text-green">● COMPUTING</span>
+            <span className="text-cyber-accent">● COMPUTING</span>
           </div>
           {sliders.map(({ label, value, min, max, setter }) => (
             <label className="range-row" key={label}>
