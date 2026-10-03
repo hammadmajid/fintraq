@@ -119,12 +119,11 @@ export default function CapabilitiesPage() {
             </p>
           </div>
 
-          <InteractiveDashboard initialView="invoices" className="mb-12" />
+          <InteractiveDashboard initialView="invoices" snapshot="Capabilities · Billing" className="mb-12" />
           <div className="screenshot-caption">
             <span>FIG. 01 — INVOICING FORGE & PAYMENT STATE PIPELINE</span>
             <span>
-              Comprehensive pipeline showing draft, sent, pending, and cleared
-              payments across all client accounts.
+              Filter payment states, inspect a row, or add a sample invoice.
             </span>
           </div>
 
@@ -146,12 +145,11 @@ export default function CapabilitiesPage() {
               </p>
             </div>
 
-            <InteractiveDashboard initialView="accounts" />
+            <InteractiveDashboard initialView="accounts" snapshot="Capabilities · Vaults" />
             <div className="screenshot-caption">
               <span>FIG. 02 — ACCOUNTS MATRIX & VAULT ALLOCATION</span>
               <span>
-                Visual directory mapping multi-institution balances, liquid
-                runway, and asset allocations in real time.
+                Select a vault, check sync status, or connect a sample account.
               </span>
             </div>
           </div>

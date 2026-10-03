@@ -106,10 +106,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center pt-28 pb-16">
+    <main className="auth-page cyber-site flex min-h-screen items-center justify-center px-4 pt-28 pb-16">
+      <div className="auth-grid" aria-hidden="true" />
       <div className="container mx-auto max-w-lg px-6">
-        <Card>
+        <Card className="auth-card">
           <CardHeader>
+            <p className="auth-kicker">FINTRAQ ACCESS // 01</p>
             <CardTitle>Sign in</CardTitle>
             <CardDescription>
               Use your email and password to access your workspace.
@@ -249,6 +251,6 @@ export default function LoginPage() {
           )}
         </DialogContent>
       </Dialog>
-    </div>
+    </main>
   )
 }

@@ -204,10 +204,31 @@ export function LandingPage() {
               only — no financial account is connected.
             </p>
           </div>
-          <InteractiveDashboard initialView="overview" />
+          <InteractiveDashboard initialView="overview" snapshot="Home · Cashflow" />
           <div className="screenshot-caption">
             <span>FIG. 01 — FINANCIAL COMMAND DECK</span>
-            <span>Use the dashboard navigation to explore each view.</span>
+            <span>Explore cashflow trends and expand the live ledger.</span>
+          </div>
+          <div className="mt-20">
+            <div className="section-heading">
+              <div>
+                <p className="section-kicker">01.2 // INVOICE OPERATIONS</p>
+                <h2>
+                  Keep every payment
+                  <br />
+                  <em>in clear view.</em>
+                </h2>
+              </div>
+              <p className="section-copy">
+                Review paid, pending, and overdue invoices in a dedicated
+                workspace, with every payment status easy to scan.
+              </p>
+            </div>
+            <InteractiveDashboard initialView="invoices" snapshot="Home · Invoices" />
+            <div className="screenshot-caption">
+              <span>FIG. 02 — INVOICE QUEUE & PAYMENT STATUS</span>
+              <span>Filter the queue, select a row, or add an invoice.</span>
+            </div>
           </div>
         </div>
       </section>

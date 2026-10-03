@@ -112,12 +112,11 @@ export default function OperatorSignalPage() {
             </p>
           </div>
 
-          <InteractiveDashboard initialView="accounts" className="mb-12" />
+          <InteractiveDashboard initialView="accounts" snapshot="Operator · Vaults" className="mb-12" />
           <div className="screenshot-caption">
             <span>FIG. 01 — OPERATOR VAULT DIRECTORY & LIQUIDITY STREAM</span>
             <span>
-              Real-time balance synchronization across business checking, tax
-              savings, and investment accounts.
+              Inspect a vault, switch to sync status, or connect a sample account.
             </span>
           </div>
 
@@ -141,12 +140,11 @@ export default function OperatorSignalPage() {
               </p>
             </div>
 
-            <InteractiveDashboard initialView="overview" />
+            <InteractiveDashboard initialView="overview" snapshot="Operator · Cashflow" />
             <div className="screenshot-caption">
               <span>FIG. 02 — LIVE LEDGER & INFLOW VELOCITY</span>
               <span>
-                Visual 6-month cashflow velocity chart, tax shield status, and
-                real-time transaction ledger.
+                Change the chart period and expand the ledger to see more activity.
               </span>
             </div>
           </div>

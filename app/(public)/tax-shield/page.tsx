@@ -162,12 +162,11 @@ export default function TaxShieldPage() {
             </p>
           </div>
 
-          <InteractiveDashboard initialView="budgets" className="mb-12" />
+          <InteractiveDashboard initialView="budgets" snapshot="Tax Shield · Reserve" className="mb-12" />
           <div className="screenshot-caption">
             <span>FIG. 01 — DYNAMIC TAX RESERVE & BUDGET SHIELD</span>
             <span>
-              Live visual gauges compute runway preservation and quarter-to-date
-              tax accumulation.
+              Switch to Runway or add a reserve category to explore the controls.
             </span>
           </div>
 
@@ -190,12 +189,11 @@ export default function TaxShieldPage() {
               </p>
             </div>
 
-            <InteractiveDashboard initialView="overview" />
+            <InteractiveDashboard initialView="overview" snapshot="Tax Shield · Ledger" />
             <div className="screenshot-caption">
               <span>FIG. 02 — OVERVIEW TELEMETRY & TAX GAUGE</span>
               <span>
-                Central command deck displaying current tax reserve target
-                status (92% Q4 target locked) alongside liquidity.
+                Change the cashflow period, then expand the ledger to inspect movements.
               </span>
             </div>
           </div>

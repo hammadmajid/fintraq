@@ -28,10 +28,10 @@ export default function ProductPage() {
           </div>
 
           {/* Interactive dashboard preview */}
-          <InteractiveDashboard initialView="overview" />
+          <InteractiveDashboard initialView="overview" snapshot="Product · Overview" />
           <div className="screenshot-caption">
             <span>FIG. 01 — FINANCIAL COMMAND DECK</span>
-            <span>Switch dashboard views using the left navigation.</span>
+            <span>Adjust the period and expand the live ledger.</span>
           </div>
         </div>
       </section>
@@ -57,12 +57,11 @@ export default function ProductPage() {
           </div>
 
           {/* Secondary Screenshot Frame */}
-          <InteractiveDashboard initialView="invoices" className="mb-12" />
+          <InteractiveDashboard initialView="invoices" snapshot="Product · Invoices" className="mb-12" />
           <div className="screenshot-caption">
             <span>FIG. 02 — INVOICING FORGE & STATUS DISPATCH</span>
             <span>
-              Complete overview of pending settlements, overdue notices, and
-              multi-currency billing.
+              Filter by payment status, inspect a row, or add a sample invoice.
             </span>
           </div>
 
@@ -86,12 +85,11 @@ export default function ProductPage() {
               </p>
             </div>
 
-          <InteractiveDashboard initialView="budgets" />
+          <InteractiveDashboard initialView="budgets" snapshot="Product · Budgets" />
           <div className="screenshot-caption">
               <span>FIG. 03 — BUDGET VELOCITY & CATEGORY PRESSURE</span>
               <span>
-                Visual indicators calibrate burn rates and forecast runway
-                stability before commitments occur.
+                Open the runway view or add a category to change this budget demo.
               </span>
             </div>
           </div>
