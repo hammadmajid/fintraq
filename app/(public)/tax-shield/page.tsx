@@ -1,8 +1,9 @@
 "use client"
 
+import { InteractiveDashboard } from "@/components/landing/interactive-dashboard"
+
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import {
   ArrowUpRight,
   Check,
@@ -161,25 +162,11 @@ export default function TaxShieldPage() {
             </p>
           </div>
 
-          <div className="screenshot-frame mb-12">
-            <div className="frame-bar">
-              <span>● ● ●</span>
-              <b>FINTRAQ // TAX_RESERVES_AND_BUDGET_MATRIX</b>
-              <span>VAULT_TELEMETRY // 01/02</span>
-            </div>
-            <Image
-              src="/fintraq-budgets-lime.png"
-              alt="FinTraq Budgets and Tax Reserves screenshot"
-              width={1600}
-              height={980}
-              className="dashboard-screenshot"
-            />
-          </div>
+          <InteractiveDashboard initialView="budgets" snapshot="Tax Shield · Reserve" className="mb-12" />
           <div className="screenshot-caption">
             <span>FIG. 01 — DYNAMIC TAX RESERVE & BUDGET SHIELD</span>
             <span>
-              Live visual gauges compute runway preservation and quarter-to-date
-              tax accumulation.
+              Switch to Runway or add a reserve category to explore the controls.
             </span>
           </div>
 
@@ -202,25 +189,11 @@ export default function TaxShieldPage() {
               </p>
             </div>
 
-            <div className="screenshot-frame">
-              <div className="frame-bar">
-                <span>● ● ●</span>
-                <b>FINTRAQ // CASHFLOW_LEDGER_OVERVIEW</b>
-                <span>VAULT_TELEMETRY // 02/02</span>
-              </div>
-              <Image
-                src="/fintraq-overview-lime.png"
-                alt="FinTraq Financial Overview screenshot"
-                width={1600}
-                height={980}
-                className="dashboard-screenshot"
-              />
-            </div>
+            <InteractiveDashboard initialView="overview" snapshot="Tax Shield · Ledger" />
             <div className="screenshot-caption">
               <span>FIG. 02 — OVERVIEW TELEMETRY & TAX GAUGE</span>
               <span>
-                Central command deck displaying current tax reserve target
-                status (92% Q4 target locked) alongside liquidity.
+                Change the cashflow period, then expand the ledger to inspect movements.
               </span>
             </div>
           </div>

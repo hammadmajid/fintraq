@@ -1,7 +1,8 @@
 "use client"
 
+import { InteractiveDashboard } from "@/components/landing/interactive-dashboard"
+
 import Link from "next/link"
-import Image from "next/image"
 import {
   ArrowUpRight,
   FileText,
@@ -118,25 +119,11 @@ export default function CapabilitiesPage() {
             </p>
           </div>
 
-          <div className="screenshot-frame mb-12">
-            <div className="frame-bar">
-              <span>● ● ●</span>
-              <b>FINTRAQ // INVOICING_FORGE</b>
-              <span>CAPABILITIES_TELEMETRY // 01/02</span>
-            </div>
-            <Image
-              src="/fintraq-invoices-lime.png"
-              alt="FinTraq Invoicing Forge capabilities screenshot"
-              width={1600}
-              height={980}
-              className="dashboard-screenshot"
-            />
-          </div>
+          <InteractiveDashboard initialView="invoices" snapshot="Capabilities · Billing" className="mb-12" />
           <div className="screenshot-caption">
             <span>FIG. 01 — INVOICING FORGE & PAYMENT STATE PIPELINE</span>
             <span>
-              Comprehensive pipeline showing draft, sent, pending, and cleared
-              payments across all client accounts.
+              Filter payment states, inspect a row, or add a sample invoice.
             </span>
           </div>
 
@@ -158,25 +145,11 @@ export default function CapabilitiesPage() {
               </p>
             </div>
 
-            <div className="screenshot-frame">
-              <div className="frame-bar">
-                <span>● ● ●</span>
-                <b>FINTRAQ // ACCOUNTS_MATRIX_DIRECTORY</b>
-                <span>CAPABILITIES_TELEMETRY // 02/02</span>
-              </div>
-              <Image
-                src="/fintraq-accounts-lime.png"
-                alt="FinTraq Accounts Matrix capabilities screenshot"
-                width={1600}
-                height={980}
-                className="dashboard-screenshot"
-              />
-            </div>
+            <InteractiveDashboard initialView="accounts" snapshot="Capabilities · Vaults" />
             <div className="screenshot-caption">
               <span>FIG. 02 — ACCOUNTS MATRIX & VAULT ALLOCATION</span>
               <span>
-                Visual directory mapping multi-institution balances, liquid
-                runway, and asset allocations in real time.
+                Select a vault, check sync status, or connect a sample account.
               </span>
             </div>
           </div>

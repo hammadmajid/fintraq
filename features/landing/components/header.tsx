@@ -1,13 +1,6 @@
-"use client"
-
 import Link from "next/link"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
 
 export function Header() {
-  const { resolvedTheme, setTheme } = useTheme()
-  const isDark = resolvedTheme !== "light"
-
   return (
     <header className="cyber-header">
       <div className="section-wrap cyber-header-inner">
@@ -21,15 +14,6 @@ export function Header() {
           <Link href="/operator-signal">Operator signal</Link>
         </nav>
         <div className="cyber-header-actions">
-          <button
-            type="button"
-            className="cyber-theme-toggle"
-            onClick={() => setTheme(isDark ? "light" : "dark")}
-            aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
-            title={`Switch to ${isDark ? "light" : "dark"} mode`}
-          >
-            {isDark ? <Sun size={15} /> : <Moon size={15} />}
-          </button>
           <Link href="/login" className="cyber-text-link">
             SIGN IN
           </Link>

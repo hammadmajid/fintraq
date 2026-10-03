@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useSession, signOut } from "@/lib/auth-client"
-import { useTheme } from "next-themes"
 import {
   ArrowRightLeft,
   BarChart3,
@@ -11,10 +10,8 @@ import {
   Home,
   Landmark,
   LogOut,
-  Moon,
   PiggyBank,
   Settings,
-  Sun,
   Users,
 } from "lucide-react"
 
@@ -32,7 +29,6 @@ export function AppSidebar() {
   const pathname = usePathname()
   const router = useRouter()
   const { data: session } = useSession()
-  const { theme, setTheme } = useTheme()
   const name = session?.user?.name || session?.user?.email || "Operator"
   const initials = name
     .split(" ")
@@ -83,13 +79,6 @@ export function AppSidebar() {
           </div>
         </div>
         <div className="app-sidebar-actions">
-          <button
-            type="button"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            title="Toggle theme"
-          >
-            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-          </button>
           <button type="button" onClick={handleSignOut} title="Sign out">
             <LogOut size={15} />
           </button>

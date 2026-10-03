@@ -64,10 +64,12 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center pt-28 pb-16">
+    <main className="auth-page cyber-site flex min-h-screen items-center justify-center px-4 pt-28 pb-16">
+      <div className="auth-grid" aria-hidden="true" />
       <div className="container mx-auto max-w-xl px-6">
-        <Card>
+        <Card className="auth-card">
           <CardHeader>
+            <p className="auth-kicker">FINTRAQ ACCESS // 02</p>
             <CardTitle>Create your account</CardTitle>
             <CardDescription>
               Set up your profile and start tracking every invoice in one place.
@@ -160,6 +162,6 @@ export default function SignupPage() {
           </CardFooter>
         </Card>
       </div>
-    </div>
+    </main>
   )
 }

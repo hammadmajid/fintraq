@@ -21,7 +21,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={cn(
-        "antialiased",
+        "antialiased dark",
         jetbrainsMono.variable,
         "font-sans",
         geist.variable
