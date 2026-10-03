@@ -54,10 +54,10 @@ const pageMeta: Record<
 }
 
 const ledger = [
-  ["ACME STUDIO", "INVOICE PAYMENT // INV-0042", "+$3,850.00", "text-green"],
-  ["FIGMA", "SOFTWARE // SUBSCRIPTION", "−$24.00", "text-magenta"],
-  ["NORTHLINE CO.", "INVOICE PAYMENT // INV-0041", "+$2,400.00", "text-green"],
-  ["WORKSPACE", "OPERATIONS // OFFICE", "−$320.00", "text-magenta"],
+  ["ACME STUDIO", "INVOICE PAYMENT // INV-0042", "+$3,850.00", "text-cyber-accent"],
+  ["FIGMA", "SOFTWARE // SUBSCRIPTION", "−$24.00", "text-cyber-danger"],
+  ["NORTHLINE CO.", "INVOICE PAYMENT // INV-0041", "+$2,400.00", "text-cyber-accent"],
+  ["WORKSPACE", "OPERATIONS // OFFICE", "−$320.00", "text-cyber-danger"],
 ]
 
 function downloadDemoFile(
@@ -98,7 +98,7 @@ function Dashboard() {
   return (
     <>
       <div className="workspace-metrics">
-        <div className="workspace-metric metric-cyan">
+        <div className="workspace-metric metric-accent">
           <span>AVAILABLE LIQUIDITY</span>
           <strong>$48,920.50</strong>
           <small>↗ 12.8% VS LAST MONTH</small>
@@ -106,17 +106,17 @@ function Dashboard() {
         <div className="workspace-metric">
           <span>INCOME THIS MONTH</span>
           <strong>$12,450.00</strong>
-          <small className="text-green">↗ 18.2% POSITIVE</small>
+          <small className="text-cyber-accent">↗ 18.2% POSITIVE</small>
         </div>
         <div className="workspace-metric">
           <span>OUTGOING</span>
           <strong>$4,280.20</strong>
-          <small className="text-magenta">↗ 4.3% PRESSURE</small>
+          <small className="text-cyber-danger">↗ 4.3% PRESSURE</small>
         </div>
         <div className="workspace-metric">
           <span>TAX RESERVE</span>
           <strong>92%</strong>
-          <small className="text-yellow">Q4 TARGET LOCKED</small>
+          <small className="text-cyber-warn">Q4 TARGET LOCKED</small>
         </div>
       </div>
       <div className="workspace-two-col">
@@ -137,10 +137,10 @@ function Dashboard() {
           </div>
           <div className="chart-legend">
             <span>
-              <i className="legend-cyan" /> INFLOW
+              <i className="legend-accent" /> INFLOW
             </span>
             <span>
-              <i className="legend-magenta" /> OUTFLOW
+              <i className="legend-danger" /> OUTFLOW
             </span>
           </div>
         </Panel>
@@ -190,16 +190,16 @@ function Dashboard() {
 
 function Budgets() {
   const items = [
-    ["OPERATIONS", "$1,280", "$2,000", 64, "cyan"],
-    ["SOFTWARE & TOOLS", "$542", "$800", 68, "magenta"],
-    ["STUDIO ASSETS", "$940", "$1,500", 63, "violet"],
-    ["TRAVEL", "$720", "$1,700", 42, "green"],
+    ["OPERATIONS", "$1,280", "$2,000", 64, "accent"],
+    ["SOFTWARE & TOOLS", "$542", "$800", 68, "danger"],
+    ["STUDIO ASSETS", "$940", "$1,500", 63, "danger"],
+    ["TRAVEL", "$720", "$1,700", 42, "accent"],
   ]
   const [reviewed, setReviewed] = useState(false)
   return (
     <>
       <div className="workspace-metrics">
-        <div className="workspace-metric metric-cyan">
+        <div className="workspace-metric metric-accent">
           <span>MONTHLY PLAN</span>
           <strong>$6,000</strong>
           <small>4 CATEGORIES</small>
@@ -212,7 +212,7 @@ function Budgets() {
         <div className="workspace-metric">
           <span>REMAINING</span>
           <strong>$2,518</strong>
-          <small className="text-green">RUNWAY 4.8 MONTHS</small>
+          <small className="text-cyber-accent">RUNWAY 4.8 MONTHS</small>
         </div>
       </div>
       <Panel title="SPENDING BY CATEGORY // OCT 2026">
@@ -285,7 +285,7 @@ function Invoices() {
   return (
     <>
       <div className="workspace-metrics">
-        <div className="workspace-metric metric-cyan">
+        <div className="workspace-metric metric-accent">
           <span>PAID THIS MONTH</span>
           <strong>$6,250</strong>
           <small>2 INVOICES RECEIVED</small>
@@ -293,12 +293,12 @@ function Invoices() {
         <div className="workspace-metric">
           <span>AWAITING PAYMENT</span>
           <strong>$1,750</strong>
-          <small className="text-yellow">1 PENDING</small>
+          <small className="text-cyber-warn">1 PENDING</small>
         </div>
         <div className="workspace-metric">
           <span>OVERDUE</span>
           <strong>$4,200</strong>
-          <small className="text-magenta">ACTION REQUIRED</small>
+          <small className="text-cyber-danger">ACTION REQUIRED</small>
         </div>
       </div>
       <Panel title="ALL INVOICES // CLICK STATUS TO CYCLE">
@@ -412,7 +412,7 @@ function Clients() {
   return (
     <>
       <div className="workspace-metrics">
-        <div className="workspace-metric metric-cyan">
+        <div className="workspace-metric metric-accent">
           <span>ACTIVE CLIENTS</span>
           <strong>14</strong>
           <small>3 WITH OPEN WORK</small>
@@ -420,12 +420,12 @@ function Clients() {
         <div className="workspace-metric">
           <span>SETTLED THIS QUARTER</span>
           <strong>$48,920</strong>
-          <small className="text-green">+18.4% VS Q3</small>
+          <small className="text-cyber-accent">+18.4% VS Q3</small>
         </div>
         <div className="workspace-metric">
           <span>OPEN FOLLOW-UPS</span>
           <strong>3</strong>
-          <small className="text-yellow">1 HIGH PRIORITY</small>
+          <small className="text-cyber-warn">1 HIGH PRIORITY</small>
         </div>
       </div>
       <Panel title="CLIENT INDEX // 14 RECORDS">
@@ -441,10 +441,10 @@ function Clients() {
               <strong
                 className={
                   client[3] === "ACTIVE"
-                    ? "text-green"
+                    ? "text-cyber-accent"
                     : client[3] === "FOLLOW UP"
-                      ? "text-magenta"
-                      : "text-yellow"
+                      ? "text-cyber-danger"
+                      : "text-cyber-warn"
                 }
               >
                 {client[3]}
@@ -462,20 +462,20 @@ function Records() {
   return (
     <>
       <div className="workspace-metrics">
-        <div className="workspace-metric metric-cyan">
+        <div className="workspace-metric metric-accent">
           <span>INFLOWS</span>
           <strong>$12,450</strong>
-          <small className="text-green">THIS MONTH</small>
+          <small className="text-cyber-accent">THIS MONTH</small>
         </div>
         <div className="workspace-metric">
           <span>OUTFLOWS</span>
           <strong>$4,280</strong>
-          <small className="text-magenta">THIS MONTH</small>
+          <small className="text-cyber-danger">THIS MONTH</small>
         </div>
         <div className="workspace-metric">
           <span>NET MOVEMENT</span>
           <strong>+$8,169</strong>
-          <small className="text-green">POSITIVE VELOCITY</small>
+          <small className="text-cyber-accent">POSITIVE VELOCITY</small>
         </div>
       </div>
       <Panel title="TRANSACTION STREAM // OCTOBER 2026">
@@ -486,7 +486,7 @@ function Records() {
                 "RENDER FARM",
                 "STUDIO ASSETS // CLOUD",
                 "−$180.00",
-                "text-magenta",
+                "text-cyber-danger",
               ],
             ])
             .map((row, index) => (
@@ -513,10 +513,10 @@ function Reports() {
   return (
     <>
       <div className="workspace-metrics">
-        <div className="workspace-metric metric-cyan">
+        <div className="workspace-metric metric-accent">
           <span>NET INCOME</span>
           <strong>$8,169</strong>
-          <small className="text-green">+22.1% VS SEP</small>
+          <small className="text-cyber-accent">+22.1% VS SEP</small>
         </div>
         <div className="workspace-metric">
           <span>RUNWAY</span>
@@ -526,7 +526,7 @@ function Reports() {
         <div className="workspace-metric">
           <span>RESERVE COVERAGE</span>
           <strong>92%</strong>
-          <small className="text-yellow">Q4 TARGET</small>
+          <small className="text-cyber-warn">Q4 TARGET</small>
         </div>
       </div>
       <div className="workspace-two-col">

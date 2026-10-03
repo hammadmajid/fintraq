@@ -173,7 +173,7 @@ export default function OperatorSignalPage() {
                 <article className="review-card" key={role}>
                   <div className="flex items-center justify-between">
                     <span>{role}</span>
-                    <small className="text-green font-mono">{metric}</small>
+                    <small className="text-cyber-accent font-mono">{metric}</small>
                   </div>
                   <blockquote>“{quote}”</blockquote>
                   <small>VERIFIED OPERATOR PROFILE // {person}</small>

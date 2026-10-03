@@ -25,25 +25,25 @@ export default async function AccountDetailPage({
       </div>
 
       <div className="workspace-metrics">
-        <div className="workspace-metric metric-cyan">
+        <div className="workspace-metric metric-accent">
           <span>CURRENT BALANCE</span>
           <strong>$48,920.50</strong>
-          <small className="text-green">↗ 12.8% THIS MONTH</small>
+          <small className="text-cyber-accent">↗ 12.8% THIS MONTH</small>
         </div>
         <div className="workspace-metric">
           <span>MONTHLY INFLOW</span>
           <strong>$12,450</strong>
-          <small className="text-green">6 DEPOSITS</small>
+          <small className="text-cyber-accent">6 DEPOSITS</small>
         </div>
         <div className="workspace-metric">
           <span>MONTHLY OUTFLOW</span>
           <strong>$4,280</strong>
-          <small className="text-magenta">18 TRANSACTIONS</small>
+          <small className="text-cyber-danger">18 TRANSACTIONS</small>
         </div>
         <div className="workspace-metric">
           <span>RESERVE STATUS</span>
           <strong>92%</strong>
-          <small className="text-yellow">Q4 TARGET LOCKED</small>
+          <small className="text-cyber-warn">Q4 TARGET LOCKED</small>
         </div>
       </div>
 
